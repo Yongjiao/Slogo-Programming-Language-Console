@@ -6,6 +6,7 @@
 
 
 ### **Introduction**
+The project is to create a basic and agile framework for a simplified Slogo game. The goal is to design the framework so that the program is adaptive to changes when additional turtle commands and GUI components are added in the future. We wish to make our code as reusable as possible, and to keep as much of the components closed as we could. By dividing the project by teams of front-end and back-end, the communication will be solely based on the API that both parties both agreed upon. Our API specifies the separation of front end and back end clearly by passing commands to parser in back-end from UI, and list of line information (coordinates) and orientation to be drawn in UI from back-end. Parsers will be divided into Mathparser and Commandparser, intermediate results will also be passed around for more complex commands. Those parameters remain open within either classes in UI or classes in backend, while everything else should remain relatively closed. There may be situations where we need to pass different parameters within “small” classes with specific functionality, and those will also be open. We will have classes that define the basic behaviors like forward, backward, loops and math operations, but also classes for syntax error checking or handling user-defined behaviors. This way, the structures remain clear to allow for additional flexibility and clarity. 
 
 ### **User Interface**
 
