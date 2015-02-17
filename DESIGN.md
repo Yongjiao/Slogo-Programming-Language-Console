@@ -206,6 +206,21 @@ Single number calculation commands"
 This is essentially a "miscellaneous" math commands section because each of the subclasses Random, Minus, Tan, Sin, Cos, ATan, Log, Pow, and Pi could be represented uniquely without having dependencies on each other. Each command is unique. This class again has no dependencies because it does not need to manipulate other classes. 
 
 
+For the comparison commands, the Compare class contains two methods - isLess and isEqual - both of which take in two integer parameters. The former method returns true if the first parameter is less than the second, and the latter method returns true if both parameter integers are equal. The subclass Less(a, b) calls the super class’s isLess method as isLess(a,b), while the subclass Greater(a, b) calls the super class’s isLess method as isLess(b,a) to compare the opposite way. Likewise, the subclass Equal(a, b) calls the super class’s isEqual method as isEqual(a,b), while the subclass NotEqual(a, b) calls the super class’s isEqual method but returns the opposite of the returned boolean.
+
+
+For conditional commands, the IfElse class takes in an integer for the condition, and two lists of commands - one that executes within the if statement, and the other that executes in the else statement. As a result, the IfElseCond subclass calls the execute method accordingly. For the IfCond subclass - initialized if the user only inputs an if condition and no else condition - the commands for the else statement are simply set to null.
+
+
+For looping commands, the Loop class contains parameters of start and ending integers, as well as a list of commands. If the user inputs the command repeat [numTimes][commands], the Repeat class initializes the start integer to 0, the ending integer to numTimes, and calls the Loop’s execute method accordingly to execute each command in the commands list. If the user inputs the command doTimes [numTimes][commands], the DoTimes class initializes the start integer to 0 and also calls the Loop’s execute method accordingly. If the user inputs the command for [begin][finish][commands], the For class initializes the start integer to begin, the ending integer to finish, and calls the Loop’s execute method to execute each command in the for loop.
+
+
+For setting variables, the SetVariable command class takes in a String name of the variable as well as an integer value of the variable. If the user inputs either the command make[name][value] or set[name][value] the SetVariable class is instantiated and passed in the appropriate parameters.
+
+
+
+
+
 
 ### **API Example Code**
 
