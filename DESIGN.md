@@ -144,12 +144,20 @@ Other features are planned as follows:
 * Open file: access user’s local computer and allows user to upload file of commands; GUI class parses commands line by line and instantiates appropriate commands
 * Save as file: allows user to save recent commands as file to access later
 
+#####Overall Class Diagram
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/ClassDiagramOverall.png)
 
+
+#####Compare Condition Commands
+
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/CompareConditionCommands.png)
 
+#####Loop Variable Commands
+
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/LoopVariableCommands.png)
+
+#####Movement Arithmetic Commands
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/MovementArithmenticCommands.png)
 
