@@ -8,6 +8,145 @@
 ### **Introduction**
 The project is to create a basic and agile framework for a simplified Slogo game. The goal is to design the framework so that the program is adaptive to changes when additional turtle commands and GUI components are added in the future. We wish to make our code as reusable as possible, and to keep as much of the components closed as we could. By dividing the project by teams of front-end and back-end, the communication will be solely based on the API that both parties both agreed upon. Our API specifies the separation of front end and back end clearly by passing commands to parser in back-end from UI, and list of line information (coordinates) and orientation to be drawn in UI from back-end. Parsers will be divided into Mathparser and Commandparser, intermediate results will also be passed around for more complex commands. Those parameters remain open within either classes in UI or classes in backend, while everything else should remain relatively closed. There may be situations where we need to pass different parameters within “small” classes with specific functionality, and those will also be open. We will have classes that define the basic behaviors like forward, backward, loops and math operations, but also classes for syntax error checking or handling user-defined behaviors. This way, the structures remain clear to allow for additional flexibility and clarity. 
 
+### **Overview**
+
+The main class file for slogo_team16 is called Main.java. This class will initialize the GUI, View, Turtle, TurtleHandler, Pen, and CommandFactory classes. The CommandFactory is given access to the TurtleHandler, the TurtleHandler is given access to the View and Turtle, the View is given access to the Pen. The GUI displays a text field, buttons, drop-down menus, as well as previous commands and current variables entered. Once the user enters a command into the text field, the GUI class calls the ErrorCheck class to verify - using regular expressions - that the input is a valid form of either 1) command parameter(s), 2) command command parameter(s), or 3) command MathOperation parameter(s). If the command or list of commands are valid, the command String is then added to a savedCommands ArrayList<String> and is displayed on the side panel of previous commands. The command is then executed. Variables added by the user are also put into a savedVars ArrayList<Map> of String names and integer values, and are displayed on another side panel of variables. 
+To execute commands, each command is identified through a HashMap of String keys and Object values, where each object is an instance of one of the CommandFactory classes. For example, [“fd,” “FD,”, “forward”] are mapped to [new Forward()]. Then, the next input - which may be an integer, for instance - is read, and the Forward command is then executed with the integer as a parameter. The turtle image moves and a line is drawn through the View class, as will be explained later.
+
+Commands are grouped into categories based on behavior and number of parameters as follows:
+
+* Movement commands: 
+```
+	public class Move(int steps) {
+		changeLocation(int s) {
+			TurtleHandler.updateLocation(s);
+		}
+	}
+```
+
+	Subclasses:
+		Forward(int s)
+		Backward(int s)
+		GoToLocation(int x, int y)
+		GoHome()
+
+* Rotation commands:
+```
+	public class Rotate(int degrees) {
+		changeOrientation(int a) {
+			TurtleHandler.updateDir(a);
+		}
+	}
+```
+
+	Subclasses:
+		Right(int a)
+		Left(int a)
+		GoTowardsLoc(int x, int y)
+		SetHeading(int a)
+
+* Arithmetic computation commands:
+```
+	public class Arithmetic(int a, int b) {
+		add(a, b) {. . . };
+		mult(a, b) {. . . };
+		div(a, b) {. . . };
+	}
+```
+
+	Sublcasses:
+		Add(int a, int b)
+		Subtract(int a, int b)
+		Multiply(int a, int b)
+		Divide(int a, int b)
+		Remainder(int a, int b)
+
+* Single number calculation commands:
+```
+	public class Calculate(int a) { . . . };
+```
+
+	Subclasses:
+		Random (int a)
+		Minus (int a)
+		Tan (int a)
+		Sin (int a)
+		Cos (int a)
+		ATan (int a)
+		Log (int a)
+		Pow (int a)
+		PI()
+
+* Comparison commands:
+```
+	public class Compare(int a, int b) {
+		isLess(a, b) {. . . };
+		isEqual(a, b) {. . . };
+	}
+```
+
+	Subclasses:
+		Less(int a, int b)
+		Greater(int a, int b)
+		Equal(int a, int b)
+		NotEqual(int a, int b)
+
+* Conditional commands:
+```
+	public class IfElse(int expr, ArrayList<String> commIf,
+		ArrayList<String> commElse) {
+		execute() {
+			if (expr != 0) { // execute each commIf }
+			else { // execute each commElse }
+		}
+	}
+```
+
+	Subclasses:	
+		IfCond(int e, ArrayList<String> ifs)
+		IfElseCond(int e, ArrayList<String> ifs,
+			ArrayList<String> elses)
+
+* Looping commands:
+```
+	public class Loop(int start, int end, ArrayList<String> commands) {
+		execute() {
+			for (int i = start; i < end; i++) {
+				// execute each command in commands
+			}
+		}
+	}
+```
+
+	Subclasses:
+		Repeat(int numTimes, ArrayList<String> commands)
+		DoTimes(int numTimes, ArrayList<String> commands)
+		For(int start, int end, ArrayList<String> commands)
+
+* Setting variables commands:
+```
+	public class SetVariable(String name, int value) {. . .}
+```
+
+	Subclasses:
+		Make(String variableName, int val)
+		Set(String variableName, int val)
+
+
+
+Within each of the CommandFactory subclasses, the executing methods update the turtle by calling the appropriate TurtleHandler method. For example, the Move methods would call TurtleHandler.updateLocation(…) while the Rotate methods would call TurtleHandler.updateOrientation(…). In turn, the TurtleHandler class updates the xLocation, yLocation, and/or orientation of the Turtle, and may also update the turtle’s visibility based on the input command. The TurtleHandler class also updates the front end as well, by calling the View class’s methods of changeTurtleImage(Point2D newLocation) or clearScreen() based on the input command. Depending on the Pen class’s status accessed by the View, it decides whether or not to draw a line (drawLine(Point2D start, Point2D end) which uses the stroke() method from JavaFX’s GraphicsContext). The Pen’s status is determined through user input.
+
+Other features are planned as follows:
+* Pen Color: provides user with a color picker; selected color is sent to View class to change the line color using the appropriate method from GraphicsContext
+* BackgroundColor: provides user with a color picker; selected color is sent to the View class to change the Canvas color
+* Turtle Image: is sent to View class to changeTurtleImg(ImageView newImg)
+* Language: provides user with a list of languages; GUI loads appropriate ResourceBundler
+* Open file: access user’s local computer and allows user to upload file of commands; GUI class parses commands line by line and instantiates appropriate commands
+* Save as file: allows user to save recent commands as file to access later
+
+
+
+
 ### **User Interface**
 
 The program’s UI will be laid out as shown below. There will be drop down menu for pen/background color selection,  language, turtle image, helper page on the top. A file chooser to take in files with commands to run or load previously saved points. Ideally, there will also be an option for saving the current progress of the game to a file, so that the user will be able to continue with where he or she left off. To the far right, there will be three sections for previous commands, variables and current user-defined commands. To the lower bottom, a Textfield for commands will take in correctly formatted commands users want to execute.
