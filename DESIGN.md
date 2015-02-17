@@ -145,7 +145,13 @@ Other features are planned as follows:
 * Save as file: allows user to save recent commands as file to access later
 
 
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/ClassDiagramOverall.png)
 
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/CompareConditionCommands.png)
+
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/LoopVariableCommands.png)
+
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/MovementArithmenticCommands.png)
 
 ### **User Interface**
 
