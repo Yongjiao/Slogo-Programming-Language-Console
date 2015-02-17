@@ -191,7 +191,19 @@ The TextField box is where all the magic happens. When the "Enter" button is cli
 
 ### **Design Details**
 
+We will go over all the commands in the Design Details thoroughly.
 
+Movement Commands:
+The movement commands have a super class called Move. The subclasses Forward, Backward, GoToLocation, and GoHome extend the Move class because they have similar properties in that they physically move from one location the turtle from one location to another. Each subclass will call the TurtleHandler to both update location of the Turtle itself, and draw the turtle on the canvas.
+
+Rotation commands:
+The rotation commands have a super class called Rotate. The subclasses Right, Left, GoTowardsLoc, and SetHeading all extend the Rotation class because they all have similar properties that physically rotates the turtle and thus its orientation. Each subclass again called TurtleHandler to both update the orientation of the Turtle and update the turtle image orientation in the View class.
+
+Arithmetic computation commands:
+The arithmetic computation commands have a super class called Arithmetic. The class has subclasses add, subtract, multiply, divide, and remainder because they all do similar math operational things. Add will call super.add. Subtract will also call super.add, but with one of its parameters being negative. Multiply will call super.mult. Divide will call super.mult but taking the inverse of b. Remainder will simply call div(a, b). This class has no dependencies from other classes because it does not need to manipulate other classes.
+
+Single number calculation commands"
+This is essentially a "miscellaneous" math commands section because each of the subclasses Random, Minus, Tan, Sin, Cos, ATan, Log, Pow, and Pi could be represented uniquely without having dependencies on each other. Each command is unique. This class again has no dependencies because it does not need to manipulate other classes. 
 
 
 
