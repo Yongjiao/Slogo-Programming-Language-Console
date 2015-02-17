@@ -382,3 +382,8 @@ Another design consideration we had was whether we wanted to initialize the View
 * Andrew: GUI, View
 * Yongjiao/Richard: Error Checking, Turtle Commands, Math Operations, Boolean Operations
 * Anika/Andrew: Creating own Commands
+* 
+
+
+
+Note: Class diagrams and GUI design layout created by Anika
