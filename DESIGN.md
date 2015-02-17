@@ -189,7 +189,7 @@ We decided to use maps because it seems to be easier to implement for our setup.
 Another design consideration we had was whether we wanted to initialize the View class inside the GUI class or inside the Main method. We considered putting the view class inside the GUI class because we felt that the canvas for which the turtle moves should be considered part of the GUI. However, we determined that the View class is more for visualization and viewing and less about user interaction. It would also be much easier to communicate to the View class through our main class than through our GUI. Therefore, we decided to initialize our View class inside the main class.
 
 ### **Team Responsibilities**
-Anika: Turtle, TurtleHandler
-Andrew: GUI, View
-Yongjiao/Richard: Error Checking, Turtle Commands, Math Operations, Boolean Operations
-Anika/Andrew: Creating own Commanding
+* Anika: Turtle, TurtleHandler
+* Andrew: GUI, View
+* Yongjiao/Richard: Error Checking, Turtle Commands, Math Operations, Boolean Operations
+* Anika/Andrew: Creating own Commands
