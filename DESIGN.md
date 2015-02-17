@@ -25,7 +25,7 @@ The TextField box is where all the magic happens. When the "Enter" button is cli
 	* Add the command to the previous commands display list
 	* Parse the input and call our Commands class to execute the command.
 
-** Add pic here
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/GUI-Layout-v2.png)
 
 ### **Design Details**
 
