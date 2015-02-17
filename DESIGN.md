@@ -148,18 +148,27 @@ Other features are planned as follows:
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/ClassDiagramOverall.png)
 
+_______________________________________________________________________________________________________________
+
 
 #####Compare Condition Commands
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/CompareConditionCommands.png)
 
+_______________________________________________________________________________________________________________
+
 #####Loop Variable Commands
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/LoopVariableCommands.png)
 
+
+_______________________________________________________________________________________________________________
+
 #####Movement Arithmetic Commands
 
 ![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/MovementArithmenticCommands.png)
+
+_______________________________________________________________________________________________________________
 
 ### **User Interface**
 
