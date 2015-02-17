@@ -2,7 +2,7 @@
 ## SLogo Design Group 16
 
 ####Written by: Andrew Sun, Anika Radiya-Dixit, Yongjiao Yu
-* Note: Richard did not work on this document or meet with the team due to other commitments.
+* Note: Richard did not work on this document or meet with the team for design documentation. 
 
 
 ### **Introduction**
