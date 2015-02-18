@@ -227,11 +227,12 @@ For setting variables, the SetVariable command class takes in a String name of t
 ```
 package application;
 
+// One of the command classes that will be called when user types in "fd 50"
 public class Forward extends Move{
 	public Forward(){
 	}
 	public void execute(int i){
-		super.forward(i);
+		super.forward(i); // calls Move's forward method
 	}
 }
 
@@ -239,11 +240,12 @@ public class Forward extends Move{
 
 package application;
 
+// subclasses of Movement commands include Forward, Backward, GoHome, and GoToLocation
 public abstract class Move extends CommandFactory{
 
 	public int forward(int dist){
 		
-		myTurtleHandler.moveTurtle(dist, 0);	
+		myTurtleHandler.moveTurtle(dist, 0); // Turtule image and line drawing handled my Turtle Handler	
 		return dist;
 	}
 	
@@ -255,9 +257,10 @@ public abstract class Move extends CommandFactory{
 
 package application;
 
+// extended by all commands
 public class CommandFactory {
 
-	protected TurtleHandler myTurtleHandler;
+	protected TurtleHandler myTurtleHandler; // used to update turtle and line in View based on command
 	
 	public CommandFactory(){
 		
@@ -287,6 +290,7 @@ public class TurtleHandler {
 		myTurtle = t;
 	}
 	
+	// updates the turtle image, sets the turtle's new location, and determines line drawing
 	public void moveTurtle(int x, int y){ // Point p1, Point p2?
 		int xorig = myTurtle.getX();
 		int yorig = myTurtle.getY();
@@ -299,6 +303,7 @@ public class TurtleHandler {
 		myTurtle.setY(p2.y);
 	}
 	
+	// called if user inputs "left 50" or "right 40"
 	public void rotateTurtle(int deg){
 		// TODO: Implement
 	}
@@ -312,6 +317,7 @@ import java.awt.Point;
 
 import javafx.scene.canvas.Canvas;
 
+// visible area of Turtle and lines
 public class View extends Canvas {
 	
 	private int myWidth, myHeight;
@@ -324,14 +330,17 @@ public class View extends Canvas {
 		// TODO: implement other parameter, such as color, etc.
 	}
 	
+	// called whenever turtle moves; checks with Pen class if status of pen is up or down
 	public void drawLine(Point p1, Point p2){
 		// TODO: draw a line from point p1 to p2
 	}
 	
+	// updates location / orientation of turtle image on screen
 	public void changeTurtleImage(){
 		// TODO: implement
 	}
 	
+	// called if user inputs "clearscreen" command
 	public void clearScreen(){
 		// TODO: implement
 	}
