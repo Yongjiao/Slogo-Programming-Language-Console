@@ -1,7 +1,5 @@
 package application;
 
-import java.awt.Point;
-
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -33,11 +31,11 @@ public class TurtleHandler {
 
 
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
-		//TODO: put turtle image at locNew location
+		this.updateTurtleOnView();
 		
 		if (myTurtle.getPenPos() == 1)
 		{
-			//TODO: tell view to draw line
+			this.myView.drawLine(locOrig, locNew, getPen());
 		}
 		
 	}
@@ -100,7 +98,7 @@ public class TurtleHandler {
 	
 	public void clearScreen()
 	{
-		// TODO: view handles clearing all the lines
+		this.myView.clearScreen();
 	}
 	
 	
