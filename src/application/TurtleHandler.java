@@ -85,6 +85,12 @@ public class TurtleHandler {
 		return myTurtle.getPenPos();
 	}
 	
+	public Pen getPen()
+	{
+		return myTurtle.getPen();
+	}
+	
+	
 	public void changeTurtleImage(Image newImage)
 	{
 		myTurtle.updateMyImage(newImage);
