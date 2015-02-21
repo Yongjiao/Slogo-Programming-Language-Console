@@ -4,6 +4,7 @@ package application;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 
 
@@ -32,6 +33,17 @@ public class Turtle {
 	public void setOrientation(double ori){
 		myOrientation = ori;
 	}
+	
+	public Color getPenColor()
+	{
+		return this.myPen.getColor();
+	}
+	
+	public void setPenColor(Color newColor)
+	{
+		this.myPen.setColor(newColor);
+	}
+	
 	
 	public void turn(double degrees){
 		myOrientation = myOrientation + degrees;

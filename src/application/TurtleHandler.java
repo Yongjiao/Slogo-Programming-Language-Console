@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class TurtleHandler {
 	
@@ -103,12 +104,14 @@ public class TurtleHandler {
 	}
 	
 	
+	public Color getPenColor()
+	{
+		return this.myTurtle.getPenColor();
+	}
 	
+	public void setPenColor(Color newColor)
+	{
+		this.myTurtle.setPenColor(newColor);
+	}
 	
-	
-
-
-
-	
-
 }
