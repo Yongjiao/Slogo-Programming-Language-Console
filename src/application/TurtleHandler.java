@@ -67,11 +67,42 @@ public class TurtleHandler {
 		//TODO: update image
 	}
 	
+	public int isVisible()
+	{
+		if (myTurtle.getVisibility()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public void setPenStatus(int status)
+	{
+		myTurtle.setPenPos(status);
+	}
+	
+	public int getPenStatus()
+	{
+		return myTurtle.getPenPos();
+	}
+	
 	public void changeTurtleImage(Image newImage)
 	{
 		myTurtle.updateMyImage(newImage);
 		// TODO: update view
 	}
+	
+	public void clearScreen()
+	{
+		// TODO: view handles clearing all the lines
+	}
+	
+	
+	
+	
+	
+
+
+
 	
 
 }
