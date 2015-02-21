@@ -31,7 +31,7 @@ public class View{
 	
 	public void drawLine(Point2D originalLocation, Point2D newLocation, Pen pen){
 		// TODO: draw a line from point originalLocation to newLocation
-		// draw line if pen status  = 1
+		// draw line if pen status  = 1 get color from turtleHandler with TH.getPenColor()
 		// TODO: check for boundary conditions
 	}
 	
