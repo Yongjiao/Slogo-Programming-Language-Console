@@ -15,7 +15,6 @@ public class View{
 	private GraphicsContext linesGraphCont;
 	private static double XCENTER, YCENTER;
 	
-	
 	public View(int x, int y){
 		myTurtleCanvas.setWidth(x);
 		myBackgroundCanvas.setWidth(x);

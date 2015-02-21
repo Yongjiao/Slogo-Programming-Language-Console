@@ -7,4 +7,6 @@ public abstract class Move extends CommandFactory{
 		myTurtleHandler.moveTurtle(dist);	
 		return dist;
 	}
+	
+	// TODO : implement other move methods
 }
