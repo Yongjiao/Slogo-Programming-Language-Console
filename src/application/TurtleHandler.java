@@ -2,6 +2,10 @@ package application;
 
 import java.awt.Point;
 
+import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+
 public class TurtleHandler {
 	
 	private View myView;
@@ -12,20 +16,102 @@ public class TurtleHandler {
 		myTurtle = t;
 	}
 	
-	public void moveTurtle(int x, int y){ // Point p1, Point p2?
-		int xorig = myTurtle.getX();
-		int yorig = myTurtle.getY();
-		
-		Point p1 = new Point(xorig, yorig);
-		Point p2 = new Point(xorig + x, yorig + y);
-		
-		myView.drawLine(p1, p2);
-		myTurtle.setX(p1.x);
-		myTurtle.setY(p2.y);
+	public void moveTurtle(int distance){ 
+		Point2D locOrig = myTurtle.getLoc();
+		myTurtle.move(distance);
+		Point2D locNew = myTurtle.getLoc();
+		this.moveTurtleImageAndDraw(locOrig, locNew);
 	}
 	
-	public void rotateTurtle(int deg){
-		// TODO: Implement
+	public void changeLocationOfTurtle(Point2D newLoc){ 
+		Point2D locOrig = myTurtle.getLoc();
+		myTurtle.setLocation(newLoc);
+		Point2D locNew = myTurtle.getLoc();
+		this.moveTurtleImageAndDraw(locOrig, locNew);
+	}
+	
+
+
+	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
+		//TODO: put turtle image at locNew location
+		
+		if (myTurtle.getPenPos() == 1)
+		{
+			//TODO: tell view to draw line
+		}
+		
+	}
+
+	public void rotateTurtle(double deg){
+		myTurtle.turn(deg);
+		//TODO: update turtle image to rotated
+	}
+	
+	public void setTurtleOrientation(double newAngle){
+		myTurtle.setOrientation(newAngle);
+		//TODO: update turtle image to rotated
+	}
+	
+	public double getTurtleOrientation()
+	{
+		return myTurtle.getOrientation();
+	}
+	
+	public Point2D getTurtleLocation()
+	{
+		return myTurtle.getLoc();
+	}
+	
+	public void showTurtle(int toShow)
+	{
+		myTurtle.setVisibility((toShow==1));
+		//TODO: update image
+	}
+	
+	public int isVisible()
+	{
+		if (myTurtle.getVisibility()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public void setPenStatus(int status)
+	{
+		myTurtle.setPenPos(status);
+	}
+	
+	public int getPenStatus()
+	{
+		return myTurtle.getPenPos();
+	}
+	
+	public Pen getPen()
+	{
+		return myTurtle.getPen();
+	}
+	
+	
+	public void changeTurtleImage(Image newImage)
+	{
+		myTurtle.updateMyImage(newImage);
+		// TODO: update view
+	}
+	
+	public void clearScreen()
+	{
+		// TODO: view handles clearing all the lines
+	}
+	
+	
+	public Color getPenColor()
+	{
+		return this.myTurtle.getPenColor();
+	}
+	
+	public void setPenColor(Color newColor)
+	{
+		this.myTurtle.setPenColor(newColor);
 	}
 	
 }

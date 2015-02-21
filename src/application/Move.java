@@ -4,7 +4,7 @@ public abstract class Move extends CommandFactory{
 
 	public int forward(int dist){
 		
-		myTurtleHandler.moveTurtle(dist, 0);	
+		myTurtleHandler.moveTurtle(dist);	
 		return dist;
 	}
 	
