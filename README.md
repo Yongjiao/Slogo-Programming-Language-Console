@@ -19,6 +19,7 @@ Resources used:
 * http://docs.oracle.com/javafx/2/ui_controls/button.htm
 * http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html
 * http://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
+* http://docs.oracle.com/javase/8/javafx/api/javafx/scene/canvas/GraphicsContext.html
 
 Main class file: Main.java
 
