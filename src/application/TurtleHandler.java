@@ -2,6 +2,8 @@ package application;
 
 import java.awt.Point;
 
+import javafx.geometry.Point2D;
+
 public class TurtleHandler {
 	
 	private View myView;
@@ -12,7 +14,7 @@ public class TurtleHandler {
 		myTurtle = t;
 	}
 	
-	public void moveTurtle(int x, int y){ // Point p1, Point p2?
+/*	public void moveTurtle(int x, int y){ // Point p1, Point p2?
 		int xorig = myTurtle.getX();
 		int yorig = myTurtle.getY();
 		
@@ -22,7 +24,7 @@ public class TurtleHandler {
 		myView.drawLine(p1, p2);
 		myTurtle.setX(p1.x);
 		myTurtle.setY(p2.y);
-	}
+	}*/
 	
 	public void rotateTurtle(int deg){
 		// TODO: Implement
