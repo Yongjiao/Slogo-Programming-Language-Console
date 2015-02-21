@@ -28,4 +28,14 @@ public class TurtleHandler {
 		// TODO: Implement
 	}
 	
+	public double getTurtleOrientation()
+	{
+		return myTurtle.getOrientation();
+	}
+	
+	public Point2D getTurtleLocation()
+	{
+		return myTurtle.getLoc();
+	}
+	
 }
