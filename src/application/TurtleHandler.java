@@ -3,6 +3,7 @@ package application;
 import java.awt.Point;
 
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 
 public class TurtleHandler {
 	
@@ -40,11 +41,14 @@ public class TurtleHandler {
 		
 	}
 
-
+	public void rotateTurtle(double deg){
+		myTurtle.turn(deg);
+		//TODO: update turtle image to rotated
+	}
 	
-	
-	public void rotateTurtle(int deg){
-		// TODO: Implement
+	public void setTurtleOrientation(double newAngle){
+		myTurtle.setOrientation(newAngle);
+		//TODO: update turtle image to rotated
 	}
 	
 	public double getTurtleOrientation()
@@ -57,4 +61,17 @@ public class TurtleHandler {
 		return myTurtle.getLoc();
 	}
 	
+	public void showTurtle(int toShow)
+	{
+		myTurtle.setVisibility((toShow==1));
+		//TODO: update image
+	}
+	
+	public void changeTurtleImage(Image newImage)
+	{
+		myTurtle.updateMyImage(newImage);
+		// TODO: update view
+	}
+	
+
 }

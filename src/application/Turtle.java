@@ -37,11 +37,11 @@ public class Turtle {
 		myOrientation = myOrientation + degrees;
 	}
 	
-	public void setVisible(boolean state){
+	public void setVisibility(boolean state){
 		isVisible = state;
 	}
 	
-	public boolean getVisible(){
+	public boolean getVisibility(){
 		return isVisible;
 	}
 
