@@ -80,6 +80,10 @@ public class Turtle {
 		return myImage;
 	}
 	
+	public Pen getPen()
+	{
+		return this.myPen;
+	}
 
 	public void toggleShowHide(int toShow)
 	{
