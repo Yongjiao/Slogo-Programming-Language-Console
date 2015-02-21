@@ -14,17 +14,34 @@ public class TurtleHandler {
 		myTurtle = t;
 	}
 	
-	public void moveTurtle(int x, int y){ // Point p1, Point p2?
-		int xorig = myTurtle.getX();
-		int yorig = myTurtle.getY();
-		
-		Point p1 = new Point(xorig, yorig);
-		Point p2 = new Point(xorig + x, yorig + y);
-		
-		myView.drawLine(p1, p2);
-		myTurtle.setX(p1.x);
-		myTurtle.setY(p2.y);
+	public void moveTurtle(int distance){ 
+		Point2D locOrig = myTurtle.getLoc();
+		myTurtle.move(distance);
+		Point2D locNew = myTurtle.getLoc();
+		this.moveTurtleImageAndDraw(locOrig, locNew);
 	}
+	
+	public void changeLocationOfTurtle(Point2D newLoc){ 
+		Point2D locOrig = myTurtle.getLoc();
+		myTurtle.setLocation(newLoc);
+		Point2D locNew = myTurtle.getLoc();
+		this.moveTurtleImageAndDraw(locOrig, locNew);
+	}
+	
+
+
+	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
+		//TODO: put turtle image at locNew location
+		
+		if (myTurtle.getPenPos() == 1)
+		{
+			//TODO: tell view to draw line
+		}
+		
+	}
+
+
+	
 	
 	public void rotateTurtle(int deg){
 		// TODO: Implement

@@ -70,6 +70,11 @@ public class Turtle {
 		this.myPen.setStatus(pos);
 	}
 	
+	public int getPenPos()
+	{
+		return myPen.getStatus();
+	}
+	
 	public ImageView getTurtleImage()
 	{
 		return myImage;

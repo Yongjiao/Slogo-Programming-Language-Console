@@ -12,5 +12,10 @@ public class Pen {
 	{
 		myStatus = newStatus;
 	}
+	
+	public int getStatus()
+	{
+		return myStatus;
+	}
 
 }
