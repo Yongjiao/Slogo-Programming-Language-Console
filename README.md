@@ -10,9 +10,14 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 
+Hours worked: 7
 
 Resources used:
+* http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+* http://docs.oracle.com/javase/tutorial/essential/regex/matcher.html
+* http://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html
+* http://docs.oracle.com/javafx/2/ui_controls/button.htm
+* http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html
 
 Main class file: Main.java
 
