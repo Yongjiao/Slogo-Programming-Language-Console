@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 public class View extends Canvas {
 	
 	private int myWidth, myHeight;
+	private Turtle myTurtle;
 	
 	public View(int x, int y){
 		myWidth = x;
