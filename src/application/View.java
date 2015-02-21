@@ -2,8 +2,10 @@ package application;
 
 import java.awt.Point;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 
 public class View{
 	
@@ -19,20 +21,38 @@ public class View{
 		myBackgroundCanvas.setWidth(x);
 		myTurtleCanvas.setHeight(y);
 		myBackgroundCanvas.setHeight(y);
-		// TODO: implement other parameter, such as color, etc.
+		
+		XCENTER = myTurtleCanvas.getWidth()/2;
+		YCENTER = myTurtleCanvas.getHeight()/2;
+			
 	}
 	
 	
 	
-	public void drawLine(Point p1, Point p2){
-		// TODO: draw a line from point p1 to p2
+	public void drawLine(Point2D originalLocation, Point2D newLocation, Pen pen){
+		// TODO: draw a line from point originalLocation to newLocation
+		// draw line if pen status  = 1
+		// TODO: check for boundary conditions
 	}
 	
-	public void changeTurtleImage(){
-		// TODO: implement
+	/**
+	 * possible helper method
+	 */
+	public void checkBoundaryConditions()
+	{
+		// TODO
+	}
+	
+	/**
+	 * changes location and/or orientation of turtle image
+	 * @param newLoc
+	 * @param turtleImage
+	 */
+	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
+		// TODO: handle location and orientation of turtle
 	}
 	
 	public void clearScreen(){
-		// TODO: implement
+		this.linesGraphCont.clearRect(0, 0, this.myBackgroundCanvas.getWidth(), this.myBackgroundCanvas.getHeight());
 	}
 }
