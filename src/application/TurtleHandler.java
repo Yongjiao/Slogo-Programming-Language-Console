@@ -44,12 +44,12 @@ public class TurtleHandler {
 
 	public void rotateTurtle(double deg){
 		myTurtle.turn(deg);
-		//TODO: update turtle image to rotated
+		this.updateTurtleOnView();
 	}
 	
 	public void setTurtleOrientation(double newAngle){
 		myTurtle.setOrientation(newAngle);
-		//TODO: update turtle image to rotated
+		updateTurtleOnView();
 	}
 	
 	public double getTurtleOrientation()
@@ -65,7 +65,7 @@ public class TurtleHandler {
 	public void showTurtle(int toShow)
 	{
 		myTurtle.setVisibility((toShow==1));
-		//TODO: update image
+		updateTurtleOnView();
 	}
 	
 	public int isVisible()
@@ -95,7 +95,7 @@ public class TurtleHandler {
 	public void changeTurtleImage(Image newImage)
 	{
 		myTurtle.updateMyImage(newImage);
-		// TODO: update view
+		updateTurtleOnView();
 	}
 	
 	public void clearScreen()
@@ -112,6 +112,11 @@ public class TurtleHandler {
 	public void setPenColor(Color newColor)
 	{
 		this.myTurtle.setPenColor(newColor);
+	}
+	
+	public void updateTurtleOnView()
+	{
+		this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
 	}
 	
 }

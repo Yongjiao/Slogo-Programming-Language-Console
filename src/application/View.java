@@ -55,7 +55,7 @@ public class View{
 	 * @param turtleImage
 	 */
 	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
-		// TODO: handle location and orientation of turtle
+		// TODO: handle location and orientation and visibility of turtle
 	}
 	
 	public void clearScreen(){
