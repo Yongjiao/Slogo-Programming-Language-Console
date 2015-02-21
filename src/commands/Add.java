@@ -1,8 +1,8 @@
-package arithmetic;
+package commands;
 
 public class Add extends Arithmetic{
 	
-	protected int add(int a, int b){
+	public int add(int a, int b){
 		return super.add(a, b);
 	}
 	

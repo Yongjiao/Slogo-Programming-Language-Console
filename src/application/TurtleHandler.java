@@ -25,7 +25,8 @@ public class TurtleHandler {
 	}
 	
 	public void rotateTurtle(int deg){
-		// TODO: Implement
+		int currentOri = myTurtle.getOrientation();
+		myTurtle.setOrientation(currentOri + deg);
 	}
 	
 }
