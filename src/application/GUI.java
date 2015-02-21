@@ -27,6 +27,7 @@ public class GUI {
 	private TextField commandsField;
 	private TableView<String> prevCommands;
 	private BorderPane myView;
+	private View turtleView;
 	private Scene myScene;
 	private Button[] myButtons;
 	private String[] myButtonNames;
@@ -44,6 +45,7 @@ public class GUI {
 				"backcolor", "commands", "turtleimage", "openfile"};
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
+		turtleView = new View(100, 100);
 		
 		// Creates HBox for button alignment
 		mainHBox = new HBox();
@@ -81,7 +83,7 @@ public class GUI {
 	}
 	
 	private void changeBackgroundColor(){
-		this.backgroundColor.setOnAction(e -> handler.setPenColor(backgroundColor.getValue()));	
+		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
 	}
 
 	

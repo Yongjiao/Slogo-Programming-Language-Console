@@ -6,12 +6,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 public class View{
 	
 	private Canvas myTurtleCanvas, myLineCanvas, myBackgroundCanvas;
 	private GraphicsContext turtleGraphCont;
 	private GraphicsContext linesGraphCont;
+	private GraphicsContext myLineCanvasGraphCont, myBackgroundCanvasGraphCont;
 	private static double XCENTER, YCENTER;
 	
 	public View(int x, int y){
@@ -21,6 +23,9 @@ public class View{
 		myBackgroundCanvas.setHeight(y);
 		myLineCanvas.setWidth(x);
 		myLineCanvas.setHeight(y);
+		
+		myLineCanvasGraphCont = myLineCanvas.getGraphicsContext2D();
+		myBackgroundCanvasGraphCont = myBackgroundCanvas.getGraphicsContext2D();
 		
 		//TODO: set z indices of canvas order
 		
@@ -33,6 +38,11 @@ public class View{
 	public void setBackgroundImage(Image back)
 	{
 		//TODO: change image of BackgroundCanvas
+	}
+	
+	public void setBackgroundColor(Color newC)
+	{
+		myBackgroundCanvasGraphCont.setFill(newC);
 	}
 	
 	public void drawLine(Point2D originalLocation, Point2D newLocation, Pen pen){
