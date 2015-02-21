@@ -7,6 +7,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GUI {
@@ -31,6 +32,10 @@ public class GUI {
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
+	private ColorPicker penColor = new ColorPicker();
+	private ColorPicker backgroundColor = new ColorPicker();
+	
+	private TurtleHandler handler; // TODO: TO BE REMOVED - FIX DESIGN
 	
 	// Initializes GUI
 	public GUI(){
@@ -47,6 +52,11 @@ public class GUI {
 		
 		myView.setTop(mainHBox);
 		
+		penColor.setValue(Color.BLACK);
+		backgroundColor.setValue(Color.WHITE);
+		
+		mainHBox.getChildren().addAll(penColor, backgroundColor);
+		
 		initializeButtons();
 	}
 	
@@ -61,15 +71,18 @@ public class GUI {
 			myButtons[i] = new Button(myLabels.getString(myButtonNames[i]));
 		}
 		// Cannot pass in method, so event handlers have to be outside loop
-		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> penClicked(e));
+		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> changePenColor());
+		myButtons[BACK_COLOR_BUTTON].setOnMouseClicked(e -> changeBackgroundColor());
 		
 	}
 	
-	private void colorPicker(){
-		
+	private void changePenColor(){
+		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
+	}
+	
+	private void changeBackgroundColor(){
+		this.backgroundColor.setOnAction(e -> handler.setPenColor(backgroundColor.getValue()));	
 	}
 
-	private void penClicked(MouseEvent e) {
-		
-	}
+	
 }
