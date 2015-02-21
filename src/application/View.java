@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.Point;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
