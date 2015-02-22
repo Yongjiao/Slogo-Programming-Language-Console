@@ -1,9 +1,11 @@
 package commands;
 
-public class GoToLocation extends move{
+import javafx.geometry.Point2D;
+
+public class GoToLocation extends Move{
 	
-	public double execute(int x, int y){
-		
+	public void execute(int x, int y){
+		super.GoToLocation(x, y);	
 	}
 
 }

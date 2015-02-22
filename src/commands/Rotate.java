@@ -6,8 +6,14 @@ public abstract class Rotate {
 	
 	TurtleHandler myTurtleHandler;
 	
-	public void changeOrientation (int angle) {
+	public double changeOrientation (int angle) {
 		myTurtleHandler.rotateTurtle(angle);
+		return angle;
 	}
 	
+	public double setHeading(int degrees){
+		double origOri = myTurtleHandler.getTurtleOrientation();
+		myTurtleHandler.setTurtleOrientation(degrees);
+		return degrees - origOri;
+	}
 }
