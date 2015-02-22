@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
  */
 public class Turtle {
 	private double myOrientation;
-	private boolean isVisible;
+	private int isVisible;
 	private Point2D myLoc;
 	ImageView myImage;
 	Pen myPen;
@@ -26,7 +26,7 @@ public class Turtle {
 	public Turtle(){
 		myLoc = new Point2D(0, 0); // set Turtle's initial location in the center of the screen
 		myOrientation = 0; //  set orientation to be straight up
-		isVisible = true;
+		isVisible = 1;
 		myPen = new Pen(1);
 	}
 	
@@ -53,11 +53,11 @@ public class Turtle {
 		myOrientation = myOrientation + degrees;
 	}
 	
-	public void setVisibility(boolean state){
+	public void setVisibility(int state){
 		isVisible = state;
 	}
 	
-	public boolean getVisibility(){
+	public int getVisibility(){
 		return isVisible;
 	}
 

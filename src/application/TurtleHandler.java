@@ -178,16 +178,13 @@ public class TurtleHandler {
 	
 	public void showTurtle(int toShow)
 	{
-		myTurtle.setVisibility((toShow==1));
+		myTurtle.setVisibility(1);
 		updateTurtleOnView();
 	}
 	
 	public int isVisible()
 	{
-		if (myTurtle.getVisibility()) {
-			return 1;
-		}
-		return 0;
+		return myTurtle.getVisibility();
 	}
 
 	public void setPenStatus(int status)
