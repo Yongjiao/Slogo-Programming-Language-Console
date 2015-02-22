@@ -40,10 +40,13 @@ public class View{
 			
 	}
 	
-	
+	/**
+	 * set background image if user desires
+	 * @param back
+	 */
 	public void setBackgroundImage(Image back)
 	{
-		//TODO: change image of BackgroundCanvas
+		this.myBackgroundCanvasGraphCont.drawImage(back, 0, 0);
 	}
 	
 	public void setBackgroundColor(Color newC)
