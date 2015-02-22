@@ -1,10 +1,12 @@
 package commands;
 
 import javafx.geometry.Point2D;
+import application.CommandFactory;
 import application.TurtleHandler;
 
-public abstract class Move {
-	TurtleHandler myTurtleHandler;
+public abstract class Move extends CommandFactory{
+	TurtleHandler myTurtleHandler; //TODO: REMOVE THIS. need to use turtle handler from super class of 
+	// command factory
 	
 	public double changeLocation(int steps){
 		myTurtleHandler.moveTurtle(steps);

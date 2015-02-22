@@ -1,10 +1,11 @@
 package commands;
 
+import application.CommandFactory;
 import application.TurtleHandler;
 
-public abstract class Rotate {
+public abstract class Rotate extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler;
+	TurtleHandler myTurtleHandler; // TODO: REMOVE THIS. use turtle handler from Commands Factory superclass
 	
 	public double changeOrientation (int angle) {
 		myTurtleHandler.rotateTurtle(angle);
