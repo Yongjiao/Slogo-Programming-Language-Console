@@ -1,7 +1,5 @@
 package application;
 
-import java.awt.Point;
-
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -33,23 +31,23 @@ public class TurtleHandler {
 
 
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
-		//TODO: put turtle image at locNew location
+		this.updateTurtleOnView();
 		
 		if (myTurtle.getPenPos() == 1)
 		{
-			//TODO: tell view to draw line
+			this.myView.drawLine(locOrig, locNew, getPen());
 		}
 		
 	}
 
 	public void rotateTurtle(double deg){
 		myTurtle.turn(deg);
-		//TODO: update turtle image to rotated
+		this.updateTurtleOnView();
 	}
 	
 	public void setTurtleOrientation(double newAngle){
 		myTurtle.setOrientation(newAngle);
-		//TODO: update turtle image to rotated
+		updateTurtleOnView();
 	}
 	
 	public double getTurtleOrientation()
@@ -65,7 +63,7 @@ public class TurtleHandler {
 	public void showTurtle(int toShow)
 	{
 		myTurtle.setVisibility((toShow==1));
-		//TODO: update image
+		updateTurtleOnView();
 	}
 	
 	public int isVisible()
@@ -95,12 +93,12 @@ public class TurtleHandler {
 	public void changeTurtleImage(Image newImage)
 	{
 		myTurtle.updateMyImage(newImage);
-		// TODO: update view
+		updateTurtleOnView();
 	}
 	
 	public void clearScreen()
 	{
-		// TODO: view handles clearing all the lines
+		this.myView.clearScreen();
 	}
 	
 	
@@ -118,6 +116,11 @@ public class TurtleHandler {
 	{
 		this.myTurtle.setPenColor(newColor);
 //>>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
+	}
+	
+	public void updateTurtleOnView()
+	{
+		this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
 	}
 	
 }
