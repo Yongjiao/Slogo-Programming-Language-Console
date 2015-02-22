@@ -31,7 +31,7 @@ NOTE: error checking
 
 ERROR CHECKING CLASS
 
-private Map<String command, int num params> collectionOfCommands...
+private Map<String command, String regix> collectionOfCommands...
 
 
 public boolean validateInput(String input)
