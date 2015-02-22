@@ -40,12 +40,26 @@ public class GUI {
 	
 	// Initializes GUI
 	public GUI(){
-		myLabels = ResourceBundle.getBundle("buttons");
+	//	myLabels = ResourceBundle.getBundle("buttons"); // TODO fix
+		
+		// FIX FIX
+		
+		String myLabels[] = new String[2];
+		myLabels[0] = "Pen Color";
+		myLabels[1] = "Background Color";
+		myLabels[2] = "Commands";
+		myLabels[3] = "Choose Turtle Image";
+		myLabels[4] = "Open File";
+		
+	
+		// FIX FIX
+		
+		
 		myButtonNames = new String[] {"pencolor", 
 				"backcolor", "commands", "turtleimage", "openfile"};
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
-		turtleView = new View(100, 100);
+		turtleView = new View(800, 800);
 		
 		// Creates HBox for button alignment
 		mainHBox = new HBox();

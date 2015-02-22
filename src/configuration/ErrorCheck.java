@@ -15,12 +15,15 @@ public class ErrorCheck {
 	private HashMap<String, String> commandMap; //what if new commands added
 
 		
-	public boolean checkFormat(String s){
+	public boolean checkCommandFormat(String s){
 		s.trim();//s can start or end with spaces
 		String[] command = s.split(" ");	
-		if(!commandMap.containsKey(command[0].toLowerCase()))		return false;
+		if(!commandMap.containsKey(command[0].toLowerCase()))		
+		{
+			return false;
+		}
 		String commandRegix = commandMap.get(commandMap);
-		//remove trailling and leading spaces 
+		//remove trailing and leading spaces 
 		if(s.matches(commandRegix)){
 			//call parser here.
 			return true;

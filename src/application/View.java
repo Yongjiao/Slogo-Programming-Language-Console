@@ -17,6 +17,12 @@ public class View{
 	private static double XCENTER, YCENTER;
 	
 	public View(int x, int y){
+		
+		myTurtleCanvas = new Canvas();
+		myLineCanvas = new Canvas();
+		myBackgroundCanvas = new Canvas();
+		
+		
 		myTurtleCanvas.setWidth(x);
 		myBackgroundCanvas.setWidth(x);
 		myTurtleCanvas.setHeight(y);
