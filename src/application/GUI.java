@@ -2,9 +2,12 @@ package application;
 
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -40,28 +43,64 @@ public class GUI {
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
 		
-		// Creates HBox for button alignment
-		mainHBox = new HBox();
-		mainHBox.setSpacing(HBOX_SPACING);
-		mainHBox.setAlignment(Pos.CENTER);
-		
-		myView.setTop(mainHBox);
-		
-		initializeButtons();
+		/*
+		 * better to initialize view, turtlehandler, etc. in GUI or in main?
+		 */
 	}
-	
+
 	public Scene initialize(Stage s){
+		initializeView();
+		initializeTextField();
+		initializeCommandsHistory();
+		initializeButtons();
+		
 		myScene = new Scene(myView, STAGE_WIDTH, STAGE_HEIGHT);
 		return myScene;
 	}
 	
 	
 	private void initializeButtons(){
+		// Creates HBox for button alignment
+		mainHBox = new HBox();
+		mainHBox.setSpacing(HBOX_SPACING);
+		mainHBox.setAlignment(Pos.CENTER);
+
+		// Creates buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
 			myButtons[i] = new Button(myLabels.getString(myButtonNames[i]));
+			mainHBox.getChildren().add(myButtons[i]);
 		}
 		// Cannot pass in method, so event handlers have to be outside loop
 		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> penClicked(e));
+		
+		myView.setTop(mainHBox);
+	}
+	
+	private void initializeCommandsHistory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void initializeTextField() {
+		// TODO pass in string to parser?
+		commandsField = new TextField();
+		commandsField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent t) {
+				if (t.getCode() == KeyCode.ENTER){
+					// TODO: check error
+					// TODO: if error check is good, pass string to parser
+					//prevCommands.set
+					commandsField.clear();
+					
+				}
+			}
+		});
+		myView.setBottom(commandsField);
+	}
+
+	private void initializeView() {
+		// TODO Auto-generated method stub
 		
 	}
 	
