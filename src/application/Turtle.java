@@ -8,7 +8,11 @@ import javafx.scene.paint.Color;
 
 
 
-
+/**
+ * 
+ * @author anika
+ *
+ */
 public class Turtle {
 	private double myOrientation;
 	private boolean isVisible;

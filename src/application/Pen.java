@@ -2,6 +2,11 @@ package application;
 
 import javafx.scene.paint.Color;
 
+/**
+ * 
+ * @author anika
+ *
+ */
 public class Pen {
 	private int myStatus;
 	private Color myColor;
