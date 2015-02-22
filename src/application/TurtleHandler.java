@@ -107,9 +107,15 @@ public class TurtleHandler {
 		return this.myTurtle.getPenColor();
 	}
 	
+//<<<<<<< HEAD
+//	public void rotateTurtle(int deg){
+//		int currentOri = myTurtle.getOrientation();
+//		myTurtle.setOrientation(currentOri + deg);
+//=======
 	public void setPenColor(Color newColor)
 	{
 		this.myTurtle.setPenColor(newColor);
+//>>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
 	}
 	
 	public void updateTurtleOnView()
