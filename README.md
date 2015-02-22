@@ -30,6 +30,8 @@ NOTE: error checking
 ```java
 
 ERROR CHECKING CLASS
+- allows leading and trailling spaces for a line of command
+- alows exactly only one space within a command: ___fw_50___
 
 private Map<String command, String regix> collectionOfCommands...
 
