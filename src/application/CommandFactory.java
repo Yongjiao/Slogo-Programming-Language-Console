@@ -12,6 +12,9 @@ public class CommandFactory {
 		myTurtleHandler = t;
 	}
 	
-	// TODO: implement CommandFactory methods
+	// Anika - called by commands subclasses
+	protected TurtleHandler getTurtleHandler(){
+		return myTurtleHandler;
+	}
 	
 }
