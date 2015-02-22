@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GUI {
@@ -29,23 +30,42 @@ public class GUI {
 	private TextField commandsField;
 	private TableView<String> prevCommands;
 	private BorderPane myView;
+	private View turtleView;
 	private Scene myScene;
 	private Button[] myButtons;
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
+	private ColorPicker penColor = new ColorPicker();
+	private ColorPicker backgroundColor = new ColorPicker();
+	
+	private TurtleHandler handler; // TODO: TO BE REMOVED - FIX DESIGN
 	
 	// Initializes GUI
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");
+		
 		myButtonNames = new String[] {"pencolor", 
 				"backcolor", "commands", "turtleimage", "openfile"};
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
-		
+		turtleView = new View(800, 800);
 		/*
 		 * better to initialize view, turtlehandler, etc. in GUI or in main?
 		 */
+		// Creates HBox for button alignment
+		mainHBox = new HBox();
+		mainHBox.setSpacing(HBOX_SPACING);
+		mainHBox.setAlignment(Pos.CENTER);
+		
+		myView.setTop(mainHBox);
+		
+		penColor.setValue(Color.BLACK);
+		backgroundColor.setValue(Color.WHITE);
+		
+		mainHBox.getChildren().addAll(penColor, backgroundColor);
+		
+		initializeButtons();
 	}
 
 	public Scene initialize(Stage s){
@@ -71,7 +91,8 @@ public class GUI {
 			mainHBox.getChildren().add(myButtons[i]);
 		}
 		// Cannot pass in method, so event handlers have to be outside loop
-		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> penClicked(e));
+		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> changePenColor());
+		myButtons[BACK_COLOR_BUTTON].setOnMouseClicked(e -> changeBackgroundColor());
 		
 		myView.setTop(mainHBox);
 	}
@@ -104,11 +125,13 @@ public class GUI {
 		
 	}
 	
-	private void colorPicker(){
-		
+	private void changePenColor(){
+		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
+	}
+	
+	private void changeBackgroundColor(){
+		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
 	}
 
-	private void penClicked(MouseEvent e) {
-		
-	}
+	
 }
