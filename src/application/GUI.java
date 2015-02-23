@@ -86,7 +86,9 @@ public class GUI {
 		// Creates buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
 			Button newButt = new Button(myLabels.getString(myButtonNames[i]));
-			newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
+		//	newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
+			newButt.setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
+			
 			myButtons[i] = newButt;
 			mainHBox.getChildren().add(myButtons[i]);
 		}
