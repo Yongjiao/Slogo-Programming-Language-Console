@@ -87,13 +87,19 @@ public class GUI {
 		// Creates buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
 			Button newButt = new Button(myLabels.getString(myButtonNames[i]));
-			newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
+		//	newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
+			newButt.setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
+			
 			myButtons[i] = newButt;
 			mainHBox.getChildren().add(myButtons[i]);
 		}
 		// Cannot pass in method, so event handlers have to be outside loop
 		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> changePenColor());
+		myButtons[PEN_COLOR_BUTTON].setOnMousePressed(e -> mouseDown(PEN_COLOR_BUTTON));
+		myButtons[PEN_COLOR_BUTTON].setOnMouseReleased(e -> mouseUp(PEN_COLOR_BUTTON));
 		myButtons[BACK_COLOR_BUTTON].setOnMouseClicked(e -> changeBackgroundColor());
+		myButtons[BACK_COLOR_BUTTON].setOnMousePressed(e -> mouseDown(BACK_COLOR_BUTTON));
+		myButtons[BACK_COLOR_BUTTON].setOnMouseReleased(e -> mouseUp(BACK_COLOR_BUTTON));
 		
 		myView.setTop(mainHBox);
 	}
@@ -120,6 +126,24 @@ public class GUI {
 		myView.setBottom(commandsField);
 	}
 
+	/**
+	 * added button styles
+	 * @author anika
+	 * @param i
+	 */
+	private void mouseDown(int i)
+	{
+		myButtons[i].setStyle("-fx-font: 14 georgia; -fx-text-fill: #006652;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
+	}
+	
+	
+	private void mouseUp(int i)
+	{
+		myButtons[i].setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
+
+	}
+	
+	
 	private void initializeView() {
 		StackPane viewStack = new StackPane();
 		turtleView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
@@ -129,10 +153,12 @@ public class GUI {
 	}
 	
 	private void changePenColor(){
+
 		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
 	}
 	
 	private void changeBackgroundColor(){
+
 		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
 	}
 
