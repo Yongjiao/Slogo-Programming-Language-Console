@@ -8,19 +8,18 @@ public class ErrorCheck {
 	private HashMap<String, String> commandMap;
 	private final String onenum = "\\s\\d+"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s\\d+\\s\\d+";	//two parameter
-	private final String com_regix = "\\s\\[.*\\]"; //[command]
+	private final String com_regix = "\\[(.*?)\\]"; //[command]
 	private final String variable = ":\\w+";
 	private final String constant = "-?\\d+.?\\d*";
-	private final String commandname = "\\w+[?]?";
-	
+	private final String commandname = "\\w+[?]?";	
 	private final String[] command = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lf", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes"};
 	
-	String[] regix = new String[]{ "^fd"+ onenum,"^foward" + onenum, "^back" +onenum, "^bk"+ onenum, "^towards"+twonum, "^tw" + twonum, "^setxy" + twonum,
+	private final String[] regix = new String[]{ "^fd"+ onenum,"^foward" + onenum, "^back" +onenum, "^bk"+ onenum, "^towards"+twonum, "^tw" + twonum, "^setxy" + twonum,
 			"^sum" + twonum, "^+" + twonum, "^difference"+ twonum, "^-" + twonum, "^product" + twonum, "^*" + twonum, "^quotient" + twonum,
 			"^remainder" + twonum, "^%" + twonum, "^/" + twonum, "^#.*", "^left" +onenum,"^lt" +onenum, "^right" +onenum,"^rt" +onenum, "setheading" +onenum,
-			"^seth" +onenum,"^sin" +onenum,"^cos" +onenum, "^tan" +onenum, "^atan" +onenum, "repeat"+onenum+"\\s\\[.*\\]", 
-			"dotimes"+ "\\s\\[\\s"+variable+"\\s\\d+\\s\\]"+com_regix};
+			"^seth" +onenum,"^sin" +onenum,"^cos" +onenum, "^tan" +onenum, "^atan" +onenum, "repeat"+onenum+"\\s" +com_regix, 
+			"dotimes"+ "\\s\\[\\s"+variable+"\\s\\d+\\s\\]\\s"+com_regix};
 	
 /*
 	public boolean validateInput(String in){
@@ -42,39 +41,25 @@ public class ErrorCheck {
 		}
 		return false;
 	}
-	
-	public boolean validateLoop(String in){
-		String s = in.trim().toLowerCase();
+	public boolean validateInput(String in){
+		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
 		System.out.println(in);
-		String commandRegix = commandMap.get(command);//switch cases
-		String com = "\\[(.*?)\\]";
-		if(commandRegix != null && in.matches(commandRegix)){ //pass general syntax check
-			switch(command){
-			case "repeat":{
-				Pattern p = Pattern.compile(com);
-				Matcher m = p.matcher(in);
-				while(m.find())
-					return validateBasicCommands(m.group(1));
-
-			}
-			//m.group(m.groupCount());
-			case "dotimes":{
-				Pattern p = Pattern.compile(com);
-				Matcher m = p.matcher(in);
-				while(m.find()){	
-					String bc = m.group();
-					System.out.println(m.group());
-					//return validateBasicCommands(bc);
-				}
-				}
-			case "for":{}
-			case "if":{}
-			case "ifelse":{}
-			}
+		String commandRegix = commandMap.get(command);
+		if(commandRegix != null){  //undefined commands
+			return validateLoop(commandRegix, s);			
 		}
 		return false;
 	}
+	
+	public boolean validateLoop(String regix, String in){
+		Pattern p = Pattern.compile(regix);
+		Matcher m = p.matcher(in);		
+		while(m.find())
+			return validateBasicCommands(m.group(1));
+		return false;
+	}
+
 
 
 	public ErrorCheck(){
@@ -102,7 +87,7 @@ public class ErrorCheck {
 		//System.out.println(example.validateBasicCommands(s5));
 		//System.out.println(example.validateBasicCommands(s6));
 		//System.out.println(example.validateBasicCommands(s7));
-		//System.out.println(example.validateLoop(repeat));		
-		System.out.println(example.validateLoop(dotimes));
+		System.out.println(example.validateInput(repeat));		
+		//System.out.println(example.validateInput(dotimes));
 	}	
 }
