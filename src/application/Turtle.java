@@ -151,11 +151,6 @@ public class Turtle {
 		return myImage;
 	}
 	
-	// TO DELETE???
-	public Pen getPen()
-	{
-		return this.myPen;
-	}
 	
 	/**
 	 * changes visibility of turtle's image based on input parameter

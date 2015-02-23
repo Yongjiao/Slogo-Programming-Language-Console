@@ -87,7 +87,9 @@ public class GUI {
 
 		// Creates buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
-			myButtons[i] = new Button(myLabels.getString(myButtonNames[i]));
+			Button newButt = new Button(myLabels.getString(myButtonNames[i]));
+			newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
+			myButtons[i] = newButt;
 			mainHBox.getChildren().add(myButtons[i]);
 		}
 		// Cannot pass in method, so event handlers have to be outside loop
