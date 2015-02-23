@@ -44,6 +44,7 @@ public class GUI {
 	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
 	private BorderPane myView;
 	private View turtleView;
+	private ViewBackground viewBackground;
 	private Scene myScene;
 	private Button[] myButtons;
 	private String[] myButtonNames;
@@ -120,8 +121,11 @@ public class GUI {
 	}
 
 	private void initializeView() {
+		StackPane viewStack = new StackPane();
 		turtleView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
-		myView.setCenter(turtleView);
+		viewBackground = new ViewBackground(VIEW_WIDTH, VIEW_HEIGHT);
+		viewStack.getChildren().addAll(viewBackground, turtleView);
+		myView.setCenter(viewStack);
 	}
 	
 	private void changePenColor(){
