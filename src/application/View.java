@@ -37,14 +37,9 @@ public class View extends Canvas{
 		
 		myGC = this.getGraphicsContext2D();
 		
-		// draw rectangle for background color
-		myGC.setFill(Color.WHITE);
-		myGC.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
 		// for testing
 		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(250, 100);
-		
+		Point2D dest = new Point2D(-1600, -300);	
 		drawLine(orig, dest, Color.BLACK);
 		
 		}
@@ -94,49 +89,61 @@ public class View extends Canvas{
 	 * @return a point where the turtle crosses a boundary
 	 */
 	private Point2D findBoundaryPoint(Point2D orig, Point2D dest){
-		double slope = (dest.getY()-orig.getY())/(dest.getX()-orig.getX());
+		double slope = (dest.getY()-orig.getY())/(dest.getX()-orig.getX()); // slope of two points
+		double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
 		if (dest.getX() > XCENTER && dest.getY() > YCENTER){
-			// find slope of corner
-			double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX());
-			if (mCorner > slope){
-				// use y axis
-			}
-			else if (mCorner < slope){
-				// use x axis
-			}
-			else{
-				// switch corners
-			}
+			return findCorner(XCENTER, YCENTER, mCorner, slope, dest);
 		}
 		else if (dest.getX() > XCENTER && dest.getY() < YCENTER*-1){
-			
+			return findCorner(XCENTER, YCENTER*-1, mCorner*-1, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() > YCENTER){
-			
+			return findCorner(XCENTER*-1, YCENTER, mCorner*-1, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() < YCENTER*-1){
-			
+			return findCorner(XCENTER*-1, YCENTER*-1, mCorner, slope, dest);
 		}
 		else if(dest.getX() > XCENTER){
-			// find ycoordinate of out of bounds intersection
-			double ycoord = slope*XCENTER + dest.getY() - dest.getX()*slope;
-			newStart = new Point2D(XCENTER*-1, ycoord);
-			newDest = new Point2D(dest.getX()-XCENTER*2, dest.getY());
-			return new Point2D(XCENTER, ycoord);
+			return findXEdge(XCENTER, slope, dest);
 		}
 		else if(dest.getX() < XCENTER*-1){
-			
+			return findXEdge(XCENTER*-1, slope, dest);
 		}
 		else if(dest.getY() > YCENTER){
-			
+			return findYEdge(YCENTER, slope, dest);
 		}
 		else if(dest.getY() < YCENTER*-1){
-			
+			return findYEdge(YCENTER*-1, slope, dest);
 		}
 		return null;
 	}
 	
-
+	private Point2D findCorner(double x, double y, double mCorner, double slope, Point2D dest){
+		if (mCorner > Math.abs(slope)){
+			// use y axis
+			return findYEdge(y, slope, dest);
+		}
+		else{
+			// use x axis
+			return findXEdge(x, slope, dest);
+		}
+	}
+	
+	private Point2D findXEdge(double x, double slope, Point2D dest){
+		double ycoord = slope*x + dest.getY() - dest.getX()*slope;
+		newStart = new Point2D(x*-1, ycoord);
+		newDest = new Point2D(dest.getX()-x*2, dest.getY());
+		return new Point2D(x, ycoord);
+	}
+	
+	private Point2D findYEdge(double y, double slope, Point2D dest){
+		double xcoord = (y-dest.getY() + dest.getX()*slope)/slope;
+		newStart = new Point2D(xcoord, y*-1);
+		newDest = new Point2D(dest.getX(), dest.getY()-y*2);
+		return new Point2D(xcoord, y);
+	}
+	
+	
 	/**
 	 * changes location and/or orientation of turtle image
 	 * @param newLoc
