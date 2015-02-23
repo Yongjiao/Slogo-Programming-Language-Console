@@ -179,45 +179,7 @@ public class TurtleHandler {
 			// pass pen to check color
 			this.myView.drawLine(locOrig, locNew, getPenColor());
 			
-			/**
-			 * Feb 22 Discussion
-			 * 
-			 * ---Anika Idea ---
-			 * 
-			 * VIEW
-			 * 	calculateSlope(start point P, end point Q)
-			 * 	{	m = Qy-Py / Qx-Px;
-			 * 		findBoundaryPointAndDrawLine(P, m, distanceRemaining);
-			 *  }
-			 *  
-			 *  findBoundaryPointAndDrawLine(start point P ,slope m, distanceRemaining);
-			 * 	{
-			 * 		if (intersection with edge of View canvas == null)
-			 * 		{ draw line regularly by distance remaining }
-			 * 		else
-			 * 		{ 
-			 * 			draw line till edge of screen
-			 * 			R = calculateNewStartPoint()
-			 * 			findBoundaryPointAndDrawLine(R, m, distanceRemaining - distanceDrawn);
-			 * 	}
-			 * 
-			 * ---Andres Idea --- -> implemented
-			 * 
-			 * VIEW
-			 *  drawLine(start point P, end point Q)
-			 * 	{	m = Qy-Py / Qx-Px;
-			 * 		bp = findBoundaryPoint(P, Q);
-			 * 		if (bp == null)
-			 *			{ draw line regularly to Q }
-			 *		else
-			 *			draw line till edge of screen
-			 * 			R = calculateNewStartPoint();
-			 * 			S = calculateNewEndPoint(m);
-			 * 			drawLine(R, S);
-			 *  }
-			 * 
-			 * 
-			 */
+			// draw line design considerations / discussion - see analysis document
 			
 		}
 		
