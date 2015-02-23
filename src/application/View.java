@@ -54,7 +54,7 @@ public class View{
 		myBackgroundCanvasGraphCont.setFill(newC);
 	}
 	
-	public void drawLine(Point2D originalLocation, Point2D newLocation, Pen pen){
+	public void drawLine(Point2D originalLocation, Point2D newLocation, Color c){
 		// TODO: draw a line from point originalLocation to newLocation
 		// draw line if pen status  = 1 get color from turtleHandler with TH.getPenColor()
 		// TODO: check for boundary conditions
