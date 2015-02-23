@@ -2,6 +2,8 @@ package application;
 
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -12,6 +14,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+/**
+ * Creates the GUI
+ * @author Andrew Sun
+ *
+ */
 
 public class GUI {
 	
@@ -26,9 +34,14 @@ public class GUI {
 	private static final int STAGE_HEIGHT = 500;
 	private static final int STAGE_WIDTH = 800;
 	
+	private static final int VIEW_HEIGHT = 400;
+	private static final int VIEW_WIDTH = 400;
+	
+	
 	//private Button penColorButton, backColorButton, langButton, turtleButton, openFileButton;
 	private TextField commandsField;
-	private TableView<String> prevCommands;
+	private ListView<String> prevCommands;
+	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
 	private BorderPane myView;
 	private View turtleView;
 	private Scene myScene;
@@ -41,31 +54,16 @@ public class GUI {
 	
 	private TurtleHandler handler; // TODO: TO BE REMOVED - FIX DESIGN
 	
-	// Initializes GUI
 	public GUI(){
-		myLabels = ResourceBundle.getBundle("buttons");
-		
+		myLabels = ResourceBundle.getBundle("buttons");		
 		myButtonNames = new String[] {"pencolor", 
 				"backcolor", "commands", "turtleimage", "openfile"};
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
-		turtleView = new View(800, 800);
-		/*
-		 * better to initialize view, turtlehandler, etc. in GUI or in main?
-		 */
-		// Creates HBox for button alignment
-		mainHBox = new HBox();
-		mainHBox.setSpacing(HBOX_SPACING);
-		mainHBox.setAlignment(Pos.CENTER);
-		
-		myView.setTop(mainHBox);
+
 		
 		penColor.setValue(Color.BLACK);
 		backgroundColor.setValue(Color.WHITE);
-		
-		mainHBox.getChildren().addAll(penColor, backgroundColor);
-		
-		initializeButtons();
 	}
 
 	public Scene initialize(Stage s){
@@ -98,8 +96,8 @@ public class GUI {
 	}
 	
 	private void initializeCommandsHistory() {
-		// TODO Auto-generated method stub
-		
+		prevCommands = new ListView<String>(myCommandsList);
+		myView.setRight(prevCommands);
 	}
 
 	private void initializeTextField() {
@@ -111,9 +109,8 @@ public class GUI {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
 					// TODO: if error check is good, pass string to parser
-					//prevCommands.set
+					myCommandsList.add(commandsField.getText());
 					commandsField.clear();
-					
 				}
 			}
 		});
@@ -121,8 +118,8 @@ public class GUI {
 	}
 
 	private void initializeView() {
-		// TODO Auto-generated method stub
-		
+		turtleView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
+		myView.setCenter(turtleView);
 	}
 	
 	private void changePenColor(){
