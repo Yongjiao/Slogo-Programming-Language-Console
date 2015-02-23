@@ -8,99 +8,159 @@ import javafx.scene.paint.Color;
 
 
 
-
+/**
+ * Back-end turtle
+ * Keeps track of turtle's data
+ * Changes to data made through TurtleHandler
+ * @author anika
+ *
+ */
 public class Turtle {
 	private double myOrientation;
-	private boolean isVisible;
+	private int isVisible;
 	private Point2D myLoc;
 	ImageView myImage;
 	Pen myPen;
 	
 	/**
-	 * constructor to intialize turtle
+	 * constructor to initialize turtle
 	 */
 	public Turtle(){
 		myLoc = new Point2D(0, 0); // set Turtle's initial location in the center of the screen
 		myOrientation = 0; //  set orientation to be straight up
-		isVisible = true;
+		isVisible = 1;
 		myPen = new Pen(1);
 	}
 	
+	/**
+	 * @return current orientation of turtle
+	 */
 	public double getOrientation(){
 		return myOrientation;
 	}
 	
+	/**
+	 * sets orientation of turtle
+	 * @param ori
+	 */
 	public void setOrientation(double ori){
 		myOrientation = ori;
 	}
 	
+	/**
+	 * @return color of pen
+	 */
 	public Color getPenColor()
 	{
 		return this.myPen.getColor();
 	}
 	
+	/**
+	 * sets color of pen to desired color
+	 * @param newColor
+	 */
 	public void setPenColor(Color newColor)
 	{
 		this.myPen.setColor(newColor);
 	}
 	
-	
+	/**
+	 * updates orientation
+	 * adds number of degrees to current orientation
+	 * @param degrees
+	 */
 	public void turn(double degrees){
 		myOrientation = myOrientation + degrees;
 	}
 	
-	public void setVisibility(boolean state){
+	/**
+	 * sets visiblity based on input parameter
+	 * if state == 1, visibility ON
+	 * if state == 0, visibility OFF
+	 * @param state
+	 */
+	public void setVisibility(int state){
 		isVisible = state;
 	}
 	
-	public boolean getVisibility(){
+	/**
+	 * @return if the turtle is showing or hidden
+	 */
+	public int getVisibility(){
 		return isVisible;
 	}
 
+	/**
+	 * @return current location of the turtle
+	 */
 	public Point2D getLoc() {
 		return myLoc;
 	}
 	
+	/**
+	 * sets location of the turtle to input Point2D parameter
+	 * @param newLoc
+	 */
 	public void setLocation(Point2D newLoc)
 	{
 		myLoc = newLoc;
 				
 	}
 	
+	/**
+	 * updates the turtle's location by calculating horizontal and vertical
+	 * components of distance based on turtle's orientation
+	 * @param distance
+	 */
 	public void move(double distance)
 	{
 		myLoc = myLoc.add(distance*Math.cos(Math.toRadians(myOrientation)), distance*Math.sin(Math.toRadians(myOrientation)));
 	}
 	
+	/**
+	 * sets turtle image to input file
+	 * @param newImage
+	 */
 	public void updateMyImage(Image newImage)
 	{
 		this.myImage.setImage(newImage);;
 	}
 	
+	/**
+	 * sets pen position based on input parameter
+	 * @param pos
+	 */
 	public void setPenPos(int pos)
 	{
 		this.myPen.setStatus(pos);
 	}
 	
+	/**
+	 * @return whether pen is UP or DOWN
+	 */
 	public int getPenPos()
 	{
 		return myPen.getStatus();
 	}
 	
+	/**
+	 * @return turtle's visible image
+	 */
 	public ImageView getTurtleImage()
 	{
 		return myImage;
 	}
 	
-	public Pen getPen()
-	{
-		return this.myPen;
-	}
-
+	
+	/**
+	 * changes visibility of turtle's image based on input parameter
+	 * toShow == 1 -> VISIBLE
+	 * toShow == 0 -> HIDDEN 
+	 * @param toShow
+	 */
 	public void toggleShowHide(int toShow)
 	{
 		this.myImage.setVisible((toShow == 1));
 	}
 	
-
 }

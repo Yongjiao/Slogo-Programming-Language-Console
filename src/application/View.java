@@ -49,10 +49,13 @@ public class View extends Canvas{
 		
 		}
 	
-	
+	/**
+	 * set background image if user desires
+	 * @param back
+	 */
 	public void setBackgroundImage(Image back)
 	{
-		//TODO: change image of BackgroundCanvas
+		//this.myBackgroundCanvasGraphCont.drawImage(back, 0, 0);
 	}
 	
 	public void setBackgroundColor(Color newC)
@@ -138,11 +141,29 @@ public class View extends Canvas{
 	 * changes location and/or orientation of turtle image
 	 * @param newLoc
 	 * @param turtleImage
+	 * @author Anika (version 1)
 	 */
 	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
 		// TODO: handle location and orientation and visibility of turtle
+
+		// clear turtle canvas, then relocate image
+		//this.turtleGraphCont.clearRect(0, 0, this.myTurtleCanvas.getWidth(), this.myTurtleCanvas.getHeight());
+
+		if (turtleImage.isVisible())
+		{
+			// if turtle is not hidden, put turtle on new location on screen
+
+			double xViewLoc = newLoc.getX() + this.XCENTER;
+			double yViewLoc = newLoc.getY() + this.YCENTER;
+
+			Point2D viewLocation = new Point2D(xViewLoc, yViewLoc);
+
+			//TODO: rotation
+
+			//	this.turtleGraphCont.drawImage((turtleImage), xViewLoc, yViewLoc);
+		}
 	}
-	
+
 	public void clearScreen(){
 		//this.myLines.clearRect(0, 0, this.myBackgroundCanvas.getWidth(), this.myBackgroundCanvas.getHeight());
 	}

@@ -10,7 +10,7 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 7
+Hours worked: 20+
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
@@ -30,8 +30,10 @@ NOTE: error checking
 ```java
 
 ERROR CHECKING CLASS
+- allows leading and trailling spaces for a line of command
+- alows exactly only one space within a command: ___fw_50___
 
-private Map<String command, int num params> collectionOfCommands...
+private Map<String command, String regix> collectionOfCommands...
 
 
 public boolean validateInput(String input)
