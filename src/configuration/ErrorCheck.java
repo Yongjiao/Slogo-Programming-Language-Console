@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.*;
 import java.util.regex.*;
 /*
- *
- *TO DO: expression check
+ expression check
  *expr checked by using validateBasicCommands: like 1 > 5
  */
 public class ErrorCheck {
@@ -18,21 +17,24 @@ public class ErrorCheck {
 	private final String variable = "\\s:\\w+";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
+	private final String boolean_regix = "\\s((less\\?|greater\\?|equal\\?)\\s\\d+\\s\\d+)";
 	private final String[] command = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
-			"if","ifelse", "to", "make", "set"};
+			"if","ifelse", "to", "make", "set","less?", "greater?", "equal?"};
 	
 	private final String[] regix = new String[]{ "^fd"+ onenum,"^foward" + onenum, "^back" +onenum, "^bk"+ onenum, "^towards"+twonum, "^tw" + twonum, "^setxy" + twonum,
 			"^sum" + twonum, "^+" + twonum, "^difference"+ twonum, "^-" + twonum, "^product" + twonum, "^*" + twonum, "^quotient" + twonum,
 			"^remainder" + twonum, "^%" + twonum, "^/" + twonum, "^#.*", "^left" +onenum,"^lt" +onenum, "^right" +onenum,"^rt" +onenum, "setheading" +onenum,
 			"^seth" +onenum,"^sin" +onenum,"^cos" +onenum, "^tan" +onenum, "^atan" +onenum, "repeat"+onenum +com_regix, 
 			"dotimes"+ "\\s\\["+variable+"\\s\\d+\\s\\]"+com_regix, "for \\[" + variable + twonum + onenum + "\\s\\]" + com_regix,
-			"if" + ".*" + com_regix, "ifelse" + "\\s.*"+ com_regix + com_regix, "to "+commandname + "\\s\\[" + variable + "\\s\\]" + com_regix,
-			"make" + variable + "\\s.*", "set" + variable + "\\s.*"};
-
+			"if" + boolean_regix + com_regix, "ifelse" + boolean_regix  + com_regix + com_regix, "to "+commandname + "\\s\\[" + variable + "\\s\\]" + com_regix,
+			"make" + variable + "\\s.*", "set" + variable + "\\s.*", "less\\?"+ twonum, "greater\\?" + twonum, "equal\\?" + twonum};
+	
 	//non-nested command validation	
-	public boolean validateBasicCommands(String regix, String in){
-			return in.matches(regix);
+	public boolean validateBasicCommands(String regex, String in){
+			System.out.println(in);
+		    System.out.println(in.matches(regex));
+			return in.matches(regex);
 			//call parser here.
 	}
 /*	public boolean validateBasicCommands(String in){
@@ -46,18 +48,17 @@ public class ErrorCheck {
 		return false;
 	}
 	*/
-	public boolean validateInput(String in){
+	public boolean validateInput(String in){ 
 		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
-		System.out.println(in);
+		//System.out.println(in);
 		String commandRegix = commandMap.get(command);
 		if(commandRegix != null){  //undefined commands
 			if(userdefined.contains(command)){
 				return validateLoop(commandRegix, s);	
 			}
-			else{
+			else
 				return validateBasicCommands(commandRegix, s);
-			}
 		}
 		return false;
 	}		
@@ -69,9 +70,9 @@ public class ErrorCheck {
 		while(m.find()){
 			result = true;
 			for(int i = 1; i <= m.groupCount(); i++){
-				//System.out.println(m.group(i));
-				//System.out.println(validateBasicCommands( m.group(i)));
-				result = result && validateInput( m.group(i));
+				System.out.println(m.group(i));
+				System.out.println(validateInput( m.group(i)));
+				result = result && validateInput(m.group(i));
 			}
 			return result;
 		}
@@ -79,6 +80,7 @@ public class ErrorCheck {
 	}
 
 	public ErrorCheck(){
+		//setProperties() ResourceBundle()
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
 		userdefined = new HashSet(Arrays.asList(elements));
 		commandMap = new HashMap(); //what if new commands added
@@ -99,8 +101,8 @@ public class ErrorCheck {
 		String repeat = "repeat 10 [ fd 50 ]";
 		String dotimes = "dotimes [ :name 200 ] [ rt 50 ]";
 		String forl = "for [ :v 0 10 1 ] [ lt 50 ]"; 
-		String ifl = "if 1>5 [back 30]";
-		String ifelse = "ifelse 4 > 5 [rt 50] [lt 100]";
+		String ifl = "if less? 1 5 [back 30]";
+		String ifelse = "ifelse greater? 2 6 [rt 50] [lt 100]";
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";
@@ -114,10 +116,9 @@ public class ErrorCheck {
 		//System.out.println(example.validateInput(repeat));		
 		//System.out.println(example.validateInput(dotimes));
 		//System.out.println(example.validateInput(forl));
-		//System.out.println(example.validateInput(ifl));
-		System.out.println(example.validateInput(make));
-		System.out.println(example.validateInput(to));
-		System.out.println(example.validateInput(ifelse));		
-		
+		//System.out.println(example.validateInput(make));
+		//System.out.println(example.validateInput(to));
+		//System.out.println(example.validateInput(ifelse));
+		System.out.println(example.validateInput(ifl));
 	}	
 }

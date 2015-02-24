@@ -5,6 +5,7 @@ import application.CommandFactory;
 public class Parser {
 	
 	public CommandFactory parse(String in) {
+		
 		return null;
 	}
 	
