@@ -2,12 +2,8 @@ package commands;
 
 public class Pow extends Calculate{
 
-	public Pow(int a) {
-		super(a);
+	public Pow(int a, int b) {
+		super.pow(a, b);
 	}
 	
-	public double execute(int a, int b){
-		return Math.pow(a, b);
-	}
-
 }
