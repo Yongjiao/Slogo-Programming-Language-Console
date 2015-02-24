@@ -63,10 +63,18 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(View view, Turtle turtle){
+	public TurtleHandler(View view){
 		myView = view;
-		myTurtle = turtle;
+		myTurtle = new Turtle();
+		this.initializeTurtle();
 	}
+	
+	private void initializeTurtle()
+	{
+		this.changeTurtleImage(new Image("resources/turtle.png"));
+		this.updateTurtleOnView();
+	}
+	
 	
 	/**
 	 * * NOTE: Turtle Coordinate system
