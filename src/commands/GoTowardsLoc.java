@@ -1,9 +1,9 @@
 package commands;
 
-public class GoTowardsLoc {
+public class GoTowardsLoc extends Rotate{
 
-	public void goTowardsLoc(int x, int y) {
-
+	public GoTowardsLoc(int x, int y) {
+		super.goTowardsLoc(x, y);
 	}
 
 }

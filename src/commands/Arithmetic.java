@@ -16,4 +16,9 @@ public abstract class Arithmetic extends CommandFactory{
 		return (a / b);
 	}
 	
+	public int remainder(int a, int b) {
+		int c = div(a, b);
+		return a - (b * c);
+	}
+	
 }

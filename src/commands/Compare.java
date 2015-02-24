@@ -16,4 +16,10 @@ public abstract class Compare extends CommandFactory{
 		return 0;
 	}
 	
+	public int notEqual(int a, int b) {
+		if(a == b)
+			return 0;
+		return 1;
+	}
+	
 }

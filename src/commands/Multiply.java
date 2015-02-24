@@ -2,8 +2,8 @@ package commands;
 
 public class Multiply extends Arithmetic{
 
-	public int mult(int a, int b){
-		return super.mult(a,  b);
+	public Multiply(int a, int b){
+		super.mult(a,  b);
 	}
 
 }

@@ -2,9 +2,8 @@ package commands;
 
 public class Left extends Rotate{
 
-	public int right(int degrees){
+	public Left(int degrees){
 		super.changeOrientation(-degrees);
-		return degrees;
 	}
 	
 }
