@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.*;
 import java.util.regex.*;
 /*
+ * To Do: language change
  expression check
  *expr checked by using validateBasicCommands: like 1 > 5
  */
@@ -17,7 +18,7 @@ public class ErrorCheck {
 	private final String variable = "\\s:\\w+";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
-	private final String boolean_regix = "\\s((less\\?|greater\\?|equal\\?)\\s\\d+\\s\\d+)";
+	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+| greater\\?\\s\\d+\\s\\d+ | euqal\\?\\s\\d+\\s\\d+)";
 	private final String[] command = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
 			"if","ifelse", "to", "make", "set","less?", "greater?", "equal?"};
@@ -32,8 +33,8 @@ public class ErrorCheck {
 	
 	//non-nested command validation	
 	public boolean validateBasicCommands(String regex, String in){
-			System.out.println(in);
-		    System.out.println(in.matches(regex));
+			//System.out.println(in);
+		    //System.out.println(in.matches(regex));
 			return in.matches(regex);
 			//call parser here.
 	}
@@ -51,7 +52,7 @@ public class ErrorCheck {
 	public boolean validateInput(String in){ 
 		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
-		//System.out.println(in);
+		System.out.println(in);
 		String commandRegix = commandMap.get(command);
 		if(commandRegix != null){  //undefined commands
 			if(userdefined.contains(command)){
@@ -66,17 +67,15 @@ public class ErrorCheck {
 	public boolean validateLoop(String regix, String in){
 		Pattern p = Pattern.compile(regix);
 		Matcher m = p.matcher(in);		
-		boolean result = false;
 		while(m.find()){
-			result = true;
 			for(int i = 1; i <= m.groupCount(); i++){
-				System.out.println(m.group(i));
-				System.out.println(validateInput( m.group(i)));
-				result = result && validateInput(m.group(i));
+				//System.out.println(m.group(i));
+				//System.out.println(validateInput( m.group(i)));
+				if(!validateInput(m.group(i)))	return false;
 			}
-			return result;
+			return true;
 		}
-		return result;
+		return false;
 	}
 
 	public ErrorCheck(){
