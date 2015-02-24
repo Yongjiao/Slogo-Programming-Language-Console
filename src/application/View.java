@@ -40,7 +40,7 @@ public class View extends Canvas{
 		// for testing
 		Point2D orig = new Point2D(0, 0);
 		Point2D dest = new Point2D(-1600, -300);	
-		drawLine(orig, dest, Color.BLACK);
+		drawLine(orig, dest);
 		
 		}
 	
@@ -66,8 +66,8 @@ public class View extends Canvas{
 	 * @param dest destination coordinates of the turtle (turtle coordinate system)
 	 * @param c color of line drawn
 	 */
-	public void drawLine(Point2D orig, Point2D dest, Color c){
-		myGC.setStroke(c);
+	public void drawLine(Point2D orig, Point2D dest){
+	//	myGC.setStroke(c);
 		Point2D p = findBoundaryPoint(orig, dest);
 		if (p == null){
 			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1, 
@@ -76,7 +76,7 @@ public class View extends Canvas{
 		else{
 			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1,
 					p.getX()+XCENTER, (p.getY()-YCENTER)*-1);
-			drawLine(newStart, newDest, c);
+	//		drawLine(newStart, newDest, c);
 		}
 	}
 	

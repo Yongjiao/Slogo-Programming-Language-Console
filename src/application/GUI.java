@@ -52,9 +52,7 @@ public class GUI {
 	private HBox mainHBox;
 	private ColorPicker penColor = new ColorPicker();
 	private ColorPicker backgroundColor = new ColorPicker();
-	
-	private TurtleHandler handler; // TODO: TO BE REMOVED - FIX DESIGN
-	
+		
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
 		myButtonNames = new String[] {"pencolor", 
@@ -154,7 +152,7 @@ public class GUI {
 	
 	private void changePenColor(){
 
-		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
+//		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
 	}
 	
 	private void changeBackgroundColor(){

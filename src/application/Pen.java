@@ -26,14 +26,4 @@ public class Pen {
 		return myStatus;
 	}
 	
-	public void setColor(Color newColor)
-	{
-		myColor = newColor;
-	}
-	
-	public Color getColor()
-	{
-		return myColor;
-	}
-
 }
