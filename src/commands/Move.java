@@ -5,13 +5,13 @@ import application.TurtleHandler;
 
 public abstract class Move {
 	TurtleHandler myTurtleHandler;
-	
-	public double changeLocation(int steps){
+
+	public double changeLocation(int steps) {
 		myTurtleHandler.moveTurtle(steps);
 		return steps;
 	}
-	
-	public double GoToLocation(int x, int y){
+
+	public double GoToLocation(int x, int y) {
 		Point2D origLoc = myTurtleHandler.getTurtleLocation();
 		Point2D destination = new Point2D(x, y);
 		double dx = destination.getX() - origLoc.getX();

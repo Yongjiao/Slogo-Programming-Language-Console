@@ -2,8 +2,8 @@ package commands;
 
 public class GoTowardsLoc {
 
-	public void goTowardsLoc(int x, int y){
-		
+	public void goTowardsLoc(int x, int y) {
+
 	}
-	
+
 }

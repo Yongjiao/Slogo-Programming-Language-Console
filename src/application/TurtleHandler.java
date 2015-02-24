@@ -5,122 +5,106 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class TurtleHandler {
-	
+
 	private View myView;
 	private Turtle myTurtle;
-	
-	public TurtleHandler(View v, Turtle t){
+
+	public TurtleHandler(View v, Turtle t) {
 		myView = v;
 		myTurtle = t;
 	}
-	
-	public void moveTurtle(int distance){ 
+
+	public void moveTurtle(int distance) {
 		Point2D locOrig = myTurtle.getLoc();
 		myTurtle.move(distance);
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 	}
-	
-	public void changeLocationOfTurtle(Point2D newLoc){ 
+
+	public void changeLocationOfTurtle(Point2D newLoc) {
 		Point2D locOrig = myTurtle.getLoc();
 		myTurtle.setLocation(newLoc);
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 	}
-	
-
 
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
 		this.updateTurtleOnView();
-		
-		if (myTurtle.getPenPos() == 1)
-		{
+
+		if (myTurtle.getPenPos() == 1) {
 			this.myView.drawLine(locOrig, locNew, getPen());
 		}
-		
+
 	}
 
-	public void rotateTurtle(double deg){
+	public void rotateTurtle(double deg) {
 		myTurtle.turn(deg);
 		this.updateTurtleOnView();
 	}
-	
-	public void setTurtleOrientation(double newAngle){
+
+	public void setTurtleOrientation(double newAngle) {
 		myTurtle.setOrientation(newAngle);
 		updateTurtleOnView();
 	}
-	
-	public double getTurtleOrientation()
-	{
+
+	public double getTurtleOrientation() {
 		return myTurtle.getOrientation();
 	}
-	
-	public Point2D getTurtleLocation()
-	{
+
+	public Point2D getTurtleLocation() {
 		return myTurtle.getLoc();
 	}
-	
-	public void showTurtle(int toShow)
-	{
-		myTurtle.setVisibility((toShow==1));
+
+	public void showTurtle(int toShow) {
+		myTurtle.setVisibility((toShow == 1));
 		updateTurtleOnView();
 	}
-	
-	public int isVisible()
-	{
+
+	public int isVisible() {
 		if (myTurtle.getVisibility()) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public void setPenStatus(int status)
-	{
+	public void setPenStatus(int status) {
 		myTurtle.setPenPos(status);
 	}
-	
-	public int getPenStatus()
-	{
+
+	public int getPenStatus() {
 		return myTurtle.getPenPos();
 	}
-	
-	public Pen getPen()
-	{
+
+	public Pen getPen() {
 		return myTurtle.getPen();
 	}
-	
-	
-	public void changeTurtleImage(Image newImage)
-	{
+
+	public void changeTurtleImage(Image newImage) {
 		myTurtle.updateMyImage(newImage);
 		updateTurtleOnView();
 	}
-	
-	public void clearScreen()
-	{
+
+	public void clearScreen() {
 		this.myView.clearScreen();
 	}
-	
-	
-	public Color getPenColor()
-	{
+
+	public Color getPenColor() {
 		return this.myTurtle.getPenColor();
 	}
-	
-//<<<<<<< HEAD
-//	public void rotateTurtle(int deg){
-//		int currentOri = myTurtle.getOrientation();
-//		myTurtle.setOrientation(currentOri + deg);
-//=======
-	public void setPenColor(Color newColor)
-	{
+
+	// <<<<<<< HEAD
+	// public void rotateTurtle(int deg){
+	// int currentOri = myTurtle.getOrientation();
+	// myTurtle.setOrientation(currentOri + deg);
+	// =======
+	public void setPenColor(Color newColor) {
 		this.myTurtle.setPenColor(newColor);
-//>>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
+		// >>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
 	}
-	
-	public void updateTurtleOnView()
-	{
-		this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+
+	public void updateTurtleOnView() {
+		this.myView.changeTurtleImage(this.getTurtleLocation(),
+				this.myTurtle.getTurtleImage());
 	}
-	
+
 }
