@@ -36,26 +36,17 @@ public class View extends Canvas{
 		YCENTER = y/2;
 		
 		myGC = this.getGraphicsContext2D();
+		newDest = new Point2D(0, 0); // default point 
 		
 		// for testing
 		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(-1600, -300);	
+		Point2D dest = new Point2D(-1600, -400);	
 		drawLine(orig, dest, Color.BLACK);
 		
 		}
 	
-	/**
-	 * set background image if user desires
-	 * @param back
-	 */
-	public void setBackgroundImage(Image back)
-	{
-		//this.myBackgroundCanvasGraphCont.drawImage(back, 0, 0);
-	}
-	
-	public void setBackgroundColor(Color newC)
-	{
-		myGC.setFill(newC);
+	public void initializeTurtle(ImageView turtle){
+		myGC.drawImage(turtle.getImage(), this.getWidth(), this.getHeight());
 	}
 	
 	/**
@@ -72,10 +63,12 @@ public class View extends Canvas{
 		if (p == null){
 			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1, 
 			dest.getX()+XCENTER, (dest.getY()-YCENTER)*-1);
+			newDest = dest;
 		}
 		else{
 			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1,
 					p.getX()+XCENTER, (p.getY()-YCENTER)*-1);
+			//moveTurtle(p.getX()+XCENTER, (p.getY()-YCENTER)*-1));
 			drawLine(newStart, newDest, c);
 		}
 	}
@@ -90,17 +83,20 @@ public class View extends Canvas{
 	 */
 	private Point2D findBoundaryPoint(Point2D orig, Point2D dest){
 		double slope = (dest.getY()-orig.getY())/(dest.getX()-orig.getX()); // slope of two points
-		double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
 		if (dest.getX() > XCENTER && dest.getY() > YCENTER){
+			double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
 			return findCorner(XCENTER, YCENTER, mCorner, slope, dest);
 		}
 		else if (dest.getX() > XCENTER && dest.getY() < YCENTER*-1){
-			return findCorner(XCENTER, YCENTER*-1, mCorner*-1, slope, dest);
+			double mCorner = (YCENTER*-1- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
+			return findCorner(XCENTER, YCENTER*-1, mCorner, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() > YCENTER){
-			return findCorner(XCENTER*-1, YCENTER, mCorner*-1, slope, dest);
+			double mCorner = (YCENTER- orig.getY())/(XCENTER*-1 - orig.getX()); // slope from orig to corner
+			return findCorner(XCENTER*-1, YCENTER, mCorner, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() < YCENTER*-1){
+			double mCorner = (YCENTER*-1- orig.getY())/(XCENTER*-1 - orig.getX()); // slope from orig to corner
 			return findCorner(XCENTER*-1, YCENTER*-1, mCorner, slope, dest);
 		}
 		else if(dest.getX() > XCENTER){
@@ -119,12 +115,10 @@ public class View extends Canvas{
 	}
 	
 	private Point2D findCorner(double x, double y, double mCorner, double slope, Point2D dest){
-		if (mCorner > Math.abs(slope)){
-			// use y axis
+		if (Math.abs(mCorner) < Math.abs(slope)){
 			return findYEdge(y, slope, dest);
 		}
 		else{
-			// use x axis
 			return findXEdge(x, slope, dest);
 		}
 	}
@@ -143,14 +137,17 @@ public class View extends Canvas{
 		return new Point2D(xcoord, y);
 	}
 	
+	public Point2D getNewPoint(){
+		return newDest;
+	}
 	
 	/**
 	 * changes location and/or orientation of turtle image
 	 * @param newLoc
 	 * @param turtleImage
-	 * @author Anika (version 1)
+	 * 
 	 */
-	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
+	public void rotateAndMoveTurtle(Point2D newLoc, ImageView turtleImage){
 		// TODO: handle location and orientation and visibility of turtle
 
 		// clear turtle canvas, then relocate image
@@ -169,6 +166,10 @@ public class View extends Canvas{
 
 			//	this.turtleGraphCont.drawImage((turtleImage), xViewLoc, yViewLoc);
 		}
+	}
+	
+	public void updateTurtleImage(ImageView turtleImage){
+		
 	}
 
 	public void clearScreen(){
