@@ -1,30 +1,80 @@
 package application;
 
-import java.awt.Point;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
-public class View extends Canvas {
+public class View{
 	
-	private int myWidth, myHeight;
+	private Canvas myTurtleCanvas, myLineCanvas, myBackgroundCanvas;
+	private GraphicsContext turtleGraphCont;
+	private GraphicsContext linesGraphCont;
+	private GraphicsContext myLineCanvasGraphCont, myBackgroundCanvasGraphCont;
+	private static double XCENTER, YCENTER;
 	
 	public View(int x, int y){
-		myWidth = x;
-		myHeight = y;
-		this.setWidth(myWidth);
-		this.setHeight(myHeight);
-		// TODO: implement other parameter, such as color, etc.
+		
+		myTurtleCanvas = new Canvas();
+		myLineCanvas = new Canvas();
+		myBackgroundCanvas = new Canvas();
+		
+		
+		myTurtleCanvas.setWidth(x);
+		myBackgroundCanvas.setWidth(x);
+		myTurtleCanvas.setHeight(y);
+		myBackgroundCanvas.setHeight(y);
+		myLineCanvas.setWidth(x);
+		myLineCanvas.setHeight(y);
+		
+		myLineCanvasGraphCont = myLineCanvas.getGraphicsContext2D();
+		myBackgroundCanvasGraphCont = myBackgroundCanvas.getGraphicsContext2D();
+		
+		//TODO: set z indices of canvas order
+		
+		XCENTER = myTurtleCanvas.getWidth()/2;
+		YCENTER = myTurtleCanvas.getHeight()/2;
+			
 	}
 	
-	public void drawLine(Point p1, Point p2){
-		// TODO: draw a line from point p1 to p2
+	
+	public void setBackgroundImage(Image back)
+	{
+		//TODO: change image of BackgroundCanvas
 	}
 	
-	public void changeTurtleImage(){
-		// TODO: implement
+	public void setBackgroundColor(Color newC)
+	{
+		myBackgroundCanvasGraphCont.setFill(newC);
+	}
+	
+	public void drawLine(Point2D originalLocation, Point2D newLocation, Pen pen){
+		// TODO: draw a line from point originalLocation to newLocation
+		// draw line if pen status  = 1 get color from turtleHandler with TH.getPenColor()
+		// TODO: check for boundary conditions
+	}
+	
+	/**
+	 * possible helper method
+	 */
+	public void checkBoundaryConditions()
+	{
+		// TODO
+	}
+	
+	/**
+	 * changes location and/or orientation of turtle image
+	 * @param newLoc
+	 * @param turtleImage
+	 */
+	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
+		// TODO: handle location and orientation and visibility of turtle
 	}
 	
 	public void clearScreen(){
-		// TODO: implement
+		this.linesGraphCont.clearRect(0, 0, this.myBackgroundCanvas.getWidth(), this.myBackgroundCanvas.getHeight());
 	}
 }
