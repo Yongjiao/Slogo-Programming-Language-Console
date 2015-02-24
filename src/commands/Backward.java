@@ -6,8 +6,4 @@ public class Backward extends Move{
 		super.changeLocation(steps);
 	}
 	
-	public Backward(String str) {
-		
-	}
-	
 }

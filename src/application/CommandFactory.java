@@ -1,6 +1,8 @@
 package application;
 
-public class CommandFactory {
+import commands.Executable;
+
+public class CommandFactory implements Executable{
 
 	protected TurtleHandler myTurtleHandler;
 	
@@ -12,6 +14,18 @@ public class CommandFactory {
 		myTurtleHandler = t;
 	}
 	
-	// TODO: implement CommandFactory methods
+	// Anika - called by commands subclasses
+	protected TurtleHandler getTurtleHandler(){
+		return myTurtleHandler;
+	}
+
+	@Override
+	// each command has common method - used for loops and if statements
+	// that pass to IF / LOOP commands an arraylist of command objects
+	// @author anika
+	public void execute() {
+		// TODO make sure each command has common method - used for loops
+		
+	}
 	
 }
