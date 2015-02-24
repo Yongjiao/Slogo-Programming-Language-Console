@@ -35,7 +35,7 @@ public class ErrorCheck {
 			return in.matches(regix);
 			//call parser here.
 	}
-	public boolean validateBasicCommands(String in){
+/*	public boolean validateBasicCommands(String in){
 		String s = in.trim().toLowerCase();
 		String command = s.split(" ")[0];
 		//System.out.println(in);
@@ -45,6 +45,7 @@ public class ErrorCheck {
 		}
 		return false;
 	}
+	*/
 	public boolean validateInput(String in){
 		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
@@ -59,9 +60,8 @@ public class ErrorCheck {
 			}
 		}
 		return false;
-	}
-		
-	
+	}		
+
 	public boolean validateLoop(String regix, String in){
 		Pattern p = Pattern.compile(regix);
 		Matcher m = p.matcher(in);		
@@ -69,16 +69,14 @@ public class ErrorCheck {
 		while(m.find()){
 			result = true;
 			for(int i = 1; i <= m.groupCount(); i++){
-				System.out.println(m.group(i));
-				System.out.println(validateBasicCommands( m.group(i)));
-				result = result && validateBasicCommands( m.group(i));
+				//System.out.println(m.group(i));
+				//System.out.println(validateBasicCommands( m.group(i)));
+				result = result && validateInput( m.group(i));
 			}
 			return result;
 		}
 		return result;
 	}
-
-
 
 	public ErrorCheck(){
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
@@ -104,23 +102,22 @@ public class ErrorCheck {
 		String ifl = "if 1>5 [back 30]";
 		String ifelse = "ifelse 4 > 5 [rt 50] [lt 100]";
 		String set = "set :m [SUM 5 100]";
-		String make = "make :n [% 30 40]";
+		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";
-		//System.out.println(example.validateBasicCommands(s1));
-		//System.out.println(example.validateBasicCommands(s2));
-		//System.out.println(example.validateBasicCommands(s3));
-		//System.out.println(example.validateBasicCommands(s4));
-		//System.out.println(example.validateBasicCommands(s5));
-		//System.out.println(example.validateBasicCommands(s6));
-		//System.out.println(example.validateBasicCommands(s7));
+		//System.out.println(example.validateInputCommands(s1));
+		//System.out.println(example.validateInputCommands(s2));
+		//System.out.println(example.validateInputCommands(s3));
+		//System.out.println(example.validateInputCommands(s4));
+		//System.out.println(example.validateInputCommands(s5));
+		//System.out.println(example.validateInputCommands(s6));
+		//System.out.println(example.validateInputCommands(s7));
 		//System.out.println(example.validateInput(repeat));		
 		//System.out.println(example.validateInput(dotimes));
 		//System.out.println(example.validateInput(forl));
 		//System.out.println(example.validateInput(ifl));
-		//System.out.println(example.validateInput(make));
-		//System.out.println(example.validateInput(to));
-		System.out.println(example.validateInput(ifelse));
-		
+		System.out.println(example.validateInput(make));
+		System.out.println(example.validateInput(to));
+		System.out.println(example.validateInput(ifelse));		
 		
 	}	
 }
