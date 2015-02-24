@@ -177,7 +177,7 @@ public class TurtleHandler {
 		if (myTurtle.getPenPos() == 1)
 		{
 			// pass pen to check color
-			this.myView.drawLine(locOrig, locNew, getPenColor());
+			this.myView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
 			
@@ -282,23 +282,6 @@ public class TurtleHandler {
 		this.myView.clearScreen();
 	}
 	
-	/**
-	 * called by View to draw lines of appropriate color
-	 * @return color of pen
-	 */
-	public Color getPenColor()
-	{
-		return this.myTurtle.getPenColor();
-	}
-
-	/**
-	 * called by command class to set color of lines
-	 * @param newColor
-	 */
-	public void setPenColor(Color newColor)
-	{
-		this.myTurtle.setPenColor(newColor);
-	}
 	
 	/**
 	 * called whenever turtle's image, location, or orientation is changed in 

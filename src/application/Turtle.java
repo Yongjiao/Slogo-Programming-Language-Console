@@ -47,22 +47,6 @@ public class Turtle {
 		myOrientation = ori;
 	}
 	
-	/**
-	 * @return color of pen
-	 */
-	public Color getPenColor()
-	{
-		return this.myPen.getColor();
-	}
-	
-	/**
-	 * sets color of pen to desired color
-	 * @param newColor
-	 */
-	public void setPenColor(Color newColor)
-	{
-		this.myPen.setColor(newColor);
-	}
 	
 	/**
 	 * updates orientation
