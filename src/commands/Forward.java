@@ -6,9 +6,4 @@ public class Forward extends Move {
 		super.changeLocation(steps);
 	}
 
-	public Forward(String str) {
-		int steps = super.checkStr(str);
-		super.changeLocation(steps);
-	}
-
 }

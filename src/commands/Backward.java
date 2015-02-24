@@ -2,8 +2,12 @@ package commands;
 
 public class Backward extends Move{
 
-	public void execute(int steps){
+	public Backward(int steps){
 		super.changeLocation(steps);
+	}
+	
+	public Backward(String str) {
+		
 	}
 	
 }
