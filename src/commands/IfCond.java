@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class IfCond extends IfConditions{
 
-	public IfCond(int e, ArrayList<String> ifs){
+	public IfCond(int e, ArrayList<CommandObject> ifs){
 		super.IFELSE(e, ifs, null);
 	}
 	
