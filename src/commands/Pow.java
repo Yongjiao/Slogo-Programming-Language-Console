@@ -14,7 +14,6 @@ public class Pow extends Calculate{
 	}
 	
 	public void execute() {
-		super.pow(base, exponent);
 	}
 	
 }

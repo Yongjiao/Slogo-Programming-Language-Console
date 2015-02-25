@@ -1,7 +1,7 @@
 package commands;
 
 public class Remainder extends Arithmetic{
-	
+
 	private int dividend;
 	private int divisor;
 	
@@ -18,5 +18,5 @@ public class Remainder extends Arithmetic{
 	public void execute() {
 		super.remainder(dividend, divisor);
 	}
-
+	
 }

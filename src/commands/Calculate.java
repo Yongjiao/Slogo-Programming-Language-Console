@@ -26,7 +26,7 @@ public abstract class Calculate extends CommandFactory {
 	
 	public double pow(int base, int exponent) {
 		return Math.pow(base, exponent);
-	}
+}
 	
 	public double Random(int a) {
 		double r = Math.random() * a;

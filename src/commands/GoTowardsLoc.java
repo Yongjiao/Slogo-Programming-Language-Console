@@ -1,7 +1,8 @@
 package commands;
 
 public class GoTowardsLoc extends Rotate{
-
+	
+	
 	private int x;
 	private int y;
 	

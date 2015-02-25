@@ -1,7 +1,14 @@
 package commands;
 
+/**
+ * Command Subclass for addition
+ * 
+ * @author TheSweatshopKid
+ *
+ */
+
 public class Add extends Arithmetic{
-	
+
 	private int num1;
 	private int num2;
 	

@@ -15,5 +15,4 @@ public class Tan extends Calculate{
 	public void execute() {
 		super.tan(angle);
 	}
-
 }

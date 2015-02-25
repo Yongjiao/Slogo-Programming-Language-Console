@@ -15,5 +15,4 @@ public class ATan extends Calculate {
 	public void execute() {
 		super.atan(angle);
 	}
-
 }

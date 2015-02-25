@@ -2,6 +2,8 @@ package commands;
 
 import java.util.ArrayList;
 
+import javax.activation.CommandObject;
+
 import application.CommandFactory;
 
 public class Loop extends CommandFactory {

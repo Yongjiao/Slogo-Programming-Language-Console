@@ -1,7 +1,7 @@
 package commands;
 
 public class GoToLocation extends Move{
-	
+
 	private int x;
 	private int y;
 	

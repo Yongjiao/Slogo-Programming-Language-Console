@@ -1,7 +1,7 @@
 package commands;
 
 public class Less extends Compare{
-	
+
 	private int num1;
 	private int num2;
 	
