@@ -2,6 +2,7 @@
 A development environment that helps users write SLogo programs.
 
 -- CommandFactory needs more constructors for handling variables: loops and basic
+
 -- parsing If and Ifelse, only need to construct IfCond class. 
 
 CompSci 308 Spring 2015
