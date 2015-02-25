@@ -186,7 +186,7 @@ public class View extends StackPane{
 	 * @param turtleImage
 	 * 
 	 */
-	public void rotateAndMoveTurtle(Point2D newLoc, ImageView turtleImage){
+	public void rotateAndMoveTurtle(Point2D newLoc, ImageView turtleImage, double angle){
 		// TODO: handle location and orientation and visibility of turtle
 
 		// clear turtle canvas, then relocate image

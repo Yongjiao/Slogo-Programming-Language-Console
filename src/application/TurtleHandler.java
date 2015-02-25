@@ -196,76 +196,6 @@ public class TurtleHandler {
 
 	}
 
-//<<<<<<< HEAD
-//	public void rotateTurtle(double deg) {
-//		myTurtle.turn(deg);
-//		this.updateTurtleOnView();
-//	}
-//
-//	public void setTurtleOrientation(double newAngle) {
-//		myTurtle.setOrientation(newAngle);
-//		updateTurtleOnView();
-//	}
-//
-//	public double getTurtleOrientation() {
-//		return myTurtle.getOrientation();
-//	}
-//
-//	public Point2D getTurtleLocation() {
-//		return myTurtle.getLoc();
-//	}
-//
-//	public void showTurtle(int toShow) {
-//		myTurtle.setVisibility((toShow == 1));
-//		updateTurtleOnView();
-//	}
-//
-//	public int isVisible() {
-//		if (myTurtle.getVisibility()) {
-//			return 1;
-//		}
-//		return 0;
-//	}
-//
-//	public void setPenStatus(int status) {
-//		myTurtle.setPenPos(status);
-//	}
-//
-//	public int getPenStatus() {
-//		return myTurtle.getPenPos();
-//	}
-//
-//	public Pen getPen() {
-//		return myTurtle.getPen();
-//	}
-//
-//	public void changeTurtleImage(Image newImage) {
-//		myTurtle.updateMyImage(newImage);
-//		updateTurtleOnView();
-//	}
-//
-//	public void clearScreen() {
-//		this.myView.clearScreen();
-//	}
-//
-//	public Color getPenColor() {
-//		return this.myTurtle.getPenColor();
-//	}
-//
-//	// <<<<<<< HEAD
-//	// public void rotateTurtle(int deg){
-//	// int currentOri = myTurtle.getOrientation();
-//	// myTurtle.setOrientation(currentOri + deg);
-//	// =======
-//	public void setPenColor(Color newColor) {
-//		this.myTurtle.setPenColor(newColor);
-//		// >>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
-//	}
-//
-//	public void updateTurtleOnView() {
-//		this.myView.changeTurtleImage(this.getTurtleLocation(),
-//				this.myTurtle.getTurtleImage());
-//=======
 	/**
 	 * sets turtle orientation to current orientation + angle turned
 	 * Calls method to update view's turtle image
@@ -374,7 +304,7 @@ public class TurtleHandler {
 		{
 			// make turtle visible, then update turtle movement
 			this.myView.showTurtle(true);
-	//TODO		this.myView.updateTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.myTurtle.getTurtleImage(), this.getTurtleOrientation());
 		}
 		else
 		{
