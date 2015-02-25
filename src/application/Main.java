@@ -37,12 +37,14 @@ public class Main extends Application {
 			System.out.println("showing");
 			myHandler.showTurtle(1);
 			System.out.println("setting pen status");
-			myHandler.setPenStatus(0); // FIXED :D
+		//	myHandler.setPenStatus(0); // FIXED :D
 			System.out.println("move 200");
 			myHandler.moveTurtle(200);
 		//	System.out.println("move 900");
 		//	myHandler.moveTurtle(900);
 		//	myHandler.clearScreen();
+			System.out.println("END END END");
+
 			
 
 		} catch(Exception e) {

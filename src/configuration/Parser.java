@@ -112,7 +112,7 @@ public void parseInput(String in) {
 				//case  ""
 				//case "Home":		command = new Home();
 			}
-			//command.execute();
+			command.execute();
 		}		
 		
 	public CommandFactory parse(Boolean ifs){
@@ -129,12 +129,12 @@ public void parseInput(String in) {
 		}
 	}
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		Parser example = new Parser();
 		String s = "sin 50";
 		example.parseBasicCommand(s);
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 }
