@@ -1,6 +1,16 @@
 package application;
 
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -53,6 +63,8 @@ public class View extends StackPane{
 		penColor = DEFAULT_PEN_COLOR; // default color
 		backgroundGC.setFill(DEFAULT_BACKGROUND_COLOR); // default background
 		backgroundGC.fillRect(0, 0, x, y);
+		
+		myTurtle = new ImageView();
 		
 		 //for testing
 		Point2D orig = new Point2D(0, 0);
@@ -202,8 +214,11 @@ public class View extends StackPane{
 		turtleView.setVisible(b);
 	}
 	
-	public void updateTurtleImage(ImageView turtleImage){
-		
+	public void updateTurtleImage(File loc){
+        Image image = new Image("file:///" + loc.getPath());
+        myTurtle.setImage(image);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
 	}
 
 	/**
