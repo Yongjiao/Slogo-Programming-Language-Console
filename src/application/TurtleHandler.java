@@ -2,6 +2,7 @@ package application;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 /**
  * 
@@ -71,8 +72,9 @@ public class TurtleHandler {
 	
 	private void initializeTurtle()
 	{
-		this.changeTurtleImage(new Image("resources/turtle.png"));
-		this.updateTurtleOnView();
+		Image newIm = new Image("resources/turtle.png");
+		this.changeTurtleImage((newIm));
+		this.myView.initializeTurtle(newIm);
 	}
 	
 	
@@ -344,11 +346,11 @@ public class TurtleHandler {
 	
 	/**
 	 * updates turtle's image file and calls to update image of turtle displayed on View
-	 * @param newImage
+	 * @param newIm
 	 */
-	public void changeTurtleImage(Image newImage)
+	public void changeTurtleImage(Image newIm)
 	{
-		myTurtle.updateMyImage(newImage);
+		myTurtle.updateMyImage(newIm);
 		updateTurtleOnView();
 	}
 	
@@ -371,13 +373,13 @@ public class TurtleHandler {
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement
-			this.myView.sh
-			this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+			this.myView.showTurtle(true);
+	//TODO		this.myView.updateTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
 		}
 		else
 		{
 			// tell view to make turtle invisible
-			this.myView.
+			this.myView.showTurtle(false);
 		}
 	}
 
