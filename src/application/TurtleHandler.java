@@ -81,7 +81,7 @@ public class TurtleHandler {
 	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
 		
 		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
-		Image image = new Image("http://sample.com/res/flower.png", 100, 0, false, false);
+		Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
 	}
 	
