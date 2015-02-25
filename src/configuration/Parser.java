@@ -60,9 +60,9 @@ public void parseInput(String in) {
 
 	public void parseLoopCommands(String in, String regex, String com){
 		CommandFactory command = new CommandFactory();
-		switch(com):
-			case "if":		command = new if();
-			case "repeat":	
+		//switch(com):
+			//case "if":		command = new if();
+			//case "repeat":	
 	}
 
 	public void parseBasicCommand(String in){
