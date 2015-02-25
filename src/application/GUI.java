@@ -10,7 +10,6 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,17 +28,18 @@ public class GUI {
 	private static final int OPEN_FILE_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
-	private static final int STAGE_HEIGHT = 500;
-	private static final int STAGE_WIDTH = 800;
+	private static final int STAGE_HEIGHT = 800;
+	private static final int STAGE_WIDTH = 1200;
 	
-	private static final int VIEW_HEIGHT = 400;
-	private static final int VIEW_WIDTH = 400;
+	private static final int VIEW_HEIGHT = 700;
+	private static final int VIEW_WIDTH = 900;
 	
 	
 	//private Button penColorButton, backColorButton, langButton, turtleButton, openFileButton;
 	private TextField commandsField;
 	private ListView<String> prevCommands;
 	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
+	private static final ObservableList<String> myLanguageNames = FXCollections.observableArrayList();
 	private BorderPane myView;
 	private View turtleView;
 	private ViewBackground viewBackground;
@@ -56,6 +56,8 @@ public class GUI {
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
 		myButtonNames = new String[] {"commands", "turtleimage", "openfile"};
+		myLanguageNames.addAll(new String[] {"English", "Chinese", "French", "German", "Italian", "Japanese", 
+				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
 
@@ -82,23 +84,31 @@ public class GUI {
 		mainHBox.setAlignment(Pos.CENTER);
 		
 		String buttonStyle = "-fx-font: 14 georgia; -fx-text-fill: black;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: white;";
+		
+		// Creates ColorPicker buttons
 		penColor.setStyle(buttonStyle);
 		penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));
 		backgroundColor.setStyle(buttonStyle);
 		backgroundColor.setOnAction(e -> viewBackground.setBackground(backgroundColor.getValue()));
 		mainHBox.getChildren().addAll(penColor, backgroundColor);
 		
-		// Creates buttons
+		// Creates normal buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
-			Button newButt = new Button(myLabels.getString(myButtonNames[i]));
-		//	newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
-			newButt.setStyle(buttonStyle);
-			
-			myButtons[i] = newButt;
-			myButtons[i].setOnMousePressed(e -> mouseDown(newButt));
-			myButtons[i].setOnMouseReleased(e -> mouseUp(newButt));
-			mainHBox.getChildren().add(myButtons[i]);
+			Button b = new Button(myLabels.getString(myButtonNames[i]));
+			b.setStyle(buttonStyle);
+			myButtons[i] = b;
+			b.setOnMousePressed(e -> mouseDown(b));
+			b.setOnMouseReleased(e -> mouseUp(b));
+			mainHBox.getChildren().add(b);
 		}		
+		
+		// Creates languages buttons
+		ComboBox<String> langBox = new ComboBox<String>();
+		langBox.setItems(myLanguageNames);
+		langBox.setStyle(buttonStyle);
+		langBox.setValue("English");
+		// TODO: set on changed properties
+		mainHBox.getChildren().add(langBox);
 		myView.setTop(mainHBox);
 	}
 	
@@ -108,7 +118,7 @@ public class GUI {
 	}
 
 	private void initializeTextField() {
-		// TODO pass in string to parser?
+		// TODO pass in string to parser
 		commandsField = new TextField();
 		commandsField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
