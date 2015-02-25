@@ -21,7 +21,7 @@ public class Main extends Application {
 			stage.setScene(scene);
 			stage.show();
 			myHandler.moveTurtle(-200);
-			myHandler.rotateTurtle(30);
+			myHandler.rotateTurtle(90);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
