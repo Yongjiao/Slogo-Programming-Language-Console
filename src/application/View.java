@@ -39,7 +39,7 @@ public class View extends StackPane{
 	
 	private GraphicsContext backgroundGC, turtleGC, linesGC;
 	private Color penColor;
-	private ImageView myTurtle;
+	private ImageView myTurtleImg;
 	
 	/**
 	 * Constructor for the view
@@ -64,19 +64,19 @@ public class View extends StackPane{
 		backgroundGC.setFill(DEFAULT_BACKGROUND_COLOR); // default background
 		backgroundGC.fillRect(0, 0, x, y);
 		
-		myTurtle = new ImageView();
+		myTurtleImg = new ImageView();
 		
 		 //for testing
-		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(-1600, -400);	
-		drawLine(orig, dest);
-		
+//		Point2D orig = new Point2D(0, 0);
+//		Point2D dest = new Point2D(-1600, -400);	
+//		drawLine(orig, dest);
+//		
 		this.getChildren().addAll(backgroundView, linesView, turtleView);
 		
 		}
 
 	public void initializeTurtle(Image turtle){
-		
+		myTurtleImg.setImage(turtle);
 		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
 	}
 	
@@ -207,8 +207,8 @@ public class View extends StackPane{
 	 */
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-		myTurtle.setRotate(angle);
-		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		myTurtleImg.setRotate(angle);
+		turtleGC.drawImage(myTurtleImg.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
 	}
 	
 	public void showTurtle(boolean b){
@@ -217,9 +217,9 @@ public class View extends StackPane{
 	
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
-        myTurtle.setImage(image);
+        myTurtleImg.setImage(image);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	turtleGC.drawImage(myTurtleImg.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
 	}
 
 	/**

@@ -13,13 +13,15 @@ public class Main extends Application {
 		try {
 			Parser myParser = new Parser();
 			GUI myGUI = new GUI();
-			//TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
 			Scene scene = myGUI.initialize(stage);
+			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
+			
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
-			myHandler.moveTurtle(200);
+			myHandler.moveTurtle(-200);
+			myHandler.rotateTurtle(30);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
