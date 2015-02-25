@@ -368,7 +368,17 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
-		this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+		if (this.isVisible() == 1)
+		{
+			// make turtle visible, then update turtle movement
+			this.myView.
+			this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+		}
+		else
+		{
+			// tell view to make turtle invisible
+			this.myView.
+		}
 	}
 
 }
