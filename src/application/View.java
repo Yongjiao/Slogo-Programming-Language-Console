@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 /**
  * Creates the view where the lines are drawn and the turtle is displayed.
@@ -39,7 +40,7 @@ public class View extends StackPane{
 	
 	private GraphicsContext backgroundGC, turtleGC, linesGC;
 	private Color penColor;
-	private ImageView myTurtleImg;
+	private ImageView myTurtle;
 	
 	/**
 	 * Constructor for the view
@@ -64,7 +65,7 @@ public class View extends StackPane{
 		backgroundGC.setFill(DEFAULT_BACKGROUND_COLOR); // default background
 		backgroundGC.fillRect(0, 0, x, y);
 		
-		myTurtleImg = new ImageView();
+		myTurtle = new ImageView();
 		
 		 //for testing
 //		Point2D orig = new Point2D(0, 0);
@@ -76,7 +77,7 @@ public class View extends StackPane{
 		}
 
 	public void initializeTurtle(Image turtle){
-		myTurtleImg.setImage(turtle);
+		myTurtle.setImage(turtle);
 		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
 	}
 	
@@ -207,8 +208,13 @@ public class View extends StackPane{
 	 */
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-		myTurtleImg.setRotate(angle);
-		turtleGC.drawImage(myTurtleImg.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		turtleGC.save();
+		rotate(angle, newLoc.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
+				(newLoc.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
+		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		newDest = newLoc;
+    	turtleGC.restore();
 	}
 	
 	public void showTurtle(boolean b){
@@ -217,10 +223,22 @@ public class View extends StackPane{
 	
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
-        myTurtleImg.setImage(image);
+		//turtleGC.save();
+        myTurtle.setImage(image);
+//		rotate(60, newDest.getX() + XOFFSET
+//				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+//				+ myTurtle.getImage().getHeight() / 2)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-    	turtleGC.drawImage(myTurtleImg.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	//turtleGC.restore();
 	}
+	
+	private void rotate(double angle, double x, double y) {
+		Rotate r = new Rotate(angle, x, y);
+		turtleGC.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(),
+				r.getTx(), r.getTy());
+	}
+
 
 	/**
 	 * Clears all lines
