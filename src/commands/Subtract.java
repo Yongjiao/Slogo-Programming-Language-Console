@@ -2,12 +2,19 @@ package commands;
 
 public class Subtract extends Arithmetic{
 
-	public Subtract(){
+	private int num1;
+	private int num2;
+	
+	public Subtract(int a, int b){
+		num1 = a; num2 = b;
 	}
 	
-	public void execute(Object[] o){
-		o[0] = -(Integer)o[0];
-		super.add(o);
+	public void setParams(int a, int b) {
+		num1 = a; num2 = b;
+	}
+	
+	public void execute() {
+		super.add(num1, -num2);
 	}
 	
 }

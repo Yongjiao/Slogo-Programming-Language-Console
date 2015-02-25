@@ -2,11 +2,18 @@ package commands;
 
 public class Log extends Calculate{
 
-	public Log() {
+	private int num;
+	
+	public Log(int a) {
+		num = a;
 	}
 	
-	public void execute(Object[] o) {
-		super.log(o);
+	public void setParams(int a) {
+		num = a;
+	}
+	
+	public void execut() {
+		super.log(num);
 	}
 
 }

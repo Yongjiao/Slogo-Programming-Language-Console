@@ -2,12 +2,19 @@ package commands;
 
 public class Divide extends Arithmetic{
 
-	public Divide(){
-		
+	private int dividend;
+	private int divisor;
+	
+	public Divide(int a, int b){
+		dividend = a; divisor = b;
 	}
 	
-	public void execute(int a, int b) {
-		super.mult(a, 1/b);
+	public void setParams(int a, int b) {
+		dividend = a; divisor = b;
+	}
+	
+	public void execute() {
+		super.mult(dividend, 1/divisor);
 	}
 
 }

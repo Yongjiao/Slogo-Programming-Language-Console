@@ -2,11 +2,18 @@ package commands;
 
 public class Sin extends Calculate{
 
-	public Sin() {
+	private int angle;
+	
+	public Sin(int a) {
+		angle = a;
 	}
 	
-	public void execute(Object[] o) {
-		super.sin(o);
+	public void setParams(int a) {
+		angle = a;
+	}
+	
+	public void execute() {
+		super.sin(angle);
 	}
 
 }

@@ -2,12 +2,20 @@ package commands;
 
 public class GoTowardsLoc extends Rotate{
 	
-	public GoTowardsLoc() {
-		
+	
+	private int x;
+	private int y;
+	
+	public GoTowardsLoc(int xCor, int yCor) {
+		x = xCor; y = yCor;
 	}
 
-	public void execute(int x, int y) {
+	public void setParams(int xCor, int yCor) {
+		x = xCor; y = yCor;
+	}
+	
+	public void execute() {
 		super.goTowardsLoc(x, y);
-		}
-
+	}
+	
 }

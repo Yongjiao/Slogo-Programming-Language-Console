@@ -2,11 +2,18 @@ package commands;
 
 public class Cos extends Calculate{
 
-	public Cos() {
+	private int angle;
+	
+	public Cos(int a) {
+		angle = a;
 	}
 	
-	public void execute(int a) {
-		super.cos(a);
+	public void setParams(int a) {
+		angle = a;
+	}
+	
+	public void execute() {
+		super.cos(angle);
 	}
 	
 }

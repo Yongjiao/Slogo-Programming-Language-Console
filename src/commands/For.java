@@ -2,16 +2,28 @@ package commands;
 
 import java.util.ArrayList;
 
-import javax.activation.CommandObject;
+import application.CommandFactory;
 
 public class For extends Loop{
 	
-	public For() {
-		
+	private int start;
+	private int end;
+	private ArrayList<CommandFactory> comms;
+	
+	public For(int a, int b, ArrayList<CommandFactory> c) {
+		start = a;
+		end = b;
+		comms = c;
 	}
 	
-	public void execute(int p, int q, ArrayList<CommandObject> c){
-		super.Loop(p, q, c);
+	public void setParams(int a, int b, ArrayList<CommandFactory> c) {
+		start = a;
+		end = b;
+		comms = c;
+	}
+	
+	public void execute() {
+		super.loop(start, end, comms);
 	}
 
 }
