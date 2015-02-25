@@ -39,22 +39,32 @@ public class Parser {
 */			
 			//CommandFactory.execute();		
 	
-/*	public void parse(String in) {
-		String s = in.trim().toLowerCase();//sanitized input 
-		String command = s.split(" ")[0];
-		String commandRegix = commandMap.get(command);
-		if(userdefined.contains(command)){
-				
+public void parseInput(String in) {
+		String temp = in.trim().toLowerCase();//sanitized input 
+		String[] comArray = temp.split(" ");
+		String com = comArray[0];
+		System.out.println(com);
+		String commandRegex = commandMap.get(com);
+		String s = temp.replaceFirst(com, "");		
+
+		Pattern p = Pattern.compile(commandRegex);
+		Matcher m = p.matcher(s);
+		if(userdefined.contains(com)){
+			parseLoopCommands(s, commandRegex, com);	
 		}
 		else{
-			parseBasicCommand(commandRegix, s); //parse babsic command
-		}
-		
-		
+			parseBasicCommand(s); //parse babsic command
+		}		
 	}
 	//loop commands needs to check in map for sure
-*/
-	
+
+	public void parseLoopCommands(String in, String regex, String com){
+		CommandFactory command = new CommandFactory();
+		switch(com):
+			case "if":		command = new if();
+			case "repeat":	
+	}
+
 	public void parseBasicCommand(String in){
 		//can do in many ways
 		String temp = in.trim().toLowerCase();//sanitized input 
@@ -81,18 +91,29 @@ public class Parser {
 									break;
 				case "back":		command = new Backward(par[0]);
 									break;
-				case "towards":		
-					System.out.println("What is it");
-					command = new GoTowardsLoc(5, 4);
-					break;
-				//case "Home":		command = new Home();
+				case "towards":		command = new GoTowardsLoc(5, 4);
+				case "setxy":		command = new GoToLocation(par[0], par[1]);
+				case "sum":			command = new Add(par[0], par[1]);
+				case "difference":	command = new Subtract(par[0], par[1]);
+				case "product":		command = new Multiply(par[0], par[1]);
+				case "quotient":	command = new Divide(par[0] , par[1]);
+				case "remainder":	command = new Remainder(par[0], par[1]);
+				//case "#":			
+				case "left":		command = new Left(par[0]);
+				case "right":		command = new Right(par[0]);
+				case "setheading":	command = new SetHeading(par[0]);
+				case "sin":			command = new Sin(par[0]);
+				case "cos":			command = new Cos(par[0]);
+				case "tan":			command = new Tan(par[0]);
+				case "atan":		command = new ATan(par[0]);
+				case "less?":		command = new Less(par[0], par[1]);
+				case "greater?":	command = new Greater(par[0], par[1]);
+				case "equal?":		command = new Equal(par[0], par[1]);
 				//case  ""
+				//case "Home":		command = new Home();
 			}
-			command.execute();
-		}
-	
-
-		
+			//command.execute();
+		}		
 		
 	public CommandFactory parse(Boolean ifs){
 		
@@ -110,7 +131,7 @@ public class Parser {
 	
 	public static void main(String[] args) {
 		Parser example = new Parser();
-		String s = "forward 50";
+		String s = "sin 50";
 		example.parseBasicCommand(s);
 		// TODO Auto-generated method stub
 
