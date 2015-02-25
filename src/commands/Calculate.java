@@ -24,8 +24,8 @@ public abstract class Calculate extends CommandFactory {
 		return Math.PI;
 	}
 	
-	public double pow(int base, int power) {
-		return Math.pow(base, power);
+	public double pow(int base, int exponent) {
+		return Math.pow(base, exponent);
 	}
 	
 	public double Random(int a) {

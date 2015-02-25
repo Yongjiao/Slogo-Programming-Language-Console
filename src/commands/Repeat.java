@@ -2,10 +2,25 @@ package commands;
 
 import java.util.ArrayList;
 
+import javax.activation.CommandObject;
+
 public class Repeat extends Loop{
 
-	public Repeat(int a, int b, ArrayList<CommanObject> commands) {
-		super.Loop(0, b, commands);;
+	private int numTimes;
+	private ArrayList<CommandObject> comms;
+	
+	public Repeat(int b, ArrayList<CommandObject> c) {
+		numTimes = b;
+		comms = c;
+	}
+	
+	public void setParams(int b, ArrayList<CommandObject> c) {
+		numTimes = b;
+		comms = c;
+	}
+	
+	public void execute(){
+		super.loop(0, numTimes, comms);
 	}
 	
 }
