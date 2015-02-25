@@ -2,8 +2,11 @@ package commands;
 
 public class Less extends Compare{
 	
-	public Less(int a, int b){
-		super.Less(a, b);
+	public Less(){
+	}
+	
+	public void execute(Object[] o) {
+		super.Less(o);
 	}
 
 }

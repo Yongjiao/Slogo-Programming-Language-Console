@@ -2,8 +2,11 @@ package commands;
 
 public class ATan extends Calculate {
 
-	public ATan(int a) {
-		super.atan(a);
+	public ATan() {
+	}
+	
+	public void execute(Object[] o){
+		super.atan(o);
 	}
 
 }

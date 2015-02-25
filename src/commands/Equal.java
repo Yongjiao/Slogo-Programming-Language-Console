@@ -2,8 +2,11 @@ package commands;
 
 public class Equal extends Compare{
 	
-	public Equal(int a, int b){
-		super.Equal(a, b);
+	public Equal(){
+	}
+	
+	public void execute(Object[] o){
+		super.Equal(o);
 	}
 
 }

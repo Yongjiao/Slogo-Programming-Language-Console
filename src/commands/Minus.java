@@ -2,8 +2,11 @@ package commands;
 
 public class Minus extends Calculate{
 
-	public Minus(int a) {
-		super.Minus(a);
+	public Minus() {
+	}
+	
+	public void execute(Object[] o) {
+		super.Minus(o);
 	}
 
 }

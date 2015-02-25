@@ -2,8 +2,11 @@ package commands;
 
 public class Sin extends Calculate{
 
-	public Sin(int a) {
-		super.sin(a);
+	public Sin() {
+	}
+	
+	public void execute(Object[] o) {
+		super.sin(o);
 	}
 
 }
