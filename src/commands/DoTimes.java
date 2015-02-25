@@ -2,10 +2,25 @@ package commands;
 
 import java.util.ArrayList;
 
+import application.CommandFactory;
+
 public class DoTimes extends Loop{
 	
-	public DoTimes(int m, ArrayList<CommandObject> c) {
-		super.Loop(0, m, c);
+	private int numTimes;
+	private ArrayList<CommandFactory> comms;
+	
+	public DoTimes(int m, ArrayList<CommandFactory> c) {
+		numTimes = m;
+		comms = c;
+	}
+	
+	public void setParams(int m, ArrayList<CommandFactory> c) {
+		numTimes = m;
+		comms = c;
+	}
+	
+	public void execute() {
+		super.loop(0, numTimes, comms);
 	}
 
 }

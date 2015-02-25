@@ -75,8 +75,9 @@ public class View extends StackPane{
 		
 		}
 
-	public void initializeTurtle(ImageView turtle){
-		turtleGC.drawImage(turtle.getImage(), XOFFSET, YOFFSET);
+	public void initializeTurtle(Image turtle){
+		
+		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
 	}
 	
 	/**
