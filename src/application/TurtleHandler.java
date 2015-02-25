@@ -151,7 +151,6 @@ public class TurtleHandler {
 	 */
 	public void moveTurtle(int distance){ 
 		setTurtleLocToViewTurtleLoc();
-//>>>>>>> a19726d3bb45e55eee19444acb4fc407bd1255fb
 		Point2D locOrig = myTurtle.getLoc();
 		setTurtleLocToViewTurtleLoc();
 		myTurtle.move(distance);
