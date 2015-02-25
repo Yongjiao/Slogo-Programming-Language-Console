@@ -2,11 +2,11 @@
 A development environment that helps users write SLogo programs.
 
   Note on 02/25
-  - Richard:  in all CommandFactory classes, plz change execute() return type to int, and add the HashMap and method to handle variables 
-  - parsing If and Ifelse, only need to construct IfCond class. 
-  - Tobefixed: CommandFactory.execute() not working, change return type
+  - Richard:  in all CommandFactory classes, plz change execute() return type to int, and add a HashMap to handle variables 
+  - Tobefixed: CommandFactory.execute() not working
+  - when parsing If and Ifelse, only constructing IfCond class. 
   - Tobeadded: mutiple commands in command list[ ];
-  - CommandFactory needs more constructors for handling variables: loops and basic
+
 CompSci 308 Spring 2015
 
 Team: Anika Radiya-Dixit, Andrew Sun, Yongjiao Yu, Richard Wang
