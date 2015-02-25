@@ -209,8 +209,8 @@ public class View extends StackPane{
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.save();
-		rotate(angle, newDest.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
-				(newDest.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
+		rotate(angle, newLoc.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
+				(newLoc.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
     	turtleGC.restore();
