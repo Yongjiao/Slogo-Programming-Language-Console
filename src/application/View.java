@@ -68,16 +68,16 @@ public class View extends StackPane{
 		myTurtle = new ImageView();
 		
 		 //for testing
-		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(200, 0);	
-		drawLine(orig, dest);
-		
+//		Point2D orig = new Point2D(0, 0);
+//		Point2D dest = new Point2D(-1600, -400);	
+//		drawLine(orig, dest);
+//		
 		this.getChildren().addAll(backgroundView, linesView, turtleView);
 		
 		}
 
 	public void initializeTurtle(Image turtle){
-		
+		myTurtle.setImage(turtle);
 		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
 	}
 	

@@ -75,13 +75,13 @@ public class TurtleHandler {
 	
 	private void initializeTurtle()
 	{
-	//	Image image = new Image(getClass().getResourceAsStream("file:turtle.png"));
+		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
 	//	this.myView.initializeTurtle(newIm);
 		
 	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
 		
 		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
-		Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
+	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
 	}
 	
@@ -158,6 +158,8 @@ public class TurtleHandler {
 	 * @param distance
 	 */
 	public void moveTurtle(int distance){ 
+		System.out.println("in move");
+
 		setTurtleLocToViewTurtleLoc();
 		Point2D locOrig = myTurtle.getLoc();
 		setTurtleLocToViewTurtleLoc();
@@ -166,6 +168,9 @@ public class TurtleHandler {
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 		setTurtleLocToViewTurtleLoc();
 		
+/*		double ang = Math.toDegrees(Math.atan2((locNew.getY()-locOrig.getY()), (locNew.getX()-locOrig.getX())));
+		this.myTurtle.setOrientation(ang);*/
+		this.updateTurtleOnView();
 	}
 	
 	/**
@@ -177,12 +182,14 @@ public class TurtleHandler {
 	 */
 	public void changeLocationOfTurtle(Point2D newLoc){ 
 		setTurtleLocToViewTurtleLoc();
-//>>>>>>> a19726d3bb45e55eee19444acb4fc407bd1255fb
 		Point2D locOrig = myTurtle.getLoc();
 		myTurtle.setLocation(newLoc);
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 		setTurtleLocToViewTurtleLoc();
+		/*		double ang = Math.toDegrees(Math.atan2((locNew.getY()-locOrig.getY()), (locNew.getX()-locOrig.getX())));
+		this.myTurtle.setOrientation(ang);*/
+		this.updateTurtleOnView();
 	}
 	
 	/**
@@ -209,6 +216,8 @@ public class TurtleHandler {
 	 * @param deg
 	 */
 	public void rotateTurtle(double deg){
+		System.out.println("in rotate");
+
 		myTurtle.turn(deg);
 		this.updateTurtleOnView();
 	}
@@ -219,6 +228,7 @@ public class TurtleHandler {
 	 * @param newAngle
 	 */
 	public void setTurtleOrientation(double newAngle){
+		System.out.println("in set turtle orientation");
 		myTurtle.setOrientation(newAngle);
 		updateTurtleOnView();
 	}
@@ -297,6 +307,10 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
+		System.out.print("ori   " + this.myTurtle.getOrientation());
+		System.out.print("   x   " + this.myTurtle.getLoc().getX());
+		System.out.println("   y   " + this.myTurtle.getLoc().getY());
+		
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement
