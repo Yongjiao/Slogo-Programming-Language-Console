@@ -48,10 +48,9 @@ public class GUI {
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
+
 	private final ColorPicker penColor = new ColorPicker();
 	private final ColorPicker backgroundColor = new ColorPicker();
-	
-	private TurtleHandler handler; // TODO: TO BE REMOVED - FIX DESIGN
 	
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
@@ -87,7 +86,7 @@ public class GUI {
 		
 		// Creates ColorPicker buttons
 		penColor.setStyle(buttonStyle);
-		penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));
+		//penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));
 		backgroundColor.setStyle(buttonStyle);
 		backgroundColor.setOnAction(e -> viewBackground.setBackground(backgroundColor.getValue()));
 		mainHBox.getChildren().addAll(penColor, backgroundColor);
@@ -160,4 +159,15 @@ public class GUI {
 		myView.setCenter(viewStack);
 	}
 	
+
+	private void changePenColor(){
+
+//		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
+	}
+	
+	private void changeBackgroundColor(){
+
+		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
+	}
+
 }

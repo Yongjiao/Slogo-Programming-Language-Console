@@ -2,7 +2,7 @@ package commands;
 
 public class SetHeading extends Rotate{
 	
-	public void execute(int degrees){
+	public SetHeading(int degrees){
 		super.setHeading(degrees);
 	}
 	

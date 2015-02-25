@@ -53,7 +53,7 @@ import javafx.scene.paint.Color;
  *
  */
 public class TurtleHandler {
-	
+
 	private View myView;
 	private Turtle myTurtle;
 	
@@ -63,10 +63,18 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(View view, Turtle turtle){
+	public TurtleHandler(View view){
 		myView = view;
-		myTurtle = turtle;
+		myTurtle = new Turtle();
+		this.initializeTurtle();
 	}
+	
+	private void initializeTurtle()
+	{
+		this.changeTurtleImage(new Image("resources/turtle.png"));
+		this.updateTurtleOnView();
+	}
+	
 	
 	/**
 	 * * NOTE: Turtle Coordinate system
@@ -141,6 +149,7 @@ public class TurtleHandler {
 	 */
 	public void moveTurtle(int distance){ 
 		setTurtleLocToViewTurtleLoc();
+//>>>>>>> a19726d3bb45e55eee19444acb4fc407bd1255fb
 		Point2D locOrig = myTurtle.getLoc();
 		setTurtleLocToViewTurtleLoc();
 		myTurtle.move(distance);
@@ -159,6 +168,7 @@ public class TurtleHandler {
 	 */
 	public void changeLocationOfTurtle(Point2D newLoc){ 
 		setTurtleLocToViewTurtleLoc();
+//>>>>>>> a19726d3bb45e55eee19444acb4fc407bd1255fb
 		Point2D locOrig = myTurtle.getLoc();
 		myTurtle.setLocation(newLoc);
 		Point2D locNew = myTurtle.getLoc();
@@ -177,14 +187,83 @@ public class TurtleHandler {
 		if (myTurtle.getPenPos() == 1)
 		{
 			// pass pen to check color
-			this.myView.drawLine(locOrig, locNew, getPenColor());
+			this.myView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
-			
 		}
-		
+
 	}
 
+//<<<<<<< HEAD
+//	public void rotateTurtle(double deg) {
+//		myTurtle.turn(deg);
+//		this.updateTurtleOnView();
+//	}
+//
+//	public void setTurtleOrientation(double newAngle) {
+//		myTurtle.setOrientation(newAngle);
+//		updateTurtleOnView();
+//	}
+//
+//	public double getTurtleOrientation() {
+//		return myTurtle.getOrientation();
+//	}
+//
+//	public Point2D getTurtleLocation() {
+//		return myTurtle.getLoc();
+//	}
+//
+//	public void showTurtle(int toShow) {
+//		myTurtle.setVisibility((toShow == 1));
+//		updateTurtleOnView();
+//	}
+//
+//	public int isVisible() {
+//		if (myTurtle.getVisibility()) {
+//			return 1;
+//		}
+//		return 0;
+//	}
+//
+//	public void setPenStatus(int status) {
+//		myTurtle.setPenPos(status);
+//	}
+//
+//	public int getPenStatus() {
+//		return myTurtle.getPenPos();
+//	}
+//
+//	public Pen getPen() {
+//		return myTurtle.getPen();
+//	}
+//
+//	public void changeTurtleImage(Image newImage) {
+//		myTurtle.updateMyImage(newImage);
+//		updateTurtleOnView();
+//	}
+//
+//	public void clearScreen() {
+//		this.myView.clearScreen();
+//	}
+//
+//	public Color getPenColor() {
+//		return this.myTurtle.getPenColor();
+//	}
+//
+//	// <<<<<<< HEAD
+//	// public void rotateTurtle(int deg){
+//	// int currentOri = myTurtle.getOrientation();
+//	// myTurtle.setOrientation(currentOri + deg);
+//	// =======
+//	public void setPenColor(Color newColor) {
+//		this.myTurtle.setPenColor(newColor);
+//		// >>>>>>> 2c8d8d787400067a0fd141a5bd1ad8cd3e3b32bc
+//	}
+//
+//	public void updateTurtleOnView() {
+//		this.myView.changeTurtleImage(this.getTurtleLocation(),
+//				this.myTurtle.getTurtleImage());
+//=======
 	/**
 	 * sets turtle orientation to current orientation + angle turned
 	 * Calls method to update view's turtle image
@@ -282,23 +361,6 @@ public class TurtleHandler {
 		this.myView.clearScreen();
 	}
 	
-	/**
-	 * called by View to draw lines of appropriate color
-	 * @return color of pen
-	 */
-	public Color getPenColor()
-	{
-		return this.myTurtle.getPenColor();
-	}
-
-	/**
-	 * called by command class to set color of lines
-	 * @param newColor
-	 */
-	public void setPenColor(Color newColor)
-	{
-		this.myTurtle.setPenColor(newColor);
-	}
 	
 	/**
 	 * called whenever turtle's image, location, or orientation is changed in 
@@ -306,7 +368,17 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
-		this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+		if (this.isVisible() == 1)
+		{
+			// make turtle visible, then update turtle movement
+			this.myView.
+			this.myView.changeTurtleImage(this.getTurtleLocation(), this.myTurtle.getTurtleImage());
+		}
+		else
+		{
+			// tell view to make turtle invisible
+			this.myView.
+		}
 	}
-	
+
 }

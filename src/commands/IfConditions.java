@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import application.CommandFactory;
 
 public class IfConditions extends CommandFactory{
-	//TODO: RICHARD PLEASE FIX
-	public void IFELSE(int expr, ArrayList<String> commIf, ArrayList<String> commElse){
+	
+	public void IFELSE(int expr, ArrayList<CommandObject> commIf, ArrayList<CommandObject> commElse){
 		if(expr != 0){
-			//exe commIf
+			for(int i = 0; i < commIf.size(); i++) {
+				commIf.get(i);
+			}
 		} else {
-			//exe commElse
+			for(int i = 0; i < commElse.size(); i++) {
+				commElse.get(i);
+			}
 		}
 	}
 	

@@ -61,6 +61,13 @@ public boolean checkSingleCommand(AL input)
 ...
 
 ```
+Monday Dicussion: 
+Foorloop Class:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/forloop_class.jpeg)
+Language Chang class:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/language_change.jpeg)
+Loop_handling:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/loop_handling.jpeg)
 
 
 

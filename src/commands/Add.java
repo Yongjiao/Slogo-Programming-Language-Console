@@ -2,8 +2,8 @@ package commands;
 
 public class Add extends Arithmetic{
 	
-	public int add(int a, int b){
-		return super.add(a, b);
+	public Add(int a, int b){
+		super.add(a, b);
 	}
 	
 }

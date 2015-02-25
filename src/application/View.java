@@ -69,7 +69,6 @@ public class View extends StackPane{
 	 * @param c color of line drawn
 	 */
 	public void drawLine(Point2D orig, Point2D dest){
-		linesGC.setStroke(penColor);
 		Point2D p = findBoundaryPoint(orig, dest);
 		if (p == null){
 			linesGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1, 
@@ -230,5 +229,10 @@ public class View extends StackPane{
 	 */
 	public void setColor(Color c){
 		penColor = c;
+	}
+
+	public void setBackgroundColor(Color c) {
+		backgroundGC.setFill(c);
+		backgroundGC.fillRect(0, 0, backgroundView.getWidth(), backgroundView.getHeight());
 	}
 }
