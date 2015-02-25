@@ -8,18 +8,22 @@ public class For extends Loop{
 	
 	private int start;
 	private int end;
+	private int inc;
 	private ArrayList<CommandFactory> comms;
+
 	
-	public For(int a, int b, ArrayList<CommandFactory> c) {
+	public For(int a, int b, int c, ArrayList<CommandFactory> d) {
 		start = a;
 		end = b;
-		comms = c;
+		inc = c;
+		comms = d;
 	}
 	
-	public void setParams(int a, int b, ArrayList<CommandFactory> c) {
+	public void setParams(int a, int b, int c, ArrayList<CommandFactory> d) {
 		start = a;
 		end = b;
-		comms = c;
+		inc = c;
+		comms = d;
 	}
 	
 	public void execute() {

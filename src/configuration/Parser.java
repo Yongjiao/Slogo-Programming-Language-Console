@@ -93,7 +93,7 @@ public CommandFactory parseInput(String in) {
 				}
 			}
 			case "ifelse":{
-				int expr;
+				int expr = 0;
 				while(m.find()){
 				 expr = parseBasicCommand(m.group(1)).execute(); //boolean expression
 					if(expr == 0)
@@ -112,7 +112,10 @@ public CommandFactory parseInput(String in) {
 					for(int i = 4; i <= m.groupCount(); i++){  
 						list.add(parseInput(m.group(i).replaceAll(variable, " "+ var))); //replace variable with 
 					}
-					return new For(m.group(1), m.group(2), m.group(3), list);
+					int start = Integer.parseInt(m.group(1));
+					int end = Integer.parseInt(m.group(2));
+					int inc = Integer.parseInt(m.group(3));
+					return new For(start, end, inc, list);
 				}
 			}
 
