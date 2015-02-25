@@ -43,7 +43,7 @@ public void parse(String in){
 	//if(com  != null)	com.execute();
 }
 	
-public CommandFactory parseInput(String in) {
+private CommandFactory parseInput(String in) {
 		String temp = in.trim().toLowerCase();//sanitized input 
 		String[] comArray = temp.split(" ");
 		String com = comArray[0];
@@ -56,7 +56,7 @@ public CommandFactory parseInput(String in) {
 			return parseBasicCommand(s, commandRegex, com); //parse babsic command
 		}		
 	}
-	public CommandFactory parseLoopCommands(String in, String regex, String com){
+	private CommandFactory parseLoopCommands(String in, String regex, String com){
 		int var = Integer.MAX_VALUE;
 		ArrayList<CommandFactory> list = new ArrayList();
 		Pattern p = Pattern.compile(regex);
@@ -124,7 +124,7 @@ public CommandFactory parseInput(String in) {
 	}
 		return null;
 	}
-	public CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
+	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
 		if(com.equals("home"))	return new Home();
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
@@ -193,7 +193,8 @@ public CommandFactory parseInput(String in) {
 		System.out.println(forl);
 		example.parse(forl);
 		// TODO Auto-generated method stub
-
+//add set/make/to 
+//check if/ifelse
 	}
 
 }
