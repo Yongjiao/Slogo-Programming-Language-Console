@@ -2,8 +2,11 @@ package commands;
 
 public class Random extends Calculate{
 
-	public Random(int a) {
-		super.Random(a);
+	public Random() {
+	}
+	
+	public void execute(Object[] o) {
+		super.Random(o);
 	}
 	
 }

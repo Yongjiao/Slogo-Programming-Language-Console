@@ -2,8 +2,12 @@ package commands;
 
 public class Greater extends Compare{
 	
-	public Greater(int a, int b){
-		super.Less(b, a);
+	public Greater(){
+		
+	}
+	
+	public void execute(Object[] o){
+		super.Less(o);
 	}
 	
 }

@@ -1,9 +1,19 @@
 package commands;
 
+/**
+ * Command Subclass for addition
+ * 
+ * @author TheSweatshopKid
+ *
+ */
+
 public class Add extends Arithmetic{
 	
-	public Add(int a, int b){
-		super.add(a, b);
+	public Add(){
+	}
+	
+	public void execute(Object[] o){
+		super.add(o);
 	}
 	
 }
