@@ -75,13 +75,13 @@ public class TurtleHandler {
 	
 	private void initializeTurtle()
 	{
-	//	Image image = new Image(getClass().getResourceAsStream("file:turtle.png"));
+		Image image = new Image(getClass().getResourceAsStream("/images/turtle.png"));
 	//	this.myView.initializeTurtle(newIm);
 		
 	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
 		
 		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
-		Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
+	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
 	}
 	

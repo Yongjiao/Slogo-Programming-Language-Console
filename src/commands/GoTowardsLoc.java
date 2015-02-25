@@ -4,7 +4,6 @@ import configuration.Parser;
 
 public class GoTowardsLoc extends Rotate{
 	
-	
 	private int x;
 	private int y;
 	
