@@ -21,6 +21,7 @@ public class Main extends Application {
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
+<<<<<<< HEAD
 			myHandler.moveTurtle(10);
 			myHandler.rotateTurtle(30);
 			myHandler.moveTurtle(10);
@@ -44,6 +45,7 @@ public class Main extends Application {
 			myHandler.moveTurtle(900);
 			myHandler.clearScreen();
 			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

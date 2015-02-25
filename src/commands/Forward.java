@@ -1,5 +1,7 @@
 package commands;
 
+import configuration.Parser;
+
 public class Forward extends Move {
 	
 	private int steps;
@@ -15,5 +17,4 @@ public class Forward extends Move {
 	public void execute() {
 		super.changeLocation(steps);
 	}
-	
 }

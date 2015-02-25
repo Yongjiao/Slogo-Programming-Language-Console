@@ -6,8 +6,10 @@ import java.util.*;
 import java.util.regex.*;
 /*
  * To Do: language change
- expression check
- *expr checked by using validateBasicCommands: like 1 > 5
+ * make one more map
+ * cant combine the error check with parsing cuz the two requires different regex 	
+ * expression check
+ * expr checked by using validateBasicCommands: like 1 > 5
  */
 public class ErrorCheck {
 	private HashMap<String, String> commandMap;
@@ -19,6 +21,7 @@ public class ErrorCheck {
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
 	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+| greater\\?\\s\\d+\\s\\d+ | euqal\\?\\s\\d+\\s\\d+)";
+	
 	private final String[] command = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
 			"if","ifelse", "to", "make", "set","less?", "greater?", "equal?"};
@@ -29,15 +32,7 @@ public class ErrorCheck {
 			"^seth" +onenum,"^sin" +onenum,"^cos" +onenum, "^tan" +onenum, "^atan" +onenum, "repeat"+onenum +com_regix, 
 			"dotimes"+ "\\s\\["+variable+"\\s\\d+\\s\\]"+com_regix, "for \\[" + variable + twonum + onenum + "\\s\\]" + com_regix,
 			"if" + boolean_regix + com_regix, "ifelse" + boolean_regix  + com_regix + com_regix, "to "+commandname + "\\s\\[" + variable + "\\s\\]" + com_regix,
-			"make" + variable + "\\s.*", "set" + variable + "\\s.*", "less\\?"+ twonum, "greater\\?" + twonum, "equal\\?" + twonum};
-	
-	//non-nested command validation	
-	public boolean validateBasicCommands(String regex, String in){
-			//System.out.println(in);
-		    //System.out.println(in.matches(regex));
-			return in.matches(regex);
-			//call parser here.
-	}
+			"make" + variable + "\\s.*", "set" + variable + "\\s.*", "less\\?"+ twonum, "greater\\?" + twonum, "equal\\?" + twonum};	
 /*	public boolean validateBasicCommands(String in){
 		String s = in.trim().toLowerCase();
 		String command = s.split(" ")[0];
@@ -56,15 +51,22 @@ public class ErrorCheck {
 		String commandRegix = commandMap.get(command);
 		if(commandRegix != null){  //undefined commands
 			if(userdefined.contains(command)){
-				return validateLoop(commandRegix, s);	
+				return validateLoop(commandRegix, s);					
 			}
-			else
+			else{
 				return validateBasicCommands(commandRegix, s);
+			}
 		}
 		return false;
 	}		
-
-	public boolean validateLoop(String regix, String in){
+	//non-nested command validation	
+	public boolean validateBasicCommands(String regex, String in){
+			//System.out.println(in);
+		    //System.out.println(in.matches(regex));
+			//call parser here.			
+			return in.matches(regex);
+	}
+	public boolean validateLoop(String regix, String in){ //loop have multiple commands
 		Pattern p = Pattern.compile(regix);
 		Matcher m = p.matcher(in);		
 		while(m.find()){
@@ -77,7 +79,6 @@ public class ErrorCheck {
 		}
 		return false;
 	}
-
 	public ErrorCheck(){
 		//setProperties() ResourceBundle()
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
@@ -90,7 +91,7 @@ public class ErrorCheck {
 
 	public static void main(String[] args) {
 		ErrorCheck example = new ErrorCheck();
-		String s1 = "fd a";
+		String s1 = "fd 1";
 		String s2= "sum 50 50";
 		String s4 = "# ignore this is just comment!"; //broken when no space after #
 		String s3 = "sum a b";
@@ -105,9 +106,10 @@ public class ErrorCheck {
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";
-		//System.out.println(example.validateInputCommands(s1));
-		//System.out.println(example.validateInputCommands(s2));
-		//System.out.println(example.validateInputCommands(s3));
+		Parser par = new Parser();
+		System.out.println(example.validateInput(s1));		
+		//System.out.println(example.validateInput(s2));
+		//System.out.println(example.validateInput(s3));
 		//System.out.println(example.validateInputCommands(s4));
 		//System.out.println(example.validateInputCommands(s5));
 		//System.out.println(example.validateInputCommands(s6));
@@ -117,7 +119,9 @@ public class ErrorCheck {
 		//System.out.println(example.validateInput(forl));
 		//System.out.println(example.validateInput(make));
 		//System.out.println(example.validateInput(to));
-		//System.out.println(example.validateInput(ifelse));
-		System.out.println(example.validateInput(ifl));
+		//System.out.println(example.validateInput(ifelse)); //make sure of ifelse again
+		//System.out.println(example.validateInput(ifl));
+		//m.setParameter();
+		//m.execute();
 	}	
 }
