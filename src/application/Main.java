@@ -19,7 +19,7 @@ public class Main extends Application {
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
-			myHandler.moveTurtle(200);
+			//myHandler.moveTurtle(200);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 /**
  * Creates the view where the lines are drawn and the turtle is displayed.
@@ -68,7 +69,7 @@ public class View extends StackPane{
 		
 		 //for testing
 		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(-1600, -400);	
+		Point2D dest = new Point2D(200, 0);	
 		drawLine(orig, dest);
 		
 		this.getChildren().addAll(backgroundView, linesView, turtleView);
@@ -207,8 +208,12 @@ public class View extends StackPane{
 	 */
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-		myTurtle.setRotate(angle);
+		turtleGC.save();
+		rotate(angle, newDest.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
+				(newDest.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+    	turtleGC.restore();
 	}
 	
 	public void showTurtle(boolean b){
@@ -217,10 +222,22 @@ public class View extends StackPane{
 	
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
+		//turtleGC.save();
         myTurtle.setImage(image);
+//		rotate(60, newDest.getX() + XOFFSET
+//				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+//				+ myTurtle.getImage().getHeight() / 2)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
     	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	//turtleGC.restore();
 	}
+	
+	private void rotate(double angle, double x, double y) {
+		Rotate r = new Rotate(angle, x, y);
+		turtleGC.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(),
+				r.getTx(), r.getTy());
+	}
+
 
 	/**
 	 * Clears all lines
