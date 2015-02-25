@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.util.ResourceBundle;
 
 import configuration.Parser;
@@ -13,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -24,7 +26,7 @@ import javafx.stage.Stage;
 public class GUI {
 	
 	private static final int NUM_BUTTONS = 3;
-	private static final int COMMANDS = 0;
+	private static final int HELP_BUTTON = 0;
 	private static final int TURTLE_BUTTON = 1;
 	private static final int OPEN_FILE_BUTTON = 2;
 	
@@ -42,18 +44,20 @@ public class GUI {
 	private BorderPane myBorders;
 	private View myView;
 	private Scene myScene;
+	private Stage myStage;
 	private Button[] myButtons;
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
 	private Parser myParser;
+	private File myTurtleFilePath;
 	
 	private final ColorPicker penColor = new ColorPicker();
 	private final ColorPicker backgroundColor = new ColorPicker();
 	
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
-		myButtonNames = new String[] {"commands", "turtleimage", "openfile"};
+		myButtonNames = new String[] {"help", "turtleimage", "openfile"};
 		myLanguageNames.addAll(new String[] {"English", "Chinese", "French", "German", "Italian", "Japanese", 
 				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
@@ -70,6 +74,7 @@ public class GUI {
 		initializeTextField();
 		initializeCommandsHistory();
 		initializeButtons();
+		myStage = s;
 		
 		myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
 		return myScene;
@@ -99,7 +104,9 @@ public class GUI {
 			b.setOnMousePressed(e -> mouseDown(b));
 			b.setOnMouseReleased(e -> mouseUp(b));
 			mainHBox.getChildren().add(b);
-		}		
+		}	
+		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImage());
+		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
 		
 		// Creates languages buttons
 		ComboBox<String> langBox = new ComboBox<String>();
@@ -112,6 +119,29 @@ public class GUI {
 	}
 	
 	
+	private void launchHelpPage() {
+		WebPopUp helpPage = new WebPopUp();
+		try {
+			helpPage.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void chooseTurtleImage() {
+		//FileChooser chooseFile = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
+
+//        FileChooser.ExtensionFilter extFilterJPG = 
+//                new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+//        FileChooser.ExtensionFilter extFilterPNG = 
+//                new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+//        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+		myTurtleFilePath = fileChooser.showOpenDialog(null);
+		//System.out.println(myTurtleFilePath);
+		myView.updateTurtleImage(myTurtleFilePath);
+	}
+
 	private void initializeView() {
 		myView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
 		myBorders.setCenter(myView);
