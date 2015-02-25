@@ -4,6 +4,7 @@ package application;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -61,7 +62,7 @@ public class View extends StackPane{
 		this.getChildren().addAll(backgroundView, linesView, turtleView);
 		
 		}
-	
+
 	public void initializeTurtle(ImageView turtle){
 		turtleGC.drawImage(turtle.getImage(), XOFFSET, YOFFSET);
 	}
