@@ -1,5 +1,7 @@
 package commands;
 
+import configuration.Parser;
+
 public class GoTowardsLoc extends Rotate{
 	
 	
@@ -18,4 +20,10 @@ public class GoTowardsLoc extends Rotate{
 		super.goTowardsLoc(x, y);
 	}
 	
+	public static void main(String[] args) {
+		GoTowardsLoc example = new GoTowardsLoc(20, 20);
+		
+		// TODO Auto-generated method stub
+
+	}
 }
