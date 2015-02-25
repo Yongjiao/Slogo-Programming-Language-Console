@@ -2,11 +2,18 @@ package commands;
 
 public class Minus extends Calculate{
 
-	public Minus() {
+	private int num;
+	
+	public Minus(int a) {
+		num = a;
 	}
 	
-	public void execute(Object[] o) {
-		super.Minus(o);
+	public void setParams(int a) {
+		num = a;
+	}
+	
+	public void execute() {
+		super.Minus(num);
 	}
 
 }

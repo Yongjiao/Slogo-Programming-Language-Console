@@ -2,11 +2,18 @@ package commands;
 
 public class Random extends Calculate{
 
-	public Random() {
+	private int max;
+	
+	public Random(int a) {
+		max = a;
 	}
 	
-	public void execute(Object[] o) {
-		super.Random(o);
+	public void setParams(int a) {
+		max = a;
+	}
+	
+	public void execute() {
+		super.Random(max);
 	}
 	
 }

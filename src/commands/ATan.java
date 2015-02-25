@@ -2,11 +2,17 @@ package commands;
 
 public class ATan extends Calculate {
 
-	public ATan() {
+	private int angle;
+	
+	public ATan(int a) {
+		angle = a;
 	}
 	
-	public void execute(Object[] o){
-		super.atan(o);
+	public void setParams(int a) {
+		angle = a;
 	}
-
+	
+	public void execute() {
+		super.atan(angle);
+	}
 }

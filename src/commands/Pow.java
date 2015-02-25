@@ -2,11 +2,18 @@ package commands;
 
 public class Pow extends Calculate{
 
-	public Pow() {
+	private int base;
+	private int exponent;
+	
+	public Pow(int a, int b) {
+		base = a; exponent = b;
 	}
 	
-	public void execute(Object[] o) {
-		super.pow(o);
+	public void setParams(int a, int b) {
+		base = a; exponent = b;
+	}
+	
+	public void execute() {
 	}
 	
 }

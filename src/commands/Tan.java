@@ -2,10 +2,17 @@ package commands;
 
 public class Tan extends Calculate{
 
-	public Tan() {
+	private int angle;
+	
+	public Tan(int a) {
+		angle = a;
 	}
-
-	public void execute(Object[] o){
-		super.tan(o);
+	
+	public void setParams(int a) {
+		angle = a;
+	}
+	
+	public void execute() {
+		super.tan(angle);
 	}
 }
