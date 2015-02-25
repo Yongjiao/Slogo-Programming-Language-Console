@@ -23,7 +23,7 @@ public class CommandFactory implements Executable{
 	// each command has common method - used for loops and if statements
 	// that pass to IF / LOOP commands an arraylist of command objects
 	// @author anika
-	public void execute() {
+	public int execute() {
 		// TODO make sure each command has common method - used for loops
 		
 	}

@@ -12,9 +12,12 @@ public class Less extends Compare{
 	public void setParams(int a, int b){
 		num1 = a; num2 = 2;
 	}
-	
-	public void execute() {
-		super.Less(num1, num2);
+	/*
+	 * Modified: need execute() to return result of boolean expression
+	 * 
+	 */
+	public int execute() {
+		return super.Less(num1, num2);
 	}
-
+	
 }

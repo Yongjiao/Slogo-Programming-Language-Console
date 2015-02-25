@@ -37,9 +37,13 @@ public class Parser {
 				//set two parameters and execute CommandFatory.execute(String.valueOf(group(1)), String.valueOf(group(2)))
 			}	
 */			
-			//CommandFactory.execute();		
+
+public void parse(String in){		
+	CommandFactory com =  parseInput(in);
+	if(com  != null)	com.execute();
+}
 	
-public void parseInput(String in) {
+public CommandFactory parseInput(String in) {
 		String temp = in.trim().toLowerCase();//sanitized input 
 		String[] comArray = temp.split(" ");
 		String com = comArray[0];
@@ -50,22 +54,72 @@ public void parseInput(String in) {
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(s);
 		if(userdefined.contains(com)){
-			parseLoopCommands(s, commandRegex, com);	
+			return parseLoopCommands(s, commandRegex, com);	
 		}
 		else{
-			parseBasicCommand(s); //parse babsic command
+			return parseBasicCommand(s); //parse babsic command
 		}		
 	}
-	//loop commands needs to check in map for sure
+	public CommandFactory parseLoopCommands(String in, String regex, String com){
+		int var = Integer.MAX_VALUE;
+		ArrayList<CommandFactory> list = new ArrayList();
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(in);	
+		switch(com){
+			case "if":{	
+				while(m.find()){
+					int expr = parseBasicCommand(m.group(1)).execute(); //boolean expression
+					if(expr == 1)
+					for(int i = 2; i <= m.groupCount(); i++){
+						list.add(parseInput(m.group(i)));
+						//System.out.println(m.group(i));
+					}
+					return new IfCond(expr, list);	
+			}
+			}
+			case "repeat":{
+				while(m.find()){
+					for(int i = 2; i <= m.groupCount(); i++){
+						list.add(parseInput(m.group(i)));
+					}
+					return new Repeat(Integer.parseInt(m.group(1)), list);
+				}
+			}
+			case "dotimes":{
+				while(m.find()){
+					for(int i = 2; i <= m.groupCount(); i++){  
+						list.add(parseInput(m.group(i).replaceAll(variable, " "+ var))); //replace variable with 
+					}
+				}
+			}
+			case "ifelse":{
+				int expr;
+				while(m.find()){
+				 expr = parseBasicCommand(m.group(1)).execute(); //boolean expression
+					if(expr == 0)
+						for(int i = 2; i <= m.groupCount(); i++){ //m.group(2) is if and m.group(3) is elses 
+							list.add(parseInput(m.group(i)));
+						}
+					if(expr ==1)
+						for(int i = 3; i <= m.groupCount(); i++){
+							list.add(parseInput(m.group(i)));
+						}
+				}
+				return new IfCond(expr, list);
+			}
+			case "for":{ //first 3 is int
+				while(m.find()){
+					for(int i = 4; i <= m.groupCount(); i++){  
+						list.add(parseInput(m.group(i).replaceAll(variable, " "+ var))); //replace variable with 
+					}
+					return new For(m.group(1), m.group(2), m.group(3), list);
+				}
+			}
 
-	public void parseLoopCommands(String in, String regex, String com){
-		CommandFactory command = new CommandFactory();
-		//switch(com):
-			//case "if":		command = new if();
-			//case "repeat":	
 	}
-
-	public void parseBasicCommand(String in){
+		return null;
+	}
+	public CommandFactory parseBasicCommand(String in){
 		//can do in many ways
 		String temp = in.trim().toLowerCase();//sanitized input 
 		String[] comArray = temp.split(" ");
@@ -113,13 +167,10 @@ public void parseInput(String in) {
 				//case "Home":		command = new Home();
 			}
 			//command.execute();
+			return command;
 		}		
 		
-	public CommandFactory parse(Boolean ifs){
-		
-		return null;
-	}
-	
+
 	public Parser(){
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
 		userdefined = new HashSet(Arrays.asList(elements));

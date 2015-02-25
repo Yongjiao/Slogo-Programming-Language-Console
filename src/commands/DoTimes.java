@@ -20,7 +20,7 @@ public class DoTimes extends Loop{
 	}
 	
 	public void execute() {
-		super.loop(0, numTimes, comms);
+		super.loop(1, numTimes, comms);
 	}
 
 }
