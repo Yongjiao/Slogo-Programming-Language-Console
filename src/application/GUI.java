@@ -2,6 +2,7 @@ package application;
 
 import java.util.ResourceBundle;
 
+import configuration.Parser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -34,21 +35,19 @@ public class GUI {
 	private static final int VIEW_HEIGHT = 700;
 	private static final int VIEW_WIDTH = 900;
 	
-	
-	//private Button penColorButton, backColorButton, langButton, turtleButton, openFileButton;
 	private TextField commandsField;
 	private ListView<String> prevCommands;
 	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
 	private static final ObservableList<String> myLanguageNames = FXCollections.observableArrayList();
-	private BorderPane myView;
-	private View turtleView;
-	private ViewBackground viewBackground;
+	private BorderPane myBorders;
+	private View myView;
 	private Scene myScene;
 	private Button[] myButtons;
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
-
+	private Parser myParser;
+	
 	private final ColorPicker penColor = new ColorPicker();
 	private final ColorPicker backgroundColor = new ColorPicker();
 	
@@ -58,8 +57,9 @@ public class GUI {
 		myLanguageNames.addAll(new String[] {"English", "Chinese", "French", "German", "Italian", "Japanese", 
 				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
-		myView = new BorderPane();
-
+		myBorders = new BorderPane();
+		myParser = new Parser();
+		
 		// default values
 		penColor.setValue(Color.BLACK);
 		backgroundColor.setValue(Color.WHITE);
@@ -71,7 +71,7 @@ public class GUI {
 		initializeCommandsHistory();
 		initializeButtons();
 		
-		myScene = new Scene(myView, STAGE_WIDTH, STAGE_HEIGHT);
+		myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
 		return myScene;
 	}
 	
@@ -86,9 +86,9 @@ public class GUI {
 		
 		// Creates ColorPicker buttons
 		penColor.setStyle(buttonStyle);
-		//penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));
+		penColor.setOnAction(e -> myView.setColor(penColor.getValue()));
 		backgroundColor.setStyle(buttonStyle);
-		backgroundColor.setOnAction(e -> viewBackground.setBackground(backgroundColor.getValue()));
+		backgroundColor.setOnAction(e -> myView.setBackgroundColor(backgroundColor.getValue()));
 		mainHBox.getChildren().addAll(penColor, backgroundColor);
 		
 		// Creates normal buttons
@@ -108,12 +108,18 @@ public class GUI {
 		langBox.setValue("English");
 		// TODO: set on changed properties
 		mainHBox.getChildren().add(langBox);
-		myView.setTop(mainHBox);
+		myBorders.setTop(mainHBox);
+	}
+	
+	
+	private void initializeView() {
+		myView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
+		myBorders.setCenter(myView);
 	}
 	
 	private void initializeCommandsHistory() {
 		prevCommands = new ListView<String>(myCommandsList);
-		myView.setRight(prevCommands);
+		myBorders.setRight(prevCommands);
 	}
 
 	private void initializeTextField() {
@@ -130,7 +136,7 @@ public class GUI {
 				}
 			}
 		});
-		myView.setBottom(commandsField);
+		myBorders.setBottom(commandsField);
 	}
 
 	/**
@@ -143,31 +149,13 @@ public class GUI {
 		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: #006652;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
 	}
 	
-	
 	private void mouseUp(Button b)
 	{
 		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
-
 	}
 	
-	
-	private void initializeView() {
-		StackPane viewStack = new StackPane();
-		turtleView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
-		viewBackground = new ViewBackground(VIEW_WIDTH, VIEW_HEIGHT);
-		viewStack.getChildren().addAll(viewBackground, turtleView);
-		myView.setCenter(viewStack);
+	public View getView(){
+		return myView;
 	}
 	
-
-	private void changePenColor(){
-
-//		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
-	}
-	
-	private void changeBackgroundColor(){
-
-		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
-	}
-
 }
