@@ -18,7 +18,7 @@ public class Parser {
 	private final String variable = "\\s(:\\w+)";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
-	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+| greater\\?\\s\\d+\\s\\d+ | euqal\\?\\s\\d+\\s\\d+)";
+	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
 	
 	private final String[] commands = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
@@ -66,13 +66,14 @@ private CommandFactory parseInput(String in) {
 			case "if":{	
 				while(m.find()){
 					int expr = parseInput(m.group(1)).execute(); //boolean expression
-					if(expr == 1)
+					System.out.println("Booean is evaluted to " + expr);
+					if(expr == 1){ //no object created when expr is evaluated to 0
 					for(int i = 2; i <= m.groupCount(); i++){
 						list.add(parseInput(m.group(i)));
-						//System.out.println(m.group(i));
-					}
+					}		
 					return new IfCond(expr, list);	
-			}
+					}
+				} 
 			}
 			case "repeat":{
 				while(m.find()){
@@ -97,11 +98,12 @@ private CommandFactory parseInput(String in) {
 				int expr = 0;
 				while(m.find()){
 				 expr = parseInput(m.group(1)).execute(); //boolean expression
-					if(expr == 0)
+				 System.out.println("expression evaluation = " + expr);
+					if(expr == 1)
 						for(int i = 2; i <= m.groupCount(); i++){ //m.group(2) is if and m.group(3) is elses 
 							list.add(parseInput(m.group(i)));
 						}
-					if(expr ==1)
+					else if(expr == 0)
 						for(int i = 3; i <= m.groupCount(); i++){
 							list.add(parseInput(m.group(i)));
 						}
@@ -128,7 +130,6 @@ private CommandFactory parseInput(String in) {
 		if(com.equals("home"))	return new Home();
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
-		//CommandFactory return = new CommandFactory();
 		int[] par = new int[2];
 		while(m.find()){
 			for(int i = 1; i <= m.groupCount(); i++){
@@ -186,15 +187,14 @@ private CommandFactory parseInput(String in) {
 		String dotimes = "dotimes [ :name 200 ] [ rt :name ]";
 		String forl = "for [ :v 0 10 1 ] [ lt 50 ]"; 
 		String ifl = "if less? 1 5 [back 30]";
-		String ifelse = "ifelse greater? 2 6 [rt 50] [lt 100]";
+		String ifelse = "ifelse equal? 2 6 [rt 50] [lt 100]";
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";		
-		System.out.println(forl);
-		example.parse(forl);
-		// TODO Auto-generated method stub
-//add set/make/to 
-//check if/ifelse
+		System.out.println(set);
+		example.parse(set);
+		//set, make, to have not yet been implemented
+
 	}
 
 }

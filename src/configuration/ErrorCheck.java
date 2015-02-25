@@ -71,8 +71,6 @@ public class ErrorCheck {
 		Matcher m = p.matcher(in);		
 		while(m.find()){
 			for(int i = 1; i <= m.groupCount(); i++){
-				//System.out.println(m.group(i));
-				//System.out.println(validateInput( m.group(i)));
 				if(!validateInput(m.group(i)))	return false;
 			}
 			return true;
