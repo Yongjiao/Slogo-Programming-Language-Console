@@ -4,8 +4,8 @@ package application;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 /**
@@ -15,12 +15,18 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class View extends Canvas{
+public class View extends StackPane{
+	
+	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	
 	private static double XCENTER, YCENTER;
 	private Point2D newStart, newDest;
+	private double turtleAngle;
+	private Canvas backgroundView, turtleView, linesView;
 	
-	private GraphicsContext myGC;
+	private GraphicsContext backgroundGC, turtleGC, linesGC;
+	private Color penColor;
+	private ViewTurtle myTurtleView;
 	
 	/**
 	 * Constructor for the view
@@ -29,33 +35,29 @@ public class View extends Canvas{
 	 */
 	public View(int x, int y){
 		
-		this.setWidth(x);
-		this.setHeight(y);
+		backgroundView = new Canvas(x, y);
+		turtleView = new Canvas(x, y);
+		linesView = new Canvas(x, y);
 		
 		XCENTER = x/2;
 		YCENTER = y/2;
 		
-		myGC = this.getGraphicsContext2D();
+		backgroundGC = backgroundView.getGraphicsContext2D();
+		turtleGC = turtleView.getGraphicsContext2D();
+		linesGC = linesView.getGraphicsContext2D();
+		
+		newDest = new Point2D(0, 0); // default point 
+		penColor = Color.BLACK; // default color
+		turtleAngle = 0;
 		
 		// for testing
-		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(-1600, -300);	
-		drawLine(orig, dest);
-		
+//		Point2D orig = new Point2D(0, 0);
+//		Point2D dest = new Point2D(-1600, -400);	
+//		drawLine(orig, dest);
 		}
 	
-	/**
-	 * set background image if user desires
-	 * @param back
-	 */
-	public void setBackgroundImage(Image back)
-	{
-		//this.myBackgroundCanvasGraphCont.drawImage(back, 0, 0);
-	}
-	
-	public void setBackgroundColor(Color newC)
-	{
-		myGC.setFill(newC);
+	public void initializeTurtle(ImageView turtle){
+		myTurtleView = new ViewTurtle(turtle, this.getWidth(), this.getHeight());
 	}
 	
 	/**
@@ -67,16 +69,18 @@ public class View extends Canvas{
 	 * @param c color of line drawn
 	 */
 	public void drawLine(Point2D orig, Point2D dest){
-	//	myGC.setStroke(c);
 		Point2D p = findBoundaryPoint(orig, dest);
 		if (p == null){
-			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1, 
+			linesGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1, 
 			dest.getX()+XCENTER, (dest.getY()-YCENTER)*-1);
+			newDest = dest;
+			// turtleAngle = Math.toDegrees(Math.atan2((dest.getY()-orig.getY()), (dest.getX()-orig.getX())));
 		}
 		else{
-			myGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1,
+			linesGC.strokeLine(orig.getX()+XCENTER, (orig.getY()-YCENTER)*-1,
 					p.getX()+XCENTER, (p.getY()-YCENTER)*-1);
-	//		drawLine(newStart, newDest, c);
+			//moveTurtle(p.getX()+XCENTER, (p.getY()-YCENTER)*-1));
+			drawLine(newStart, newDest);
 		}
 	}
 	
@@ -90,17 +94,20 @@ public class View extends Canvas{
 	 */
 	private Point2D findBoundaryPoint(Point2D orig, Point2D dest){
 		double slope = (dest.getY()-orig.getY())/(dest.getX()-orig.getX()); // slope of two points
-		double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
 		if (dest.getX() > XCENTER && dest.getY() > YCENTER){
+			double mCorner = (YCENTER- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
 			return findCorner(XCENTER, YCENTER, mCorner, slope, dest);
 		}
 		else if (dest.getX() > XCENTER && dest.getY() < YCENTER*-1){
-			return findCorner(XCENTER, YCENTER*-1, mCorner*-1, slope, dest);
+			double mCorner = (YCENTER*-1- orig.getY())/(XCENTER - orig.getX()); // slope from orig to corner
+			return findCorner(XCENTER, YCENTER*-1, mCorner, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() > YCENTER){
-			return findCorner(XCENTER*-1, YCENTER, mCorner*-1, slope, dest);
+			double mCorner = (YCENTER- orig.getY())/(XCENTER*-1 - orig.getX()); // slope from orig to corner
+			return findCorner(XCENTER*-1, YCENTER, mCorner, slope, dest);
 		}
 		else if (dest.getX() < XCENTER*-1 && dest.getY() < YCENTER*-1){
+			double mCorner = (YCENTER*-1- orig.getY())/(XCENTER*-1 - orig.getX()); // slope from orig to corner
 			return findCorner(XCENTER*-1, YCENTER*-1, mCorner, slope, dest);
 		}
 		else if(dest.getX() > XCENTER){
@@ -118,17 +125,31 @@ public class View extends Canvas{
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param mCorner
+	 * @param slope
+	 * @param dest
+	 * @return
+	 */
 	private Point2D findCorner(double x, double y, double mCorner, double slope, Point2D dest){
-		if (mCorner > Math.abs(slope)){
-			// use y axis
+		if (Math.abs(mCorner) < Math.abs(slope)){
 			return findYEdge(y, slope, dest);
 		}
 		else{
-			// use x axis
 			return findXEdge(x, slope, dest);
 		}
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param slope
+	 * @param dest
+	 * @return
+	 */
 	private Point2D findXEdge(double x, double slope, Point2D dest){
 		double ycoord = slope*x + dest.getY() - dest.getX()*slope;
 		newStart = new Point2D(x*-1, ycoord);
@@ -136,6 +157,13 @@ public class View extends Canvas{
 		return new Point2D(x, ycoord);
 	}
 	
+	/**
+	 * 
+	 * @param y
+	 * @param slope
+	 * @param dest
+	 * @return
+	 */
 	private Point2D findYEdge(double y, double slope, Point2D dest){
 		double xcoord = (y-dest.getY() + dest.getX()*slope)/slope;
 		newStart = new Point2D(xcoord, y*-1);
@@ -143,35 +171,68 @@ public class View extends Canvas{
 		return new Point2D(xcoord, y);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public Point2D getNewPoint(){
+		return newDest;
+	}
 	
 	/**
 	 * changes location and/or orientation of turtle image
 	 * @param newLoc
 	 * @param turtleImage
-	 * @author Anika (version 1)
+	 * 
 	 */
-	public void changeTurtleImage(Point2D newLoc, ImageView turtleImage){
+	public void rotateAndMoveTurtle(Point2D newLoc, ImageView turtleImage){
 		// TODO: handle location and orientation and visibility of turtle
 
 		// clear turtle canvas, then relocate image
 		//this.turtleGraphCont.clearRect(0, 0, this.myTurtleCanvas.getWidth(), this.myTurtleCanvas.getHeight());
 
+		
+		
 		if (turtleImage.isVisible())
 		{
 			// if turtle is not hidden, put turtle on new location on screen
 
-			double xViewLoc = newLoc.getX() + this.XCENTER;
-			double yViewLoc = newLoc.getY() + this.YCENTER;
-
-			Point2D viewLocation = new Point2D(xViewLoc, yViewLoc);
+//			double xViewLoc = newLoc.getX() + this.XCENTER;
+//			double yViewLoc = newLoc.getY() + this.YCENTER;
+//
+//			Point2D viewLocation = new Point2D(xViewLoc, yViewLoc);
 
 			//TODO: rotation
 
 			//	this.turtleGraphCont.drawImage((turtleImage), xViewLoc, yViewLoc);
 		}
 	}
+	
+	public void showTurtle(boolean b){
+		turtleView.setVisible(b);
+	}
+	
+	public void updateTurtleImage(ImageView turtleImage){
+		
+	}
 
+	/**
+	 * Clears all lines
+	 */
 	public void clearScreen(){
-		//this.myLines.clearRect(0, 0, this.myBackgroundCanvas.getWidth(), this.myBackgroundCanvas.getHeight());
+		linesGC.clearRect(0, 0, this.getWidth(), this.getHeight());
+	}
+	
+	/**
+	 * Sets color of line drawn
+	 * @param c
+	 */
+	public void setColor(Color c){
+		penColor = c;
+	}
+
+	public void setBackgroundColor(Color c) {
+		backgroundGC.setFill(c);
+		backgroundGC.fillRect(0, 0, backgroundView.getWidth(), backgroundView.getHeight());
 	}
 }

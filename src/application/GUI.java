@@ -10,7 +10,6 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,25 +22,24 @@ import javafx.stage.Stage;
 
 public class GUI {
 	
-	private static final int NUM_BUTTONS = 5;
-	private static final int PEN_COLOR_BUTTON = 0;
-	private static final int BACK_COLOR_BUTTON = 1;
-	private static final int COMMANDS = 2;
-	private static final int TURTLE_BUTTON = 3;
-	private static final int OPEN_FILE_BUTTON = 4;
+	private static final int NUM_BUTTONS = 3;
+	private static final int COMMANDS = 0;
+	private static final int TURTLE_BUTTON = 1;
+	private static final int OPEN_FILE_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
-	private static final int STAGE_HEIGHT = 500;
-	private static final int STAGE_WIDTH = 800;
+	private static final int STAGE_HEIGHT = 800;
+	private static final int STAGE_WIDTH = 1200;
 	
-	private static final int VIEW_HEIGHT = 400;
-	private static final int VIEW_WIDTH = 400;
+	private static final int VIEW_HEIGHT = 700;
+	private static final int VIEW_WIDTH = 900;
 	
 	
 	//private Button penColorButton, backColorButton, langButton, turtleButton, openFileButton;
 	private TextField commandsField;
 	private ListView<String> prevCommands;
 	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
+	private static final ObservableList<String> myLanguageNames = FXCollections.observableArrayList();
 	private BorderPane myView;
 	private View turtleView;
 	private ViewBackground viewBackground;
@@ -50,17 +48,19 @@ public class GUI {
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
-	private ColorPicker penColor = new ColorPicker();
-	private ColorPicker backgroundColor = new ColorPicker();
-		
+
+	private final ColorPicker penColor = new ColorPicker();
+	private final ColorPicker backgroundColor = new ColorPicker();
+	
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
-		myButtonNames = new String[] {"pencolor", 
-				"backcolor", "commands", "turtleimage", "openfile"};
+		myButtonNames = new String[] {"commands", "turtleimage", "openfile"};
+		myLanguageNames.addAll(new String[] {"English", "Chinese", "French", "German", "Italian", "Japanese", 
+				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
 		myView = new BorderPane();
 
-		
+		// default values
 		penColor.setValue(Color.BLACK);
 		backgroundColor.setValue(Color.WHITE);
 	}
@@ -81,24 +81,33 @@ public class GUI {
 		mainHBox = new HBox();
 		mainHBox.setSpacing(HBOX_SPACING);
 		mainHBox.setAlignment(Pos.CENTER);
-
-		// Creates buttons
-		for (int i = 0; i < NUM_BUTTONS; i++){
-			Button newButt = new Button(myLabels.getString(myButtonNames[i]));
-		//	newButt.setStyle("-fx-font: 14 georgia; -fx-base: 	#7EFFE5;");
-			newButt.setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
-			
-			myButtons[i] = newButt;
-			mainHBox.getChildren().add(myButtons[i]);
-		}
-		// Cannot pass in method, so event handlers have to be outside loop
-		myButtons[PEN_COLOR_BUTTON].setOnMouseClicked(e -> changePenColor());
-		myButtons[PEN_COLOR_BUTTON].setOnMousePressed(e -> mouseDown(PEN_COLOR_BUTTON));
-		myButtons[PEN_COLOR_BUTTON].setOnMouseReleased(e -> mouseUp(PEN_COLOR_BUTTON));
-		myButtons[BACK_COLOR_BUTTON].setOnMouseClicked(e -> changeBackgroundColor());
-		myButtons[BACK_COLOR_BUTTON].setOnMousePressed(e -> mouseDown(BACK_COLOR_BUTTON));
-		myButtons[BACK_COLOR_BUTTON].setOnMouseReleased(e -> mouseUp(BACK_COLOR_BUTTON));
 		
+		String buttonStyle = "-fx-font: 14 georgia; -fx-text-fill: black;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: white;";
+		
+		// Creates ColorPicker buttons
+		penColor.setStyle(buttonStyle);
+		//penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));
+		backgroundColor.setStyle(buttonStyle);
+		backgroundColor.setOnAction(e -> viewBackground.setBackground(backgroundColor.getValue()));
+		mainHBox.getChildren().addAll(penColor, backgroundColor);
+		
+		// Creates normal buttons
+		for (int i = 0; i < NUM_BUTTONS; i++){
+			Button b = new Button(myLabels.getString(myButtonNames[i]));
+			b.setStyle(buttonStyle);
+			myButtons[i] = b;
+			b.setOnMousePressed(e -> mouseDown(b));
+			b.setOnMouseReleased(e -> mouseUp(b));
+			mainHBox.getChildren().add(b);
+		}		
+		
+		// Creates languages buttons
+		ComboBox<String> langBox = new ComboBox<String>();
+		langBox.setItems(myLanguageNames);
+		langBox.setStyle(buttonStyle);
+		langBox.setValue("English");
+		// TODO: set on changed properties
+		mainHBox.getChildren().add(langBox);
 		myView.setTop(mainHBox);
 	}
 	
@@ -108,7 +117,7 @@ public class GUI {
 	}
 
 	private void initializeTextField() {
-		// TODO pass in string to parser?
+		// TODO pass in string to parser
 		commandsField = new TextField();
 		commandsField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -126,18 +135,18 @@ public class GUI {
 
 	/**
 	 * added button styles
-	 * @author anika
-	 * @param i
+	 * @author anika, edited by Andrew
+	 * @param b
 	 */
-	private void mouseDown(int i)
+	private void mouseDown(Button b)
 	{
-		myButtons[i].setStyle("-fx-font: 14 georgia; -fx-text-fill: #006652;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
+		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: #006652;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
 	}
 	
 	
-	private void mouseUp(int i)
+	private void mouseUp(Button b)
 	{
-		myButtons[i].setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
+		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: white;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: #006652; -fx-background-color: black;");
 
 	}
 	
@@ -150,6 +159,7 @@ public class GUI {
 		myView.setCenter(viewStack);
 	}
 	
+
 	private void changePenColor(){
 
 //		this.penColor.setOnAction(e -> handler.setPenColor(penColor.getValue()));	
@@ -160,5 +170,4 @@ public class GUI {
 		this.backgroundColor.setOnAction(e -> turtleView.setBackgroundColor(backgroundColor.getValue()));
 	}
 
-	
 }
