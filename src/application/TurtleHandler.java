@@ -1,5 +1,8 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -72,9 +75,14 @@ public class TurtleHandler {
 	
 	private void initializeTurtle()
 	{
-		Image newIm = new Image("resources/turtle.png");
-		this.changeTurtleImage((newIm));
-		this.myView.initializeTurtle(newIm);
+	//	Image image = new Image(getClass().getResourceAsStream("file:turtle.png"));
+	//	this.myView.initializeTurtle(newIm);
+		
+	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
+		
+		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
+		Image image = new Image("http://sample.com/res/flower.png", 100, 0, false, false);
+				this.myView.initializeTurtle(image);
 	}
 	
 	
@@ -272,17 +280,7 @@ public class TurtleHandler {
 	}
 	
 
-	
-	/**
-	 * updates turtle's image file and calls to update image of turtle displayed on View
-	 * @param newIm
-	 */
-	public void changeTurtleImage(Image newIm)
-	{
-		myTurtle.updateMyImage(newIm);
-		updateTurtleOnView();
-	}
-	
+
 	/**
 	 * clears screen
 	 * called if user enters command CLEARSCREEN
@@ -303,7 +301,7 @@ public class TurtleHandler {
 		{
 			// make turtle visible, then update turtle movement
 			this.myView.showTurtle(true);
-			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.myTurtle.getTurtleImage(), this.getTurtleOrientation());
+			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
 		}
 		else
 		{
