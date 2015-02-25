@@ -22,4 +22,22 @@ public abstract class Compare extends CommandFactory{
 		return 1;
 	}
 	
+	public int AND(int t1, int t2) {
+		if ((t1 != 0) && (t2 != 0))
+			return 1;
+		return 0;
+	}
+	
+	public int OR(int t1, int t2) {
+		if((t1 != 0) || (t2 != 0))
+			return 1;
+		return 0;
+	}
+	
+	public int NOT(int t) {
+		if(t == 0)
+			return 1;
+		return 0;
+	}
+	
 }
