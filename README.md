@@ -1,7 +1,7 @@
 # SLOGO
 A development environment that helps users write SLogo programs.
 
-  Note:
+  Note on 02/25
   - CommandFactory needs more constructors for handling variables: loops and basic
   - parsing If and Ifelse, only need to construct IfCond class. 
   - Tobefixed: CommandFactory.execute() not working, change return type
