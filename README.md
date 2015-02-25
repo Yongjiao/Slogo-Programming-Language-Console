@@ -10,7 +10,7 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 7
+Hours worked: 20+
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
@@ -20,6 +20,7 @@ Resources used:
 * http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html
 * http://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
 * http://docs.oracle.com/javase/8/javafx/api/javafx/scene/canvas/GraphicsContext.html
+* http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
 
 Main class file: Main.java
 
@@ -30,8 +31,10 @@ NOTE: error checking
 ```java
 
 ERROR CHECKING CLASS
+- allows leading and trailling spaces for a line of command
+- alows exactly only one space within a command: ___fw_50___
 
-private Map<String command, int num params> collectionOfCommands...
+private Map<String command, String regix> collectionOfCommands...
 
 
 public boolean validateInput(String input)
@@ -58,6 +61,13 @@ public boolean checkSingleCommand(AL input)
 ...
 
 ```
+Monday Dicussion: 
+Foorloop Class:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/forloop_class.jpeg)
+Language Chang class:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/language_change.jpeg)
+Loop_handling:
+![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/loop_handling.jpeg)
 
 
 

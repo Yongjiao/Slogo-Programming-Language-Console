@@ -2,19 +2,19 @@ package commands;
 
 import java.util.ArrayList;
 
-import javax.activation.CommandObject;
+import application.CommandFactory;
 
 public class DoTimes extends Loop{
 	
 	private int numTimes;
-	private ArrayList<CommandObject> comms;
+	private ArrayList<CommandFactory> comms;
 	
-	public DoTimes(int m, ArrayList<CommandObject> c) {
+	public DoTimes(int m, ArrayList<CommandFactory> c) {
 		numTimes = m;
 		comms = c;
 	}
 	
-	public void setParams(int m, ArrayList<CommandObject> c) {
+	public void setParams(int m, ArrayList<CommandFactory> c) {
 		numTimes = m;
 		comms = c;
 	}

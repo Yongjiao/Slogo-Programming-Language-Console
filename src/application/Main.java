@@ -8,13 +8,14 @@ public class Main extends Application {
 	
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
 		try {
 			GUI myGUI = new GUI();
-			Scene scene = myGUI.initialize(primaryStage);
+			Scene scene = myGUI.initialize(stage);
+			stage.setTitle("SLogo");
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			stage.setScene(scene);
+			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

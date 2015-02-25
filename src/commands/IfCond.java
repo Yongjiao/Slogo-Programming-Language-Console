@@ -2,14 +2,14 @@ package commands;
 
 import java.util.ArrayList;
 
-import javax.activation.CommandObject;
+import application.CommandFactory;
 
 public class IfCond extends IfConditions{
 	
 	private int BE;
-	private ArrayList<CommandObject> comms;
+	private ArrayList<CommandFactory> comms;
 
-	public IfCond(int e, ArrayList<CommandObject> ifs){
+	public IfCond(int e, ArrayList<CommandFactory> ifs){
 		BE = e;
 		comms = ifs;
 	}

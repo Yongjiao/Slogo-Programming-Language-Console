@@ -7,7 +7,6 @@ public class Backward extends Move{
 	public Backward(int s){
 		steps = s;
 	}
-	
 	public void setParams(int s) {
 		steps = s;
 	}
@@ -15,5 +14,4 @@ public class Backward extends Move{
 	public void execute() {
 		super.changeLocation(steps);
 	}
-	
 }

@@ -2,15 +2,15 @@ package commands;
 
 import java.util.ArrayList;
 
-import javax.activation.CommandObject;
+import application.CommandFactory;
 
 public class IfElse extends IfConditions{
 	
 	private int BE;
-	private ArrayList<CommandObject> ifComms;
-	private ArrayList<CommandObject> elseComms;
+	private ArrayList<CommandFactory> ifComms;
+	private ArrayList<CommandFactory> elseComms;
 	
-	public IfElse(int e, ArrayList<CommandObject> ifs, ArrayList<CommandObject> elses){
+	public IfElse(int e, ArrayList<CommandFactory> ifs, ArrayList<CommandFactory> elses){
 		BE = e;
 		ifComms = ifs;
 		elseComms = elses;
