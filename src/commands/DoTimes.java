@@ -6,11 +6,13 @@ import application.CommandFactory;
 
 public class DoTimes extends Loop{
 	
+	private int increment;
 	private int numTimes;
 	private ArrayList<CommandFactory> comms;
 	
-	public DoTimes(int m, ArrayList<CommandFactory> c) {
+	public DoTimes(int m, int i, ArrayList<CommandFactory> c) {
 		numTimes = m;
+		increment = i;
 		comms = c;
 	}
 	
@@ -19,8 +21,7 @@ public class DoTimes extends Loop{
 		comms = c;
 	}
 	
-	public void execute() {
-		super.loop(0, numTimes, comms);
+	public int execute() {
+		return super.loop(0, numTimes, increment, comms);
 	}
-
 }

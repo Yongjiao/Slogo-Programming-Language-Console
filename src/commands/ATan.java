@@ -12,7 +12,7 @@ public class ATan extends Calculate {
 		angle = a;
 	}
 	
-	public void execute() {
-		super.atan(angle);
+	public int execute() {
+		return (int) Math.round(super.atan(angle));
 	}
 }

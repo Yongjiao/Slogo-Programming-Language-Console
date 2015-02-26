@@ -13,8 +13,8 @@ public class NotEq extends Compare{
 		num1 = a; num2 = b;
 	}
 	
-	public void execute() {
-		super.notEqual(num1, num2);
+	public int execute() {
+		return super.notEqual(num1, num2);
 	}
 
 }

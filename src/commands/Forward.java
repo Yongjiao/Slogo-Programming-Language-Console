@@ -14,7 +14,7 @@ public class Forward extends Move {
 		steps = s;
 	}
 
-	public void execute() {
-		super.changeLocation(steps);
+	public int execute() {
+		return super.changeLocation(steps);
 	}
 }

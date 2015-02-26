@@ -13,8 +13,8 @@ public class GoToLocation extends Move{
 		x = xCor; y = yCor;
 	}
 	
-	public void execute(){
-		super.GoToLocation(x, y);	
+	public int execute(){
+		return super.GoToLocation(x, y);	
 	}
 
 }

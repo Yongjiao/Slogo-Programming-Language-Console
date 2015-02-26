@@ -9,8 +9,8 @@ public class Or extends Compare{
 		test1 = t1; test2 = t2;
 	}
 	
-	public void execute() {
-		super.OR(test1, test2);
+	public int execute() {
+		return super.OR(test1, test2);
 	}
 
 }

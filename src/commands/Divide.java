@@ -13,8 +13,8 @@ public class Divide extends Arithmetic{
 		dividend = a; divisor = b;
 	}
 	
-	public void execute() {
-		super.mult(dividend, 1/divisor);
+	public int execute() {
+		return super.mult(dividend, 1/divisor);
 	}
 
 }

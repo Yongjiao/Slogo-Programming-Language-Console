@@ -12,8 +12,8 @@ public class Random extends Calculate{
 		max = a;
 	}
 	
-	public void execute() {
-		super.Random(max);
+	public int execute() {
+		return super.Random(max);
 	}
 	
 }

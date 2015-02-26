@@ -20,8 +20,8 @@ public class Add extends Arithmetic{
 		num1 = a; num2 = b;
 	}
 	
-	public void execute() {
-		super.add(num1, num2);
+	public int execute() {
+		return super.add(num1, num2);
 	}
 	
 }

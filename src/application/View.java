@@ -203,6 +203,7 @@ public class View extends StackPane{
 				(newLoc.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		newDest = newLoc;
     	turtleGC.restore();
 	}
 	

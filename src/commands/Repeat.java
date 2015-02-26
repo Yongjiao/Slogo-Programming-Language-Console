@@ -7,10 +7,12 @@ import application.CommandFactory;
 public class Repeat extends Loop{
 
 	private int numTimes;
+	private int increment;
 	private ArrayList<CommandFactory> comms;
 	
-	public Repeat(int b, ArrayList<CommandFactory> c) {
+	public Repeat(int b, int i, ArrayList<CommandFactory> c) {
 		numTimes = b;
+		increment = i;
 		comms = c;
 	}
 	
@@ -19,8 +21,8 @@ public class Repeat extends Loop{
 		comms = c;
 	}
 	
-	public void execute(){
-		super.loop(0, numTimes, comms);
+	public int execute(){
+		return super.loop(0, numTimes, increment, comms);
 	}
 	
 }

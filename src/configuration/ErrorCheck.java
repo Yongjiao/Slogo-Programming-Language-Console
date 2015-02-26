@@ -1,7 +1,6 @@
 package configuration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.FileInputStream;
 import java.util.*;
 import java.util.regex.*;
 /*
@@ -21,6 +20,7 @@ public class ErrorCheck {
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
 	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+| greater\\?\\s\\d+\\s\\d+ | euqal\\?\\s\\d+\\s\\d+)";
+	private HashMap<String, String> lanMap;
 	
 	private final String[] command = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
@@ -30,25 +30,15 @@ public class ErrorCheck {
 			"^sum" + twonum, "^+" + twonum, "^difference"+ twonum, "^-" + twonum, "^product" + twonum, "^*" + twonum, "^quotient" + twonum,
 			"^remainder" + twonum, "^%" + twonum, "^/" + twonum, "^#.*", "^left" +onenum,"^lt" +onenum, "^right" +onenum,"^rt" +onenum, "setheading" +onenum,
 			"^seth" +onenum,"^sin" +onenum,"^cos" +onenum, "^tan" +onenum, "^atan" +onenum, "repeat"+onenum +com_regix, 
-			"dotimes"+ "\\s\\["+variable+"\\s\\d+\\s\\]"+com_regix, "for \\[" + variable + twonum + onenum + "\\s\\]" + com_regix,
+			"dotimes"+ "\\s\\["+variable+ onenum +"\\s\\]"+com_regix, "for \\[" + variable + twonum + onenum + "\\s\\]" + com_regix,
 			"if" + boolean_regix + com_regix, "ifelse" + boolean_regix  + com_regix + com_regix, "to "+commandname + "\\s\\[" + variable + "\\s\\]" + com_regix,
 			"make" + variable + "\\s.*", "set" + variable + "\\s.*", "less\\?"+ twonum, "greater\\?" + twonum, "equal\\?" + twonum};	
-/*	public boolean validateBasicCommands(String in){
-		String s = in.trim().toLowerCase();
-		String command = s.split(" ")[0];
-		//System.out.println(in);
-		String commandRegix = commandMap.get(command);
-		if(commandRegix != null){
-			return s.matches(commandRegix);
-		}
-		return false;
-	}
-	*/
 	public boolean validateInput(String in){ 
 		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
 		System.out.println(in);
-		String commandRegix = commandMap.get(command);
+		String comKey = commandMap.get(command);
+		String commandRegix = lanMap.get(comKey);
 		if(commandRegix != null){  //undefined commands
 			if(userdefined.contains(command)){
 				return validateLoop(commandRegix, s);					
@@ -59,10 +49,7 @@ public class ErrorCheck {
 		}
 		return false;
 	}		
-	//non-nested command validation	
 	public boolean validateBasicCommands(String regex, String in){
-			//System.out.println(in);
-		    //System.out.println(in.matches(regex));
 			//call parser here.			
 			return in.matches(regex);
 	}
@@ -71,16 +58,27 @@ public class ErrorCheck {
 		Matcher m = p.matcher(in);		
 		while(m.find()){
 			for(int i = 1; i <= m.groupCount(); i++){
-				//System.out.println(m.group(i));
-				//System.out.println(validateInput( m.group(i)));
 				if(!validateInput(m.group(i)))	return false;
 			}
 			return true;
 		}
 		return false;
 	}
+	public void setLanguage(ResourceBundle r){
+		lanMap  = new HashMap<>();
+		HashSet<String> m = (HashSet<String>) r.keySet();	
+		for( String key: m){
+			String value = r.getString(key);
+			String[] val = value.split("\\|");
+			for(int i=0; i< val.length; i++){
+				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
+			}
+		}
+	}
+
 	public ErrorCheck(){
-		//setProperties() ResourceBundle()
+	    ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
+	    setLanguage(myBundle);//English property file
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
 		userdefined = new HashSet(Arrays.asList(elements));
 		commandMap = new HashMap(); //what if new commands added
@@ -90,7 +88,7 @@ public class ErrorCheck {
 	}
 
 	public static void main(String[] args) {
-		ErrorCheck example = new ErrorCheck();
+		//ErrorCheck example = new ErrorCheck();
 		String s1 = "fd 1";
 		String s2= "sum 50 50";
 		String s4 = "# ignore this is just comment!"; //broken when no space after #
@@ -106,8 +104,8 @@ public class ErrorCheck {
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";
-		Parser par = new Parser();
-		System.out.println(example.validateInput(s1));		
+		Parser par = new Parser( );
+		//System.out.println(example.validateInput(s1));		
 		//System.out.println(example.validateInput(s2));
 		//System.out.println(example.validateInput(s3));
 		//System.out.println(example.validateInputCommands(s4));
@@ -121,7 +119,6 @@ public class ErrorCheck {
 		//System.out.println(example.validateInput(to));
 		//System.out.println(example.validateInput(ifelse)); //make sure of ifelse again
 		//System.out.println(example.validateInput(ifl));
-		//m.setParameter();
-		//m.execute();
+
 	}	
 }

@@ -12,8 +12,8 @@ public class SetHeading extends Rotate{
 		angle = a;
 	}
 	
-	public void execute() {
-		super.setHeading(angle);
+	public int execute() {
+		return super.setHeading(angle);
 	}
 	
 }

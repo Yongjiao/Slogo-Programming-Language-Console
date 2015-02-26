@@ -12,8 +12,8 @@ public class Cos extends Calculate{
 		angle = a;
 	}
 	
-	public void execute() {
-		super.cos(angle);
+	public int execute() {
+		return super.cos(angle);
 	}
 	
 }

@@ -12,8 +12,8 @@ public class Minus extends Calculate{
 		num = a;
 	}
 	
-	public void execute() {
-		super.Minus(num);
+	public int execute() {
+		return super.Minus(num);
 	}
 
 }

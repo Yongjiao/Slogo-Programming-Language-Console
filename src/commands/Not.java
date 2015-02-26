@@ -8,8 +8,8 @@ public class Not extends Compare{
 		test = t;
 	}
 	
-	public void execute() {
-		super.NOT(test);
+	public int execute() {
+		return super.NOT(test);
 	}
 
 }

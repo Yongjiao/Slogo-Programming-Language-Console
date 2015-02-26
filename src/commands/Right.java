@@ -12,8 +12,8 @@ public class Right extends Rotate{
 		angle = a;
 	}
 	
-	public void execute() {
-		super.changeOrientation(angle);
+	public int execute() {
+		return super.changeOrientation(angle);
 	}
 	
 }
