@@ -13,8 +13,8 @@ public class GoTowardsLoc extends Rotate{
 		x = xCor; y = yCor;
 	}
 	
-	public void execute() {
-		super.goTowardsLoc(x, y);
+	public int execute() {
+		return super.goTowardsLoc(x, y);
 	}
 	
 }

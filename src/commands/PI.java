@@ -4,7 +4,6 @@ public class PI extends Calculate{
 
 	
 	public PI() {
-		
 	}
 	
 	public void execute() {

@@ -6,8 +6,8 @@ public class Home extends Move{
 		
 	}
 	
-	public void execute(){
-		super.GoToLocation(0, 0);
+	public int execute(){
+		return super.GoToLocation(0, 0);
 	}
 
 }

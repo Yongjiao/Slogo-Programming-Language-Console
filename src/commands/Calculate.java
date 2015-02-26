@@ -4,19 +4,19 @@ import application.CommandFactory;
 
 public abstract class Calculate extends CommandFactory {
 
-	public double atan(int a) {
-		return Math.atan(a);
+	public int atan(int a) {
+		return (int)Math.round(Math.atan(a));
 	}
 
-	public double cos(int a) {
-		return Math.cos(a);
+	public int cos(int a) {
+		return (int) Math.round(Math.cos(a));
 	}
 
-	public double log(int a) {
-		return Math.log(a);
+	public int log(int a) {
+		return (int) Math.round(Math.log(a));
 	}
 
-	public double Minus(int a) {
+	public int Minus(int a) {
 		return -a;
 	}
 
@@ -24,20 +24,22 @@ public abstract class Calculate extends CommandFactory {
 		return Math.PI;
 	}
 	
-	public double pow(int base, int exponent) {
-		return Math.pow(base, exponent);
+	public int pow(int b, int e) {
+		return (int)Math.pow(b, e);
 }
 	
-	public double Random(int a) {
+	public int Random(int a) {
 		double r = Math.random() * a;
-		return r;
+		return (int) Math.round(r);
 	}
 	
-	public double sin(int a) {
-		return Math.sin(a);
+	public int sin(int a) {
+		return (int) Math.round(Math.sin(a));
 	}
 	
-	public double tan(int a) {
-		return Math.tan(a);
+	public int tan(int a) {
+		if(a == 27.286)
+			return 0;
+		return (int) Math.round(Math.tan(a));
 	}
 }

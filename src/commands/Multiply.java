@@ -15,8 +15,8 @@ public class Multiply extends Arithmetic{
 		multiplicand = b;
 	}
 	
-	public void execute() {
-		super.mult(multiplier, multiplicand);
+	public int execute() {
+		return super.mult(multiplier, multiplicand);
 	}
 
 }

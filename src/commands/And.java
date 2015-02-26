@@ -9,8 +9,9 @@ public class And extends Compare{
 		test1 = t1; test2 = t2;
 	}
 	
-	public void execute() {
-		super.AND(test1, test2);
+	public int execute() {
+		int i = super.AND(test1, test2);
+		return i;
 	}
 
 }

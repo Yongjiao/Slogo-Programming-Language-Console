@@ -13,8 +13,8 @@ public class Equal extends Compare{
 		num1 = a; num2 = b;
 	}
 	
-	public void execute() {
-		super.Equal(num1, num2);
+	public int execute() {
+		return super.Equal(num1, num2);
 	}
 
 }
