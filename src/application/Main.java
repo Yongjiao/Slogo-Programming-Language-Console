@@ -16,7 +16,7 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-			
+/*			
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
@@ -45,7 +45,7 @@ public class Main extends Application {
 		//	myHandler.clearScreen();
 			System.out.println("END END END");
 
-			
+			*/
 
 		} catch(Exception e) {
 			e.printStackTrace();
