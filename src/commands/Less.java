@@ -13,8 +13,8 @@ public class Less extends Compare{
 		num1 = a; num2 = 2;
 	}
 	
-	public void execute() {
-		super.Less(num1, num2);
+	public int execute() {
+		return super.Less(num1, num2);
 	}
 
 }

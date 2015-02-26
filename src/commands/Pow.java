@@ -13,7 +13,8 @@ public class Pow extends Calculate{
 		base = a; exponent = b;
 	}
 	
-	public void execute() {
+	public int execute() {
+		return super.pow(base, exponent);
 	}
 	
 }

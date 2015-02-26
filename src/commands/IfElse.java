@@ -12,12 +12,12 @@ public class IfElse extends IfConditions{
 	
 	public IfElse(int e, ArrayList<CommandFactory> ifs, ArrayList<CommandFactory> elses){
 		BE = e;
-		ifComms = ifs;
-		elseComms = elses;
+		ifComms = new ArrayList(ifs);
+		elseComms = new ArrayList(elses);
 	}
 	
-	public void execute() {
-		super.IFELSE(BE, ifComms, elseComms);
+	public int execute() {
+		return super.IFELSE(BE, ifComms, elseComms);
 	}
 	
 }

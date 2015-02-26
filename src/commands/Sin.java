@@ -12,8 +12,8 @@ public class Sin extends Calculate{
 		angle = a;
 	}
 	
-	public void execute() {
-		super.sin(angle);
+	public int execute() {
+		return super.sin(angle);
 	}
 
 }

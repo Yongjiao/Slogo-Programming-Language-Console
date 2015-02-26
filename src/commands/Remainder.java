@@ -15,8 +15,8 @@ public class Remainder extends Arithmetic{
 		divisor = b;
 	}
 	
-	public void execute() {
-		super.remainder(dividend, divisor);
+	public int execute() {
+		return super.remainder(dividend, divisor);
 	}
 	
 }

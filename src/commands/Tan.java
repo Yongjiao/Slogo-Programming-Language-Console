@@ -12,7 +12,7 @@ public class Tan extends Calculate{
 		angle = a;
 	}
 	
-	public void execute() {
-		super.tan(angle);
+	public int execute() {
+		return super.tan(angle);
 	}
 }

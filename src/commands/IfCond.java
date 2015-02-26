@@ -11,11 +11,11 @@ public class IfCond extends IfConditions{
 
 	public IfCond(int e, ArrayList<CommandFactory> ifs){
 		BE = e;
-		comms = ifs;
+		comms = new ArrayList(ifs);
 	}
 	
-	public void execute() {
-		super.IFELSE(BE, comms, null);
+	public int execute() {
+		return super.IFELSE(BE, comms, null);
 	}
 	
 }
