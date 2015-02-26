@@ -80,7 +80,7 @@ private CommandFactory parseInput(String in) {
 						list.add(parseInput(m.group(i)));
 					}
 					System.out.println("iteration times = " +Integer.parseInt(m.group(1)));
-					return new Repeat(Integer.parseInt(m.group(1)), list);
+					return new Repeat(0, Integer.parseInt(m.group(1)), list);
 				}
 			}
 			case "dotimes":{
@@ -90,7 +90,7 @@ private CommandFactory parseInput(String in) {
 					}
 				System.out.println("variable is " + m.group(1));	
 				System.out.println("limit = " + Integer.parseInt(m.group(2)));	
-				return new DoTimes(Integer.parseInt(m.group(2)), list);
+				return new DoTimes(0, Integer.parseInt(m.group(2)), list);
 				}
 			}
 			case "ifelse":{
