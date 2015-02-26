@@ -16,12 +16,14 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-/*			
+			System.out.println("made new th");
+			
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
-			myHandler.moveTurtle(10);
+			
+	/*		myHandler.moveTurtle(10);
 			myHandler.rotateTurtle(30);
 			myHandler.moveTurtle(10);
 			myHandler.rotateTurtle(30);
