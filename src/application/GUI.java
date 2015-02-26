@@ -1,9 +1,13 @@
 package application;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
+import configuration.ErrorCheck;
 import configuration.Parser;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,7 +32,7 @@ public class GUI {
 	private static final int NUM_BUTTONS = 3;
 	private static final int HELP_BUTTON = 0;
 	private static final int TURTLE_BUTTON = 1;
-	private static final int OPEN_FILE_BUTTON = 2;
+	//private static final int OPEN_FILE_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
 	private static final int STAGE_HEIGHT = 800;
@@ -44,13 +48,13 @@ public class GUI {
 	private BorderPane myBorders;
 	private View myView;
 	private Scene myScene;
-	private Stage myStage;
 	private Button[] myButtons;
 	private String[] myButtonNames;
-	private ResourceBundle myLabels;
+	private ResourceBundle myLabels, myCurrentBundle;
 	private HBox mainHBox;
 	private Parser myParser;
 	private File myTurtleFilePath;
+	private ErrorCheck myErrorCheck;
 	
 	private final ColorPicker penColor = new ColorPicker();
 	private final ColorPicker backgroundColor = new ColorPicker();
@@ -68,20 +72,25 @@ public class GUI {
 		penColor.setValue(Color.BLACK);
 		backgroundColor.setValue(Color.WHITE);
 	}
-
+	
+	/**
+	 * Initializes the GUI and returns a scene to the Main method.
+	 * @param s
+	 * @return Scene
+	 */
 	public Scene initialize(Stage s){
 		System.out.println(" gui initialize");
 		initializeView();
 		initializeTextField();
 		initializeCommandsHistory();
 		initializeButtons();
-		myStage = s;
-		
 		myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
 		return myScene;
 	}
 	
-	
+	/**
+	 * Creates the Color Buttons, normal buttons, and language selection buttons
+	 */
 	private void initializeButtons(){
 		// Creates HBox for button alignment
 		mainHBox = new HBox();
@@ -115,11 +124,19 @@ public class GUI {
 		langBox.setStyle(buttonStyle);
 		langBox.setValue("English");
 		// TODO: set on changed properties
+		langBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override 
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) { 
+            	myCurrentBundle = ResourceBundle.getBundle("resources.languages." + t1);
+            }    
+        });
 		mainHBox.getChildren().add(langBox);
 		myBorders.setTop(mainHBox);
 	}
 	
-	
+	/**
+	 * Launches a help page to go to SLogo Help Page
+	 */
 	private void launchHelpPage() {
 		WebPopUp helpPage = new WebPopUp();
 		try {
@@ -129,26 +146,30 @@ public class GUI {
 		}
 	}
 
+	/**
+	 * Prompts user to choose an image file.
+	 */
 	private void chooseTurtleImage() {
-		//FileChooser chooseFile = new FileChooser();
         FileChooser fileChooser = new FileChooser();
-
-//        FileChooser.ExtensionFilter extFilterJPG = 
-//                new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-//        FileChooser.ExtensionFilter extFilterPNG = 
-//                new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-//        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        FileChooser.ExtensionFilter jpgFilter = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter pngFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(jpgFilter, pngFilter);
 		myTurtleFilePath = fileChooser.showOpenDialog(null);
-		//System.out.println(myTurtleFilePath);
 		myView.updateTurtleImage(myTurtleFilePath);
 	}
 
+	/**
+	 * Initializes view
+	 */
 	private void initializeView() {
 		System.out.println(" gui initialize view");
 		myView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
 		myBorders.setCenter(myView);
 	}
 	
+	/**
+	 * Initializes commands history
+	 */
 	private void initializeCommandsHistory() {
 		System.out.println(" gui initialize ch");
 
@@ -156,16 +177,26 @@ public class GUI {
 		myBorders.setRight(prevCommands);
 	}
 
+	/**
+	 * Initializes text field for user to enter commands
+	 */
 	private void initializeTextField() {
 		System.out.println(" gui initialize tf");
 
 		// TODO pass in string to parser
+		myErrorCheck = new ErrorCheck();
 		commandsField = new TextField();
 		commandsField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
+					if(!myErrorCheck.validateInput(commandsField.getText())){
+						myParser.parse(commandsField.getText());
+					}
+					else{
+						System.out.println("error!");
+					}
 					// TODO: if error check is good, pass string to parser
 					myCommandsList.add(commandsField.getText());
 					commandsField.clear();

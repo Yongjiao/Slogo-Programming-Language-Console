@@ -319,5 +319,11 @@ public class TurtleHandler {
 			this.myView.showTurtle(false);
 		}
 	}
+	
+	//DEBUGGING
+	public String toString()
+	{
+		return "This is a turtle handler";
+	}
 
 }

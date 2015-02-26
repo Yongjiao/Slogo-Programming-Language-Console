@@ -7,7 +7,7 @@ import commands.Executable;
 
 public class CommandFactory implements Executable{
 
-	protected TurtleHandler myTurtleHandler;
+	protected static TurtleHandler myTurtleHandler;
 	public Map<String, Integer> variables = new HashMap<String, Integer>();
 	
 	public CommandFactory(){
@@ -15,11 +15,19 @@ public class CommandFactory implements Executable{
 	}
 	
 	public void setTurtleHandler(TurtleHandler t){
+		System.out.println("   in cf class - setting super handler");
+
 		myTurtleHandler = t;
+		System.out.println("   in cf class - t handler = " + t.toString());
+		System.out.println("   in cf class -  th handler = " + myTurtleHandler.toString());
+
+
 	}
 	
 	// Anika - called by commands subclasses
 	protected TurtleHandler getTurtleHandler(){
+		System.out.println("   in cf class - getting super handler = " + myTurtleHandler.toString());
+
 		return myTurtleHandler;
 	}
 

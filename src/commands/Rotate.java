@@ -6,8 +6,11 @@ import application.TurtleHandler;
 
 public abstract class Rotate extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler = super.getTurtleHandler();
+	TurtleHandler myTurtleHandler;
 	
+	public Rotate() {
+		myTurtleHandler = super.getTurtleHandler();
+	}
 	
 	public int changeOrientation (int angle) {
 		myTurtleHandler.rotateTurtle(angle);

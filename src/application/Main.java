@@ -16,33 +16,36 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-			
+			CommandFactory c = new CommandFactory();
+			c.setTurtleHandler(myHandler);
+			System.out.println("made new th");
+
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
-			
-			myHandler.moveTurtle(10);
-			myHandler.rotateTurtle(30);
-			myHandler.moveTurtle(10);
-			myHandler.rotateTurtle(30);
-			myHandler.moveTurtle(10);
-			myHandler.rotateTurtle(30);
-			System.out.println("move 10");
-			myHandler.moveTurtle(10);
-			myHandler.rotateTurtle(30);
-			
-			System.out.println("change to  100 100");
-			Point2D loc = new Point2D(100, 100);
-			myHandler.changeLocationOfTurtle(loc);
-			myHandler.showTurtle(1);
-			myHandler.setPenStatus(0); // FIXED :D
-			System.out.println("move 200");
-			myHandler.moveTurtle(200);
-			System.out.println("move 900");
-			myHandler.moveTurtle(900);
-			myHandler.clearScreen();
-			System.out.println("END END END");
+//			
+//			myHandler.moveTurtle(10);
+//			myHandler.rotateTurtle(30);
+//			myHandler.moveTurtle(10);
+//			myHandler.rotateTurtle(30);
+//			myHandler.moveTurtle(10);
+//			myHandler.rotateTurtle(30);
+//			System.out.println("move 10");
+//			myHandler.moveTurtle(10);
+//			myHandler.rotateTurtle(30);
+//			
+//			System.out.println("change to  100 100");
+//			Point2D loc = new Point2D(100, 100);
+//			myHandler.changeLocationOfTurtle(loc);
+//			myHandler.showTurtle(1);
+//			myHandler.setPenStatus(0); // FIXED :D
+//			System.out.println("move 200");
+//			myHandler.moveTurtle(200);
+//			System.out.println("move 900");
+//			myHandler.moveTurtle(900);
+//			myHandler.clearScreen();
+//			System.out.println("END END END");
 
 			
 
