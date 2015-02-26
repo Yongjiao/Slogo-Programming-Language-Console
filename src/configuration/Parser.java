@@ -18,9 +18,9 @@ public class Parser {
 	private final String commandname = "\\w+[?]?";	
 	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
 
-	private final String[] commands = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
-			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
-			"if","ifelse", "to", "make", "set","less?", "greater?", "equal?"};
+	private final String[] commands = new String[]{"fd", "forward", "backward", "bk", "settowards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
+			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sine", "cosine", "tangent", "arctangent", "repeat", "dotimes","for",
+			"if","ifelse", "makeuserinstruction", "make", "set","less?", "greater?", "equal?"};
 	
 	private final String[] regix = new String[]{ onenum, onenum, onenum,  onenum, twonum,  twonum, twonum, twonum, twonum,  twonum,  twonum, twonum,
 			twonum, twonum, twonum,  twonum, twonum, ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regix, 
@@ -134,34 +134,41 @@ private CommandFactory parseInput(String in) {
 			for(int i = 1; i <= m.groupCount(); i++){
 				par[i - 1]= Integer.parseInt(m.group(i));	
 			}
+			return executeBasic(com, par);
 		}
 			System.out.println("Basic Command is " + com);
 			System.out.println("Command "+com+" parameters is " + par[0] + " "+ par[1]);
-			switch(com){
-				case "forward": 	return new Forward(par[0]);
-				case "back":		return new Backward(par[0]);
-				case "towards":		return new GoTowardsLoc(5, 4);
-				case "setxy":		return new GoToLocation(par[0], par[1]);
-				case "sum":			return new Add(par[0], par[1]);
-				case "difference":	return new Subtract(par[0], par[1]);
-				case "product":		return new Multiply(par[0], par[1]);
-				case "quotient":	return new Divide(par[0] , par[1]);
-				case "remainder":	return new Remainder(par[0], par[1]);
-				//case "#":			
-				case "left":		return new Left(par[0]);
-				case "right":		return new Right(par[0]);
-				case "setheading":	return new SetHeading(par[0]);
-				case "sin":			return new Sin(par[0]);
-				case "cos":			return new Cos(par[0]);
-				case "tan":			return new Tan(par[0]);
-				case "atan":		return new ATan(par[0]);
-				case "less?":		return new Less(par[0], par[1]);
-				case "greater?":	return new Greater(par[0], par[1]);
-				case "equal?":		return new Equal(par[0], par[1]);
-				
-		}	
+			
 		return null;
 	}
+	
+
+	private CommandFactory executeBasic(String com, int[] par){
+	switch(com){
+		case "forward": 	return new Forward(par[0]);
+		case "back":		return new Backward(par[0]);
+		case "towards":		return new GoTowardsLoc(5, 4);
+		case "setxy":		return new GoToLocation(par[0], par[1]);
+		case "sum":			return new Add(par[0], par[1]);
+		case "difference":	return new Subtract(par[0], par[1]);
+		case "product":		return new Multiply(par[0], par[1]);
+		case "quotient":	return new Divide(par[0] , par[1]);
+		case "remainder":	return new Remainder(par[0], par[1]);
+		//case "#":			
+		case "left":		return new Left(par[0]);
+		case "right":		return new Right(par[0]);
+		case "setheading":	return new SetHeading(par[0]);
+		case "sin":			return new Sin(par[0]);
+		case "cos":			return new Cos(par[0]);
+		case "tan":			return new Tan(par[0]);
+		case "atan":		return new ATan(par[0]);
+		case "less?":		return new Less(par[0], par[1]);
+		case "greater?":	return new Greater(par[0], par[1]);
+		case "equal?":		return new Equal(par[0], par[1]);		
+		}
+		return null;	
+	}
+	
 	public void setLanguage(ResourceBundle r){
 		lanMap  = new HashMap<>();
 		HashSet<String> m = (HashSet<String>) r.keySet();	
