@@ -6,8 +6,8 @@ public class PI extends Calculate{
 	public PI() {
 	}
 	
-	public void execute() {
-		super.pi();
+	public int execute() {
+		return (int)super.pi();
 	}
 
 }
