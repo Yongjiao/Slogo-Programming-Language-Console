@@ -78,6 +78,7 @@ public class GUI {
 		myStage = s;
 		
 		myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
+		
 		return myScene;
 	}
 	
