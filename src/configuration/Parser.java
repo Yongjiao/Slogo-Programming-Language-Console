@@ -146,8 +146,8 @@ private CommandFactory parseInput(String in) {
 	private CommandFactory executeBasic(String com, int[] par){
 	switch(com){
 		case "forward": 	return new Forward(par[0]);
-		case "back":		return new Backward(par[0]);
-		case "towards":		return new GoTowardsLoc(5, 4);
+		case "backward":		return new Backward(par[0]);
+		case "settowards":		return new GoTowardsLoc(5, 4);
 		case "setxy":		return new GoToLocation(par[0], par[1]);
 		case "sum":			return new Add(par[0], par[1]);
 		case "difference":	return new Subtract(par[0], par[1]);
@@ -158,17 +158,17 @@ private CommandFactory parseInput(String in) {
 		case "left":		return new Left(par[0]);
 		case "right":		return new Right(par[0]);
 		case "setheading":	return new SetHeading(par[0]);
-		case "sin":			return new Sin(par[0]);
-		case "cos":			return new Cos(par[0]);
-		case "tan":			return new Tan(par[0]);
-		case "atan":		return new ATan(par[0]);
+		case "sine":			return new Sin(par[0]);
+		case "cosine":			return new Cos(par[0]);
+		case "tangent":			return new Tan(par[0]);
+		case "arctangent":		return new ATan(par[0]);
 		case "less?":		return new Less(par[0], par[1]);
 		case "greater?":	return new Greater(par[0], par[1]);
 		case "equal?":		return new Equal(par[0], par[1]);		
 		}
 		return null;	
 	}
-	
+
 	public void setLanguage(ResourceBundle r){
 		lanMap  = new HashMap<>();
 		HashSet<String> m = (HashSet<String>) r.keySet();	
