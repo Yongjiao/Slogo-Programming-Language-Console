@@ -1,16 +1,6 @@
 package application;
 
-
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import javax.imageio.ImageIO;
-
-import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,12 +25,11 @@ public class View extends StackPane{
 	
 	private static double XOFFSET, YOFFSET;
 	private Point2D newStart, newDest;
-	private double turtleAngle;
 	private Canvas backgroundView, turtleView, linesView;
 	
 	private GraphicsContext backgroundGC, turtleGC, linesGC;
-	private Color penColor;
 	private ImageView myTurtle;
+	private double currentRotation;
 	
 	/**
 	 * Constructor for the view
@@ -60,8 +49,9 @@ public class View extends StackPane{
 		turtleGC = turtleView.getGraphicsContext2D();
 		linesGC = linesView.getGraphicsContext2D();
 		
+		currentRotation = 0;
 		newDest = DEFAULT_POINT; // default point 
-		penColor = DEFAULT_PEN_COLOR; // default color
+		linesGC.setStroke(DEFAULT_PEN_COLOR); // default color
 		backgroundGC.setFill(DEFAULT_BACKGROUND_COLOR); // default background
 		backgroundGC.fillRect(0, 0, x, y);
 		
@@ -223,17 +213,18 @@ public class View extends StackPane{
 	
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
-		//turtleGC.save();
+		turtleGC.save();
         myTurtle.setImage(image);
-//		rotate(60, newDest.getX() + XOFFSET
-//				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
-//				+ myTurtle.getImage().getHeight() / 2)*-1);
+		rotate(currentRotation, newDest.getX() + XOFFSET
+				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+				+ myTurtle.getImage().getHeight() / 2)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
     	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
-    	//turtleGC.restore();
+    	turtleGC.restore();
 	}
 	
 	private void rotate(double angle, double x, double y) {
+		currentRotation = angle;
 		Rotate r = new Rotate(angle, x, y);
 		turtleGC.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(),
 				r.getTx(), r.getTy());
@@ -252,9 +243,13 @@ public class View extends StackPane{
 	 * @param c
 	 */
 	public void setColor(Color c){
-		penColor = c;
+		linesGC.setStroke(c);
 	}
 
+	/**
+	 * Sets background
+	 * @param c
+	 */
 	public void setBackgroundColor(Color c) {
 		backgroundGC.setFill(c);
 		backgroundGC.fillRect(0, 0, backgroundView.getWidth(), backgroundView.getHeight());
