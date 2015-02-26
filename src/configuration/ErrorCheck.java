@@ -35,6 +35,7 @@ public class ErrorCheck {
 			"make" + variable + "\\s.*", "set" + variable + "\\s.*", "less\\?"+ twonum, "greater\\?" + twonum, "equal\\?" + twonum};	
 	public boolean validateInput(String in){ 
 		String s = in.trim().toLowerCase();//sanitized input 
+		if(command.equals("home")|command.equals("penup")| command.equals("pendown"))	return true;
 		String command = s.split(" ")[0];
 		if(command.equals("home"))	return true;
 		System.out.println(in);

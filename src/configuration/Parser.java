@@ -3,9 +3,9 @@ package configuration;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import application.CommandFactory;
 import commands.*;
+
 public class Parser {
 	private HashMap<String, String> commandMap;
 	private HashSet<String> userdefined;
@@ -127,6 +127,8 @@ private CommandFactory parseInput(String in) {
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
 		if(com.equals("home"))	return new Home();
+		if(com.equals("pendown"))	return new PenDown();
+		if(com.equals("penup"))		return new PenUp();
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
 		int[] par = new int[2];
@@ -154,7 +156,7 @@ private CommandFactory parseInput(String in) {
 		case "product":		return new Multiply(par[0], par[1]);
 		case "quotient":	return new Divide(par[0] , par[1]);
 		case "remainder":	return new Remainder(par[0], par[1]);
-		//case "#":			
+		//case "#":
 		case "left":		return new Left(par[0]);
 		case "right":		return new Right(par[0]);
 		case "setheading":	return new SetHeading(par[0]);
