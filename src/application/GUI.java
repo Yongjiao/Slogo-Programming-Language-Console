@@ -78,6 +78,7 @@ public class GUI {
 	 * @return Scene
 	 */
 	public Scene initialize(Stage s){
+		System.out.println(" gui initialize");
 		initializeView();
 		initializeTextField();
 		initializeCommandsHistory();
@@ -160,6 +161,7 @@ public class GUI {
 	 * Initializes view
 	 */
 	private void initializeView() {
+		System.out.println(" gui initialize view");
 		myView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
 		myBorders.setCenter(myView);
 	}
@@ -168,6 +170,8 @@ public class GUI {
 	 * Initializes commands history
 	 */
 	private void initializeCommandsHistory() {
+		System.out.println(" gui initialize ch");
+
 		prevCommands = new ListView<String>(myCommandsList);
 		myBorders.setRight(prevCommands);
 	}
@@ -176,6 +180,8 @@ public class GUI {
 	 * Initializes text field for user to enter commands
 	 */
 	private void initializeTextField() {
+		System.out.println(" gui initialize tf");
+
 		// TODO pass in string to parser
 		myErrorCheck = new ErrorCheck();
 		commandsField = new TextField();
@@ -206,7 +212,7 @@ public class GUI {
 	 */
 	private void mouseDown(Button b)
 	{
-		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: #006652;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
+		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: #CC0000;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) ,.5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
 	}
 	
 	private void mouseUp(Button b)
