@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
 import configuration.ErrorCheck;
@@ -126,7 +127,7 @@ public class GUI {
 		langBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override 
             public void changed(ObservableValue<? extends String> ov, String t, String t1) { 
-            	myCurrentBundle = ResourceBundle.getBundle(t1);
+            	myCurrentBundle = ResourceBundle.getBundle("resources.languages." + t1);
             }    
         });
 		mainHBox.getChildren().add(langBox);
@@ -190,7 +191,7 @@ public class GUI {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
-					if(myErrorCheck.validateInput(commandsField.getText())){
+					if(!myErrorCheck.validateInput(commandsField.getText())){
 						myParser.parse(commandsField.getText());
 					}
 					else{
