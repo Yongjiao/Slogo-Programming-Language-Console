@@ -36,6 +36,7 @@ public class ErrorCheck {
 	public boolean validateInput(String in){ 
 		String s = in.trim().toLowerCase();//sanitized input 
 		String command = s.split(" ")[0];
+		if(command.equals("home"))	return true;
 		System.out.println(in);
 		String comKey = lanMap.get(command);
 		if(comKey == null)	return false;
@@ -109,8 +110,10 @@ public class ErrorCheck {
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";
+		String circle = "repeat 180 [ fd 5 rt 2 ]";
+		
 		ErrorCheck example = new ErrorCheck( );
-		System.out.println(example.validateInput(ifl));		
+		System.out.println(example.validateInput(circle));		
 		//System.out.println(example.validateInput(s2));
 		//System.out.println(example.validateInput(s3));
 		//System.out.println(example.validateInputCommands(s4));

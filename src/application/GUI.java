@@ -191,7 +191,7 @@ public class GUI {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
-					if(!myErrorCheck.validateInput(commandsField.getText())){
+					if(myErrorCheck.validateInput(commandsField.getText())){
 						myParser.parse(commandsField.getText());
 					}
 					else{

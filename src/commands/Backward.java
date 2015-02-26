@@ -13,6 +13,6 @@ public class Backward extends Move{
 	}
 	
 	public int execute() {
-		return super.changeLocation(steps);
+		return super.changeLocation(-steps);
 	}
 }
