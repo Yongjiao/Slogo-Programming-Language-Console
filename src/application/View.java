@@ -1,6 +1,16 @@
 package application;
 
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -8,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 /**
  * Creates the view where the lines are drawn and the turtle is displayed.
@@ -54,17 +65,19 @@ public class View extends StackPane{
 		backgroundGC.setFill(DEFAULT_BACKGROUND_COLOR); // default background
 		backgroundGC.fillRect(0, 0, x, y);
 		
-		 //for testing
-		Point2D orig = new Point2D(0, 0);
-		Point2D dest = new Point2D(-1600, -400);	
-		drawLine(orig, dest);
+		myTurtle = new ImageView();
 		
+		 //for testing
+//		Point2D orig = new Point2D(0, 0);
+//		Point2D dest = new Point2D(-1600, -400);	
+//		drawLine(orig, dest);
+//		
 		this.getChildren().addAll(backgroundView, linesView, turtleView);
 		
 		}
 
 	public void initializeTurtle(Image turtle){
-		
+		myTurtle.setImage(turtle);
 		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
 	}
 	
@@ -195,17 +208,37 @@ public class View extends StackPane{
 	 */
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-		myTurtle.setRotate(angle);
+		turtleGC.save();
+		rotate(angle, newLoc.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
+				(newLoc.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		newDest = newLoc;
+    	turtleGC.restore();
 	}
 	
 	public void showTurtle(boolean b){
 		turtleView.setVisible(b);
 	}
 	
-	public void updateTurtleImage(ImageView turtleImage){
-		
+	public void updateTurtleImage(File loc){
+        Image image = new Image("file:///" + loc.getPath());
+		//turtleGC.save();
+        myTurtle.setImage(image);
+//		rotate(60, newDest.getX() + XOFFSET
+//				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+//				+ myTurtle.getImage().getHeight() / 2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	//turtleGC.restore();
 	}
+	
+	private void rotate(double angle, double x, double y) {
+		Rotate r = new Rotate(angle, x, y);
+		turtleGC.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(),
+				r.getTx(), r.getTy());
+	}
+
 
 	/**
 	 * Clears all lines

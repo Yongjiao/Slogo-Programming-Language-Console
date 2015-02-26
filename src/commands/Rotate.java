@@ -27,4 +27,5 @@ public abstract class Rotate extends CommandFactory{
 		myTurtleHandler.setTurtleOrientation(angle);
 		return (int) Math.round(angle);
 	}
+	
 }

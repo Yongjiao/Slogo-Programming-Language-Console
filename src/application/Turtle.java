@@ -98,7 +98,7 @@ public class Turtle {
 	 */
 	public void move(double distance)
 	{
-		myLoc = myLoc.add(distance*Math.cos(Math.toRadians(myOrientation)), distance*Math.sin(Math.toRadians(myOrientation)));
+		myLoc = myLoc.add(distance*Math.sin(Math.toRadians(myOrientation)), distance*Math.cos(Math.toRadians(myOrientation)));
 	}
 	
 	/**

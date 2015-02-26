@@ -16,5 +16,5 @@ public class Less extends Compare{
 	public int execute() {
 		return super.Less(num1, num2);
 	}
-
+	
 }

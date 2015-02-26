@@ -75,13 +75,13 @@ public class TurtleHandler {
 	
 	private void initializeTurtle()
 	{
-	//	Image image = new Image(getClass().getResourceAsStream("file:turtle.png"));
+		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
 	//	this.myView.initializeTurtle(newIm);
 		
 	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
 		
 		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
-		Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
+	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
 	}
 	
@@ -136,12 +136,8 @@ public class TurtleHandler {
 	 */
 	private Point2D getViewTurtleLocation()
 	{
-//		return myView.getTurtleLocation();
-		
-		//DELETE
-		Point2D locNew = myTurtle.getLoc();
-		return locNew;
-		//DELETE
+		return myView.getNewPoint();
+	
 	}
 	
 	/**
@@ -149,6 +145,7 @@ public class TurtleHandler {
 	 */
 	private void setTurtleLocToViewTurtleLoc()
 	{
+		System.out.println("   in  setTurtleLocToViewTurtleLoc  " + this.myTurtle.getLoc().getX() + "  " +this.myTurtle.getLoc().getX());
 		myTurtle.setLocation(getViewTurtleLocation());
 	}
 	
@@ -157,15 +154,20 @@ public class TurtleHandler {
 	 * Updates fields in Turtle accordingly
 	 * @param distance
 	 */
-	public void moveTurtle(int distance){ 
+	public void moveTurtle(int distance){ // WORKS
+		System.out.println("in move");
+
 		setTurtleLocToViewTurtleLoc();
 		Point2D locOrig = myTurtle.getLoc();
+		System.out.println("  in move - setTurtleLocToViewTurtleLoc 1");
 		setTurtleLocToViewTurtleLoc();
 		myTurtle.move(distance);
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
+		//System.out.println("  in move - setTurtleLocToViewTurtleLoc 2");
 		setTurtleLocToViewTurtleLoc();
-		
+
+		this.updateTurtleOnView();
 	}
 	
 	/**
@@ -175,14 +177,16 @@ public class TurtleHandler {
 	 *
 	 * @param newLoc
 	 */
-	public void changeLocationOfTurtle(Point2D newLoc){ 
+	public void changeLocationOfTurtle(Point2D newLoc){ //WORKS
 		setTurtleLocToViewTurtleLoc();
-//>>>>>>> a19726d3bb45e55eee19444acb4fc407bd1255fb
 		Point2D locOrig = myTurtle.getLoc();
 		myTurtle.setLocation(newLoc);
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 		setTurtleLocToViewTurtleLoc();
+		/*		double ang = Math.toDegrees(Math.atan2((locNew.getY()-locOrig.getY()), (locNew.getX()-locOrig.getX())));
+		this.myTurtle.setOrientation(ang);*/
+		this.updateTurtleOnView();
 	}
 	
 	/**
@@ -195,7 +199,6 @@ public class TurtleHandler {
 		
 		if (myTurtle.getPenPos() == 1)
 		{
-			// pass pen to check color
 			this.myView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
@@ -209,6 +212,8 @@ public class TurtleHandler {
 	 * @param deg
 	 */
 	public void rotateTurtle(double deg){
+		System.out.println("in rotate");
+
 		myTurtle.turn(deg);
 		this.updateTurtleOnView();
 	}
@@ -219,6 +224,7 @@ public class TurtleHandler {
 	 * @param newAngle
 	 */
 	public void setTurtleOrientation(double newAngle){
+		System.out.println("in set turtle orientation");
 		myTurtle.setOrientation(newAngle);
 		updateTurtleOnView();
 	}
@@ -245,9 +251,9 @@ public class TurtleHandler {
 	 * If toShow == 0, visibility OFF
 	 * @param toShow
 	 */
-	public void showTurtle(int toShow)
+	public void showTurtle(int toShow) // WORKS
 	{
-		myTurtle.setVisibility(1);
+		myTurtle.setVisibility(toShow);
 		updateTurtleOnView();
 	}
 	
@@ -285,7 +291,7 @@ public class TurtleHandler {
 	 * clears screen
 	 * called if user enters command CLEARSCREEN
 	 */
-	public void clearScreen()
+	public void clearScreen() // WORKS
 	{
 		this.myView.clearScreen();
 	}
@@ -297,6 +303,10 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
+		System.out.print("ori   " + this.myTurtle.getOrientation());
+		System.out.print("   x   " + this.myTurtle.getLoc().getX());
+		System.out.println("   y   " + this.myTurtle.getLoc().getY());
+		
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement

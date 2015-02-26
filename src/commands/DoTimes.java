@@ -24,5 +24,4 @@ public class DoTimes extends Loop{
 	public int execute() {
 		return super.loop(0, numTimes, increment, comms);
 	}
-
 }

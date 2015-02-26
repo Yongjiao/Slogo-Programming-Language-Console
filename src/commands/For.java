@@ -10,18 +10,19 @@ public class For extends Loop{
 	private int end;
 	private int increment;
 	private ArrayList<CommandFactory> comms;
-	
+
 	public For(int a, int b, int i, ArrayList<CommandFactory> c) {
 		start = a;
 		end = b;
 		increment = i;
-		comms = c;
+		comms = new ArrayList(c);
 	}
 	
-	public void setParams(int a, int b, ArrayList<CommandFactory> c) {
+	public void setParams(int a, int b, int c, ArrayList<CommandFactory> d) {
 		start = a;
 		end = b;
-		comms = c;
+		increment = c;
+		comms = d;
 	}
 	
 	public int execute() {
