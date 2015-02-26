@@ -1,9 +1,6 @@
 package configuration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +9,7 @@ import commands.*;
 public class Parser {
 	private HashMap<String, String> commandMap;
 	private HashSet<String> userdefined;
+	private HashMap<String, String> lanMap;
 	private final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
 	private final String com_regix = "\\s\\[(.*?)\\]"; //[command]
@@ -19,7 +17,7 @@ public class Parser {
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
 	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
-	
+
 	private final String[] commands = new String[]{"fd", "forward", "back", "bk", "towards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
 			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sin", "cos", "tan", "atan", "repeat", "dotimes","for",
 			"if","ifelse", "to", "make", "set","less?", "greater?", "equal?"};
@@ -40,13 +38,14 @@ public class Parser {
 
 public void parse(String in){		
 	CommandFactory com =  parseInput(in);
-	//if(com  != null)	com.execute();
+	if(com  != null)	com.execute();
 }
 	
 private CommandFactory parseInput(String in) {
 		String temp = in.trim().toLowerCase();//sanitized input 
 		String[] comArray = temp.split(" ");
-		String com = comArray[0];
+		String comKey = comArray[0];
+		String com = lanMap.get(comKey);
 		String commandRegex = commandMap.get(com);
 		String s = temp.replaceFirst(com, "");		
 		if(userdefined.contains(com)){
@@ -163,12 +162,37 @@ private CommandFactory parseInput(String in) {
 		}	
 		return null;
 	}
-		
+	public void setLanguage(ResourceBundle r){
+		lanMap  = new HashMap<>();
+		HashSet<String> m = (HashSet<String>) r.keySet();	
+		for( String key: m){
+			String value = r.getString(key);
+			String[] val = value.split("\\|");
+	  		//System.out.println(val[0]);
+			for(int i=0; i< val.length; i++){
+				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
+			}
+		}
+
+/*		Enumeration<String> m =  r.getKeys();
+		System.out.println(m);	
+		if(m.hasMoreElements()){
+			String key = m.nextElement();
+			String value = r.getString(key);
+			String[] val = value.split("|");
+			for(int i=0; i< val.length; i++){
+				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
+			}
+		}
+		*/	
+	}
 
 	public Parser(){
 	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
+	    ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
+	    setLanguage(myBundle); //default English 
 		userdefined = new HashSet(Arrays.asList(elements));
-		commandMap = new HashMap(); //what if new commands added
+		commandMap = new HashMap(); 
 		for(int i=0; i < commands.length; i++){
 			commandMap.put(commands[i],regix[i]);			
 		}
@@ -191,10 +215,9 @@ private CommandFactory parseInput(String in) {
 		String set = "set :m [SUM 5 100]";
 		String make = "make :n [% 30 40]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";		
-		System.out.println(set);
-		example.parse(set);
+		System.out.println(forl);
+		example.parse(forl);
 		//set, make, to have not yet been implemented
-
 	}
 
 }
