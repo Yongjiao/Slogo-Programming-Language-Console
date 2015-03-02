@@ -41,6 +41,8 @@ public class GUI {
 	private static final int VIEW_HEIGHT = 700;
 	private static final int VIEW_WIDTH = 900;
 	
+	// Cut down instance variables
+	// Think about seperating classes
 	private TextField commandsField;
 	private ListView<String> prevCommands;
 	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
@@ -190,14 +192,12 @@ public class GUI {
 			@Override
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
-					// TODO: check error
 					if(myErrorCheck.validateInput(commandsField.getText())){
 						myParser.parse(commandsField.getText());
 					}
 					else{
 						System.out.println("error!");
 					}
-					// TODO: if error check is good, pass string to parser
 					myCommandsList.add(commandsField.getText());
 					commandsField.clear();
 				}
