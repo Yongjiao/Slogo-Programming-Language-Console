@@ -3,30 +3,26 @@ package configuration;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import application.CommandFactory;
 import commands.*;
 
-public class Parser {
+public class Parser extends Configuration{
 	private HashMap<String, String> commandMap;
-	private HashSet<String> userdefined;
-	private HashMap<String, String> lanMap;
+	private Validator myErrorCheck;
 	private final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
-	private final String com_regix = "\\s\\[(.*?)\\]"; //[command]
+	private final String com_regex = "\\s\\[(.*?)\\]"; //[command]
 	private final String variable = "\\s(:\\w+)";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
-	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
-
-	private final String[] commands = new String[]{"fd", "forward", "backward", "bk", "settowards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
-			"quotient","remainder", "%", "/","#","left", "lt", "right", "rt", "setheading", "seth", "sine", "cosine", "tangent", "arctangent", "repeat", "dotimes","for",
-			"if","ifelse", "makeuserinstruction", "make", "set","less?", "greater?", "equal?"};
+	private final String boolean_regex = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
 	
-	private final String[] regix = new String[]{ onenum, onenum, onenum,  onenum, twonum,  twonum, twonum, twonum, twonum,  twonum,  twonum, twonum,
-			twonum, twonum, twonum,  twonum, twonum, ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regix, 
-			 "\\s\\["+variable+onenum+"\\s\\]"+com_regix, "\\s\\[" + variable + twonum + onenum + "\\s\\]" + com_regix, boolean_regix + com_regix, 
-			 boolean_regix  + com_regix + com_regix, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regix, variable + "\\s.*", variable + "\\s.*",
-			 twonum,  twonum, twonum};
+	private final String[] regex = new String[]{ onenum, onenum,  twonum, twonum, twonum, twonum,  twonum, twonum,
+			 twonum,  ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regex, 
+			 "\\s\\["+variable+onenum+"\\s\\]"+com_regex, "\\s\\[" + variable + twonum + onenum + "\\s\\]" + com_regex, boolean_regex + com_regex, 
+			 boolean_regex  + com_regex + com_regex, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regex, variable + "\\s.*", variable + "\\s.*",
+			 twonum,  twonum, twonum, twonum};
 
 /*			if(regex.equals(onenum)){				
 				//set parameters CommandFactory.execute(String.valueOf(group(1)));
@@ -35,26 +31,54 @@ public class Parser {
 				//set two parameters and execute CommandFatory.execute(String.valueOf(group(1)), String.valueOf(group(2)))
 			}	
 */			
-
-public void parse(String in){		
-	CommandFactory com =  parseInput(in);
+	
+	public Parser(){
+		myErrorCheck = new Validator(); 
+		initialize();
+		commandMap = initializeCommandMap(commands, regex);
+	}		
+public void parse(String in){	
+	System.out.println(in);
+	CommandFactory com = null;
+	if(myErrorCheck.validateInput(in)){
+		System.out.println("-------------Validation passed-------------");
+		com =  parseInput(in);
+	}
+	else	System.out.println("Throw an error! Invalid input");
 	if(com  != null)	com.execute();
 }
 	
 private CommandFactory parseInput(String in) {
-		String temp = in.trim().toLowerCase();//sanitized input 
-		String[] comArray = temp.split(" ");
-		String comKey = comArray[0];
-		String com = lanMap.get(comKey);
-		String commandRegex = commandMap.get(com);
-		String s = temp.replaceFirst(com, "");		
-		if(userdefined.contains(com)){
-			return parseLoopCommands(s, commandRegex, com);	
+		String s = in.trim().toLowerCase();//sanitized input 
+		String command = s.split(" ")[0];		
+		String comKey = lanMap.get(command); 
+		String temp = command;
+		if(comKey == null){ //traverse to find the correct ComKey, has to have one since already validated
+			for(String k: lanMap.keySet()){
+				if(command.matches(k)){
+					comKey = lanMap.get(k);
+					temp = k;
+				}				
+			}
+		}
+		String commandRegex = commandMap.get(comKey);		
+		s = s.replaceFirst(temp, ""); //use keyRegex to remove it
+		if(userdefined.contains(comKey)){
+			return parseLoopCommands(s, commandRegex, comKey);	
 		}
 		else{
-			return parseBasicCommand(s, commandRegex, com); //parse babsic command
+			return parseBasicCommand(s, commandRegex, comKey); //parse babsic command
 		}		
 	}
+/*			
+String temp = in.trim().toLowerCase();//sanitized input 
+String[] comArray = temp.split(" ");
+String comKey = comArray[0];
+String com = lanMap.get(comKey);
+System.out.println("com is "+com);
+String commandRegex = commandMap.get(com);
+String s = temp.replaceFirst(com, "");		
+*/
 	private CommandFactory parseLoopCommands(String in, String regex, String com){
 		int var = Integer.MAX_VALUE;
 		ArrayList<CommandFactory> list = new ArrayList();
@@ -97,7 +121,7 @@ private CommandFactory parseInput(String in) {
 				int expr = 0;
 				while(m.find()){
 				 expr = parseInput(m.group(1)).execute(); //boolean expression
-				 System.out.println("expression evaluation = " + expr);
+				 System.out.println("Boolean expression evaluates to " + expr);
 					if(expr == 1)
 						for(int i = 2; i <= m.groupCount(); i++){ //m.group(2) is if and m.group(3) is elses 
 							list.add(parseInput(m.group(i)));
@@ -126,9 +150,10 @@ private CommandFactory parseInput(String in) {
 		return null;
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		if(com.equals("home"))	return new Home();
+		if(com.equals("home"))	    return new Home();
 		if(com.equals("pendown"))	return new PenDown();
 		if(com.equals("penup"))		return new PenUp();
+		if(com.equals("clearscreen"))	return new ClearScreen();
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
 		int[] par = new int[2];
@@ -136,75 +161,46 @@ private CommandFactory parseInput(String in) {
 			for(int i = 1; i <= m.groupCount(); i++){
 				par[i - 1]= Integer.parseInt(m.group(i));	
 			}
-			return executeBasic(com, par);
-		}
 			System.out.println("Basic Command is " + com);
 			System.out.println("Command "+com+" parameters is " + par[0] + " "+ par[1]);
-			
+			return createBasicCommandObject(com, par);
+		}	
 		return null;
 	}
 	
 
-	private CommandFactory executeBasic(String com, int[] par){
+	private CommandFactory createBasicCommandObject(String com, int[] par){
 	switch(com){
-		case "forward": 	return new Forward(par[0]);
+		case "forward": 		{
+			System.out.println("are you right");
+			return new Forward(par[0]);
+		}
 		case "backward":		return new Backward(par[0]);
 		case "settowards":		return new GoTowardsLoc(5, 4);
-		case "setxy":		return new GoToLocation(par[0], par[1]);
-		case "sum":			return new Add(par[0], par[1]);
-		case "difference":	return new Subtract(par[0], par[1]);
-		case "product":		return new Multiply(par[0], par[1]);
-		case "quotient":	return new Divide(par[0] , par[1]);
-		case "remainder":	return new Remainder(par[0], par[1]);
+		case "setxy":			return new GoToLocation(par[0], par[1]);
+		case "sum":				return new Add(par[0], par[1]);
+		case "difference":		return new Subtract(par[0], par[1]);
+		case "product":			return new Multiply(par[0], par[1]);
+		case "quotient":		return new Divide(par[0] , par[1]);
+		case "remainder":		return new Remainder(par[0], par[1]);
 		//case "#":
-		case "left":		return new Left(par[0]);
-		case "right":		return new Right(par[0]);
-		case "setheading":	return new SetHeading(par[0]);
+		case "left":			return new Left(par[0]);
+		case "right":			return new Right(par[0]);
+		case "setheading":		return new SetHeading(par[0]);
 		case "sine":			return new Sin(par[0]);
 		case "cosine":			return new Cos(par[0]);
 		case "tangent":			return new Tan(par[0]);
 		case "arctangent":		return new ATan(par[0]);
-		case "less?":		return new Less(par[0], par[1]);
-		case "greater?":	return new Greater(par[0], par[1]);
-		case "equal?":		return new Equal(par[0], par[1]);		
+		case "lessthan":		return new Less(par[0], par[1]);
+		case "greaterthan":		return new Greater(par[0], par[1]);
+		case "equal":			return new Equal(par[0], par[1]);		
 		}
 		return null;	
 	}
-
-	public void setLanguage(ResourceBundle r){
-		lanMap  = new HashMap<>();
-		HashSet<String> m = (HashSet<String>) r.keySet();	
-		for( String key: m){
-			String value = r.getString(key);
-			String[] val = value.split("\\|");
-	  		//System.out.println(val[0]);
-			for(int i=0; i< val.length; i++){
-				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
-			}
-		}
-
-/*		Enumeration<String> m =  r.getKeys();
-		System.out.println(m);	
-		if(m.hasMoreElements()){
-			String key = m.nextElement();
-			String value = r.getString(key);
-			String[] val = value.split("|");
-			for(int i=0; i< val.length; i++){
-				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
-			}
-		}
-		*/	
-	}
-
-	public Parser(){
-	    String elements[] = { "ifelse", "if", "dotimes", "repeat", "for" };
-	    ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
-	    setLanguage(myBundle); //default English 
-		userdefined = new HashSet(Arrays.asList(elements));
-		commandMap = new HashMap(); 
-		for(int i=0; i < commands.length; i++){
-			commandMap.put(commands[i],regix[i]);			
-		}
+	
+	public void changeLanguage(ResourceBundle r){
+		myErrorCheck.setLanguage(r);
+		setLanguage(r); //if use super.language, will initialize the lanMap in superclass.
 	}
 	
 	public static void main(String[] args) {
@@ -218,15 +214,21 @@ private CommandFactory parseInput(String in) {
 		String s7= "setheading 30";
 		String repeat = "repeat 10 [ fd 50 ]";
 		String dotimes = "dotimes [ :name 200 ] [ rt :name ]";
-		String forl = "for [ :v 0 10 1 ] [ lt 50 ]"; 
-		String ifl = "if less? 1 5 [back 30]";
-		String ifelse = "ifelse equal? 2 6 [rt 50] [lt 100]";
-		String set = "set :m [SUM 5 100]";
-		String make = "make :n [% 30 40]";//change to set
+		String forl = "for [ :v 0 10 1 ] [ sum :v 5 ]"; 
+		String ifl = "if less? 1 5 [ back 30 ]";
+		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
+		String set = "set :m [ SUM 5 100 ]";
+		String make = "make :n [ % 30 40 ]";//change to set
 		String to = "to line [ :va ] [ back 40 ]";		
-		System.out.println(forl);
-		example.parse(forl);
+		//System.out.println(repeat);
+		example.parse(ifl);
 		//set, make, to have not yet been implemented
+	}
+
+	@Override
+	protected void setSyntaxRegex() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

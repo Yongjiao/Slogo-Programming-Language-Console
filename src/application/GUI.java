@@ -3,8 +3,6 @@ package application;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ResourceBundle;
-
-import configuration.ErrorCheck;
 import configuration.Parser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -54,7 +52,6 @@ public class GUI {
 	private HBox mainHBox;
 	private Parser myParser;
 	private File myTurtleFilePath;
-	private ErrorCheck myErrorCheck;
 	
 	private final ColorPicker penColor = new ColorPicker();
 	private final ColorPicker backgroundColor = new ColorPicker();
@@ -128,6 +125,7 @@ public class GUI {
             @Override 
             public void changed(ObservableValue<? extends String> ov, String t, String t1) { 
             	myCurrentBundle = ResourceBundle.getBundle("resources.languages." + t1);
+            	myParser.changeLanguage(myCurrentBundle);
             }    
         });
 		mainHBox.getChildren().add(langBox);
@@ -184,22 +182,16 @@ public class GUI {
 		System.out.println(" gui initialize tf");
 
 		// TODO pass in string to parser
-		myErrorCheck = new ErrorCheck();
 		commandsField = new TextField();
 		commandsField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
-					if(myErrorCheck.validateInput(commandsField.getText())){
-						myParser.parse(commandsField.getText());
-					}
-					else{
-						System.out.println("error!");
-					}
+					myParser.parse(commandsField.getText());
 					// TODO: if error check is good, pass string to parser
 					myCommandsList.add(commandsField.getText());
-					commandsField.clear();
+					commandsField.clear();		
 				}
 			}
 		});
