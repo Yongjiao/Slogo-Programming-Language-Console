@@ -1,5 +1,5 @@
 package application;
-	
+
 import configuration.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -46,9 +46,7 @@ public class Main extends Application {
 //			myHandler.moveTurtle(900);
 //			myHandler.clearScreen();
 //			System.out.println("END END END");
-
 			
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

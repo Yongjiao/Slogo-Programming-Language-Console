@@ -3,8 +3,9 @@ package configuration;
 import java.io.FileInputStream;
 import java.util.*;
 import java.util.regex.*;
-/*
- * cant combine the error check with parsing cuz the two requires different regex 	
+/**
+ * Validates input
+ * @author Yongjiao Yu
  *
  */
 public class Validator extends Configuration{
@@ -55,7 +56,7 @@ public class Validator extends Configuration{
 		}
 		System.out.println(comKey);	
 		if(comKey != null){	
-			if(s.equals("home")|s.equals("penup")| s.equals("pendown")|s.equals("clearscreen"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
+			if(comKey.equals("home")|comKey.equals("penup")| comKey.equals("pendown")|comKey.equals("clearscreen"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
 			String commandRegex = commandMap.get(comKey);		
 			//System.out.println("The command Regex is for " + comKey + " is " + commandRegex +".");
 			//System.out.println("The head to be removed is " + temp);

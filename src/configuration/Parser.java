@@ -7,6 +7,11 @@ import java.util.regex.Pattern;
 import application.CommandFactory;
 import commands.*;
 
+/**
+ * Parsing 
+ * @author Yongjiao Yu
+ *
+ */
 public class Parser extends Configuration{
 	private HashMap<String, String> commandMap;
 	private Validator myErrorCheck;
@@ -150,9 +155,9 @@ String s = temp.replaceFirst(com, "");
 		return null;
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		if(com.equals("home"))	    return new Home();
-		if(com.equals("pendown"))	return new PenDown();
-		if(com.equals("penup"))		return new PenUp();
+		if(com.equals("home"))	    	return new Home();
+		if(com.equals("pendown"))		return new PenDown();
+		if(com.equals("penup"))			return new PenUp();
 		if(com.equals("clearscreen"))	return new ClearScreen();
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
