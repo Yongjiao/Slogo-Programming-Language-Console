@@ -8,7 +8,7 @@ import application.CommandFactory;
 import commands.*;
 
 /**
- * Parsing 
+ * Parses and initiates execution of commands
  * @author Yongjiao Yu
  *
  */
@@ -17,7 +17,7 @@ public class Parser extends Configuration{
 	private Validator myErrorCheck;
 	private final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
-	private final String com_regex = "\\s\\[(.*?)\\]"; //[command]
+	private final String com_regex = "\\s\\[(.*?)\\s\\]"; //[command]
 	private final String variable = "\\s(:\\w+)";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
@@ -49,7 +49,7 @@ public void parse(String in){
 		System.out.println("-------------Validation passed-------------");
 		com =  parseInput(in);
 	}
-	else	System.out.println("Throw an error! Invalid input");
+	else	System.out.println("Throw an error! Invalid input format");
 	if(com  != null)	com.execute();
 }
 	

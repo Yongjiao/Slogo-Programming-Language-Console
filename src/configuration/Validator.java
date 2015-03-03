@@ -10,10 +10,9 @@ import java.util.regex.*;
  */
 public class Validator extends Configuration{
 	private HashMap<String, String> commandMap;
-	//private String comKey = null; 
 	private final String onenum = "\\s\\d+"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s\\d+\\s\\d+";	//two parameter
-	private final String com_regix = "\\s\\[(.*?)\\]"; //[command]
+	private final String com_regix = "\\s\\[(.*?)\\s\\]"; //[command]
 	private final String variable = "\\s:\\w+";
 	private final String constant = "-?\\d+.?\\d*";
 	private final String commandname = "\\w+[?]?";	
@@ -58,8 +57,6 @@ public class Validator extends Configuration{
 		if(comKey != null){	
 			if(comKey.equals("home")|comKey.equals("penup")| comKey.equals("pendown")|comKey.equals("clearscreen"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
 			String commandRegex = commandMap.get(comKey);		
-			//System.out.println("The command Regex is for " + comKey + " is " + commandRegex +".");
-			//System.out.println("The head to be removed is " + temp);
 			s = s.replaceFirst(temp, ""); //use keyRegex to remove it
 			if(userdefined.contains(comKey)){
 				return validateLoop(commandRegex, s);					
@@ -67,13 +64,11 @@ public class Validator extends Configuration{
 			else{
 				return validateBasicCommands(commandRegex, s);
 			}
-		}		
-		
+		}			
 		return false;
 	}		
 	public boolean validateBasicCommands(String regex, String in){
-			//call parser here.	
-		System.out.println(regex + " matches?" +in);
+			System.out.println(regex + " matches?" +in);
 			return in.matches(regex);
 	}
 	public boolean validateLoop(String regex, String in){ //loop have multiple commands
@@ -87,7 +82,7 @@ public class Validator extends Configuration{
 		}
 		return false;
 	}
-//	private String matchAnyRegex(String command) 
+//private String matchAnyRegex(String command) 
 	
 	public static void main(String[] args) {
 		//ErrorCheck example = new ErrorCheck();
@@ -120,7 +115,7 @@ public class Validator extends Configuration{
 		//System.out.println(example.validateInput(s6));
 		//System.out.println(example.validateInput(s7));
 		//System.out.println(example.validateInput(repeat));		
-		//System.out.println(example.validateInput(dotimes));
+		System.out.println(example.validateInput(dotimes));
 		//System.out.println(example.validateInput(forl));
 		//System.out.println(example.validateInput(make));
 		//System.out.println(example.validateInput(to));

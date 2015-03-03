@@ -2,7 +2,7 @@ package configuration;
 
 import java.util.*;
 /**
- * input validation and parsing
+ * super class for input validation and parsing
  * @author Yongjiao Yu
  *
  */
