@@ -11,6 +11,8 @@ public class IfConditions extends CommandFactory{
 			for(int i = 0; i < commIf.size(); i++) {
 				return commIf.get(i).execute();
 			}
+		} else if (commElse == null) {
+			return -1;
 		} else {
 			for(int i = 0; i < commElse.size(); i++) {
 				return commElse.get(i).execute();

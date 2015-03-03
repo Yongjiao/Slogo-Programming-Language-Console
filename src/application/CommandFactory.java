@@ -8,7 +8,7 @@ import commands.Executable;
 public class CommandFactory implements Executable{
 
 	protected static TurtleHandler myTurtleHandler;
-	public Map<String, Integer> variables = new HashMap<String, Integer>();
+	private Map<String, Integer> variables = new HashMap<String, Integer>();
 	
 	public CommandFactory(){
 		
