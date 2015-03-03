@@ -56,7 +56,7 @@ public class Validator extends Configuration{
 		}
 		System.out.println(comKey);	
 		if(comKey != null){	
-			if(comKey.matches("(home|penup|pendown|clearscreen|showturtle|hideturtle|ispendown|isshowing|heading|xcoordinate|ycoordinate "))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
+			if(comKey.matches("(home|penup|pendown|clearscreen|showturtle|hideturtle|ispendown|isshowing|heading|xcoordinate|ycoordinate)"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
 			String commandRegex = commandMap.get(comKey);		
 			//System.out.println("The command Regex is for " + comKey + " is " + commandRegex +".");
 			//System.out.println("The head to be removed is " + temp);

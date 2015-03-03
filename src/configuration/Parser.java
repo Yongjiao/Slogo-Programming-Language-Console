@@ -29,14 +29,6 @@ public class Parser extends Configuration{
 			 boolean_regex  + com_regex + com_regex, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regex, variable + "\\s.*", variable + "\\s.*",
 			 twonum,  twonum, twonum, twonum};
 
-/*			if(regex.equals(onenum)){				
-				//set parameters CommandFactory.execute(String.valueOf(group(1)));
-			}			
-			else if(regex.equals(twonum)){	
-				//set two parameters and execute CommandFatory.execute(String.valueOf(group(1)), String.valueOf(group(2)))
-			}	
-*/			
-	
 	public Parser(){
 		myErrorCheck = new Validator(); 
 		initialize();
@@ -75,15 +67,7 @@ private CommandFactory parseInput(String in) {
 			return parseBasicCommand(s, commandRegex, comKey); //parse babsic command
 		}		
 	}
-/*			
-String temp = in.trim().toLowerCase();//sanitized input 
-String[] comArray = temp.split(" ");
-String comKey = comArray[0];
-String com = lanMap.get(comKey);
-System.out.println("com is "+com);
-String commandRegex = commandMap.get(com);
-String s = temp.replaceFirst(com, "");		
-*/
+
 	private CommandFactory parseLoopCommands(String in, String regex, String com){
 		int var = Integer.MAX_VALUE;
 		ArrayList<CommandFactory> list = new ArrayList();
@@ -155,19 +139,8 @@ String s = temp.replaceFirst(com, "");
 		return null;
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		switch(com){
-		case "home":		    	return new Home();
-		case "pendown":  			return new PenDown();
-		case "penup": 				return new PenUp();
-		case "clearscreen":			return new ClearScreen();
-		case "showturtle":			return new ShowTurtle();
-		case "hideturtle":			return new HideTurtle();
-		case "ispendown":			return new IsPenDown();
-		case "isshowing":			return new IsShowing();
-		case "heading":				return new Heading();
-		case "xcoordinate":			return new XCor();
-		case "ycoordinate":			return new YCor();
-		}
+		CommandFactory c = createCommands(com);
+		if( c != null)		return c;
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
 		int[] par = new int[2];
@@ -177,13 +150,28 @@ String s = temp.replaceFirst(com, "");
 			}
 			System.out.println("Basic Command is " + com);
 			System.out.println("Command "+com+" parameters is " + par[0] + " "+ par[1]);
-			return createBasicCommandObject(com, par);
+			return createBasicCommands(com, par);
 		}	
 		return null;
 	}
-	
-
-	private CommandFactory createBasicCommandObject(String com, int[] par){
+	//no parameters
+	private CommandFactory createCommands(String com){
+		switch(com){
+			case "home":		    	return new Home();
+			case "pendown":  			return new PenDown();
+			case "penup": 				return new PenUp();
+			case "clearscreen":			return new ClearScreen();
+			case "showturtle":			return new ShowTurtle();
+			case "hideturtle":			return new HideTurtle();
+			case "ispendown":			return new Down();
+			case "isshowing":			return new Showing();
+			case "heading":				return new Heading();
+			case "xcoordinate":			return new XCor();
+			case "ycoordinate":			return new YCor();
+		}
+		return null;
+	}
+	private CommandFactory createBasicCommands(String com, int[] par){
 	switch(com){
 		case "forward": 		return new Forward(par[0]);
 		case "backward":		return new Backward(par[0]);
