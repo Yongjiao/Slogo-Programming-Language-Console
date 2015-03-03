@@ -45,7 +45,7 @@ public class Validator extends Configuration{
 		System.out.println( "Input is " + in);		
 		String comKey = lanMap.get(command); 
 		String temp = command;
-		if(comKey == null){ //traverse instead  command with //? or //* etc
+		if(comKey == null){ // for those with regex as Key in lanMap. traverse instead  command with //? or //* etc
 			for(String k: lanMap.keySet()){
 				if(command.matches(k)){
 					comKey = lanMap.get(k);
@@ -55,7 +55,7 @@ public class Validator extends Configuration{
 		}
 		System.out.println(comKey);	
 		if(comKey != null){	
-			if(comKey.equals("home")|comKey.equals("penup")| comKey.equals("pendown")|comKey.equals("clearscreen"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
+			if(comKey.matches("(home|penup|pendown|clearscreen|showturtle|hideturtle|ispendown|isshowing|heading|xcoordinate|ycoordinate)"))	return true; //those wont be in commandMap, or the regex as empty string in commandMap
 			String commandRegex = commandMap.get(comKey);		
 			s = s.replaceFirst(temp, ""); //use keyRegex to remove it
 			if(userdefined.contains(comKey)){
