@@ -155,10 +155,19 @@ String s = temp.replaceFirst(com, "");
 		return null;
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		if(com.equals("home"))	    	return new Home();
-		if(com.equals("pendown"))		return new PenDown();
-		if(com.equals("penup"))			return new PenUp();
-		if(com.equals("clearscreen"))	return new ClearScreen();
+		switch(com){
+		case "home":		    	return new Home();
+		case "pendown":  			return new PenDown();
+		case "penup": 				return new PenUp();
+		case "clearscreen":			return new ClearScreen();
+		case "showturtle":			return new ShowTurtle();
+		case "hideturtle":			return new HideTurtle();
+		case "ispendown":			return new IsPenDown();
+		case "isshowing":			return new IsShowing();
+		case "heading":				return new Heading();
+		case "xcoordinate":			return new XCor();
+		case "ycoordinate":			return new YCor();
+		}
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
 		int[] par = new int[2];
@@ -176,10 +185,7 @@ String s = temp.replaceFirst(com, "");
 
 	private CommandFactory createBasicCommandObject(String com, int[] par){
 	switch(com){
-		case "forward": 		{
-			System.out.println("are you right");
-			return new Forward(par[0]);
-		}
+		case "forward": 		return new Forward(par[0]);
 		case "backward":		return new Backward(par[0]);
 		case "settowards":		return new GoTowardsLoc(5, 4);
 		case "setxy":			return new GoToLocation(par[0], par[1]);
