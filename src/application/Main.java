@@ -16,6 +16,7 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
+			
 			System.out.println("made new th");
 			
 			stage.setTitle("SLogo");
