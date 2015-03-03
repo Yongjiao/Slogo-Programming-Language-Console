@@ -7,10 +7,11 @@ import application.CommandFactory;
 public class Loop extends CommandFactory {
 
 	public int loop(int a, int b, int c, ArrayList<CommandFactory> commands) {
-		for (int i = 0; i < b; i += c) {
-			commands.get(i).execute();
+		for (int i = a; i < b; i += c) {
+			for (int j = 0; j < commands.size(); j++)
+				commands.get(j).execute();
 		}
-		return commands.get(commands.size()).execute();
+		return commands.get(commands.size() - 1).execute();
 	}
 
 }

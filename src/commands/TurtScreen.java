@@ -4,28 +4,33 @@ import javafx.geometry.Point2D;
 import application.CommandFactory;
 import application.TurtleHandler;
 
-public abstract class Move extends CommandFactory {
+public class TurtScreen extends CommandFactory{
+	
 	TurtleHandler myTurtleHandler;
-
-	public Move() {
-		System.out.println("   in move class - getting super handler");
+	
+	public TurtScreen() {
 		myTurtleHandler = super.getTurtleHandler();
-		System.out.println("   in move class -  handler = " + myTurtleHandler.toString());
-
 	}
-
-	public int changeLocation(int steps) {
-		myTurtleHandler.moveTurtle(steps);
-		return steps;
-	}
-
-	public int GoToLocation(int x, int y) {
+	
+	public int clear() {
 		Point2D origLoc = myTurtleHandler.getTurtleLocation();
-		Point2D destination = new Point2D(x, y);
+		Point2D destination = new Point2D(0, 0);
 		double dx = destination.getX() - origLoc.getX();
 		double dy = destination.getY() - origLoc.getY();
 		double distance = Math.sqrt((dx * dx) + (dy * dy));
 		myTurtleHandler.changeLocationOfTurtle(destination);
-		return (int) distance;
+		myTurtleHandler.clearScreen();
+		return (int) Math.round(distance);
 	}
+	
+	public int show() {
+		myTurtleHandler.showTurtle(1);
+		return myTurtleHandler.isVisible();
+	}
+	
+	public int hide() {
+		myTurtleHandler.showTurtle(0);
+		return myTurtleHandler.isVisible();
+	}
+
 }
