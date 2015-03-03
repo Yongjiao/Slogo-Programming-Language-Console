@@ -1,5 +1,5 @@
 package application;
-	
+
 import configuration.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -12,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			Parser myParser = new Parser();
+			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
@@ -46,9 +46,7 @@ public class Main extends Application {
 //			myHandler.moveTurtle(900);
 //			myHandler.clearScreen();
 //			System.out.println("END END END");
-
 			
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
