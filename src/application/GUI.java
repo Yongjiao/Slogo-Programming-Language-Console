@@ -198,6 +198,7 @@ public class GUI {
 		Button buttonChoice2 = new Button("The Undivided", new ImageView(image2));
 		this.setButtonProperties(buttonChoice2, 190, 40, image2);
 		
+		//http://www.clker.com/cliparts/g/T/A/e/x/p/tribal-turtle-md.png
 		Image image3 = new Image(getClass().getResourceAsStream("/resources/tribalTurtle.png"), 35*3, 40*3, false, false);
 		Button buttonChoice3 = new Button("The Tatooed", new ImageView(image3));
 		this.setButtonProperties(buttonChoice3, 335, 40, image3);
