@@ -14,8 +14,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -172,16 +176,33 @@ public class GUI {
 	 */
 	private void chooseTurtleImageMenu()
 	{
-		Button btn_ok = new Button("test");
+		Button btnFile = new Button("Choose from file");
+		btnFile.setLayoutX(200);
+		btnFile.setLayoutY(10);
+		Image imageOk = new Image(getClass().getResourceAsStream("/resources/anotherTurtle.png"));
+		Button button3 = new Button("", new ImageView(imageOk));
+		button3.setLayoutX(40);
+		button3.setLayoutY(40);
+	//	Image option1 = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
 		Stage dialogStage = new Stage();
+		Group root = new Group();
+		dialogStage.setHeight(500);
+		dialogStage.setWidth(500);
+	//	Canvas images = new Canvas(500, 500);
+	//	GraphicsContext imagesGC = images.getGraphicsContext2D();
+		dialogStage.setScene(new Scene(root));
 		dialogStage.initModality(Modality.WINDOW_MODAL);
-		dialogStage.setScene(new Scene(VBoxBuilder.create().
+	/*	dialogStage.setScene(new Scene(VBoxBuilder.create().
 		    children(new Text("Choose turtle image:\n"), btn_ok).
-		    alignment(Pos.CENTER).padding(new Insets(55)).build()));
+		    alignment(Pos.CENTER).padding(new Insets(55)).build()));*/
 		dialogStage.show();
 		
-		btn_ok.setOnAction(e -> this.chooseTurtleImage());
+		btnFile.setOnAction(e -> this.chooseTurtleImage());
+		button3.setOnAction(e -> myView.updateTurtleImage(imageOk));
 
+		root.getChildren().addAll(new Text("Choose turtle image:\n"), btnFile, button3);
+
+	//	imagesGC.drawImage(option1, 20, 20);
 	}
 	
 

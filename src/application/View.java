@@ -224,6 +224,17 @@ public class View extends StackPane{
     	turtleGC.restore();
 	}
 	
+	public void updateTurtleImage(Image image)
+	{
+		myTurtle.setImage(image);
+		rotate(currentRotation, newDest.getX() + XOFFSET
+				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+				+ myTurtle.getImage().getHeight() / 2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	turtleGC.restore();
+	}
+	
 	private void rotate(double angle, double x, double y) {
 		currentRotation = angle;
 		Rotate r = new Rotate(angle, x, y);

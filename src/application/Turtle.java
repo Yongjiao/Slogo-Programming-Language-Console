@@ -107,7 +107,7 @@ public class Turtle {
 	 */
 	public void updateMyImage(Image newImage)
 	{
-		this.myImage.setImage(newImage);;
+		this.myImage.setImage(newImage);
 	}
 	
 	/**
