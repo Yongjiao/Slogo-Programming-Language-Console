@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -18,7 +20,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -116,7 +120,7 @@ public class GUI {
 			b.setOnMouseReleased(e -> mouseUp(b));
 			mainHBox.getChildren().add(b);
 		}	
-		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImage());
+		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImageMenu());
 		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
 		myButtons[INFO_BUTTON].setOnMouseClicked(e -> launchInfo());
 		
@@ -162,6 +166,23 @@ public class GUI {
 	}
 	
 	
+	/**
+	 * adding menu list of images that user can choose from for the turtle
+	 * @author Anika
+	 */
+	private void chooseTurtleImageMenu()
+	{
+		Button btn_ok = new Button("test");
+		Stage dialogStage = new Stage();
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.setScene(new Scene(VBoxBuilder.create().
+		    children(new Text("Choose turtle image:\n"), btn_ok).
+		    alignment(Pos.CENTER).padding(new Insets(55)).build()));
+		dialogStage.show();
+		
+		btn_ok.setOnAction(e -> this.chooseTurtleImage());
+
+	}
 	
 
 	/**
