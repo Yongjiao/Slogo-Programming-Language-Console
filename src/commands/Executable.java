@@ -6,5 +6,5 @@ package commands;
  *
  */
 public interface Executable {
-	public int execute();
+	public double execute();
 }

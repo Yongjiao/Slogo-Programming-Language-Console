@@ -1,22 +1,17 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Multiply extends Arithmetic{
 
-	private int multiplier;
-	private int multiplicand;
-	
-	public Multiply(int a, int b){
-		multiplier = a;
-		multiplicand = b;
+	public Multiply(ArrayList<Object> p){
+		params = p;
 	}
 	
-	public void setParams(int a, int b) {
-		multiplier = a;
-		multiplicand = b;
-	}
-	
-	public int execute() {
-		return super.mult(multiplier, multiplicand);
+	public double execute() {
+		double num1 = (Integer) params.get(params.size() - 2);
+		double num2 = (Integer) params.get(params.size() - 1);
+		return num1 * num2;
 	}
 
 }

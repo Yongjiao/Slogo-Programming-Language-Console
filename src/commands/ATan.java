@@ -1,18 +1,17 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class ATan extends Calculate {
 
 	private int angle;
 	
 	public ATan(int a) {
-		angle = a;
-	}
-	
-	public void setParams(int a) {
-		angle = a;
+		ArrayList<Integer> l = super.getParams();
+		angle = l.get(l.size() - 1);
 	}
 	
 	public int execute() {
-		return (int) Math.round(super.atan(angle));
+		return (int) Math.round(Math.atan(angle));
 	}
 }

@@ -1,20 +1,17 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Divide extends Arithmetic{
 
-	private int dividend;
-	private int divisor;
-	
-	public Divide(int a, int b){
-		dividend = a; divisor = b;
+	public Divide(ArrayList<Object> p){
+		params = p;
 	}
 	
-	public void setParams(int a, int b) {
-		dividend = a; divisor = b;
-	}
-	
-	public int execute() {
-		return super.mult(dividend, 1/divisor);
+	public double execute() {
+		double num1 = (Integer) params.get(params.size() - 2);
+		double num2 = (Integer) params.get(params.size() - 1);
+		return num1 / num2;
 	}
 
 }

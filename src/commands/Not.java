@@ -1,15 +1,18 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Not extends Compare{
 	
-	private int test;
-	
-	public Not(int t) {
-		test = t;
+	public Not(ArrayList<Object> p) {
+		params = p;
 	}
 	
-	public int execute() {
-		return super.NOT(test);
+	public double execute() {
+		double t = (Integer) params.get(params.size() - 1);
+		if(t == 0)
+			return 1;
+		return 0;
 	}
 
 }

@@ -1,12 +1,15 @@
 package commands;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Point2D;
 import application.CommandFactory;
 import application.TurtleHandler;
 
 public abstract class Move extends CommandFactory {
-	TurtleHandler myTurtleHandler;
-
+	protected TurtleHandler myTurtleHandler;
+	protected ArrayList<Object> params;
+	
 	public Move() {
 		System.out.println("   in move class - getting super handler");
 		myTurtleHandler = super.getTurtleHandler();
@@ -14,7 +17,7 @@ public abstract class Move extends CommandFactory {
 
 	}
 
-	public int changeLocation(int steps) {
+	public double changeLocation(double steps) {
 		myTurtleHandler.moveTurtle(steps);
 		return steps;
 	}

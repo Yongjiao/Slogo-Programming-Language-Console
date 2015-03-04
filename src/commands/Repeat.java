@@ -11,12 +11,12 @@ public class Repeat extends Loop{
 	
 	public Repeat(int b, ArrayList<CommandFactory> c) {
 		numTimes = b;
-		comms = c;
+		comms = new ArrayList<CommandFactory>(c);;
 	}
 	
 	public void setParams(int b, ArrayList<CommandFactory> c) {
 		numTimes = b;
-		comms = c;
+		comms = new ArrayList<CommandFactory>(c);;
 	}
 	
 	public int execute(){

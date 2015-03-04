@@ -1,19 +1,18 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Log extends Calculate{
 
 	private int num;
 	
 	public Log(int a) {
-		num = a;
+		ArrayList<Integer> l = super.getParams();
+		num = l.get(l.size() - 1);
 	}
 	
-	public void setParams(int a) {
-		num = a;
-	}
-	
-	public void execut() {
-		super.log(num);
+	public int execut() {
+		return (int) Math.round(Math.log(num));
 	}
 
 }

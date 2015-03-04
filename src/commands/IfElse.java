@@ -12,8 +12,8 @@ public class IfElse extends IfConditions{
 	
 	public IfElse(int e, ArrayList<CommandFactory> ifs, ArrayList<CommandFactory> elses){
 		BE = e;
-		ifComms = new ArrayList(ifs);
-		elseComms = new ArrayList(elses);
+		ifComms = new ArrayList<CommandFactory>(ifs);
+		elseComms = new ArrayList<CommandFactory>(elses);
 	}
 	
 	public int execute() {

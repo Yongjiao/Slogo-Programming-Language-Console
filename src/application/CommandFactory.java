@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,9 +10,15 @@ public class CommandFactory implements Executable{
 
 	protected static TurtleHandler myTurtleHandler;
 	private Map<String, Integer> variables = new HashMap<String, Integer>();
+	private ArrayList<Object> parameters = new ArrayList<Object>();
+	private ArrayList<Integer> VarLoc = new ArrayList<Integer>();
 	
 	public CommandFactory(){
-		
+//		parameters.add(50);
+//		parameters.add(150);
+//		parameters.add(250);
+//		parameters.add(350);
+//		parameters.add(450);
 	}
 	
 	public void setTurtleHandler(TurtleHandler t){
@@ -35,10 +42,9 @@ public class CommandFactory implements Executable{
 	// each command has common method - used for loops and if statements
 	// that pass to IF / LOOP commands an arraylist of command objects
 	// @author anika
-	public int execute() {
-		return 0;
+	public double execute() {
+		return 0.0;
 		// TODO make sure each command has common method - used for loops
-		
 	}
 	
 	public void putInMap(String str, Integer i) {
@@ -53,11 +59,22 @@ public class CommandFactory implements Executable{
 		return -1;
 	}
 	
-	public boolean checkLocalVars(int input) {
-		if(input == 2147483647) {
-			return true;
+	public void restore(ArrayList<Integer> l, String var) {
+		for(int i : l) {
+			parameters.set(i, var);
 		}
-		return false;
+	}
+	
+	public ArrayList<Object> getParams() {
+		return parameters;
+	}
+	
+	public void setParams(ArrayList<Object> p) {
+		parameters = p;
+	}
+	
+	public ArrayList<Integer> getVarLoc() {
+		return VarLoc;
 	}
 	
 }

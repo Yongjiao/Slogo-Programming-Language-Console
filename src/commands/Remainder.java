@@ -1,22 +1,18 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Remainder extends Arithmetic{
 
-	private int dividend;
-	private int divisor;
-	
-	public Remainder(int a, int b){
-		dividend = a;
-		divisor = b;
+	public Remainder(ArrayList<Object> p){
+		params = p;
 	}
 	
-	public void setParams(int a, int b) {
-		dividend = a;
-		divisor = b;
-	}
-	
-	public int execute() {
-		return super.remainder(dividend, divisor);
+	public double execute() {
+		double num1 = (Integer) params.get(params.size() - 2);
+		double num2 = (Integer) params.get(params.size() - 1);
+		double div = num1/num2;
+		return num1 - (num2 * div);
 	}
 	
 }

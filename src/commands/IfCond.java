@@ -11,7 +11,7 @@ public class IfCond extends IfConditions{
 
 	public IfCond(int e, ArrayList<CommandFactory> ifs){
 		BE = e;
-		comms = new ArrayList(ifs);
+		comms = new ArrayList<CommandFactory>(ifs);
 	}
 	
 	public int execute() {

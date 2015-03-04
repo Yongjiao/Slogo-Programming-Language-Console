@@ -11,12 +11,12 @@ public class DoTimes extends Loop{
 	
 	public DoTimes(int m, ArrayList<CommandFactory> c) {
 		numTimes = m;
-		comms = c;
+		comms = new ArrayList<CommandFactory>(c);;
 	}
 	
 	public void setParams(int m, ArrayList<CommandFactory> c) {
 		numTimes = m;
-		comms = c;
+		comms = new ArrayList<CommandFactory>(c);;
 	}
 	
 	public int execute() {
