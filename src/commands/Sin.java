@@ -11,7 +11,6 @@ public class Sin extends Calculate{
 	
 	public double execute() {
 		double angle = (Integer) params.get(params.size() - 1);
-//		System.out.println(Math.sin(angle));
 		return Math.sin(angle);
 	}
 	
