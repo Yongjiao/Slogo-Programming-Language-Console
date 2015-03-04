@@ -257,11 +257,19 @@ public class View extends StackPane{
 	}
 	
 	
+	/**
+	 * @author Anika
+	 * @param info
+	 */
 	public void setTurtleInfo(String info)
 	{
 		this.myTurtleInfo = info;
 	}
 	
+	/**
+	 * @author Anika
+	 * @return
+	 */
 	public String getTurtleInfo()
 	{
 		return myTurtleInfo;

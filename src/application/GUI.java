@@ -149,7 +149,9 @@ public class GUI {
 		}
 	}
 	
-	
+	/**
+	 * @author Anika
+	 */
 	private void launchInfo()
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
