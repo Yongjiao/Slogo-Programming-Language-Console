@@ -84,10 +84,7 @@ public class TurtleHandler {
 	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
 				
-		myTurtle.setLocation(new Point2D(0, 0));
-		myTurtle.setOrientation(0);
-		myTurtle.setPenPos(1);
-		myTurtle.setVisibility(1);
+		setInfo();
 				
 	}
 	
