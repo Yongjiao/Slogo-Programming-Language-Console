@@ -107,7 +107,7 @@ public class Turtle {
 	 */
 	public void updateMyImage(Image newImage)
 	{
-		this.myImage.setImage(newImage);;
+		this.myImage.setImage(newImage);
 	}
 	
 	/**
@@ -125,6 +125,11 @@ public class Turtle {
 	public int getPenPos()
 	{
 		return myPen.getStatus();
+	}
+	
+	public String getPenPosString()
+	{
+		return myPen.getStatusString();
 	}
 	
 	/**
