@@ -170,39 +170,52 @@ public class GUI {
 	}
 	
 	
+	private void setButtonProperties(Button but, int xLoc, int yLoc, Image actionImage)
+	{
+		but.setLayoutX(xLoc);
+		but.setLayoutY(yLoc);
+		but.setOnAction(e -> myView.updateTurtleImage(actionImage));
+		but.setContentDisplay(ContentDisplay.TOP);
+	}
+	
+	
 	/**
 	 * adding menu list of images that user can choose from for the turtle
 	 * @author Anika
 	 */
 	private void chooseTurtleImageMenu()
 	{
+		
 		Button btnFile = new Button("Choose from file");
-		btnFile.setLayoutX(200);
-		btnFile.setLayoutY(10);
-		Image imageOk = new Image(getClass().getResourceAsStream("/resources/anotherTurtle.png"));
-		Button button3 = new Button("", new ImageView(imageOk));
-		button3.setLayoutX(40);
-		button3.setLayoutY(40);
-	//	Image option1 = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
+		this.setButtonProperties(btnFile, 200, 400, null);
+
+		Image image1 = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
+		Button buttonChoice1 = new Button("The Hawaiian", new ImageView(image1));
+		this.setButtonProperties(buttonChoice1, 40, 40, image1);
+		
+		
+		Image image2 = new Image(getClass().getResourceAsStream("/resources/anotherTurtle.png"), 35*3, 40*3, false, false);
+		Button buttonChoice2 = new Button("The Undivided", new ImageView(image2));
+		this.setButtonProperties(buttonChoice2, 190, 40, image2);
+		
+		Image image3 = new Image(getClass().getResourceAsStream("/resources/tribalTurtle.png"), 35*3, 40*3, false, false);
+		Button buttonChoice3 = new Button("The Tatooed", new ImageView(image3));
+		this.setButtonProperties(buttonChoice3, 335, 40, image3);
+		
 		Stage dialogStage = new Stage();
 		Group root = new Group();
 		dialogStage.setHeight(500);
 		dialogStage.setWidth(500);
-	//	Canvas images = new Canvas(500, 500);
-	//	GraphicsContext imagesGC = images.getGraphicsContext2D();
 		dialogStage.setScene(new Scene(root));
 		dialogStage.initModality(Modality.WINDOW_MODAL);
-	/*	dialogStage.setScene(new Scene(VBoxBuilder.create().
-		    children(new Text("Choose turtle image:\n"), btn_ok).
-		    alignment(Pos.CENTER).padding(new Insets(55)).build()));*/
+		dialogStage.setTitle("Choose your turtle:");
 		dialogStage.show();
 		
+		
 		btnFile.setOnAction(e -> this.chooseTurtleImage());
-		button3.setOnAction(e -> myView.updateTurtleImage(imageOk));
 
-		root.getChildren().addAll(new Text("Choose turtle image:\n"), btnFile, button3);
+		root.getChildren().addAll(new Text("Choose turtle image:\n"), btnFile, buttonChoice1, buttonChoice2, buttonChoice3);
 
-	//	imagesGC.drawImage(option1, 20, 20);
 	}
 	
 
