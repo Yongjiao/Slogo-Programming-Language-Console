@@ -157,7 +157,7 @@ public class TurtleHandler {
 	 * Updates fields in Turtle accordingly
 	 * @param distance
 	 */
-	public void moveTurtle(int distance){ // WORKS
+	public void moveTurtle(double distance){ // WORKS
 		System.out.println("in move");
 
 		setTurtleLocToViewTurtleLoc();
