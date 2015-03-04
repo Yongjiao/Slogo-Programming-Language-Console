@@ -83,6 +83,12 @@ public class TurtleHandler {
 		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
 	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
 				this.myView.initializeTurtle(image);
+				
+		myTurtle.setLocation(new Point2D(0, 0));
+		myTurtle.setOrientation(0);
+		myTurtle.setPenPos(1);
+		myTurtle.setVisibility(1);
+				
 	}
 	
 	
@@ -303,9 +309,8 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
-		System.out.print("ori   " + this.myTurtle.getOrientation());
-		System.out.print("   x   " + this.myTurtle.getLoc().getX());
-		System.out.println("   y   " + this.myTurtle.getLoc().getY());
+		// update turtle info to View
+		setInfo();
 		
 		if (this.isVisible() == 1)
 		{
@@ -326,4 +331,15 @@ public class TurtleHandler {
 		return "This is a turtle handler";
 	}
 
+	
+	public void setInfo()
+	{
+		this.myView.setTurtleInfo("Position: [" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+				+ " \n" + "Heading: " + this.getTurtleOrientation()
+				+ " \n" + "Pen Status: " + this.getPenStatus()
+				);
+	}
+	
+	
+	
 }

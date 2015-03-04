@@ -30,6 +30,7 @@ public class View extends StackPane{
 	private GraphicsContext backgroundGC, turtleGC, linesGC;
 	private ImageView myTurtle;
 	private double currentRotation;
+	private String myTurtleInfo;
 	
 	/**
 	 * Constructor for the view
@@ -253,5 +254,16 @@ public class View extends StackPane{
 	public void setBackgroundColor(Color c) {
 		backgroundGC.setFill(c);
 		backgroundGC.fillRect(0, 0, backgroundView.getWidth(), backgroundView.getHeight());
+	}
+	
+	
+	public void setTurtleInfo(String info)
+	{
+		this.myTurtleInfo = info;
+	}
+	
+	public String getTurtleInfo()
+	{
+		return myTurtleInfo;
 	}
 }

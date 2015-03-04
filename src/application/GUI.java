@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ResourceBundle;
+
 import configuration.Parser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -27,10 +29,11 @@ import javafx.stage.Stage;
 
 public class GUI {
 	
-	private static final int NUM_BUTTONS = 3;
+	private static final int NUM_BUTTONS = 4;
 	private static final int HELP_BUTTON = 0;
 	private static final int TURTLE_BUTTON = 1;
 	//private static final int OPEN_FILE_BUTTON = 2;
+	private static final int INFO_BUTTON = 3;
 	
 	private static final int HBOX_SPACING = 20;
 	private static final int STAGE_HEIGHT = 800;
@@ -58,7 +61,7 @@ public class GUI {
 	
 	public GUI(){
 		myLabels = ResourceBundle.getBundle("buttons");		
-		myButtonNames = new String[] {"help", "turtleimage", "openfile"};
+		myButtonNames = new String[] {"help", "turtleimage", "openfile", "turtleinfo"};
 		myLanguageNames.addAll(new String[] {"English", "Chinese", "French", "German", "Italian", "Japanese", 
 				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
@@ -115,6 +118,7 @@ public class GUI {
 		}	
 		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImage());
 		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
+		myButtons[INFO_BUTTON].setOnMouseClicked(e -> launchInfo());
 		
 		// Creates languages buttons
 		ComboBox<String> langBox = new ComboBox<String>();
@@ -144,6 +148,19 @@ public class GUI {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	private void launchInfo()
+	{
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Turtle Info");
+		alert.setHeaderText("Current turtle info:");
+		alert.setContentText(this.myView.getTurtleInfo());
+		alert.showAndWait();
+	}
+	
+	
+	
 
 	/**
 	 * Prompts user to choose an image file.
