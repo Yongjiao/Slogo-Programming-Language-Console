@@ -127,6 +127,11 @@ public class Turtle {
 		return myPen.getStatus();
 	}
 	
+	public String getPenPosString()
+	{
+		return myPen.getStatusString();
+	}
+	
 	/**
 	 * @return turtle's visible image
 	 */

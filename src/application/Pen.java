@@ -37,6 +37,12 @@ public class Pen {
 		return myStatus;
 	}
 	
+	public String getStatusString()
+	{
+		if (myStatus==0) {return "UP";}
+		else {return "DOWN";}
+	}
+	
 	public void setColor (Color newColor)
 	{
 		myColor = newColor;

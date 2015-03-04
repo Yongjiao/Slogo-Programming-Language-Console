@@ -288,8 +288,7 @@ public class TurtleHandler {
 		return myTurtle.getPenPos();
 	}
 	
-
-
+	
 	/**
 	 * clears screen
 	 * called if user enters command CLEARSCREEN
@@ -331,9 +330,9 @@ public class TurtleHandler {
 	
 	public void setInfo()
 	{
-		this.myView.setTurtleInfo("Position: [" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
-				+ " \n" + "Heading: " + this.getTurtleOrientation()
-				+ " \n" + "Pen Status: " + this.getPenStatus()
+		this.myView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
+				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
 				);
 	}
 	
