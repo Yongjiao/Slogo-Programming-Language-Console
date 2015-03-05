@@ -1,4 +1,4 @@
-package configuration;
+package configuration.NestedParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

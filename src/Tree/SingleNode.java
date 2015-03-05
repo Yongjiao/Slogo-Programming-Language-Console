@@ -2,7 +2,7 @@ package Tree;
 
 import java.util.ArrayList;
 
-import configuration.Match;
+import configuration.NestedParser.Match;
 import application.CommandFactory;
 
 /**

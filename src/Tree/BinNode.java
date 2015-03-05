@@ -1,8 +1,9 @@
 package Tree;
 
 import java.util.*;
+
 import application.CommandFactory;
-import configuration.Match;
+import configuration.NestedParser.Match;
 
 /**
  * Represents a binary node with two children/operator with two parameters node

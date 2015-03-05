@@ -1,4 +1,4 @@
-package configuration;
+package configuration.NestedParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
