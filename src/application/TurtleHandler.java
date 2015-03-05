@@ -319,6 +319,13 @@ public class TurtleHandler {
 	}
 	
 	
+	public void setBackground(int index)
+	{
+		//TODO change background view
+	}
+	
+	
+	
 	/**
 	 * Contains information of turtle regarding
 	 * - x location
