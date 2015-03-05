@@ -323,7 +323,8 @@ public class TurtleHandler {
 	{
 		//TODO change background view
 	}
-	
+	 
+
 	
 	
 	/**
