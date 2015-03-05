@@ -188,7 +188,7 @@ public class GUI {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
-					myParser.parse(commandsField.getText());
+					myParser.validateAndParse(commandsField.getText());
 					// TODO: if error check is good, pass string to parser
 					myCommandsList.add(commandsField.getText());
 					commandsField.clear();		

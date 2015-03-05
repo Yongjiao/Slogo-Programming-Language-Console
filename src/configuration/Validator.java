@@ -12,10 +12,10 @@ public class Validator extends Configuration{
 	private HashMap<String, String> commandMap;
 	private final String onenum = "\\s\\d+"; //one parameter only exactly one space between parameters
 	private final String twonum = "\\s\\d+\\s\\d+";	//two parameter
-	private final String com_regix = "\\s\\[(.*?)\\s\\]"; //[command]
-	private final String variable = "\\s:\\w+";
-	private final String constant = "-?\\d+.?\\d*";
-	private final String commandname = "\\w+[?]?";	
+	private final String com_regix = " " + liststart + groupstart + command  + groupend + "+ " +listend; //"\\s\\[(.*?)\\s\\]"; //[command]
+	private final String variable = "\\s:\\w+"; //" " + syntaxMap.get("Variable")
+	private final String constant = "-?\\d+.?\\d*"; //syntaxMap.get("Constant")
+	private final String commandname = "\\w+[?]?";	//syntaxMap.get("Command");
 	private final String boolean_regix = "\\s(less\\?\\s\\d+\\s\\d+|greater\\?\\s\\d+\\s\\d+|equal\\?\\s\\d+\\s\\d+)";
 	
 /*	private final String[] command = new String[]{"fd", "forward", "backward", "bk", "settowards", "tw", "setxy", "sum", "+", "difference","-", "product","*",
@@ -33,7 +33,7 @@ public class Validator extends Configuration{
 			 twonum,  ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regix, 
 			 "\\s\\["+variable+onenum+"\\s\\]"+com_regix, "\\s\\[" + variable + twonum + onenum + "\\s\\]" + com_regix, boolean_regix + com_regix, 
 			 boolean_regix  + com_regix + com_regix, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regix, variable + "\\s.*", variable + "\\s.*",
-			 twonum,  twonum, twonum, twonum};
+			 twonum,  twonum, twonum, twonum, variable + onenum, twonum};
 	
 	public Validator(){
 		initialize();

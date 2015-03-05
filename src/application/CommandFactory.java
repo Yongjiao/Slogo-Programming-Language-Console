@@ -16,18 +16,13 @@ public class CommandFactory implements Executable{
 	
 	public void setTurtleHandler(TurtleHandler t){
 		System.out.println("   in cf class - setting super handler");
-
 		myTurtleHandler = t;
 		System.out.println("   in cf class - t handler = " + t.toString());
 		System.out.println("   in cf class -  th handler = " + myTurtleHandler.toString());
-
-
-	}
-	
+	}	
 	// Anika - called by commands subclasses
 	protected TurtleHandler getTurtleHandler(){
 		System.out.println("   in cf class - getting super handler = " + myTurtleHandler.toString());
-
 		return myTurtleHandler;
 	}
 
@@ -38,7 +33,6 @@ public class CommandFactory implements Executable{
 	public int execute() {
 		return 0;
 		// TODO make sure each command has common method - used for loops
-		
 	}
 	
 	public void putInMap(String str, Integer i) {
@@ -54,10 +48,9 @@ public class CommandFactory implements Executable{
 	}
 	
 	public boolean checkLocalVars(int input) {
-		if(input == 2147483647) {
+		if(input == Integer.MAX_VALUE) {
 			return true;
 		}
 		return false;
 	}
-	
 }
