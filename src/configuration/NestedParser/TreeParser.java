@@ -12,14 +12,13 @@ import Tree.*;
  * @author Yongjiao Yu
  *
  */
-public class Parserr {
+public class TreeParser {
 	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;	
 	private HashSet<String> oneParComs;
 	private HashSet<String> twoParComs;
 	private List<Entry<String, Pattern>> patterns; 
-	private Queue<String> tokens;
 	
-	public Parserr() throws IOException{
+	public TreeParser() throws IOException{
 		initializeSyntax();		
 		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
@@ -47,9 +46,16 @@ public class Parserr {
 	
 	public void parse(String s) throws ParserError{
 		String[] str = s.split(" ");
-		makeCommandQueue(str);
-		Node expRoot = parse(tokens);
-		expRoot.printTree();
+		Queue<String> tokens = makeCommandQueue(str);
+		ArrayList<Node> roots = new ArrayList<Node>();
+		while(!tokens.isEmpty()){
+			Node expRoot = parse(tokens);
+			roots.add(expRoot);
+			expRoot.printTree();
+			System.out.println();
+		}
+		//expRoot.getValue(); put inside loop
+		
 		//CommandFactory com = expRoot.getValue();
 		//com.execute();
 	}
@@ -79,24 +85,25 @@ public class Parserr {
 			double val = Double.parseDouble(token);
 			return new ConstNode(val);
 		}
-		else
-			throw new ParserError("unExpected Token, Invalid Format!");
+		else		 
+			throw new ParserError("unexpected Token, Invalid Format!");
 	}
 		
 	
-	private void makeCommandQueue(String[] s) {
-		tokens = new LinkedList<String>();
+	private Queue<String> makeCommandQueue(String[] s) {
+		Queue<String> qu = new LinkedList<String>();
 		for(int i =0; i < s.length; i++){
-			 tokens.add(s[i]);
+			 qu.add(s[i]);
 		}
+		return qu;
 	}
 
 	public static void main(String[] args) throws IOException, ParserError {
 		// TODO Auto-generated method stub
-		String fd = "fd sum sum 20 sum 10 30 100";
-		String sum = "sum sum sum sum 20 30 50 100 200";
-		Parserr example = new Parserr(); 
-		example.parse(sum);	
+		String fd = "fd sum sum 20 sum 10 30 100 / 30 10";
+		String sum = "sum sum sum sum 20 30 50 100 200 * 50 50";
+		TreeParser example = new TreeParser(); 
+		example.parse(fd);	
 	}
 	
 }

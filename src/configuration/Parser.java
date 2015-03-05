@@ -15,8 +15,7 @@ import commands.*;
 public class Parser extends Configuration{
 	private HashMap<String, String> commandMap;
 	private Validator myErrorCheck;
-	private HashMap<String, Parser> myParsers;
-	
+	private HashMap<String, Parser> myParsers;	
 	
 	protected final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters	
 	protected final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
@@ -30,12 +29,14 @@ public class Parser extends Configuration{
 			 twonum,  ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regex, 
 			 "\\s\\["+variable+onenum+"\\s\\]"+com_regex, "\\s\\[" + variable + twonum + onenum + "\\s\\]" + com_regex, boolean_regex + com_regex, 
 			 boolean_regex  + com_regex + com_regex, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regex, variable + "\\s.*", variable + "\\s.*",
-			 twonum,  twonum, twonum, twonum, twonum};
-
+			 twonum,  twonum, twonum, twonum, variable + onenum, twonum};
+	
+	
 	public Parser(){
 		myErrorCheck = new Validator(); 
 		initialize();
-		initializeParsers();		
+		//initializeParsers();	
+		System.out.println(regex.length + "" + commands.length);
 		commandMap = initializeCommandMap(commands, regex);
 	}	
 	private void initializeParsers(){
@@ -160,65 +161,21 @@ private CommandFactory parseInput(String in) {
 		return null;
 	}
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		CommandFactory c = createCommands(com);
+		CommandFactory c = CommandMaker.makeNoParmsCommands(com);
 		if( c != null)		return c;
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
-		int[] par = new int[2];
+		ArrayList<Object> par = new ArrayList<>();
 		while(m.find()){
 			for(int i = 1; i <= m.groupCount(); i++){
-				par[i - 1]= Integer.parseInt(m.group(i));	
+				par.add(Double.parseDouble(m.group(i)));	
 			}
 			System.out.println("Basic Command is " + com);
-			System.out.println("Command "+com+" parameters is " + par[0] + " "+ par[1]);
-			return createBasicCommands(com, par);
+			System.out.println("Command "+com+" parameters is " + par.get(0) + " "+ par.get(par.size()));
+			return CommandMaker.makeBasicCommands(com, par);
 		}	
 		return null;
 	}
-	//no parameters
-	private CommandFactory createCommands(String com){
-		switch(com){
-			case "home":		    	return new Home();
-			case "pendown":  			return new PenDown();
-			case "penup": 				return new PenUp();
-			case "clearscreen":			return new ClearScreen();
-			case "showturtle":			return new ShowTurtle();
-			case "hideturtle":			return new HideTurtle();
-			case "ispendown":			return new Down();
-			case "isshowing":			return new Showing();
-			case "heading":				return new Heading();
-			case "xcoordinate":			return new XCor();
-			case "ycoordinate":			return new YCor();			
-		}
-		return null;
-	}
-	private CommandFactory createBasicCommands(String com, int[] par){
-	switch(com){
-		case "forward": 		return new Forward(par[0]);
-		case "backward":		return new Backward(par[0]);
-		case "settowards":		return new GoTowardsLoc(par[0], par[1]);
-		case "setposition":		return new GoToLocation(par[0], par[1]);
-		case "sum":				return new Add(par[0], par[1]);
-		case "difference":		return new Subtract(par[0], par[1]);
-		case "product":			return new Multiply(par[0], par[1]);
-		case "quotient":		return new Divide(par[0] , par[1]);
-		case "remainder":		return new Remainder(par[0], par[1]);
-		//case "#":
-		case "left":			return new Left(par[0]);
-		case "right":			return new Right(par[0]);
-		case "setheading":		return new SetHeading(par[0]);
-		case "sine":			return new Sin(par[0]);
-		case "cosine":			return new Cos(par[0]);
-		case "tangent":			return new Tan(par[0]);
-		case "arctangent":		return new ATan(par[0]);
-		case "lessthan":		return new Less(par[0], par[1]);
-		case "greaterthan":		return new Greater(par[0], par[1]);
-		case "equal":			return new Equal(par[0], par[1]);
-		case "notequal":		return new NotEq(par[0], par[1]);
-		}
-		return null;	
-	}
-	
 	public void changeLanguage(ResourceBundle r){
 		myErrorCheck.setLanguage(r);
 		setLanguage(r); //if use super.language, will initialize the lanMap in superclass.

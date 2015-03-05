@@ -16,13 +16,9 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-//<<<<<<< HEAD
-			
-//=======
 			CommandFactory c = new CommandFactory();
 			c.setTurtleHandler(myHandler);
-//>>>>>>> ea7e94554f12737d0fe270e580c7d9ddf8ad73ca
-			System.out.println("made new th");
+			System.out.println("made new the");
 
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -2,6 +2,7 @@ package Tree;
 
 import java.util.ArrayList;
 
+import configuration.CommandMaker;
 import configuration.NestedParser.Match;
 import application.CommandFactory;
 
@@ -26,7 +27,7 @@ public class SingleNode extends Node{
 		ArrayList<Object> parList = new ArrayList<Object>();
 		double chi = child.getValue();
 		parList.add(chi);
-		CommandFactory com =  Match.makeCommands(command, parList);
+		CommandFactory com =  CommandMaker.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	

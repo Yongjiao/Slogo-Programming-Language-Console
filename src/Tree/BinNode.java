@@ -3,7 +3,7 @@ package Tree;
 import java.util.*;
 
 import application.CommandFactory;
-import configuration.NestedParser.Match;
+import configuration.CommandMaker;
 
 /**
  * Represents a binary node with two children/operator with two parameters node
@@ -16,7 +16,6 @@ public class BinNode extends Node{
 	private String command;
 	private Node left;
 	private Node right;
-
 	
 	public BinNode(String s, Node l, Node r){
 		command = new String(s);
@@ -30,7 +29,7 @@ public class BinNode extends Node{
 		ArrayList<Object> parList = new ArrayList<Object>();
 		parList.add(left.getValue());
 		parList.add(right.getValue());
-		CommandFactory com = Match.makeCommands(command, parList);
+		CommandFactory com = CommandMaker.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	

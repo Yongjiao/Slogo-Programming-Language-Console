@@ -19,7 +19,7 @@ import Tree.Node;
 
 /**
  * A utility class for convenience of Parsing
- * @author Yongjiao
+ * @author Yongjiao Yu
  *
  */
 public class Match {
@@ -33,8 +33,7 @@ public class Match {
                     }
                 }
                 return null;
-    }
-    
+    }   
     public static List<Entry<String, Pattern>> makePatterns (String syntax) {
         ResourceBundle resources = ResourceBundle.getBundle(syntax);
         List<Entry<String, Pattern>> patterns = new ArrayList<>();
@@ -43,7 +42,6 @@ public class Match {
             String key = iter.nextElement();
             String regex = resources.getString(key);
             patterns.add(new SimpleEntry<String, Pattern>(key,
-                         // THIS IS THE KEY LINE
                          Pattern.compile(regex, Pattern.CASE_INSENSITIVE)));
         }
         return patterns;
@@ -59,32 +57,5 @@ public class Match {
    		br.close();
    		return set;
    	}
-   	public static CommandFactory makeCommands(String com, ArrayList<Object> parList){
-   		CommandFactory comFactory;
-   		switch(com){
-   				case "forward": 		return new Forward(parList);
-   				case "backward":		return new Backward(parList);
-   				case "settowards":		return new GoTowardsLoc(parList);
-   				case "setposition":		return new GoToLocation(parList);
-   				case "sum":				return new Add(parList);
-   				case "difference":		return new Subtract(parList);
-   				case "product":			return new Multiply(parList));
-   				case "quotient":		return new Divide(parList);
-   				case "remainder":		return new Remainder(parList);
-   				//case "#":
-   				case "left":			return new Left(parList);
-   				case "right":			return new Right(parList);
-   				case "setheading":		return new SetHeading(parList);
-   				case "sine":			return new Sin(parList);
-   				case "cosine":			return new Cos(parList);
-   				case "tangent":			return new Tan(parList);
-   				case "arctangent":		return new ATan(parList);
-   				case "lessthan":		return new Less(parList);
-   				case "greaterthan":		return new Greater(parList);
-   				case "equal":			return new Equal(parList);
-   				case "notequal":		return new NotEq(parList);
-   				}
-   				return null;	
-   	}
-   	
+
 }
