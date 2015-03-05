@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  * Back-end turtle
  * Keeps track of turtle's data
  * Changes to data made through TurtleHandler
- * @author anika
+ * @author Anika
  *
  */
 public class Turtle {
