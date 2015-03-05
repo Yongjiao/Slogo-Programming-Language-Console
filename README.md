@@ -2,8 +2,7 @@
 A development environment that helps users write SLogo programs.
 
   Note on 02/25
-  - Richard:  in all CommandFactory classes, plz change execute() return type to int, and add a HashMap to handle variables 
-  - Tobefixed: CommandFactory.execute() not working
+
   - when parsing If and Ifelse, only constructing IfCond class. 
   - Tobeadded: mutiple commands in command list[ ];
 
@@ -15,7 +14,7 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 20+
+Hours worked: 40+
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
@@ -66,14 +65,6 @@ public boolean checkSingleCommand(AL input)
 ...
 
 ```
-Monday Dicussion: 
-Foorloop Class:
-![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/forloop_class.jpeg)
-Language Chang class:
-![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/language_change.jpeg)
-Loop_handling:
-![alt tag](https://github.com/duke-compsci308-spring2015/slogo_team16/blob/master/Diagrams/loop_handling.jpeg)
-
 
 
 

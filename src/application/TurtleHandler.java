@@ -73,16 +73,16 @@ public class TurtleHandler {
 		this.initializeTurtle();
 	}
 	
+	/**
+	 * initializes turtle with image
+	 * calls setInfoParamsOfTurtle() to set initial info 
+	 */
 	private void initializeTurtle()
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
-	//	this.myView.initializeTurtle(newIm);
-		
-	//	Image image = new Image("/images/turtle.jpg", 350, 0, true, true);
-		
-		  //      ImageView imageView = new ImageView(new Image(("/images/frog.png")));
-	//	Image image = new Image("/slogo_team16/src/application/images/frog.png", 100, 0, false, false);
-				this.myView.initializeTurtle(image);
+		this.myView.initializeTurtle(image);
+		setInfoParamsOfTurtle();
+				
 	}
 	
 	
@@ -154,7 +154,7 @@ public class TurtleHandler {
 	 * Updates fields in Turtle accordingly
 	 * @param distance
 	 */
-	public void moveTurtle(int distance){ // WORKS
+	public void moveTurtle(double distance){ // WORKS
 		System.out.println("in move");
 
 		setTurtleLocToViewTurtleLoc();
@@ -285,8 +285,7 @@ public class TurtleHandler {
 		return myTurtle.getPenPos();
 	}
 	
-
-
+	
 	/**
 	 * clears screen
 	 * called if user enters command CLEARSCREEN
@@ -303,9 +302,8 @@ public class TurtleHandler {
 	 */
 	public void updateTurtleOnView()
 	{
-		System.out.print("ori   " + this.myTurtle.getOrientation());
-		System.out.print("   x   " + this.myTurtle.getLoc().getX());
-		System.out.println("   y   " + this.myTurtle.getLoc().getY());
+		// update turtle info to View
+		setInfoParamsOfTurtle();
 		
 		if (this.isVisible() == 1)
 		{
@@ -320,10 +318,29 @@ public class TurtleHandler {
 		}
 	}
 	
-	//DEBUGGING
-	public String toString()
+	
+	public void setBackground(int index)
 	{
-		return "This is a turtle handler";
+		//TODO change background view
 	}
+	 
 
+	
+	
+	/**
+	 * Contains information of turtle regarding
+	 * - x location
+	 * - y location
+	 * - orientation
+	 * - pen status
+	 * 
+	 * Used to display status of turtle to user from GUI
+	 */
+	public void setInfoParamsOfTurtle()
+	{
+		this.myView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
+				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
+				);
+	}	
 }

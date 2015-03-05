@@ -30,6 +30,7 @@ public class View extends StackPane{
 	private GraphicsContext backgroundGC, turtleGC, linesGC;
 	private ImageView myTurtle;
 	private double currentRotation;
+	private String myTurtleInfo;
 	
 	/**
 	 * Constructor for the view
@@ -223,6 +224,17 @@ public class View extends StackPane{
     	turtleGC.restore();
 	}
 	
+	public void updateTurtleImage(Image image)
+	{
+		myTurtle.setImage(image);
+		rotate(currentRotation, newDest.getX() + XOFFSET
+				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
+				+ myTurtle.getImage().getHeight() / 2)*-1);
+        turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	turtleGC.restore();
+	}
+	
 	private void rotate(double angle, double x, double y) {
 		currentRotation = angle;
 		Rotate r = new Rotate(angle, x, y);
@@ -253,5 +265,24 @@ public class View extends StackPane{
 	public void setBackgroundColor(Color c) {
 		backgroundGC.setFill(c);
 		backgroundGC.fillRect(0, 0, backgroundView.getWidth(), backgroundView.getHeight());
+	}
+	
+	
+	/**
+	 * @author Anika
+	 * @param info
+	 */
+	public void setTurtleInfo(String info)
+	{
+		this.myTurtleInfo = info;
+	}
+	
+	/**
+	 * @author Anika
+	 * @return
+	 */
+	public String getTurtleInfo()
+	{
+		return myTurtleInfo;
 	}
 }
