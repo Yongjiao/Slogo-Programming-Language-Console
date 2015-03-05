@@ -1,4 +1,4 @@
-package application;
+package gui;
 
 import java.io.File;
 import javafx.geometry.Point2D;
@@ -17,7 +17,7 @@ import javafx.scene.transform.Rotate;
  *
  */
 
-public class View extends StackPane{
+public class ViewCopy extends StackPane{
 	
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	private static final Color DEFAULT_PEN_COLOR = Color.BLACK;
@@ -36,7 +36,7 @@ public class View extends StackPane{
 	 * @param x width of canvas
 	 * @param y height of canvas
 	 */
-	public View(int x, int y){
+	public ViewCopy(int x, int y){
 		
 		backgroundView = new Canvas(x, y);
 		turtleView = new Canvas(x, y);

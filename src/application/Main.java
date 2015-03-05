@@ -1,5 +1,6 @@
 package application;
 	
+import gui.GUI;
 import configuration.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -15,7 +16,7 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
-			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
+			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
 			CommandFactory c = new CommandFactory();
 			c.setTurtleHandler(myHandler);
 			System.out.println("made new th");

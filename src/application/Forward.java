@@ -8,7 +8,7 @@ public class Forward extends Move{
 	
 	public void execute(int i){
 		super.forward(i);
-		
+
 	}
 	
 }
