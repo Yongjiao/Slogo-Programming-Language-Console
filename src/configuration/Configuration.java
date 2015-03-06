@@ -1,6 +1,8 @@
 package configuration;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.regex.Pattern;
 /**
  * super class for input validation and parsing
  * @author Yongjiao Yu
@@ -11,7 +13,8 @@ public abstract class Configuration {
 	protected String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
 	protected HashMap<String, String> lanMap;
 	protected HashSet<String> userdefined;
-
+	protected List<Entry<String, Pattern>> patterns; 
+	
 	protected String onenum; //one parameter only exactly one space between parameters
 	protected String twonum;	//two parameter
 	protected String com_regix;//[command]
@@ -59,6 +62,7 @@ public abstract class Configuration {
 		groupend = b.getString("GroupEnd");
 		
 	}	
+	
 	protected HashMap<String, String> initializeCommandMap(String[] commands, String[] regex){
 		HashMap<String, String > commandMap = new HashMap(); 
 		for(int i=0; i < commands.length; i++){
@@ -66,5 +70,21 @@ public abstract class Configuration {
 		}
 		return commandMap;
 	}
-	abstract protected void setSyntaxRegex();
+	protected Queue<String> toCommandQueue(String str) {
+		String[] s = str.split(" ");
+		Queue<String> qu = new LinkedList<String>();
+		for(int i =0; i < s.length; i++){
+			qu.add(s[i]);
+		}
+		return qu;
+	}	
+	protected void skip(Queue<String> qu){
+		qu.poll();
+	}
+	protected boolean isEnd(Queue<String> qu){
+		return qu.isEmpty();
+	}
+	protected boolean isListEnd(String s){
+		return s.matches(listend);
+	}
 }

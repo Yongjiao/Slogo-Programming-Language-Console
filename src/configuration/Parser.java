@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import application.CommandFactory;
 import commands.*;
+import configuration.NestedParser.ParserError;
+import configuration.NestedParser.TreeParser;
 
 /**
  * Parses and initiates execution of commands
@@ -15,9 +17,8 @@ import commands.*;
 public class Parser extends Configuration{
 	private HashMap<String, String> commandMap;
 	private Validator myErrorCheck;
-	private HashMap<String, Parser> myParsers;
-	
-	
+	private HashMap<String, Parser> myParsers;	
+//simplify Parser's regex by inheritance, no need for regex for basic commands	
 	protected final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters	
 	protected final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
 	protected final String com_regex = "\\s\\[(.*?)\\s\\]"; //[command]
@@ -30,17 +31,19 @@ public class Parser extends Configuration{
 			 twonum,  ".*",onenum, onenum, onenum, onenum, onenum, onenum, onenum, onenum +com_regex, 
 			 "\\s\\["+variable+onenum+"\\s\\]"+com_regex, "\\s\\[" + variable + twonum + onenum + "\\s\\]" + com_regex, boolean_regex + com_regex, 
 			 boolean_regex  + com_regex + com_regex, "\\s" + commandname + "\\s\\[" + variable + "\\s\\]" + com_regex, variable + "\\s.*", variable + "\\s.*",
-			 twonum,  twonum, twonum, twonum, twonum};
-
+			 twonum,  twonum, twonum, twonum, variable + onenum, twonum};
+	
+	
 	public Parser(){
 		myErrorCheck = new Validator(); 
 		initialize();
-		initializeParsers();		
+		//initializeParsers();	
 		commandMap = initializeCommandMap(commands, regex);
 	}	
 	private void initializeParsers(){
 		myParsers = new HashMap<>();
 		myParsers.put("makevariable", new SetParser());
+		//myParsers.put("basic", new TreeParser());
 		//myParsers.put("if", new IfParser());
 		//myParsers.put("ifelse", new IfelseParser());
 		//myParsers.put("repeat", new RepeatParser());
@@ -52,14 +55,14 @@ public class Parser extends Configuration{
 		CommandFactory com = null;
 		if(myErrorCheck.validateInput(in)){
 			System.out.println("-------------Validation passed-------------");
-			com =  parse(in);
 		}
 		else	System.out.println("Throw an error! Invalid input format");
 		if(com  != null)	com.execute();
 	}
 	
-	protected CommandFactory parse(String in ){
-		return parseInput(in);
+	protected double parse(String in ) throws ParserError{
+		System.out.println(in);
+		return  parseInput(in).execute();
 	}
 	
 private CommandFactory parseInput(String in) {
@@ -77,15 +80,27 @@ private CommandFactory parseInput(String in) {
 		}
 		String commandRegex = commandMap.get(comKey);		
 		s = s.replaceFirst(temp, ""); //use keyRegex to remove it
-		if(userdefined.contains(comKey)){ 
+		
+		if(userdefined.contains(comKey)){   //entire part could be extract out for commandMaker and execute.
 			switch(comKey){
 				case "makevariable": 
 					return myParsers.get(comKey).parse(in);
+				case "if":
+					return myParsers.get(comKey).parse(in);
+				case "repeat":
+					return myParsers.get(comKey).parse(in);
+				case "dotimes":
+					return myParsers.get(comKey).parse(in);
 			}
+			
 			return parseLoopCommands(s, commandRegex, comKey);	
 		}
 		else{
-			return parseBasicCommand(s, commandRegex, comKey); //parse babsic command
+			CommandFactory c = CommandMaker.makeNoParmsCommands(comKey);
+			if( c != null)		return c;
+			TreeParser tParser= myParsers.get("basic");
+			tParser.parse(in);//return void
+			return null; //!!! unify the return type later
 		}		
 	}
 
@@ -159,66 +174,25 @@ private CommandFactory parseInput(String in) {
 	}
 		return null;
 	}
+/*
+	//could be replaced by using Treeparser.parse(in). NO COMMAND REGEX NEEDED
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
-		CommandFactory c = createCommands(com);
+		CommandFactory c = CommandMaker.makeNoParmsCommands(com);
 		if( c != null)		return c;
 		Pattern p = Pattern.compile(commandRegex);
 		Matcher m = p.matcher(in);				
-		int[] par = new int[2];
+		ArrayList<Object> par = new ArrayList<>();
 		while(m.find()){
 			for(int i = 1; i <= m.groupCount(); i++){
-				par[i - 1]= Integer.parseInt(m.group(i));	
+				par.add(Double.parseDouble(m.group(i)));	
 			}
 			System.out.println("Basic Command is " + com);
-			System.out.println("Command "+com+" parameters is " + par[0] + " "+ par[1]);
-			return createBasicCommands(com, par);
+			System.out.println("Command "+com+" parameters is " + par);
+			return CommandMaker.makeBasicCommands(com, par);
 		}	
 		return null;
 	}
-	//no parameters
-	private CommandFactory createCommands(String com){
-		switch(com){
-			case "home":		    	return new Home();
-			case "pendown":  			return new PenDown();
-			case "penup": 				return new PenUp();
-			case "clearscreen":			return new ClearScreen();
-			case "showturtle":			return new ShowTurtle();
-			case "hideturtle":			return new HideTurtle();
-			case "ispendown":			return new IsPD();
-			case "isshowing":			return new Showing();
-			case "heading":				return new Heading();
-			case "xcoordinate":			return new XCor();
-			case "ycoordinate":			return new YCor();			
-		}
-		return null;
-	}
-	private CommandFactory createBasicCommands(String com, int[] par){
-	switch(com){
-		case "forward": 		return new Forward(par[0]);
-		case "backward":		return new Backward(par[0]);
-		case "settowards":		return new GoTowardsLoc(par[0], par[1]);
-		case "setposition":		return new GoToLocation(par[0], par[1]);
-		case "sum":				return new Add(par[0], par[1]);
-		case "difference":		return new Subtract(par[0], par[1]);
-		case "product":			return new Multiply(par[0], par[1]);
-		case "quotient":		return new Divide(par[0] , par[1]);
-		case "remainder":		return new Remainder(par[0], par[1]);
-		//case "#":
-		case "left":			return new Left(par[0]);
-		case "right":			return new Right(par[0]);
-		case "setheading":		return new SetHeading(par[0]);
-		case "sine":			return new Sin(par[0]);
-		case "cosine":			return new Cos(par[0]);
-		case "tangent":			return new Tan(par[0]);
-		case "arctangent":		return new ATan(par[0]);
-		case "lessthan":		return new Less(par[0], par[1]);
-		case "greaterthan":		return new Greater(par[0], par[1]);
-		case "equal":			return new Equal(par[0], par[1]);
-		case "notequal":		return new NotEq(par[0], par[1]);
-		}
-		return null;	
-	}
-	
+	*/
 	public void changeLanguage(ResourceBundle r){
 		myErrorCheck.setLanguage(r);
 		setLanguage(r); //if use super.language, will initialize the lanMap in superclass.
@@ -235,7 +209,7 @@ private CommandFactory parseInput(String in) {
 		String s7= "setheading 30";
 		String repeat = "repeat 10 [ fd 50 ]";
 		String dotimes = "dotimes [ :name 200 ] [ rt :name ]";
-		String forl = "for [ :v 0 10 1 ] [ sum :v 5 ]"; 
+		String forl = "for [ :v 0 10 1 ] [ sum 3 5 ]"; 
 		String ifl = "if less? 1 5 [ back 30 ]";
 		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
 		String set = "set :m [ SUM 5 100 ]";

@@ -2,6 +2,7 @@ package Tree;
 
 import java.util.ArrayList;
 
+import configuration.CommandMaker;
 import configuration.NestedParser.Match;
 import application.CommandFactory;
 
@@ -10,8 +11,7 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-
-public class SingleNode extends Node{
+public class SingleNode implements Node{
 	private final int numChild = 1;
 	private String command;
 	private Node child;
@@ -26,13 +26,20 @@ public class SingleNode extends Node{
 		ArrayList<Object> parList = new ArrayList<Object>();
 		double chi = child.getValue();
 		parList.add(chi);
-		CommandFactory com =  Match.makeCommands(command, parList);
+		CommandFactory com =  CommandMaker.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	
-	public void printTree(){
-		System.out.print(command + " ");
-		child.printTree();
-	}	
+	@Override
+	public String toString(){
+		StringBuilder s  = new StringBuilder();
+		s.append(" " + command +" " + child.toString());
+		return s.toString();
+	}
+
+	@Override
+	public int hasChild() {
+		return numChild;
+	}
 	
 }

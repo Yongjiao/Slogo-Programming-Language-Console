@@ -21,7 +21,6 @@ public class Main extends Application {
 			Scene scene = myGUI.initialize(stage);
 			ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
 
-			
 			CommandFactory c = new CommandFactory();
 			c.setViewHandler(myHandler);
 			
@@ -29,9 +28,7 @@ public class Main extends Application {
 			l.add(50);
 			Backward f = new Backward(l);
 			f.execute();
-//>>>>>>> ea7e94554f12737d0fe270e580c7d9ddf8ad73ca
 			System.out.println("made new th");
-
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);

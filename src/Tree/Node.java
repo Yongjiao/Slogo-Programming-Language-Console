@@ -7,20 +7,10 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-
-public abstract class Node {
-	private final int numChild = -1;
+public interface Node {
 	
 	abstract public double getValue();
-	abstract public void printTree();
+	abstract int hasChild();
 	
-	public int hasChild(){
-		return numChild;
-	}
-	
-	public CommandFactory execute(){
-		return null;
-	}
-
 }
 
