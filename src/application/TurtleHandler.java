@@ -1,6 +1,7 @@
 package application;
 
 
+import gui.BackgroundView;
 import gui.LineView;
 import gui.TurtleView;
 import javafx.geometry.Point2D;
@@ -59,6 +60,7 @@ public class TurtleHandler {
 
 	private LineView myLineView;
 	private TurtleView myTurtleView;
+	private BackgroundView myBackgroundView;
 	private Turtle myTurtle;
 	private Pen myPen;
 	
@@ -68,9 +70,10 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(LineView lv, TurtleView tv){
+	public TurtleHandler(LineView lv, TurtleView tv, BackgroundView bk){
 		myLineView = lv;
 		myTurtleView = tv;
+		myBackgroundView = bk;
 		myTurtle = new Turtle();
 		myPen = new Pen(1);
 		this.initializeTurtle();
@@ -296,7 +299,17 @@ public class TurtleHandler {
 		myPen.setColor(newColor);
 	}
 	
+	public void setPenColor(int index)
+	{
+		Color newColor = myPen.getColorFromPalette(index);
+		this.setPenColor(newColor);
+	}
 	
+	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
+	{
+		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
+		myPen.addToPalette(paletteIndex, newColor);
+	}
 	
 		
 	/**
@@ -354,7 +367,7 @@ public class TurtleHandler {
 	
 	public void setBackground(double index)
 	{
-		//TODO change background view
+		this.myBackgroundView.setBackgroundColor(index);
 	}
 	 
 

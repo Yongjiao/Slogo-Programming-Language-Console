@@ -9,9 +9,10 @@ public class SetPenColor extends Display{
 		params = p;
 	}
 	
+	// Modified: Anika
 	public double execute() {
 		double index = (Integer) params.get(params.size() - 1);
-		super.myTurtleHandler.setPenColor(index);
+		super.myTurtleHandler.setPenColor((int)index);
 		return index;
 	}
 

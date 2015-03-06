@@ -19,7 +19,7 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
-			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
+			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
 
 			
 			CommandFactory c = new CommandFactory();

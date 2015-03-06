@@ -9,12 +9,13 @@ public class SetPalette extends Display{
 		params = p;
 	}
 	
+	//Fixed: Anika
 	public double execute() {
 		double index = (Integer) params.get(params.size() - 4);
-		double r = (Integer) params.get(params.size() - 3);
-		double g = (Integer) params.get(params.size() - 2);
-		double b = (Integer) params.get(params.size() - 1);
-		super.myTurtleHandler.setPalette(index, r, g, b);
+		int r = (Integer) params.get(params.size() - 3);
+		int g = (Integer) params.get(params.size() - 2);
+		int b = (Integer) params.get(params.size() - 1);
+		super.myTurtleHandler.setPaletteColor((int)index, r, g, b);
 		return index;
 	}
 

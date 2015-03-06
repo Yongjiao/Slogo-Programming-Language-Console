@@ -1,5 +1,8 @@
 package application;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.scene.paint.Color;
 
 /**
@@ -13,6 +16,7 @@ public class Pen {
 	private Color myColor;
 	private double myThickness;
 	private PENSTYLE myStyle;
+	private Map<Integer, Color> myPaletteOptions;
 	
 	private enum PENSTYLE {
 		SOLID, DASHED, DOTTED;
@@ -32,6 +36,7 @@ public class Pen {
 		myColor = Color.BLACK;
 		myThickness = 1;
 		myStyle = PENSTYLE.SOLID;
+		myPaletteOptions = new HashMap<Integer, Color>();
 	}
 	
 	/**
@@ -118,5 +123,15 @@ public class Pen {
 	public PENSTYLE getStyle()
 	{
 		return myStyle;
+	}
+	
+	public void addToPalette(int index, Color colorToAdd)
+	{
+		this.myPaletteOptions.put(index, colorToAdd);
+	}
+	
+	public Color getColorFromPalette(int index)
+	{
+		return this.myPaletteOptions.get(index);
 	}
 }
