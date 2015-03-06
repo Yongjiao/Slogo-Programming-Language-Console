@@ -1,4 +1,4 @@
-package configuration.NestedParser;
+package configuration;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,9 +13,9 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
 import application.CommandFactory;
 import commands.*;
-import Tree.Node;
 
 /**
  * A utility class for convenience of Parsing

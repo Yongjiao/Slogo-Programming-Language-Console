@@ -1,8 +1,10 @@
-package configuration;
+package configuration.NestedParser;
 
 import java.io.FileInputStream;
 import java.util.*;
 import java.util.regex.*;
+
+import configuration.Configuration;
 /**
  * Validates input
  * @author Yongjiao Yu

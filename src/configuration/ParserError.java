@@ -1,4 +1,4 @@
-package configuration.NestedParser;
+package configuration;
 
 public class ParserError extends Exception{
     public ParserError(String message) {

@@ -7,9 +7,6 @@ import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import Tree.Node;
-import configuration.NestedParser.Match;
-import configuration.NestedParser.ParserError;
-import configuration.NestedParser.TreeParser;
 
 public class RepeatParser extends Configuration{
 	private TreeParser tParser;
