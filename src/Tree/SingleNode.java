@@ -31,9 +31,11 @@ public class SingleNode extends Node{
 		return com.execute();
 	}
 	
-	public void printTree(){
-		System.out.print(command + " ");
-		child.printTree();
-	}	
+	@Override
+	public String toString(){
+		StringBuilder s  = new StringBuilder();
+		s.append(" " + command +" " + child.toString());
+		return s.toString();
+	}
 	
 }

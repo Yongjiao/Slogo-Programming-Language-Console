@@ -21,9 +21,8 @@ public class ConstNode extends Node{
 	
 
 	@Override
-	public void printTree() {
-		System.out.print(value + " ");
+	public String toString(){
+		return " " + value;
 	}
-	
 	
 }

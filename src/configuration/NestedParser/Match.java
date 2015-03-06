@@ -19,7 +19,7 @@ import Tree.Node;
 
 /**
  * A utility class for convenience of Parsing
- * @author Yongjiao Yu
+ * @author Yongjiao Yu, Professor Robert Duvell
  *
  */
 public class Match {

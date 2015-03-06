@@ -32,10 +32,12 @@ public class BinNode extends Node{
 		CommandFactory com = CommandMaker.makeBasicCommands(command, parList);
 		return com.execute();
 	}
-	
-	public void printTree(){
-		System.out.print(command + " ");
-		left.printTree();
-		right.printTree();
+	@Override
+	public String toString(){
+		StringBuilder s  = new StringBuilder();
+		s.append(" " + command);
+		s.append(" " + left.toString() + " " + right.toString());
+		return s.toString();
 	}
+	
 }

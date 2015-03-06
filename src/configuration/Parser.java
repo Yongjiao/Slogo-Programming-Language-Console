@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import application.CommandFactory;
 import commands.*;
+import configuration.NestedParser.TreeParser;
 
 /**
  * Parses and initiates execution of commands
@@ -16,7 +17,7 @@ public class Parser extends Configuration{
 	private HashMap<String, String> commandMap;
 	private Validator myErrorCheck;
 	private HashMap<String, Parser> myParsers;	
-	
+//simplify Parser's regex by inheritance, no need for regex for basic commands	
 	protected final String onenum = "\\s(\\d+)"; //one parameter only exactly one space between parameters	
 	protected final String twonum = "\\s(\\d+)\\s(\\d+)";	//two parameter
 	protected final String com_regex = "\\s\\[(.*?)\\s\\]"; //[command]
@@ -36,12 +37,12 @@ public class Parser extends Configuration{
 		myErrorCheck = new Validator(); 
 		initialize();
 		//initializeParsers();	
-		System.out.println(regex.length + "" + commands.length);
 		commandMap = initializeCommandMap(commands, regex);
 	}	
 	private void initializeParsers(){
 		myParsers = new HashMap<>();
 		myParsers.put("makevariable", new SetParser());
+		//myParsers.put("basic", new TreeParser());
 		//myParsers.put("if", new IfParser());
 		//myParsers.put("ifelse", new IfelseParser());
 		//myParsers.put("repeat", new RepeatParser());
@@ -60,6 +61,7 @@ public class Parser extends Configuration{
 	}
 	
 	protected CommandFactory parse(String in ){
+		System.out.println(in);
 		return parseInput(in);
 	}
 	
@@ -78,15 +80,27 @@ private CommandFactory parseInput(String in) {
 		}
 		String commandRegex = commandMap.get(comKey);		
 		s = s.replaceFirst(temp, ""); //use keyRegex to remove it
-		if(userdefined.contains(comKey)){ 
+		
+		if(userdefined.contains(comKey)){   //entire part could be extract out for commandMaker and execute.
 			switch(comKey){
 				case "makevariable": 
 					return myParsers.get(comKey).parse(in);
+				case "if":
+					return myParsers.get(comKey).parse(in);
+				case "repeat":
+					return myParsers.get(comKey).parse(in);
+				case "dotimes":
+					return myParsers.get(comKey).parse(in);
 			}
+			
 			return parseLoopCommands(s, commandRegex, comKey);	
 		}
 		else{
-			return parseBasicCommand(s, commandRegex, comKey); //parse babsic command
+			CommandFactory c = CommandMaker.makeNoParmsCommands(comKey);
+			if( c != null)		return c;
+			TreeParser tParser= myParsers.get("basic");
+			tParser.parse(in);//return void
+			return null; //!!! unify the return type later
 		}		
 	}
 
@@ -160,6 +174,8 @@ private CommandFactory parseInput(String in) {
 	}
 		return null;
 	}
+/*
+	//could be replaced by using Treeparser.parse(in). NO COMMAND REGEX NEEDED
 	private CommandFactory parseBasicCommand(String in, String commandRegex, String com){	
 		CommandFactory c = CommandMaker.makeNoParmsCommands(com);
 		if( c != null)		return c;
@@ -171,11 +187,12 @@ private CommandFactory parseInput(String in) {
 				par.add(Double.parseDouble(m.group(i)));	
 			}
 			System.out.println("Basic Command is " + com);
-			System.out.println("Command "+com+" parameters is " + par.get(0) + " "+ par.get(par.size()));
+			System.out.println("Command "+com+" parameters is " + par);
 			return CommandMaker.makeBasicCommands(com, par);
 		}	
 		return null;
 	}
+	*/
 	public void changeLanguage(ResourceBundle r){
 		myErrorCheck.setLanguage(r);
 		setLanguage(r); //if use super.language, will initialize the lanMap in superclass.
@@ -192,7 +209,7 @@ private CommandFactory parseInput(String in) {
 		String s7= "setheading 30";
 		String repeat = "repeat 10 [ fd 50 ]";
 		String dotimes = "dotimes [ :name 200 ] [ rt :name ]";
-		String forl = "for [ :v 0 10 1 ] [ sum :v 5 ]"; 
+		String forl = "for [ :v 0 10 1 ] [ sum 3 5 ]"; 
 		String ifl = "if less? 1 5 [ back 30 ]";
 		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
 		String set = "set :m [ SUM 5 100 ]";

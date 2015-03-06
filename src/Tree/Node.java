@@ -12,15 +12,10 @@ public abstract class Node {
 	private final int numChild = -1;
 	
 	abstract public double getValue();
-	abstract public void printTree();
 	
 	public int hasChild(){
 		return numChild;
 	}
 	
-	public CommandFactory execute(){
-		return null;
-	}
-
 }
 

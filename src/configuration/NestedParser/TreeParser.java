@@ -23,7 +23,6 @@ public class TreeParser {
 		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
-
 	}
 	
 	private void initializeSets() throws IOException{		
@@ -40,22 +39,28 @@ public class TreeParser {
 		liststart = b.getString("ListStart");
 		listend = b.getString("ListEnd");
 		groupstart = b.getString("GroupStart");
-		groupend = b.getString("GroupEnd");
-		
+		groupend = b.getString("GroupEnd");		
 	}	
+	/**
+	 * parses commands including nested
+	 * @param input command in string form
+	 * @return	the result of the last executed commands (if nested)
+	 * @throws ParserError
+	 */
 	
-	public void parse(String s) throws ParserError{
+	public double parse(String s) throws ParserError{
 		String[] str = s.split(" ");
 		Queue<String> tokens = makeCommandQueue(str);
-		ArrayList<Node> roots = new ArrayList<Node>();
+		ArrayList<Node> roots = new ArrayList<Node>(); //dont really need the arrayList of node
+		double result = -1;
 		while(!tokens.isEmpty()){
 			Node expRoot = parse(tokens);
 			roots.add(expRoot);
-			expRoot.printTree();
+			System.out.println(expRoot);
 			System.out.println();
 		}
-		//expRoot.getValue(); put inside loop
-		
+		//result = expRoot.getValue(); put inside loop
+		return result;
 		//CommandFactory com = expRoot.getValue();
 		//com.execute();
 	}
@@ -103,7 +108,8 @@ public class TreeParser {
 		String fd = "fd sum sum 20 sum 10 30 100 / 30 10";
 		String sum = "sum sum sum sum 20 30 50 100 200 * 50 50";
 		TreeParser example = new TreeParser(); 
-		example.parse(fd);	
+		example.parse(sum);	
+		
 	}
 	
 }
