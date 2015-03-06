@@ -6,10 +6,15 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import Tree.Node;
 import configuration.NestedParser.Match;
 import configuration.NestedParser.ParserError;
 import configuration.NestedParser.TreeParser;
-
+/**
+ * subclass for Ifelse command parsing
+ * @author Yongjiao Yu
+ *
+ */
 public class IfelseParser extends Configuration{
 	private TreeParser tParser;
 	
@@ -25,13 +30,50 @@ public class IfelseParser extends Configuration{
 		skip(tokens);
 		return parse(tokens);
 	}
-	
 	private double parse(Queue<String> tokens) throws ParserError {
-		
+		double result = -1; 
+		ArrayList<Node> ifTree = null, elseTree = null;
+		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
+		double expr = tParser.parse(tokens).getValue();
+		ifTree = parseCommands(tokens);
+		while(!isEnd(tokens) && tokens.peek().matches(listend)) //skip till the second command
+			skip(tokens);
+		elseTree = parseCommands(tokens);
+		if(!isEnd(tokens))
+			throw new ParserError("Unnecessary long command input!");
+		if(expr == 1)	return executeAll(ifTree);
+		System.out.println("Else statement gets executed");
+		return executeAll(elseTree);	
 	}
-	public static void main(String[] args) {
-		
-		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
+	/**
+	 * parses list of nested commands in bracket. [ command1 command2 command3 ]
+	 * @param a queue of commands
+	 * @return list of tree node representing each command
+	 * @throws ParserError
+	 */
+	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
+		ArrayList<Node>	list = new ArrayList();
+		if(!qu.peek().matches(liststart))
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		while(!isEnd(qu) && !qu.peek().matches(listend)){
+			list.add(tParser.parse(qu));
+			System.out.println("Tree parsed is " + list.get(list.size() -1));
+		}
+		if(isEnd(qu) || !qu.poll().matches(listend))
+			throw new ParserError("Expected ] here !");
+		return list;
 	}
+	
+	private boolean isboolean(String s){	
+		String comKey = Match.findCommandKey(s, patterns);
+		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
+	}
+	public static void main(String[] args) throws IOException, ParserError {
+		IfelseParser example = new IfelseParser();
+		String ifelse = "ifelse equal? 2 6 [ sin 50 ] [ cos 50 tan 100 ]";
+		example.parse(ifelse);
+	}
+	
 	
 }

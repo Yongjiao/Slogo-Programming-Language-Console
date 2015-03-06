@@ -11,6 +11,11 @@ import Tree.Node;
 import configuration.NestedParser.Match;
 import configuration.NestedParser.ParserError;
 import configuration.NestedParser.TreeParser;
+/**
+ * subclass for For command parsing
+ * @author Yongjiao Yu
+ *
+ */
 
 public class ForParser extends Configuration{
 	private TreeParser tParser;
