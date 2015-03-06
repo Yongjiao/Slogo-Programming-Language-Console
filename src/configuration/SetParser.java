@@ -47,9 +47,8 @@ public class SetParser extends Configuration{
 	//can just execute() and change to double but keep for ease of debugging
 	private CommandFactory parse(Queue<String> tokens) throws ParserError {
 		String token = tokens.poll();			
-		if(!token.matches(variable)){
+		if(!token.matches(variable))
 			throw new ParserError("Expected Variable here!");
-		}
 		
 		double val = tParser.parse(tokens).getValue();
 		ArrayList<Object> par = new ArrayList<>();
