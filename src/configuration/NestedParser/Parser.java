@@ -1,4 +1,4 @@
-package configuration;
+package configuration.NestedParser;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -6,8 +6,11 @@ import java.util.regex.Pattern;
 
 import application.CommandFactory;
 import commands.*;
-import configuration.NestedParser.ParserError;
-import configuration.NestedParser.TreeParser;
+import configuration.CommandMaker;
+import configuration.Configuration;
+import configuration.ParserError;
+import configuration.SetParser;
+import configuration.TreeParser;
 
 /**
  * Parses and initiates execution of commands

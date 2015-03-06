@@ -1,10 +1,11 @@
 package application;
 
 import gui.GUI;
+
 import java.util.ArrayList;
 
 import commands.Backward;
-import configuration.Parser;
+import configuration.NestedParser.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.stage.Stage;

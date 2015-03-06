@@ -2,7 +2,7 @@ package gui;
 
 import java.util.ResourceBundle;
 
-import configuration.Parser;
+import configuration.NestedParser.Parser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

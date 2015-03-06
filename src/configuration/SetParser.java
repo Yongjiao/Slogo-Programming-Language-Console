@@ -6,12 +6,8 @@ import java.util.Map.Entry;
 import java.util.regex.*;
 
 import commands.Set;
-import configuration.NestedParser.Match;
-import configuration.NestedParser.ParserError;
-import configuration.NestedParser.TreeParser;
 import Tree.BinNode;
 import Tree.ConstNode;
-import Tree.Node;
 import Tree.SingleNode;
 import application.CommandFactory;
 

@@ -6,11 +6,8 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-import application.CommandFactory;
 import Tree.Node;
-import configuration.NestedParser.Match;
-import configuration.NestedParser.ParserError;
-import configuration.NestedParser.TreeParser;
+import application.CommandFactory;
 /**
  * subclass for For command parsing
  * @author Yongjiao Yu

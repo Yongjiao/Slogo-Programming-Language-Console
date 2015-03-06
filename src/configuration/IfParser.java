@@ -9,16 +9,12 @@ import java.util.regex.Pattern;
 
 import Tree.Node;
 import application.CommandFactory;
-import configuration.NestedParser.Match;
-import configuration.NestedParser.ParserError;
-import configuration.NestedParser.TreeParser;
 /**
  * subclass for If command parsing
  * @author Yongjiao Yu
  *
  */
 public class IfParser extends Configuration{
-	private final String comKey = "if";
 	private TreeParser tParser;
 	
 	public IfParser() throws IOException{

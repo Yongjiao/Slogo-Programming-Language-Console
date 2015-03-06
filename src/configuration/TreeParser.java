@@ -1,4 +1,4 @@
-package configuration.NestedParser;
+package configuration;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-import configuration.Configuration;
 import application.CommandFactory;
 import Tree.*;
 /**

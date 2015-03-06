@@ -1,6 +1,6 @@
 package gui;
 
-import configuration.Parser;
+import configuration.NestedParser.Parser;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
