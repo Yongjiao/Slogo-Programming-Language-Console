@@ -80,6 +80,14 @@ public class Pen {
 		
 	}
 	
+	public void setColor (int indexOfColor)
+	{
+		myColor = this.myPaletteOptions.get(indexOfColor);
+		this.setColor(indexOfColor);
+		
+	}
+	
+	
 	/**
 	 * @return color of pen
 	 */

@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.*;
 
-import commands.Set;
+import commands.viewCommands.turtleCommands.Set;
 import Tree.BinNode;
 import Tree.ConstNode;
 import Tree.SingleNode;

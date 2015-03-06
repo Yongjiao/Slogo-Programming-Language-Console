@@ -4,7 +4,7 @@ import gui.GUI;
 
 import java.util.ArrayList;
 
-import commands.Backward;
+import commands.viewCommands.turtleCommands.Backward;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

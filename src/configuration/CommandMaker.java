@@ -4,6 +4,37 @@ import java.util.ArrayList;
 
 import application.CommandFactory;
 import commands.*;
+import commands.arithmeticCommands.ATan;
+import commands.arithmeticCommands.Add;
+import commands.arithmeticCommands.Cos;
+import commands.arithmeticCommands.Divide;
+import commands.arithmeticCommands.Equal;
+import commands.arithmeticCommands.Greater;
+import commands.arithmeticCommands.Less;
+import commands.arithmeticCommands.Log;
+import commands.arithmeticCommands.Multiply;
+import commands.arithmeticCommands.NotEq;
+import commands.arithmeticCommands.Remainder;
+import commands.arithmeticCommands.Sin;
+import commands.arithmeticCommands.Subtract;
+import commands.arithmeticCommands.Tan;
+import commands.viewCommands.PenDown;
+import commands.viewCommands.PenUp;
+import commands.viewCommands.turtleCommands.Backward;
+import commands.viewCommands.turtleCommands.ClearScreen;
+import commands.viewCommands.turtleCommands.Forward;
+import commands.viewCommands.turtleCommands.GoToLocation;
+import commands.viewCommands.turtleCommands.GoTowardsLoc;
+import commands.viewCommands.turtleCommands.Heading;
+import commands.viewCommands.turtleCommands.HideTurtle;
+import commands.viewCommands.turtleCommands.Home;
+import commands.viewCommands.turtleCommands.Left;
+import commands.viewCommands.turtleCommands.Right;
+import commands.viewCommands.turtleCommands.SetHeading;
+import commands.viewCommands.turtleCommands.ShowTurtle;
+import commands.viewCommands.turtleCommands.Showing;
+import commands.viewCommands.turtleCommands.XCor;
+import commands.viewCommands.turtleCommands.YCor;
 
 /**
  * a Command factory that makes commands.
