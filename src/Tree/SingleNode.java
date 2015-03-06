@@ -11,8 +11,7 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-
-public class SingleNode extends Node{
+public class SingleNode implements Node{
 	private final int numChild = 1;
 	private String command;
 	private Node child;
@@ -36,6 +35,11 @@ public class SingleNode extends Node{
 		StringBuilder s  = new StringBuilder();
 		s.append(" " + command +" " + child.toString());
 		return s.toString();
+	}
+
+	@Override
+	public int hasChild() {
+		return numChild;
 	}
 	
 }

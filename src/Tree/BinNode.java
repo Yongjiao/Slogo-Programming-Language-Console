@@ -10,8 +10,7 @@ import configuration.CommandMaker;
  * @author Yongjiao Yu
  *
  */
-
-public class BinNode extends Node{
+public class BinNode implements Node{
 	private final int numChild = 2;
 	private String command;
 	private Node left;
@@ -38,6 +37,11 @@ public class BinNode extends Node{
 		s.append(" " + command);
 		s.append(" " + left.toString() + " " + right.toString());
 		return s.toString();
+	}
+
+	@Override
+	public int hasChild() {	
+		return numChild;
 	}
 	
 }

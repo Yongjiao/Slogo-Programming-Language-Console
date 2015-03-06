@@ -1,11 +1,10 @@
 package application;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
+import gui.LineView;
+import gui.TurtleView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 /**
  * 
@@ -58,8 +57,10 @@ import javafx.scene.paint.Color;
  */
 public class TurtleHandler {
 
-	private View myView;
+	private LineView myLineView;
+	private TurtleView myTurtleView;
 	private Turtle myTurtle;
+	private Pen myPen;
 	
 	/**
 	 * Constructor
@@ -67,9 +68,11 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(View view){
-		myView = view;
+	public TurtleHandler(LineView lv, TurtleView tv){
+		myLineView = lv;
+		myTurtleView = tv;
 		myTurtle = new Turtle();
+		myPen = new Pen(1);
 		this.initializeTurtle();
 	}
 	
@@ -80,9 +83,8 @@ public class TurtleHandler {
 	private void initializeTurtle()
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
-		this.myView.initializeTurtle(image);
+		this.myTurtleView.initializeTurtle(image);
 		setInfoParamsOfTurtle();
-				
 	}
 	
 	
@@ -136,7 +138,7 @@ public class TurtleHandler {
 	 */
 	private Point2D getViewTurtleLocation()
 	{
-		return myView.getNewPoint();
+		return myTurtleView.getNewPoint();
 	
 	}
 	
@@ -197,9 +199,9 @@ public class TurtleHandler {
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
 		this.updateTurtleOnView();
 		
-		if (myTurtle.getPenPos() == 1)
+		if (myPen.getStatus() == 1)
 		{
-			this.myView.drawLine(locOrig, locNew);
+			this.myLineView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
 		}
@@ -274,7 +276,7 @@ public class TurtleHandler {
 	 */
 	public void setPenStatus(int status)
 	{
-		myTurtle.setPenPos(status);
+		myPen.setStatus(status);
 	}
 	
 	/**
@@ -282,7 +284,38 @@ public class TurtleHandler {
 	 */
 	public int getPenStatus()
 	{
-		return myTurtle.getPenPos();
+		return  myPen.getStatus();
+	}
+	
+	/**
+	 * sets color of pen based on input parameter
+	 * @param newColor
+	 */
+	public void setPenColor(Color newColor)
+	{
+		myPen.setColor(newColor);
+	}
+	
+	
+	
+		
+	/**
+	 * 
+	 * @return Color of pen
+	 */
+	public Color getPenColor()
+	{
+		return myPen.getColor();
+	}
+	
+	public void setPenWeight(double pixels)
+	{
+		myPen.setWeight(pixels);
+	}
+	
+	public double getPenWeight()
+	{
+		return myPen.getWeight();
 	}
 	
 	
@@ -292,7 +325,7 @@ public class TurtleHandler {
 	 */
 	public void clearScreen() // WORKS
 	{
-		this.myView.clearScreen();
+		this.myLineView.clearScreen();
 	}
 	
 	
@@ -308,18 +341,18 @@ public class TurtleHandler {
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement
-			this.myView.showTurtle(true);
-			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
+			this.myTurtleView.showTurtle(true);
+			this.myTurtleView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
 		}
 		else
 		{
 			// tell view to make turtle invisible
-			this.myView.showTurtle(false);
+			this.myTurtleView.showTurtle(false);
 		}
 	}
 	
 	
-	public void setBackground(int index)
+	public void setBackground(double index)
 	{
 		//TODO change background view
 	}
@@ -338,9 +371,9 @@ public class TurtleHandler {
 	 */
 	public void setInfoParamsOfTurtle()
 	{
-		this.myView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
-				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
+				+ " \n" + "Pen Status: \t" + myPen.getStatus()
 				);
 	}	
 }

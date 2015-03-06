@@ -85,4 +85,7 @@ public abstract class Configuration {
 	protected boolean isEnd(Queue<String> qu){
 		return qu.isEmpty();
 	}
+	protected boolean isListEnd(String s){
+		return s.matches(listend);
+	}
 }

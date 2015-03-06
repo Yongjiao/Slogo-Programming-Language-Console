@@ -51,6 +51,7 @@ public class SetParser extends Parser{
 		if(!token.matches(variable)){
 			throw new ParserError("Expected Variable here!");
 		}
+		
 		double val = tParser.parse(tokens).getValue();
 		ArrayList<Object> par = new ArrayList<>();
 		par.add(val);

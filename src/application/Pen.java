@@ -11,7 +11,7 @@ public class Pen {
 	//  Properties: up/down, thickness, solid, dashed, dotted, etc.
 	private int myStatus;
 	private Color myColor;
-	private int myThickness;
+	private double myThickness;
 	private PENSTYLE myStyle;
 	
 	private enum PENSTYLE {
@@ -86,7 +86,7 @@ public class Pen {
 	 * Higher values correspond to thicker lines
 	 * @param newWeight
 	 */
-	public void setWeight(int newWeight)
+	public void setWeight(double newWeight)
 	{
 		myThickness = newWeight;
 	}
@@ -94,7 +94,7 @@ public class Pen {
 	/**
 	 * @return thickness of pen
 	 */
-	public int getWeight()
+	public double getWeight()
 	{
 		return myThickness;
 	}

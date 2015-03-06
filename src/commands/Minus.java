@@ -1,19 +1,18 @@
 package commands;
 
-public class Minus extends Calculate{
+import java.util.ArrayList;
 
-	private int num;
+public class Minus extends Calculate{
 	
-	public Minus(int a) {
-		num = a;
+	public Minus(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
+		
 	}
 	
-	public void setParams(int a) {
-		num = a;
-	}
-	
-	public int execute() {
-		return super.Minus(num);
+	public double execute() {
+		double num = (Integer) params.get(params.size() - 1);
+		return -num;
 	}
 
 }

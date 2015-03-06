@@ -1,18 +1,16 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Backward extends Move{
 	
-	private int steps;
+	public Backward(ArrayList<Object> p) {
+		params = p;
+	}
 
-	public Backward(int s){
-		steps = s;
-	}
-	
-	public void setParams(int s) {
-		steps = s;
-	}
-	
-	public int execute() {
+	public double execute() {
+		double steps = (Integer) params.get(params.size() - 1);
 		return super.changeLocation(-steps);
 	}
+	
 }

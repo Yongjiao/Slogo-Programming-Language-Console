@@ -110,27 +110,7 @@ public class Turtle {
 		this.myImage.setImage(newImage);
 	}
 	
-	/**
-	 * sets pen position based on input parameter
-	 * @param pos
-	 */
-	public void setPenPos(int pos)
-	{
-		this.myPen.setStatus(pos);
-	}
 	
-	/**
-	 * @return whether pen is UP or DOWN
-	 */
-	public int getPenPos()
-	{
-		return myPen.getStatus();
-	}
-	
-	public String getPenPosString()
-	{
-		return myPen.getStatusString();
-	}
 	
 	/**
 	 * @return turtle's visible image
@@ -152,4 +132,5 @@ public class Turtle {
 		this.myImage.setVisible((toShow == 1));
 	}
 	
+		
 }

@@ -1,19 +1,18 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Random extends Calculate{
 
 	private int max;
 	
-	public Random(int a) {
-		max = a;
+	public Random(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a) {
-		max = a;
-	}
-	
-	public int execute() {
-		return super.Random(max);
+	public double execute() {
+		return Math.random() * max;
 	}
 	
 }

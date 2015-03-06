@@ -1,20 +1,19 @@
 package commands;
 
-public class Pow extends Calculate{
+import java.util.ArrayList;
 
-	private int base;
-	private int exponent;
+public class Pow extends Calculate{
 	
-	public Pow(int a, int b) {
-		base = a; exponent = b;
+	public Pow(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
+		
 	}
 	
-	public void setParams(int a, int b) {
-		base = a; exponent = b;
-	}
-	
-	public int execute() {
-		return super.pow(base, exponent);
+	public double execute() {
+		double base = (Integer) params.get(params.size() - 2);
+		double exponent = (Integer) params.get(params.size() - 1);
+		return Math.pow(base, exponent);
 	}
 	
 }
