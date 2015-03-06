@@ -1,4 +1,4 @@
-package application;
+/*package application;
 
 import gui.View;
 
@@ -32,11 +32,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
+*//**
  * Creates the GUI
  * @author Andrew Sun
  *
- */
+ *//*
 
 public class GUI {
 	
@@ -84,11 +84,11 @@ public class GUI {
 		backgroundColor.setValue(Color.WHITE);
 	}
 	
-	/**
+	*//**
 	 * Initializes the GUI and returns a scene to the Main method.
 	 * @param s
 	 * @return Scene
-	 */
+	 *//*
 	public Scene initialize(Stage s){
 		System.out.println(" gui initialize");
 		initializeView();
@@ -100,9 +100,9 @@ public class GUI {
 		return myScene;
 	}
 	
-	/**
+	*//**
 	 * Creates the Color Buttons, normal buttons, and language selection buttons
-	 */
+	 *//*
 	private void initializeButtons(){
 		// Creates HBox for button alignment
 		mainHBox = new HBox();
@@ -148,9 +148,9 @@ public class GUI {
 		myBorders.setTop(mainHBox);
 	}
 	
-	/**
+	*//**
 	 * Launches a help page to go to SLogo Help Page
-	 */
+	 *//*
 	private void launchHelpPage() {
 		WebPopUp helpPage = new WebPopUp();
 		try {
@@ -160,9 +160,9 @@ public class GUI {
 		}
 	}
 	
-	/**
+	*//**
 	 * @author Anika
-	 */
+	 *//*
 	private void launchInfo()
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -182,10 +182,10 @@ public class GUI {
 	}
 	
 	
-	/**
+	*//**
 	 * adding menu list of images that user can choose from for the turtle
 	 * @author Anika
-	 */
+	 *//*
 	private void chooseTurtleImageMenu()
 	{
 		
@@ -223,9 +223,9 @@ public class GUI {
 	}
 	
 
-	/**
+	*//**
 	 * Prompts user to choose an image file.
-	 */
+	 *//*
 	private void chooseTurtleImage() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter jpgFilter = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
@@ -235,18 +235,18 @@ public class GUI {
 		myView.updateTurtleImage(myTurtleFilePath);
 	}
 
-	/**
+	*//**
 	 * Initializes view
-	 */
+	 *//*
 	private void initializeView() {
 		System.out.println(" gui initialize view");
 		myView = new View(VIEW_WIDTH, VIEW_HEIGHT);	
 		myBorders.setCenter(myView);
 	}
 	
-	/**
+	*//**
 	 * Initializes commands history
-	 */
+	 *//*
 	private void initializeCommandsHistory() {
 		System.out.println(" gui initialize ch");
 
@@ -254,9 +254,9 @@ public class GUI {
 		myBorders.setRight(prevCommands);
 	}
 
-	/**
+	*//**
 	 * Initializes text field for user to enter commands
-	 */
+	 *//*
 	private void initializeTextField() {
 		System.out.println(" gui initialize tf");
 
@@ -277,11 +277,11 @@ public class GUI {
 		myBorders.setBottom(commandsField);
 	}
 
-	/**
+	*//**
 	 * added button styles
 	 * @author anika, edited by Andrew
 	 * @param b
-	 */
+	 *//*
 	private void mouseDown(Button b)
 	{
 		b.setStyle("-fx-font: 14 georgia; -fx-text-fill: #CC0000;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) ,.5, 0.0 , 0 , 1 ); -fx-border-width: 2 2 2 2; -fx-border-color: white; -fx-background-color: black;");
@@ -297,3 +297,4 @@ public class GUI {
 	}
 	
 }
+*/

@@ -2,7 +2,6 @@ package gui;
 
 import java.util.ResourceBundle;
 
-import configuration.NestedParser.Parser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
