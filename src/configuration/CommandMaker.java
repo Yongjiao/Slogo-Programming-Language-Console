@@ -23,11 +23,13 @@ public class CommandMaker {
 				case "ClearScreen":			return new ClearScreen();
 				case "ShowTurtle":			return new ShowTurtle();
 				case "HideTurtle":			return new HideTurtle();
-				case "IsPenDown":			return new PenDown();
+				case "IsPenDown":			return new IsPD();
 				case "IsShowing":			return new Showing();
 				case "Heading":				return new Heading();
 				case "XCoordinate":			return new XCor();
-				case "YCoordinate":			return new YCor();			
+				case "YCoordinate":			return new YCor();	
+				case "GetPenColor":			return new PenColor();		
+				
 			}
 			return null;
 	}
@@ -49,10 +51,9 @@ public class CommandMaker {
    				case "Product":			return new Multiply(parList);
    				case "Quotient":		return new Divide(parList);
    				case "Remainder":		return new Remainder(parList);
-   				//case "#":
    				case "Left":			return new Left(parList);
    				case "Right":			return new Right(parList);
-   				case "Setheading":		return new SetHeading(parList);
+   				case "SetHeading":		return new SetHeading(parList);
    				case "Sine":			return new Sin(parList);
    				case "Cosine":			return new Cos(parList);
    				case "Tangent":			return new Tan(parList);
@@ -62,8 +63,23 @@ public class CommandMaker {
    				case "Equal":			return new Equal(parList);
    				case "NotEqual":		return new NotEq(parList);
    				case "NaturalLog": 		return new Log(parList);
+   				case "And":				return new And(parList);
+   				case "Minus":			return new Minus(parList);
+   				case "Not":				return new Not(parList);
+   				case "Or":				return new Or(parList);
+   				case "Power":			return new Pow(parList);
+   				case "Random":			return new Random(parList);
+   				case "SetBackground":	return new SetBackground(parList);
+   				case "SetPenColor":		return new SetPenColor(parList);
+   				case "SetPenSize":		return new SetPenSize(parList);
+				case "SetPalette":			return new SetPalette(parList);
+   				//case "To":				return new To();
+   				//case "#":
    				}
    				return null;	
-   	}
+   	}   	
+ 	static public CommandFactory makeBasicCommands(String com, String s, ArrayList<Object> parList){ 
+ 		return null;
+ 		}
    	
 }
