@@ -16,7 +16,7 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-public class SetParser extends Configuration{
+public class SetParser extends Parser{
 	
 	public SetParser() throws IOException{
 		initializeSyntax();		

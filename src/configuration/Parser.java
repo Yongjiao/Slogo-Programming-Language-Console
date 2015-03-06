@@ -14,7 +14,7 @@ import Tree.SingleNode;
  * @author Yongjiao Yu
  *
  */
-public abstract class Configuration {
+public abstract class Parser {
 	protected String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
 	protected HashSet<String> userdefined;
 	protected List<Entry<String, Pattern>> patterns; 

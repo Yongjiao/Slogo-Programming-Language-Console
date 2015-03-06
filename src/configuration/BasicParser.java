@@ -13,8 +13,8 @@ import Tree.*;
  * @author Yongjiao Yu
  *
  */
-public class BasicParser extends Configuration{
-	private HashMap<String, Configuration> myParsers;	
+public class BasicParser extends Parser{
+	private HashMap<String, Parser> myParsers;	
 	
 	public BasicParser() throws IOException{
 		initializeSyntax();		

@@ -12,7 +12,7 @@ import Tree.Node;
  * @author Yongjiao Yu
  *
  */
-public class IfelseParser extends Configuration{
+public class IfelseParser extends Parser{
 	
 	public IfelseParser() throws IOException{
 		initializeSyntax();		

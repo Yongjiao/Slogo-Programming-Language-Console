@@ -14,7 +14,7 @@ import application.CommandFactory;
  *
  */
 
-public class ForParser extends Configuration{
+public class ForParser extends Parser{
 	
 	public ForParser() throws IOException{
 		initializeSyntax();	
