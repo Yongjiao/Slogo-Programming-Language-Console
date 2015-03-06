@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import commands.viewCommands.turtleCommands.Display;
 
-public class SetPalette extends Display{
+public class SetPalette extends ViewCommands{
 	
 	public SetPalette(ArrayList<Object> p) {
 		super.setParams(p);
-		params = p;
 	}
 	
 	//Fixed: Anika
 	public double execute() {
+		ArrayList<Object> params = super.getParams();
 		double index = (Integer) params.get(params.size() - 4);
 		int r = (Integer) params.get(params.size() - 3);
 		int g = (Integer) params.get(params.size() - 2);
@@ -22,7 +22,7 @@ public class SetPalette extends Display{
 		// specifying an amount of red, green, and blue
 		if (checkColorLimits(new int[]{r, g, b}))
 		{
-			super.myTurtleHandler.setPaletteColor((int)index, r, g, b);
+			super.getPen().setPaletteColor((int)index, r, g, b);
 		}
 		return index;
 	}

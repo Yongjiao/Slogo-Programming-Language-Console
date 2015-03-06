@@ -40,9 +40,11 @@ public class Pen {
 		myPaletteColorLocation = 0;
 	}
 	
+
 	/**
-	 * Sets pen status to input status
-	 * Called when user declares penup or pendown
+	 * sets status of pen based on input parameter
+	 * if status == 1, PENDOWN
+	 * if status == 0, PENUP
 	 * @param newStatus of pen
 	 */
 	public void setStatus(int newStatus)
@@ -82,9 +84,7 @@ public class Pen {
 	
 	public void setColor (int indexOfColor)
 	{
-		myColor = this.myPaletteOptions.get(indexOfColor);
-		this.setColor(indexOfColor);
-		
+		myColor = this.getColorFromPalette(indexOfColor);
 	}
 	
 	
@@ -135,10 +135,19 @@ public class Pen {
 		return myStyle;
 	}
 	
+
+	
+	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
+	{
+		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
+		this.addToPalette(paletteIndex, newColor);
+	}
+	
 	public void addToPalette(int index, Color colorToAdd)
 	{
 		this.myPaletteOptions.put(index, colorToAdd);
 	}
+	
 	
 	public Color getColorFromPalette(int index)
 	{
@@ -146,7 +155,10 @@ public class Pen {
 		this.myPaletteColorLocation = index;
 		return myColor;
 	}
-	
+	/**
+	 * called when PENCOLOR command is executed (Sprint 3)
+	 * @return int
+	 */
 	public int getCurrentColorIndexFromPalette()
 	{
 		return this.myPaletteColorLocation;

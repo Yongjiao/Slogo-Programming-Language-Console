@@ -278,73 +278,6 @@ public class ViewHandler {
 		return myTurtle.getVisibility();
 	}
 
-	/**
-	 * sets status of pen based on input parameter
-	 * if status == 1, PENDOWN
-	 * if status == 0, PENUP
-	 * @param status
-	 */
-	
-	public int getPenStatus()
-	{
-		return  myPen.getStatus();
-	}
-	
-	
-	public void setPenStatus(int statusNew)
-	{
-		myPen.setStatus(statusNew);
-	}
-	
-	/**
-	 * sets color of pen based on input parameter
-	 * @param newColor
-	 */
-	public void setPenColor(Color newColor)
-	{
-		myPen.setColor(newColor);
-	}
-	
-	public void setPenColor(int index)
-	{
-		Color newColor = myPen.getColorFromPalette(index);
-		this.setPenColor(newColor);
-	}
-	
-	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
-	{
-		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
-		myPen.addToPalette(paletteIndex, newColor);
-	}
-	
-		
-	/**
-	 * 
-	 * @return Color of pen
-	 */
-	public Color getPenColor()
-	{
-		return myPen.getColor();
-	}
-	
-	/**
-	 * called when PENCOLOR command is executed (Sprint 3)
-	 * @return
-	 */
-	public int getPenColorIndex()
-	{
-		return myPen.getCurrentColorIndexFromPalette();
-	}
-	
-	public void setPenWeight(double pixels)
-	{
-		myPen.setWeight(pixels);
-	}
-	
-	public double getPenWeight()
-	{
-		return myPen.getWeight();
-	}
 	
 	
 	/**
@@ -386,7 +319,6 @@ public class ViewHandler {
 	}
 	 
 
-	
 	
 	/**
 	 * Contains information of turtle regarding
