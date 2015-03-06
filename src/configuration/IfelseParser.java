@@ -29,5 +29,9 @@ public class IfelseParser extends Configuration{
 	private double parse(Queue<String> tokens) throws ParserError {
 		
 	}
-
+	public static void main(String[] args) {
+		
+		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
+	}
+	
 }

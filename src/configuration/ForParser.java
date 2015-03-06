@@ -74,7 +74,6 @@ public class ForParser extends Configuration{
 	}
 	
 	public static void main(String[] args) throws IOException, ParserError {
-		// TODO Auto-generated method stub
 		ForParser example = new ForParser();
 		String forl =  "for [ :v 0 10 1 ] [ / sum 3 5 10 ]";
 		example.parse(forl);
