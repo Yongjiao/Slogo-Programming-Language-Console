@@ -11,7 +11,7 @@ public class SetBackground extends Display{
 	
 	public double execute() {
 		double index = (Integer) params.get(params.size() - 1);
-		super.myTurtleHandler.setBackgroundColor(index);
+		super.myTurtleHandler.setBackground(index);
 		return index;
 	}
 

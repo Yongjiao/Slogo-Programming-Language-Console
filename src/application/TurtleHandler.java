@@ -1,12 +1,10 @@
 package application;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
+import gui.LineView;
+import gui.TurtleView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 /**
  * 
  * Feb 22, 2015
@@ -58,7 +56,8 @@ import javafx.scene.paint.Color;
  */
 public class TurtleHandler {
 
-	private View myView;
+	private LineView myLineView;
+	private TurtleView myTurtleView;
 	private Turtle myTurtle;
 	
 	/**
@@ -67,8 +66,9 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(View view){
-		myView = view;
+	public TurtleHandler(LineView lv, TurtleView tv){
+		myLineView = lv;
+		myTurtleView = tv;
 		myTurtle = new Turtle();
 		this.initializeTurtle();
 	}
@@ -80,9 +80,8 @@ public class TurtleHandler {
 	private void initializeTurtle()
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
-		this.myView.initializeTurtle(image);
+		this.myTurtleView.initializeTurtle(image);
 		setInfoParamsOfTurtle();
-				
 	}
 	
 	
@@ -136,7 +135,7 @@ public class TurtleHandler {
 	 */
 	private Point2D getViewTurtleLocation()
 	{
-		return myView.getNewPoint();
+		return myTurtleView.getNewPoint();
 	
 	}
 	
@@ -199,7 +198,7 @@ public class TurtleHandler {
 		
 		if (myTurtle.getPenPos() == 1)
 		{
-			this.myView.drawLine(locOrig, locNew);
+			this.myLineView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
 		}
@@ -292,7 +291,7 @@ public class TurtleHandler {
 	 */
 	public void clearScreen() // WORKS
 	{
-		this.myView.clearScreen();
+		this.myLineView.clearScreen();
 	}
 	
 	
@@ -308,18 +307,18 @@ public class TurtleHandler {
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement
-			this.myView.showTurtle(true);
-			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
+			this.myTurtleView.showTurtle(true);
+			this.myTurtleView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
 		}
 		else
 		{
 			// tell view to make turtle invisible
-			this.myView.showTurtle(false);
+			this.myTurtleView.showTurtle(false);
 		}
 	}
 	
 	
-	public void setBackground(int index)
+	public void setBackground(double index)
 	{
 		//TODO change background view
 	}
@@ -338,7 +337,7 @@ public class TurtleHandler {
 	 */
 	public void setInfoParamsOfTurtle()
 	{
-		this.myView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
 				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
 				);

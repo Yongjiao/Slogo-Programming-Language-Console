@@ -1,5 +1,6 @@
 package application;
 
+import gui.GUI;
 import java.util.ArrayList;
 
 import commands.Backward;
@@ -18,10 +19,9 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
-			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-//<<<<<<< HEAD
+			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
+
 			
-//=======
 			CommandFactory c = new CommandFactory();
 			c.setTurtleHandler(myHandler);
 			

@@ -1,4 +1,4 @@
-package application;
+package gui;
 
 import java.io.File;
 import javafx.geometry.Point2D;
@@ -17,7 +17,7 @@ import javafx.scene.transform.Rotate;
  *
  */
 
-public class View extends StackPane{
+public class ViewCopy extends StackPane{
 	
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	private static final Color DEFAULT_PEN_COLOR = Color.BLACK;
@@ -37,7 +37,7 @@ public class View extends StackPane{
 	 * @param x width of canvas
 	 * @param y height of canvas
 	 */
-	public View(int x, int y){
+	public ViewCopy(int x, int y){
 		
 		backgroundView = new Canvas(x, y);
 		turtleView = new Canvas(x, y);
@@ -69,7 +69,8 @@ public class View extends StackPane{
 
 	public void initializeTurtle(Image turtle){
 		myTurtle.setImage(turtle);
-		turtleGC.drawImage(turtle, XOFFSET, YOFFSET);
+		turtleGC.drawImage(turtle, XOFFSET- myTurtle.getImage().getWidth() / 2, 
+				YOFFSET- myTurtle.getImage().getHeight() / 2);
 	}
 	
 	/**
@@ -200,10 +201,11 @@ public class View extends StackPane{
 	public void rotateAndMoveTurtle(Point2D newLoc, double angle){
 		turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
 		turtleGC.save();
-		rotate(angle, newLoc.getX() + XOFFSET + myTurtle.getImage().getWidth()/2, 
-				(newLoc.getY() - YOFFSET + myTurtle.getImage().getHeight()/2)*-1);
+		rotate(angle, newLoc.getX() + XOFFSET, 
+				(newLoc.getY() - YOFFSET)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET, (newLoc.getY()-YOFFSET)*-1);
+		turtleGC.drawImage(myTurtle.getImage(), newLoc.getX() + XOFFSET- myTurtle.getImage().getWidth() / 2, 
+				(newLoc.getY()-YOFFSET + myTurtle.getImage().getHeight() / 2)*-1);
 		newDest = newLoc;
     	turtleGC.restore();
 	}
@@ -216,11 +218,10 @@ public class View extends StackPane{
         Image image = new Image("file:///" + loc.getPath());
 		turtleGC.save();
         myTurtle.setImage(image);
-		rotate(currentRotation, newDest.getX() + XOFFSET
-				+ myTurtle.getImage().getWidth() / 2, (newDest.getY() - YOFFSET
-				+ myTurtle.getImage().getHeight() / 2)*-1);
+		rotate(currentRotation, newDest.getX() + XOFFSET, (newDest.getY() - YOFFSET)*-1);
         turtleGC.clearRect(0, 0, turtleView.getWidth(), turtleView.getHeight());
-    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET, (newDest.getY()-YOFFSET)*-1);
+    	turtleGC.drawImage(myTurtle.getImage(), newDest.getX() + XOFFSET- myTurtle.getImage().getWidth() / 2, 
+    			(newDest.getY()-YOFFSET+ myTurtle.getImage().getHeight() / 2)*-1);
     	turtleGC.restore();
 	}
 	
