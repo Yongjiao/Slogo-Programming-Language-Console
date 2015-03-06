@@ -1,14 +1,11 @@
 package gui;
 
-import configuration.NestedParser.Parser;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import configuration.BasicParser;
+
 
 public class UserInputBox extends TextField {
 	
-	public UserInputBox(Parser p, ObservableList<String> list){
+	public UserInputBox(BasicParser p, ObservableList<String> list){
 		this.setOnKeyPressed(e -> doInput(e, p, list));
 	}
 
