@@ -1,18 +1,16 @@
 package commands;
 
-public class Left extends Rotate{
+import java.util.ArrayList;
 
-	public int angle;
+public class Left extends Rotate{
 	
-	public Left(int a){
-		angle = a;
+	public Left(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
-	
-	public void setParams(int a) {
-		angle = a;
-	}
-	
-	public int execute() {
+
+	public double execute() {
+		double angle = (Integer) params.get(params.size() - 1);
 		return super.changeOrientation(-angle);
 	}
 	

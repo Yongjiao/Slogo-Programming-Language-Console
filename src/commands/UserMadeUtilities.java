@@ -1,0 +1,38 @@
+package commands;
+
+import java.util.HashMap;
+
+public class UserMadeUtilities {
+	
+	protected static HashMap<String, Double> globalVars;
+	protected static HashMap<String, UserDefined> UDCommands;
+	
+	public UserMadeUtilities() {
+		
+	}
+	
+	public void emptyVars() {
+		globalVars.clear();
+	}
+	
+	public static void putInVars(String str, Double d) {
+		globalVars.put(str, d);
+	}
+	
+	public static Double getFromVars(String str) {
+		return globalVars.get(str);
+	}
+	
+	public void emptyCommands() {
+		UDCommands.clear();
+	}
+	
+	public static void putInCommands(String str, UserDefined c) {
+		UDCommands.put(str, c);
+	}
+	
+	public static UserDefined getFromCommands(String str) {
+		return UDCommands.get(str);
+	}
+
+}

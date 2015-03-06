@@ -1,5 +1,7 @@
 package commands;
 
+import java.util.ArrayList;
+
 /**
  * Command Subclass for addition
  * 
@@ -8,20 +10,16 @@ package commands;
  */
 
 public class Add extends Arithmetic{
-
-	private int num1;
-	private int num2;
 	
-	public Add(int a, int b){
-		num1 = a; num2 = b;
+	public Add(ArrayList<Object> p){
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a, int b) {
-		num1 = a; num2 = b;
-	}
-	
-	public int execute() {
-		return super.add(num1, num2);
+	public double execute() {
+		double num1 = (Integer) params.get(params.size() - 2);
+		double num2 = (Integer) params.get(params.size() - 1);
+		return num1 + num2;
 	}
 	
 }

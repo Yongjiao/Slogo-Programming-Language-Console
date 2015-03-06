@@ -1,19 +1,17 @@
 package commands;
 
-public class Log extends Calculate{
+import java.util.ArrayList;
 
-	private int num;
+public class Log extends Calculate{
 	
-	public Log(int a) {
-		num = a;
+	public Log(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a) {
-		num = a;
-	}
-	
-	public void execut() {
-		super.log(num);
+	public double execut() {
+		double num = (Integer) params.get(params.size() - 1);
+		return Math.log(num);
 	}
 
 }

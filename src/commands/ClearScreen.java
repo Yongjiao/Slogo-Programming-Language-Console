@@ -1,13 +1,22 @@
 package commands;
 
+import javafx.geometry.Point2D;
+
 public class ClearScreen extends TurtScreen{
 	
 	public ClearScreen() {
 		
 	}
 	
-	public int execute() {
-		return super.clear();
+	public double execute() {
+		Point2D origLoc = myTurtleHandler.getTurtleLocation();
+		Point2D destination = new Point2D(0, 0);
+		double dx = destination.getX() - origLoc.getX();
+		double dy = destination.getY() - origLoc.getY();
+		double distance = Math.sqrt((dx * dx) + (dy * dy));
+		myTurtleHandler.changeLocationOfTurtle(destination);
+		myTurtleHandler.clearScreen();
+		return (int) Math.round(distance);
 	}
 
 }

@@ -1,7 +1,11 @@
 package configuration;
 
 import java.util.*;
-
+/**
+ * input validation and parsing
+ * @author Yongjiao Yu
+ *
+ */
 public abstract class Configuration {
 	protected HashMap<String, String>	syntaxMap;
 	protected HashSet<String> userdefined;

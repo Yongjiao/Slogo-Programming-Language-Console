@@ -1,6 +1,5 @@
 package gui;
 
-import java.io.File;
 import java.util.ResourceBundle;
 
 import configuration.Parser;
@@ -11,7 +10,6 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -87,9 +85,18 @@ public class GUI {
 		mainHBox.setAlignment(Pos.CENTER);
 			
 		createColorPickerButtons();	
-		createNormalButtons();		
+		createNormalButtons();
 		createLanguageButtons();
 		myBorders.setTop(mainHBox);
+	}
+
+	private void launchTurtleImageChooser() {
+		TurtleImageChooser turtleButton = new TurtleImageChooser(myTurtleView);
+		try {
+			turtleButton.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void createColorPickerButtons() {
@@ -109,8 +116,8 @@ public class GUI {
 			myButtons[i] = b;
 			mainHBox.getChildren().add(b);
 		}	
-		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImage());
 		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
+		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> launchTurtleImageChooser());
 	}
 
 	private void createLanguageButtons() {
@@ -127,18 +134,6 @@ public class GUI {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Prompts user to choose an image file.
-	 */
-	private void chooseTurtleImage() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter jpgFilter = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter pngFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(jpgFilter, pngFilter);
-		File myTurtleFilePath = fileChooser.showOpenDialog(null);
-		myTurtleView.updateTurtleImage(myTurtleFilePath);
 	}
 
 	/**

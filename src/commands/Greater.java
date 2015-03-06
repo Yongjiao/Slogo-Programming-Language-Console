@@ -1,20 +1,20 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Greater extends Compare{
 
-	private int num1;
-	private int num2;
-	
-	public Greater(int a, int b){
-		num1 = a; num2 = b;
+	public Greater(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a, int b){
-		num1 = a; num2 = b;
-	}
-	
-	public int execute() {
-		return super.Less(num2, num1);
+	public double execute() {
+		double a = (Integer) params.get(params.size() - 2);
+		double b = (Integer) params.get(params.size() - 1);
+		if(a > b)
+			return 1;
+		return 0;
 	}
 	
 }

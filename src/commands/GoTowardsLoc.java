@@ -1,28 +1,21 @@
 package commands;
 
-import configuration.Parser;
+import java.util.ArrayList;
 
 public class GoTowardsLoc extends Rotate{
 	
-	private int x;
-	private int y;
-	
-	public GoTowardsLoc(int xCor, int yCor) {
-		x = xCor; y = yCor;
+	public GoTowardsLoc(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 
-	public void setParams(int xCor, int yCor) {
-		x = xCor; y = yCor;
-	}
-	
-	public int execute() {
-		return super.goTowardsLoc(x, y);
-	}
-	
-	public static void main(String[] args) {
-		GoTowardsLoc example = new GoTowardsLoc(20, 20);
-		
-		// TODO Auto-generated method stub
-
+	public double execute() {
+		double x = (Integer) params.get(params.size() - 2);
+		double y = (Integer) params.get(params.size() - 1);
+		double distX = x - myTurtleHandler.getTurtleLocation().getX();
+		double distY = y - myTurtleHandler.getTurtleLocation().getY();
+		double angle = Math.toDegrees(Math.atan2(distY, distX));
+		myTurtleHandler.setTurtleOrientation(angle);
+		return angle;
 	}
 }

@@ -1,20 +1,19 @@
 package commands;
 
-public class GoToLocation extends Move{
+import java.util.ArrayList;
 
-	private int x;
-	private int y;
-	
-	public GoToLocation(int xCor, int yCor) {
-		x = xCor; y = yCor;
+
+public class GoToLocation extends Move {
+
+	public GoToLocation(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
-	
-	public void setParams(int xCor, int yCor) {
-		x = xCor; y = yCor;
-	}
-	
-	public int execute(){
-		return super.GoToLocation(x, y);	
+
+	public double execute() {
+		double x = (Integer) params.get(params.size() - 2);
+		double y = (Integer) params.get(params.size() - 1);
+		return super.goToLocation(x, y);
 	}
 
 }

@@ -5,28 +5,18 @@ import java.util.ArrayList;
 import application.CommandFactory;
 
 public class For extends Loop{
-	
-	private int start;
-	private int end;
-	private int increment;
-	private ArrayList<CommandFactory> comms;
 
-	public For(int a, int b, int i, ArrayList<CommandFactory> c) {
+	public For(String localVar, int a, int b, int i, ArrayList<CommandFactory> c) {
+		var = localVar;
 		start = a;
 		end = b;
 		increment = i;
-		comms = new ArrayList(c);
+		comms = new ArrayList<CommandFactory>(c);
 	}
 	
-	public void setParams(int a, int b, int c, ArrayList<CommandFactory> d) {
-		start = a;
-		end = b;
-		increment = c;
-		comms = d;
-	}
-	
-	public int execute() {
-		return super.loop(start, end, increment, comms);
+	public double execute() {
+		System.out.println("In For class. var = " + var);
+		return super.loop(var, start, end, increment, comms);
 	}
 
 }

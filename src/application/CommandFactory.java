@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,10 +9,11 @@ import commands.Executable;
 public class CommandFactory implements Executable{
 
 	protected static TurtleHandler myTurtleHandler;
-	private Map<String, Integer> variables = new HashMap<String, Integer>();
+	public static Map<String, Double> variables = new HashMap<String, Double>();
+	private ArrayList<Object> parameters = new ArrayList<Object>();
+	private ArrayList<Integer> VarLoc = new ArrayList<Integer>();
 	
 	public CommandFactory(){
-		
 	}
 	
 	public void setTurtleHandler(TurtleHandler t){
@@ -35,29 +37,46 @@ public class CommandFactory implements Executable{
 	// each command has common method - used for loops and if statements
 	// that pass to IF / LOOP commands an arraylist of command objects
 	// @author anika
-	public int execute() {
-		return 0;
+	public double execute() {
 		// TODO make sure each command has common method - used for loops
-		
+		return 0;
 	}
 	
-	public void putInMap(String str, Integer i) {
+	public void putInMap(String str, double i) {
 		variables.put(str, i);
 	}
 	
-	public int checkIfInMap(String str) {
+	public Object checkIfInMap(String str) {
 		for(int i = 0; i < variables.size(); i++) {
-			if (variables.containsKey(str) == true)
-				return variables.get(str);
+			if (variables.containsKey(str) == true){
+				parameters.add(variables.get(str));
+				Object p = parameters.get(parameters.size() - 1);
+				return p;
+			}
 		}
 		return -1;
 	}
 	
-	public boolean checkLocalVars(int input) {
-		if(input == 2147483647) {
-			return true;
+	public void restore(ArrayList<Integer> l, String var) {
+		for(int i : l) {
+			parameters.set(i, var);
 		}
-		return false;
+	}
+	
+	public ArrayList<Object> getParams() {
+		return parameters;
+	}
+	
+	public void setParams(ArrayList<Object> p) {
+		parameters = p;
+	}
+	
+	public ArrayList<Integer> getVarLoc() {
+		return VarLoc;
+	}
+	
+	public Map<String, Double> getVars() {
+		return variables;
 	}
 	
 }

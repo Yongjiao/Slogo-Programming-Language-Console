@@ -15,6 +15,7 @@ public class TurtleView extends View{
 	private double XOFFSET, YOFFSET;
 	private GraphicsContext turtleGC;
 	private Point2D newDest;
+	private String myTurtleInfo;
 	
 	public TurtleView(int x, int y) {
 		super(x, y);
@@ -57,6 +58,10 @@ public class TurtleView extends View{
 	
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
+		updateTurtleImage(image);
+	}
+	
+	public void updateTurtleImage(Image image){
 		turtleGC.save();
         myTurtle.setImage(image);
 		rotate(currentRotation, newDest.getX() + XOFFSET, (newDest.getY() - YOFFSET)*-1);
@@ -66,6 +71,7 @@ public class TurtleView extends View{
     	turtleGC.restore();
 	}
 	
+	
 	private void rotate(double angle, double x, double y) {
 		currentRotation = angle;
 		Rotate r = new Rotate(angle, x, y);
@@ -73,4 +79,22 @@ public class TurtleView extends View{
 				r.getTx(), r.getTy());
 	}
 
+	
+	/**
+	 * @author Anika
+	 * @param info
+	 */
+	public void setTurtleInfo(String info)
+	{
+		this.myTurtleInfo = info;
+	}
+	
+	/**
+	 * @author Anika
+	 * @return
+	 */
+	public String getTurtleInfo()
+	{
+		return myTurtleInfo;
+	}
 }

@@ -1,6 +1,9 @@
 package application;
-	
+
 import gui.GUI;
+import java.util.ArrayList;
+
+import commands.Backward;
 import configuration.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -17,8 +20,16 @@ public class Main extends Application {
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
 			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
+
+			
 			CommandFactory c = new CommandFactory();
 			c.setTurtleHandler(myHandler);
+			
+			ArrayList<Object> l = new ArrayList<Object>();
+			l.add(50);
+			Backward f = new Backward(l);
+			f.execute();
+//>>>>>>> ea7e94554f12737d0fe270e580c7d9ddf8ad73ca
 			System.out.println("made new th");
 
 			stage.setTitle("SLogo");
@@ -47,9 +58,7 @@ public class Main extends Application {
 //			myHandler.moveTurtle(900);
 //			myHandler.clearScreen();
 //			System.out.println("END END END");
-
 			
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
