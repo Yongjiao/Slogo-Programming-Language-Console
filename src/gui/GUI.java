@@ -174,5 +174,4 @@ public class GUI {
 	public TurtleView getTurtleView(){
 		return myTurtleView;
 	}
-	
 }
