@@ -2,7 +2,6 @@ package gui;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
-
 import configuration.BasicParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -5,9 +5,7 @@ import gui.GUI;
 import java.util.ArrayList;
 
 import commands.Backward;
-import configuration.NestedParser.Parser;
 import javafx.application.Application;
-import javafx.geometry.Point2D;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
