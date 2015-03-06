@@ -28,7 +28,9 @@ public class BinNode implements Node{
 		ArrayList<Object> parList = new ArrayList<Object>();
 		parList.add(left.getValue());
 		parList.add(right.getValue());
+		System.out.println("Binary node get evaluated is " + command + ""+ parList);
 		CommandFactory com = CommandMaker.makeBasicCommands(command, parList);
+		//System.out.println(com);
 		return com.execute();
 	}
 	@Override

@@ -19,6 +19,7 @@ public class Add extends Arithmetic{
 	public double execute() {
 		double num1 = (Double) params.get(params.size() - 2);
 		double num2 = (Double) params.get(params.size() - 1);
+		System.out.println(num1 + num2 + "");
 		return num1 + num2;
 	}
 	

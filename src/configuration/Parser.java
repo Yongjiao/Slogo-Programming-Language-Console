@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import application.CommandFactory;
 import commands.*;
+import configuration.NestedParser.ParserError;
 import configuration.NestedParser.TreeParser;
 
 /**
@@ -54,15 +55,14 @@ public class Parser extends Configuration{
 		CommandFactory com = null;
 		if(myErrorCheck.validateInput(in)){
 			System.out.println("-------------Validation passed-------------");
-			com =  parse(in);
 		}
 		else	System.out.println("Throw an error! Invalid input format");
 		if(com  != null)	com.execute();
 	}
 	
-	protected CommandFactory parse(String in ){
+	protected double parse(String in ) throws ParserError{
 		System.out.println(in);
-		return parseInput(in);
+		return  parseInput(in).execute();
 	}
 	
 private CommandFactory parseInput(String in) {
@@ -192,53 +192,7 @@ private CommandFactory parseInput(String in) {
 		}	
 		return null;
 	}
-<<<<<<< HEAD
 	*/
-=======
-	//no parameters
-	private CommandFactory createCommands(String com){
-		switch(com){
-			case "home":		    	return new Home();
-			case "pendown":  			return new PenDown();
-			case "penup": 				return new PenUp();
-			case "clearscreen":			return new ClearScreen();
-			case "showturtle":			return new ShowTurtle();
-			case "hideturtle":			return new HideTurtle();
-			case "ispendown":			return new IsPD();
-			case "isshowing":			return new Showing();
-			case "heading":				return new Heading();
-			case "xcoordinate":			return new XCor();
-			case "ycoordinate":			return new YCor();
-		}
-		return null;
-	}
-	private CommandFactory createBasicCommands(String com, int[] par){
-	switch(com){
-		case "forward": 		return new Forward(par[0]);
-		case "backward":		return new Backward(par[0]);
-		case "settowards":		return new GoTowardsLoc(5, 4);
-		case "setxy":			return new GoToLocation(par[0], par[1]);
-		case "sum":				return new Add(par[0], par[1]);
-		case "difference":		return new Subtract(par[0], par[1]);
-		case "product":			return new Multiply(par[0], par[1]);
-		case "quotient":		return new Divide(par[0] , par[1]);
-		case "remainder":		return new Remainder(par[0], par[1]);
-		//case "#":
-		case "left":			return new Left(par[0]);
-		case "right":			return new Right(par[0]);
-		case "setheading":		return new SetHeading(par[0]);
-		case "sine":			return new Sin(par[0]);
-		case "cosine":			return new Cos(par[0]);
-		case "tangent":			return new Tan(par[0]);
-		case "arctangent":		return new ATan(par[0]);
-		case "lessthan":		return new Less(par[0], par[1]);
-		case "greaterthan":		return new Greater(par[0], par[1]);
-		case "equal":			return new Equal(par[0], par[1]);		
-		}
-		return null;	
-	}
-	
->>>>>>> 1d63a1810aa0f4099fd3e71b9ceac6b5fd5aadc7
 	public void changeLanguage(ResourceBundle r){
 		myErrorCheck.setLanguage(r);
 		setLanguage(r); //if use super.language, will initialize the lanMap in superclass.

@@ -7,8 +7,8 @@ public class ShowTurtle extends TurtScreen{
 	}
 	
 	public double execute() {
-		myTurtleHandler.showTurtle(1);
-		return myTurtleHandler.isVisible();
+		myViewHandler.showTurtle(1);
+		return myViewHandler.isVisible();
 	}
 
 }

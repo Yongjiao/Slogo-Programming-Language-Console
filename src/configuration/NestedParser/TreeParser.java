@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import configuration.Configuration;
 import application.CommandFactory;
 import Tree.*;
 /**
@@ -13,11 +14,11 @@ import Tree.*;
  * @author Yongjiao Yu
  *
  */
-public class TreeParser {
+public class TreeParser extends Configuration{
 	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;	
 	private HashSet<String> oneParComs;
 	private HashSet<String> twoParComs;
-	private List<Entry<String, Pattern>> patterns; 
+	protected List<Entry<String, Pattern>> patterns; 
 	
 	public TreeParser() throws IOException{
 		initializeSyntax();		
@@ -31,7 +32,7 @@ public class TreeParser {
 		twoParComs = Match.makeSet("src/resources/languages/TwoParCommands");
 	}
 	
-	private void initializeSyntax(){
+	protected void initializeSyntax(){
 		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 
 		constant = b.getString("Constant");
 		variable = b.getString("Variable");
@@ -56,10 +57,12 @@ public class TreeParser {
 		ArrayList<Node> roots = new ArrayList<Node>(); //dont really need the arrayList of node
 		double result = -1;
 		while(!isEnd(tokens)){
-			Node expRoot = parse(tokens);
-			System.out.println(expRoot);
+			Node expRoot = parse(tokens);			
+			System.out.println("The full comamnd parsed is " + expRoot);
 			if(expRoot.hasChild() == 0) 		
 				throw new ParserError("Additional numeric tokens: " + expRoot.getValue());
+			result = expRoot.getValue();
+			System.out.println("a tree parsed is evaluated to " + result);
 			roots.add(expRoot);
 			System.out.println();
 		}
@@ -76,6 +79,7 @@ public class TreeParser {
 	 */
 	public Node parse(Queue<String> tokens) throws ParserError {
 		String token = tokens.poll();
+		System.out.println("TreeParsing the token: " + token);
 		if(token.matches(command)){
 			String comKey = Match.findCommandKey(token, patterns);	
 			if(oneParComs.contains(comKey)){
@@ -112,15 +116,16 @@ public class TreeParser {
 	}
 	protected boolean isEnd(Queue<String> qu){
 		return qu.isEmpty();
-	}
-	
+	}	
 	public static void main(String[] args) throws IOException, ParserError {
 		// TODO Auto-generated method stub
+		String canttest = "+ 5 fd 20 "; //cant test fd
 		String fd = "fd sum sum 20 sum 10 30 100 / 30 10";
 		String sum = "sum sum sum sum 20 30 50 100 200 * 50 50 1000"; //will always be one last token at the very end
 		String errorsum = "setxy fd sum 50 30 50 fdl";
+		String m = "";
 		TreeParser example = new TreeParser(); 
-		example.parse(errorsum);			
+		example.parse(m);	
 	}
-	
+
 }

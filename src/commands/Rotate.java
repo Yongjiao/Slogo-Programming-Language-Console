@@ -3,21 +3,21 @@ package commands;
 import java.util.ArrayList;
 
 import application.CommandFactory;
-import application.TurtleHandler;
+import application.ViewHandler;
 
 
 public abstract class Rotate extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler;
+	ViewHandler myViewHandler;
 	protected ArrayList<Object> params;
 	
 	public Rotate() {
-		myTurtleHandler = super.getTurtleHandler();
+		myViewHandler = super.getViewHandler();
 		super.setParams(params);
 	}
 	
 	public double changeOrientation (double angle) {
-		myTurtleHandler.rotateTurtle(angle);
+		myViewHandler.rotateTurtle(angle);
 		return angle;
 	}
 	

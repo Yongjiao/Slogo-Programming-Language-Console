@@ -7,7 +7,7 @@ public class XCor extends Queries{
 	}
 	
 	public double execute() {
-		return myTurtleHandler.getTurtleLocation().getX();
+		return myViewHandler.getTurtleLocation().getX();
 	}
 
 }

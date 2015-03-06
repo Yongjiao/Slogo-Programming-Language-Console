@@ -1,14 +1,14 @@
 package commands;
 
 import application.CommandFactory;
-import application.TurtleHandler;
+import application.ViewHandler;
 
 public class Queries extends CommandFactory{
 	
-	protected TurtleHandler myTurtleHandler;
+	protected ViewHandler myViewHandler;
 	
 	public Queries() {
-		myTurtleHandler = super.getTurtleHandler();
+		myViewHandler = super.getViewHandler();
 	}
 
 }

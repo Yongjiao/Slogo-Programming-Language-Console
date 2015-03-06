@@ -14,7 +14,7 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 40+
+Hours worked: 45+
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
@@ -25,6 +25,8 @@ Resources used:
 * http://docs.oracle.com/javafx/2/ui_controls/color-picker.htm
 * http://docs.oracle.com/javase/8/javafx/api/javafx/scene/canvas/GraphicsContext.html
 * http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+* http://docs.oracle.com/javase/7/docs/api/java/awt/Color.html#Color(int,%20int,%20int)
+* http://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
 
 Main class file: Main.java
 

@@ -3,15 +3,15 @@ package commands;
 import java.util.ArrayList;
 
 import application.CommandFactory;
-import application.TurtleHandler;
+import application.ViewHandler;
 
 public class Display extends CommandFactory{
 	
-	protected TurtleHandler myTurtleHandler;
+	protected ViewHandler myTurtleHandler;
 	protected ArrayList<Object> params;
 	
 	public Display() {
-		myTurtleHandler = super.getTurtleHandler();
+		myTurtleHandler = super.getViewHandler();
 		super.setParams(params);
 	}
 

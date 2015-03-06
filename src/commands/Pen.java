@@ -1,14 +1,14 @@
 package commands;
 
 import application.CommandFactory;
-import application.TurtleHandler;
+import application.ViewHandler;
 
 public class Pen extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler;
+	ViewHandler myViewHandler;
 	
 	public Pen() {
-		myTurtleHandler = super.getTurtleHandler();
+		myViewHandler = super.getViewHandler();
 	}
 	
 }

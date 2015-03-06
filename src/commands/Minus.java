@@ -11,7 +11,7 @@ public class Minus extends Calculate{
 	}
 	
 	public double execute() {
-		double num = (Integer) params.get(params.size() - 1);
+		double num = (Double) params.get(params.size() - 1);
 		return -num;
 	}
 

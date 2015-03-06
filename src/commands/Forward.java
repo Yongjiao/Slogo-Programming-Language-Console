@@ -10,7 +10,7 @@ public class Forward extends Move {
 	}
 
 	public double execute() {
-		double steps = (Integer) params.get(params.size() - 1);
+		double steps = (Double) params.get(params.size() - 1);
 		return super.changeLocation(steps);
 	}
 }

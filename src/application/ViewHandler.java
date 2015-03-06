@@ -1,6 +1,14 @@
 package application;
 
+// REFACTOR TODO
+/*
+ * TH moves turtle
+ * NONONO: Pen handler sets pen color / status / DRAWSLINES
+ * - separate pen handling
+ */
 
+
+import gui.BackgroundView;
 import gui.LineView;
 import gui.TurtleView;
 import javafx.geometry.Point2D;
@@ -55,10 +63,11 @@ import javafx.scene.paint.Color;
  * @author anika
  *
  */
-public class TurtleHandler {
+public class ViewHandler {
 
 	private LineView myLineView;
 	private TurtleView myTurtleView;
+	private BackgroundView myBackgroundView;
 	private Turtle myTurtle;
 	private Pen myPen;
 	
@@ -68,9 +77,10 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(LineView lv, TurtleView tv){
+	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk){
 		myLineView = lv;
 		myTurtleView = tv;
+		myBackgroundView = bk;
 		myTurtle = new Turtle();
 		myPen = new Pen(1);
 		this.initializeTurtle();
@@ -253,7 +263,7 @@ public class TurtleHandler {
 	 * If toShow == 0, visibility OFF
 	 * @param toShow
 	 */
-	public void showTurtle(int toShow) // WORKS
+	public void showTurtle(int toShow) 
 	{
 		myTurtle.setVisibility(toShow);
 		updateTurtleOnView();
@@ -274,17 +284,16 @@ public class TurtleHandler {
 	 * if status == 0, PENUP
 	 * @param status
 	 */
-	public void setPenStatus(int status)
-	{
-		myPen.setStatus(status);
-	}
 	
-	/**
-	 * @return 1 if PENDOWN, 0 if PENUP
-	 */
 	public int getPenStatus()
 	{
 		return  myPen.getStatus();
+	}
+	
+	
+	public void setPenStatus(int statusNew)
+	{
+		myPen.setStatus(statusNew);
 	}
 	
 	/**
@@ -296,7 +305,17 @@ public class TurtleHandler {
 		myPen.setColor(newColor);
 	}
 	
+	public void setPenColor(int index)
+	{
+		Color newColor = myPen.getColorFromPalette(index);
+		this.setPenColor(newColor);
+	}
 	
+	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
+	{
+		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
+		myPen.addToPalette(paletteIndex, newColor);
+	}
 	
 		
 	/**
@@ -306,6 +325,15 @@ public class TurtleHandler {
 	public Color getPenColor()
 	{
 		return myPen.getColor();
+	}
+	
+	/**
+	 * called when PENCOLOR command is executed (Sprint 3)
+	 * @return
+	 */
+	public int getPenColorIndex()
+	{
+		return myPen.getCurrentColorIndexFromPalette();
 	}
 	
 	public void setPenWeight(double pixels)
@@ -354,7 +382,7 @@ public class TurtleHandler {
 	
 	public void setBackground(double index)
 	{
-		//TODO change background view
+	//	this.myBackgroundView.setBackgroundColor(index);
 	}
 	 
 

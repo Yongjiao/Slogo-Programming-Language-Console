@@ -14,7 +14,7 @@ public abstract class Configuration {
 	protected HashMap<String, String> lanMap;
 	protected HashSet<String> userdefined;
 	protected List<Entry<String, Pattern>> patterns; 
-
+	
 	protected String onenum; //one parameter only exactly one space between parameters
 	protected String twonum;	//two parameter
 	protected String com_regix;//[command]
@@ -70,7 +70,6 @@ public abstract class Configuration {
 		}
 		return commandMap;
 	}
-	abstract protected void setSyntaxRegex();
 	protected Queue<String> toCommandQueue(String str) {
 		String[] s = str.split(" ");
 		Queue<String> qu = new LinkedList<String>();

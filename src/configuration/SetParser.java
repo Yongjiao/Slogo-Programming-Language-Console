@@ -20,7 +20,7 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-public class SetParser extends Parser{
+public class SetParser extends Configuration{
 	private final String comKey = "makevariable";
 	private TreeParser tParser;
 	
@@ -34,8 +34,7 @@ public class SetParser extends Parser{
 		return parseInput(in);  //not sure if will call the correct one
 	}
 	*/
-	@Override
-	public double parse(String s){
+	public double parse(String s) throws ParserError, IOException{
 		tParser = new TreeParser();
 		Queue<String> tokens = toCommandQueue(s);
 		/* ?throw errors if comKey is not makevariable

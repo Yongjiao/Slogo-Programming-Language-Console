@@ -7,7 +7,7 @@ public class IsPD extends Queries{
 	}
 	
 	public double execute() {
-		if(myTurtleHandler.getPenStatus() == 1)
+		if(myViewHandler.getPenStatus() == 1)
 			return 1;
 		return 0;
 	}

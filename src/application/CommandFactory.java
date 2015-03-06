@@ -8,7 +8,7 @@ import commands.Executable;
 
 public class CommandFactory implements Executable{
 
-	protected static TurtleHandler myTurtleHandler;
+	protected static ViewHandler myViewHandler;
 	public static Map<String, Double> variables = new HashMap<String, Double>();
 	private ArrayList<Object> parameters = new ArrayList<Object>();
 	private ArrayList<Integer> VarLoc = new ArrayList<Integer>();
@@ -16,16 +16,21 @@ public class CommandFactory implements Executable{
 	public CommandFactory(){
 	}
 	
-	public void setTurtleHandler(TurtleHandler t){
+	public void setViewHandler(ViewHandler t){
 		System.out.println("   in cf class - setting super handler");
-		myTurtleHandler = t;
+
+		myViewHandler = t;
 		System.out.println("   in cf class - t handler = " + t.toString());
-		System.out.println("   in cf class -  th handler = " + myTurtleHandler.toString());
-	}	
+		System.out.println("   in cf class -  th handler = " + myViewHandler.toString());
+
+
+	}
+	
 	// Anika - called by commands subclasses
-	protected TurtleHandler getTurtleHandler(){
-		System.out.println("   in cf class - getting super handler = " + myTurtleHandler.toString());
-		return myTurtleHandler;
+	protected ViewHandler getViewHandler(){
+		System.out.println("   in cf class - getting super handler = " + myViewHandler.toString());
+
+		return myViewHandler;
 	}
 
 	@Override
@@ -33,6 +38,7 @@ public class CommandFactory implements Executable{
 	// that pass to IF / LOOP commands an arraylist of command objects
 	// @author anika
 	public double execute() {
+		// TODO make sure each command has common method - used for loops
 		return 0;
 	}
 	
@@ -72,4 +78,5 @@ public class CommandFactory implements Executable{
 	public Map<String, Double> getVars() {
 		return variables;
 	}
+	
 }

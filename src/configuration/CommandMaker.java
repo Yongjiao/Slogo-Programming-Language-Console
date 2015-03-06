@@ -17,17 +17,17 @@ public class CommandMaker {
  */
 	static public CommandFactory makeNoParmsCommands(String com){
 			switch(com){
-				case "home":		    	return new Home();
-				case "pendown":  			return new PenDown();
-				case "penup": 				return new PenUp();
-				case "clearscreen":			return new ClearScreen();
-				case "showturtle":			return new ShowTurtle();
-				case "hideturtle":			return new HideTurtle();
-				case "ispendown":			return new Down();
-				case "isshowing":			return new Showing();
-				case "heading":				return new Heading();
-				case "xcoordinate":			return new XCor();
-				case "ycoordinate":			return new YCor();			
+				case "Home":		    	return new Home();
+				case "PenDown":  			return new PenDown();
+				case "PenUp": 				return new PenUp();
+				case "ClearScreen":			return new ClearScreen();
+				case "ShowTurtle":			return new ShowTurtle();
+				case "HideTurtle":			return new HideTurtle();
+				case "IsPenDown":			return new PenDown();
+				case "IsShowing":			return new Showing();
+				case "Heading":				return new Heading();
+				case "XCoordinate":			return new XCor();
+				case "YCoordinate":			return new YCor();			
 			}
 			return null;
 	}
@@ -39,29 +39,28 @@ public class CommandMaker {
  * @return
  */
    	static public CommandFactory makeBasicCommands(String com, ArrayList<Object> parList){
-   		CommandFactory comFactory;
    		switch(com){
-   				case "forward": 		return new Forward(parList);
-   				case "backward":		return new Backward(parList);
-   				case "settowards":		return new GoTowardsLoc(parList);
-   				case "setposition":		return new GoToLocation(parList);
-   				case "sum":				return new Add(parList);
-   				case "difference":		return new Subtract(parList);
-   				case "product":			return new Multiply(parList));
-   				case "quotient":		return new Divide(parList);
-   				case "remainder":		return new Remainder(parList);
+   				case "Forward": 		return new Forward(parList);
+   				case "Backward":		return new Backward(parList);
+   				case "SetTowards":		return new GoTowardsLoc(parList);
+   				case "SetPosition":		return new GoToLocation(parList);
+   				case "Sum":				return new Add(parList);
+   				case "Difference":		return new Subtract(parList);
+   				case "Product":			return new Multiply(parList);
+   				case "Quotient":		return new Divide(parList);
+   				case "Remainder":		return new Remainder(parList);
    				//case "#":
-   				case "left":			return new Left(parList);
-   				case "right":			return new Right(parList);
-   				case "setheading":		return new SetHeading(parList);
-   				case "sine":			return new Sin(parList);
-   				case "cosine":			return new Cos(parList);
-   				case "tangent":			return new Tan(parList);
-   				case "arctangent":		return new ATan(parList);
-   				case "lessthan":		return new Less(parList);
-   				case "greaterthan":		return new Greater(parList);
-   				case "equal":			return new Equal(parList);
-   				case "notequal":		return new NotEq(parList);
+   				case "Left":			return new Left(parList);
+   				case "Right":			return new Right(parList);
+   				case "Setheading":		return new SetHeading(parList);
+   				case "Sine":			return new Sin(parList);
+   				case "Cosine":			return new Cos(parList);
+   				case "Tangent":			return new Tan(parList);
+   				case "Arctangent":		return new ATan(parList);
+   				case "LessThan":		return new Less(parList);
+   				case "GreaterThan":		return new Greater(parList);
+   				case "Equal":			return new Equal(parList);
+   				case "NotEqual":		return new NotEq(parList);
    				}
    				return null;	
    	}
