@@ -56,11 +56,12 @@ public class CommandMaker {
    				case "Sine":			return new Sin(parList);
    				case "Cosine":			return new Cos(parList);
    				case "Tangent":			return new Tan(parList);
-   				case "Arctangent":		return new ATan(parList);
+   				case "ArcTangent":		return new ATan(parList);
    				case "LessThan":		return new Less(parList);
    				case "GreaterThan":		return new Greater(parList);
    				case "Equal":			return new Equal(parList);
    				case "NotEqual":		return new NotEq(parList);
+   				case "NaturalLog": 		return new Log(parList);
    				}
    				return null;	
    	}

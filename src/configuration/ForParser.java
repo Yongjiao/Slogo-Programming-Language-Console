@@ -49,6 +49,7 @@ public class ForParser extends Configuration{
 		if(!tokens.peek().matches(listend))	
 			throw new ParserError("see" + tokens.poll() + "expected ] here!");
 		skip(tokens);
+		//
 		if(!tokens.peek().matches(liststart))
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
@@ -57,10 +58,27 @@ public class ForParser extends Configuration{
 		}
 		if(isEnd(tokens) || !tokens.poll().matches(listend))
 			throw new ParserError("Expected ] here !");
+		//
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;		
 	}
+/*
+	//qu -> { tParser.parse(qu); }
+	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
+		ArrayList<Node>	list = new ArrayList();
+		if(!qu.peek().matches(liststart))
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		while(!isEnd(qu) && !qu.peek().matches(listend)){
+			list.add(tParser.parse(qu));
+			System.out.println("Tree parsed is " + list.get(list.size() -1));
+		}
+		if(isEnd(qu) || !qu.poll().matches(listend))
+			throw new ParserError("Expected ] here !");
+		return list;
+	}
+*/	
 	
 	private int fetchConstant(Queue<String> qu) throws ParserError{
 		if(!qu.peek().matches(constant))
