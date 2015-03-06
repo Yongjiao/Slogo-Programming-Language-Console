@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  */
 public class Pen {
 	//  Properties: up/down, thickness, solid, dashed, dotted, etc.
-	private int myStatus;
+	private int myStatus, myPaletteColorLocation;
 	private Color myColor;
 	private double myThickness;
 	private PENSTYLE myStyle;
@@ -37,6 +37,7 @@ public class Pen {
 		myThickness = 1;
 		myStyle = PENSTYLE.SOLID;
 		myPaletteOptions = new HashMap<Integer, Color>();
+		myPaletteColorLocation = 0;
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public class Pen {
 	public void setColor (Color newColor)
 	{
 		myColor = newColor;
+		
 	}
 	
 	/**
@@ -132,6 +134,13 @@ public class Pen {
 	
 	public Color getColorFromPalette(int index)
 	{
-		return this.myPaletteOptions.get(index);
+		myColor = this.myPaletteOptions.get(index);
+		this.myPaletteColorLocation = index;
+		return myColor;
+	}
+	
+	public int getCurrentColorIndexFromPalette()
+	{
+		return this.myPaletteColorLocation;
 	}
 }

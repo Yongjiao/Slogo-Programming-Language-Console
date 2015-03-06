@@ -321,6 +321,15 @@ public class TurtleHandler {
 		return myPen.getColor();
 	}
 	
+	/**
+	 * called when PENCOLOR command is executed (Sprint 3)
+	 * @return
+	 */
+	public int getPenColorIndex()
+	{
+		return myPen.getCurrentColorIndexFromPalette();
+	}
+	
 	public void setPenWeight(double pixels)
 	{
 		myPen.setWeight(pixels);
@@ -367,7 +376,7 @@ public class TurtleHandler {
 	
 	public void setBackground(double index)
 	{
-		this.myBackgroundView.setBackgroundColor(index);
+	//	this.myBackgroundView.setBackgroundColor(index);
 	}
 	 
 
