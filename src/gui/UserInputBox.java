@@ -1,11 +1,11 @@
 package gui;
 
-import configuration.BasicParser;
+import configuration.Parser;
 
 
 public class UserInputBox extends TextField {
 	
-	public UserInputBox(BasicParser p, ObservableList<String> list){
+	public UserInputBox(Parser p, ObservableList<String> list){
 		this.setOnKeyPressed(e -> doInput(e, p, list));
 	}
 

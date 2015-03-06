@@ -12,7 +12,7 @@ import Tree.Node;
  * @author Yongjiao Yu
  *
  */
-public class DotimesParser extends Configuration{
+public class DotimesParser extends Parser{
 	
 	public DotimesParser() throws IOException{
 		initializeSyntax();		

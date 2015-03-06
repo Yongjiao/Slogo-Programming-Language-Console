@@ -14,7 +14,7 @@ import application.CommandFactory;
  * @author Yongjiao Yu
  *
  */
-public class IfParser extends Configuration{
+public class IfParser extends Parser{
 	
 	public IfParser() throws IOException{
 		initializeSyntax();		

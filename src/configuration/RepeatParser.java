@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import Tree.Node;
 
-public class RepeatParser extends Configuration{
+public class RepeatParser extends Parser{
 	
 	public RepeatParser() throws IOException{
 		initializeSyntax();		
