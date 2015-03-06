@@ -17,11 +17,10 @@ import application.CommandFactory;
  *
  */
 public class SetParser extends Configuration{
-	private final String comKey = "makevariable";
-	private TreeParser tParser;
 	
 	public SetParser() throws IOException{
 		initializeSyntax();		
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}
@@ -31,11 +30,7 @@ public class SetParser extends Configuration{
 	}
 	*/
 	public double parse(String s) throws ParserError, IOException{
-		tParser = new TreeParser();
 		Queue<String> tokens = toCommandQueue(s);
-		/* ?throw errors if comKey is not makevariable
-		 * if(Match.findCommandKey(tokens.poll(), patterns); 
-		 */
 		skip(tokens);
 		CommandFactory com = parse(tokens);	
 		return com.execute();	
@@ -44,9 +39,8 @@ public class SetParser extends Configuration{
 	private CommandFactory parse(Queue<String> tokens) throws ParserError {
 		String token = tokens.poll();			
 		if(!token.matches(variable))
-			throw new ParserError("Expected Variable here!");
-		
-		double val = tParser.parse(tokens).getValue();
+			throw new ParserError("Expected Variable here!");		
+		double val = buildTree(tokens).getValue();
 		ArrayList<Object> par = new ArrayList<>();
 		par.add(val);
 		System.out.println("set parameter is " + par);

@@ -15,16 +15,15 @@ import application.CommandFactory;
  *
  */
 public class IfParser extends Configuration{
-	private TreeParser tParser;
 	
 	public IfParser() throws IOException{
 		initializeSyntax();		
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}	
 
 	public double parse(String s) throws IOException, ParserError{
-		tParser = new TreeParser();
 		Queue<String> tokens = toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
@@ -37,9 +36,8 @@ public class IfParser extends Configuration{
 	 */
 	private double parse(Queue<String> tokens) throws ParserError {
 		ArrayList<Node> ifstatements = new ArrayList<Node>();
-		double result = -1;
 		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
-		double expr = tParser.parse(tokens).getValue();
+		double expr = buildTree(tokens).getValue();
 		ifstatements = parseCommands(tokens);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
@@ -53,7 +51,7 @@ public class IfParser extends Configuration{
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
 		while(!isEnd(qu) && !qu.peek().matches(listend)){
-			list.add(tParser.parse(qu));
+			list.add(buildTree(qu));
 			System.out.println("Tree parsed is " + list.get(list.size() -1));
 		}
 		if(isEnd(qu) || !qu.poll().matches(listend))
@@ -68,7 +66,7 @@ public class IfParser extends Configuration{
 	
 	public static void main(String[] args) throws IOException, ParserError {
 		IfParser example = new IfParser();
-		String ifl = "if equal? 6 6 [ * 30 20 / 20 10 ]";
+		String ifl = "if equal? 2 6 [ * 30 20 / 20 10 ]";
 		example.parse(ifl);
 	}
 	
