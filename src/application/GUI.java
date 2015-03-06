@@ -1,10 +1,13 @@
 package application;
 
+import gui.View;
+
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ResourceBundle;
 
+import configuration.BasicParser;
 import configuration.NestedParser.Parser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -61,7 +64,7 @@ public class GUI {
 	private String[] myButtonNames;
 	private ResourceBundle myLabels, myCurrentBundle;
 	private HBox mainHBox;
-	private Parser myParser;
+	private BasicParser myParser;
 	private File myTurtleFilePath;
 	
 	private final ColorPicker penColor = new ColorPicker();
@@ -74,7 +77,7 @@ public class GUI {
 				"Korean", "Portuguese", "Russian", "Spanish"});
 		myButtons = new Button[NUM_BUTTONS];
 		myBorders = new BorderPane();
-		myParser = new Parser();
+		myParser = new BasicParser();
 		
 		// default values
 		penColor.setValue(Color.BLACK);
@@ -264,7 +267,7 @@ public class GUI {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER){
 					// TODO: check error
-					myParser.validateAndParse(commandsField.getText());
+					myParser.parse(commandsField.getText());
 					// TODO: if error check is good, pass string to parser
 					myCommandsList.add(commandsField.getText());
 					commandsField.clear();		
