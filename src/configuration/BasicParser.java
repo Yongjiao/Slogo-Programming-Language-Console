@@ -26,7 +26,6 @@ public class BasicParser extends Configuration{
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}
-	
 	public double parse(String s) throws ParserError, IOException{
 		String comKey;
 		double result = -1;
@@ -72,7 +71,13 @@ public class BasicParser extends Configuration{
 		myParsers.put("DoTimes", new DotimesParser());
 		myParsers.put("For", new ForParser());
 	}
-	
+	@Override
+	protected void setLanguage(String path){
+        patterns.addAll(Match.makePatterns(path));
+        for(String key : myParsers.keySet()){
+        	myParsers.get(key).setLanguage(path);
+        }
+	}	
 	public static void main(String[] args) throws IOException, ParserError {
 		String s1 = "fd 1";
 		String s2= "sum 50 50";

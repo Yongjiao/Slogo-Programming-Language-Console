@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+
 import Tree.BinNode;
 import Tree.ConstNode;
 import Tree.Node;
@@ -15,14 +16,13 @@ import Tree.SingleNode;
  */
 public abstract class Configuration {
 	protected String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	protected HashMap<String, String> lanMap;
 	protected HashSet<String> userdefined;
 	protected List<Entry<String, Pattern>> patterns; 
 	protected HashSet<String> oneParComs;
 	protected HashSet<String> twoParComs;
 	
 	abstract protected double parse(String s) throws ParserError, IOException;
-	
+/*	
 	protected void initialize(){
 	    //initialize languageMap
 		ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
@@ -33,25 +33,13 @@ public abstract class Configuration {
 	    //initialize syntaxMap
 		initializeSyntax();
 	}
-	protected void setLanguage(ResourceBundle r){
-		lanMap  = new HashMap<>();
-		HashSet<String> m = (HashSet<String>) r.keySet();	
-		for( String key: m){
-			String value = r.getString(key);
-			String[] val = value.split("\\|");
-	  		//System.out.println(val[0]);
-			for(int i=0; i< val.length; i++){
-				lanMap.put(val[i].toLowerCase(), key.toLowerCase());
-			}
-		}
+	*/
+	protected void setLanguage(String path){
+        patterns.addAll(Match.makePatterns(path));
 	}
+	
 	protected void initializeSyntax(){
 		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 
-/*		syntaxMap = new HashMap<String, String>();	
- * 		HashSet<String> keys = (HashSet<String>) b.keySet();
-		for(String key: keys){
-			syntaxMap.put(key, b.getString(key));
-		} */
 		comment = b.getString("Comment");
 		constant = b.getString("Constant");
 		variable = b.getString("Variable");
@@ -60,7 +48,6 @@ public abstract class Configuration {
 		listend = b.getString("ListEnd");
 		groupstart = b.getString("GroupStart");
 		groupend = b.getString("GroupEnd");
-		
 	}	
 	/**
 	 * parses commands till a full command is parsed or when a single tree is built.
