@@ -20,7 +20,7 @@ public class Turtle {
 	private int isVisible;
 	private Point2D myLoc;
 	ImageView myImage;
-	Pen myPen;
+	
 	
 	/**
 	 * constructor to initialize turtle
@@ -29,7 +29,7 @@ public class Turtle {
 		myLoc = new Point2D(0, 0); // set Turtle's initial location in the center of the screen
 		myOrientation = 0; //  set orientation to be straight up
 		isVisible = 1;
-		myPen = new Pen(1);
+		
 	}
 	
 	/**
