@@ -15,13 +15,12 @@ import application.CommandFactory;
  */
 
 public class ForParser extends Configuration{
-	private TreeParser tParser;
 	
 	public ForParser() throws IOException{
-		initializeSyntax();		
+		initializeSyntax();	
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
-		tParser = new TreeParser();
 	}
 	
 	public double parse(String s) throws ParserError{
@@ -85,7 +84,7 @@ public class ForParser extends Configuration{
 	
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
-		Node n = tParser.parse(qu);
+		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
 		for(int i = start; i < end; i++){
 			result = n.getValue();		//execute tree for # iterations	

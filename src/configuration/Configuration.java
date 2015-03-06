@@ -1,10 +1,13 @@
 package configuration;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
+import Tree.BinNode;
+import Tree.ConstNode;
 import Tree.Node;
+import Tree.SingleNode;
 /**
  * super class for input parsing and validation
  * @author Yongjiao Yu
@@ -15,7 +18,11 @@ public abstract class Configuration {
 	protected HashMap<String, String> lanMap;
 	protected HashSet<String> userdefined;
 	protected List<Entry<String, Pattern>> patterns; 
-
+	protected HashSet<String> oneParComs;
+	protected HashSet<String> twoParComs;
+	
+	abstract protected double parse(String s) throws ParserError, IOException;
+	
 	protected void initialize(){
 	    //initialize languageMap
 		ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
@@ -55,6 +62,47 @@ public abstract class Configuration {
 		groupend = b.getString("GroupEnd");
 		
 	}	
+	/**
+	 * parses commands till a full command is parsed or when a single tree is built.
+	 * @param  command tokens
+	 * @return an expression tree for a full (nested) command
+	 * @throws ParserError
+	 */
+	protected Node buildTree(Queue<String> tokens) throws ParserError {
+		String token = tokens.poll();
+		System.out.println("TreeParsing the token: " + token);
+		if(token.matches(command)){
+			String comKey = Match.findCommandKey(token, patterns);	
+			System.out.println();
+			if(oneParComs.contains(comKey)){
+				Node child = buildTree(tokens);
+				return new SingleNode(comKey , child);
+			}			
+			if(twoParComs.contains(comKey)){
+				Node left = buildTree(tokens);
+				Node right = buildTree(tokens); 
+				return new BinNode(comKey, left, right);
+			}
+			else
+				throw new ParserError("Command Undefined: " + token);
+		}
+		if(token.matches(constant)){
+			double val = Double.parseDouble(token);
+			return new ConstNode(val);
+		}
+		if(token.matches(variable)){
+			//get value from Map
+			double val = Double.parseDouble(token);
+			return new ConstNode(val);
+		}
+		else		 
+			throw new ParserError("unexpected Token: "+ token);
+	}
+	protected void initializeSets() throws IOException{		
+		oneParComs = Match.makeSet("src/resources/languages/OneParCommands");
+		twoParComs = Match.makeSet("src/resources/languages/TwoParCommands");
+	}
+	
 	
 	protected Queue<String> toCommandQueue(String str) {
 		String[] s = str.split(" ");

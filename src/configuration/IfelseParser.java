@@ -13,15 +13,14 @@ import Tree.Node;
  *
  */
 public class IfelseParser extends Configuration{
-	private TreeParser tParser;
 	
 	public IfelseParser() throws IOException{
 		initializeSyntax();		
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}
 	public double parse(String s) throws IOException, ParserError{
-		tParser = new TreeParser();
 		Queue<String> tokens = toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
@@ -31,7 +30,7 @@ public class IfelseParser extends Configuration{
 		double result = -1; 
 		ArrayList<Node> ifTree = null, elseTree = null;
 		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
-		double expr = tParser.parse(tokens).getValue();
+		double expr = buildTree(tokens).getValue();
 		ifTree = parseCommands(tokens);
 		while(!isEnd(tokens) && tokens.peek().matches(listend)) //skip till the second command
 			skip(tokens);
@@ -54,7 +53,7 @@ public class IfelseParser extends Configuration{
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
 		while(!isEnd(qu) && !qu.peek().matches(listend)){
-			list.add(tParser.parse(qu));
+			list.add(buildTree(qu));
 			System.out.println("Tree parsed is " + list.get(list.size() -1));
 		}
 		if(isEnd(qu) || !qu.poll().matches(listend))

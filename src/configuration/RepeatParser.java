@@ -9,13 +9,12 @@ import java.util.regex.Pattern;
 import Tree.Node;
 
 public class RepeatParser extends Configuration{
-	private TreeParser tParser;
 	
 	public RepeatParser() throws IOException{
 		initializeSyntax();		
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
-		tParser = new TreeParser();
 	}
 	public double parse(String s) throws IOException, ParserError{
 		Queue<String> tokens = toCommandQueue(s);
@@ -26,7 +25,7 @@ public class RepeatParser extends Configuration{
 	
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1;
-		Node expr = tParser.parse(tokens); //can be a numeric node
+		Node expr = buildTree(tokens); //can be a numeric node
 		int iter = (int) expr.getValue();
 		//comment parse start from here
 		if(!tokens.peek().matches(liststart))
@@ -44,7 +43,7 @@ public class RepeatParser extends Configuration{
 	
 	private double parseRepeat(int iter, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
-		Node n = tParser.parse(qu);
+		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
 		for(int i=0; i < iter; i++ ){
 			result = n.getValue();		//execute tree for # iterations	

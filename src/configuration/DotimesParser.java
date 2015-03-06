@@ -13,13 +13,12 @@ import Tree.Node;
  *
  */
 public class DotimesParser extends Configuration{
-	private TreeParser tParser;
 	
 	public DotimesParser() throws IOException{
 		initializeSyntax();		
+		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
         patterns.addAll(Match.makePatterns("resources/languages/English"));
-        tParser = new TreeParser();
 	}
 	
 	public double parse(String s) throws ParserError{
@@ -56,7 +55,6 @@ public class DotimesParser extends Configuration{
 		return result;		
 	}
 	
-	
 	private int fetchConstant(Queue<String> qu) throws ParserError{
 		if(!qu.peek().matches(constant))
 			throw new ParserError("see" + qu.poll() + "expected number here!");
@@ -65,7 +63,7 @@ public class DotimesParser extends Configuration{
 	
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
-		Node n = tParser.parse(qu);
+		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
 		for(int i = start; i < end; i++){
 			result = n.getValue();		//execute tree for # iterations	
@@ -76,7 +74,7 @@ public class DotimesParser extends Configuration{
 	
 	public static void main(String[] args) throws IOException, ParserError {
 		DotimesParser example = new DotimesParser();
-		String dotimes = "dotimes [ :name 200 ] [ sin 300  atan 100 ]";
+		String dotimes = "dotimes [ :name 200 ] [ sin 300 atan 100 ]";
 		example.parse(dotimes);
 	}
 
