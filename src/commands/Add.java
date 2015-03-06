@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Add extends Arithmetic{
+public class Add extends Arithmetic implements ICommand{
 	
 	public Add(ArrayList<Object> p){
 		super.setParams(p);
