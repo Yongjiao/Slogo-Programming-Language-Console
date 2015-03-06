@@ -7,7 +7,7 @@ public class Showing extends Queries{
 	}
 	
 	public double execute() {
-		if(myTurtleHandler.isVisible() == 1)
+		if(myViewHandler.isVisible() == 1)
 			return 1;
 		return 0;
 	}

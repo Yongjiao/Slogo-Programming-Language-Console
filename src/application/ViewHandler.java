@@ -1,5 +1,12 @@
 package application;
 
+// REFACTOR TODO
+/*
+ * TH moves turtle
+ * NONONO: Pen handler sets pen color / status / DRAWSLINES
+ * - separate pen handling
+ */
+
 
 import gui.BackgroundView;
 import gui.LineView;
@@ -56,7 +63,7 @@ import javafx.scene.paint.Color;
  * @author anika
  *
  */
-public class TurtleHandler {
+public class ViewHandler {
 
 	private LineView myLineView;
 	private TurtleView myTurtleView;
@@ -70,7 +77,7 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(LineView lv, TurtleView tv, BackgroundView bk){
+	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk){
 		myLineView = lv;
 		myTurtleView = tv;
 		myBackgroundView = bk;
@@ -256,7 +263,7 @@ public class TurtleHandler {
 	 * If toShow == 0, visibility OFF
 	 * @param toShow
 	 */
-	public void showTurtle(int toShow) // WORKS
+	public void showTurtle(int toShow) 
 	{
 		myTurtle.setVisibility(toShow);
 		updateTurtleOnView();
@@ -277,17 +284,16 @@ public class TurtleHandler {
 	 * if status == 0, PENUP
 	 * @param status
 	 */
-	public void setPenStatus(int status)
-	{
-		myPen.setStatus(status);
-	}
 	
-	/**
-	 * @return 1 if PENDOWN, 0 if PENUP
-	 */
 	public int getPenStatus()
 	{
 		return  myPen.getStatus();
+	}
+	
+	
+	public void setPenStatus(int statusNew)
+	{
+		myPen.setStatus(statusNew);
 	}
 	
 	/**

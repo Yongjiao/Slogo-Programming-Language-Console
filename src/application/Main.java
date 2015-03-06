@@ -19,11 +19,11 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
-			TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
+			ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
 
 			
 			CommandFactory c = new CommandFactory();
-			c.setTurtleHandler(myHandler);
+			c.setViewHandler(myHandler);
 			
 			ArrayList<Object> l = new ArrayList<Object>();
 			l.add(50);

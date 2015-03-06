@@ -7,7 +7,7 @@ public class PenDown extends Pen{
 	}
 	
 	public double execute() {
-		myTurtleHandler.setPenStatus(1);
+		myViewHandler.setPenStatus(1);
 		return 1;
 	}
 

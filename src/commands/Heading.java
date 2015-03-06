@@ -7,7 +7,7 @@ public class Heading extends Queries{
 	}
 	
 	public double execute() {
-		return myTurtleHandler.getTurtleOrientation();
+		return myViewHandler.getTurtleOrientation();
 	}
 
 }

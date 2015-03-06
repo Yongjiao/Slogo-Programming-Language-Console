@@ -7,7 +7,7 @@ public class YCor extends Queries{
 	}
 	
 	public double execute() {
-		return myTurtleHandler.getTurtleLocation().getY();
+		return myViewHandler.getTurtleLocation().getY();
 	}
 
 }

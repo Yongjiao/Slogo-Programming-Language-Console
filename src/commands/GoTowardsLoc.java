@@ -12,10 +12,10 @@ public class GoTowardsLoc extends Rotate{
 	public double execute() {
 		double x = (Integer) params.get(params.size() - 2);
 		double y = (Integer) params.get(params.size() - 1);
-		double distX = x - myTurtleHandler.getTurtleLocation().getX();
-		double distY = y - myTurtleHandler.getTurtleLocation().getY();
+		double distX = x - myViewHandler.getTurtleLocation().getX();
+		double distY = y - myViewHandler.getTurtleLocation().getY();
 		double angle = Math.toDegrees(Math.atan2(distY, distX));
-		myTurtleHandler.setTurtleOrientation(angle);
+		myViewHandler.setTurtleOrientation(angle);
 		return angle;
 	}
 }
