@@ -32,6 +32,8 @@ public class BasicParser extends Configuration{
 		Queue<String> tokens = toCommandQueue(s);
 		String command = tokens.peek();
 		comKey = Match.findCommandKey(tokens.peek(), patterns);
+		CommandFactory com = CommandMaker.makeNoParmsCommands(comKey);
+		if(com != null)	return com.execute();
 		System.out.println(comKey);
 		if(userdefined.contains(comKey)){
 			return myParsers.get(comKey).parse(s);
@@ -93,6 +95,7 @@ public class BasicParser extends Configuration{
 		String ifelse = "ifelse equal? 2 6 [ rt 50 ] [ lt 50 ]";
 		String set = "set :m [ SUM 5 100 ]";
 		String make = "make :n [ % 30 40 ]";//change to set
+		String home = "home";
 		//String to = "to line [ :va ] [ back 40 ]";		
 		//--------------------  nested -----------------
 		String basic = "+ 100 + 10 20 - 10 30"; //cant test fd
@@ -106,7 +109,8 @@ public class BasicParser extends Configuration{
 		String dotimes2 = "dotimes [ :name 200 ] [ sin 300 atan 100 ]";
 		String forl2 =  "for [ :v 0 10 1 ] [ / sum 3 5 10 ]";
 		BasicParser example = new BasicParser(); 
-		example.parse(forl2);	
+		example.parse(home);
+		
 	}
 
 }
