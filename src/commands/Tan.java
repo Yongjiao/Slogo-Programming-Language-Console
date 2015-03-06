@@ -1,18 +1,16 @@
 package commands;
 
-public class Tan extends Calculate{
+import java.util.ArrayList;
 
-	private int angle;
+public class Tan extends Calculate{
 	
-	public Tan(int a) {
-		angle = a;
+	public Tan(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a) {
-		angle = a;
-	}
-	
-	public int execute() {
-		return super.tan(angle);
+	public double execute() {
+		double angle = (Integer) params.get(params.size() - 1);
+		return Math.tan(angle);
 	}
 }

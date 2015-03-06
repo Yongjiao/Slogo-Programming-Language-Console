@@ -184,7 +184,7 @@ private CommandFactory parseInput(String in) {
 			case "clearscreen":			return new ClearScreen();
 			case "showturtle":			return new ShowTurtle();
 			case "hideturtle":			return new HideTurtle();
-			case "ispendown":			return new Down();
+			case "ispendown":			return new IsPD();
 			case "isshowing":			return new Showing();
 			case "heading":				return new Heading();
 			case "xcoordinate":			return new XCor();

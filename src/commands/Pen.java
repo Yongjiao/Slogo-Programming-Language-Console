@@ -1,24 +1,14 @@
 package commands;
 
 import application.CommandFactory;
-import application.TurtleHandler;
+import application.ViewHandler;
 
 public class Pen extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler;
+	ViewHandler myViewHandler;
 	
 	public Pen() {
-		myTurtleHandler = super.getTurtleHandler();
+		myViewHandler = super.getViewHandler();
 	}
 	
-	public int penDown() {
-		myTurtleHandler.setPenStatus(1);
-		return 1;
-	}
-	
-	public int penUp() {
-		myTurtleHandler.setPenStatus(0);
-		return 0;
-	}
-
 }

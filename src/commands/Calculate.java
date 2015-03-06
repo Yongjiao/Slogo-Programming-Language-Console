@@ -1,45 +1,30 @@
 package commands;
 
+import java.util.ArrayList;
+
 import application.CommandFactory;
 
 public abstract class Calculate extends CommandFactory {
 
-	public int atan(int a) {
-		return (int)Math.round(Math.atan(a));
-	}
-
-	public int cos(int a) {
-		return (int) Math.round(Math.cos(a));
-	}
-
-	public int log(int a) {
-		return (int) Math.round(Math.log(a));
-	}
-
-	public int Minus(int a) {
-		return -a;
-	}
-
-	public double pi() {
-		return Math.PI;
+	protected ArrayList<Object> params;
+	
+	public Calculate() {
+		super.setParams(params);
 	}
 	
-	public int pow(int b, int e) {
-		return (int)Math.pow(b, e);
-}
-	
-	public int Random(int a) {
-		double r = Math.random() * a;
-		return (int) Math.round(r);
+	public void setCFParams() {
+		super.setParams(params);
 	}
 	
-	public int sin(int a) {
-		return (int) Math.round(Math.sin(a));
+	public static void main (String[] arg) {
+		//CommandFactory cf = new CommandFactory();
+		String angle = "Angle";
+		//cf.putInMap(angle, 50);
+		ArrayList<Object> l = new ArrayList<Object>();
+		l.add(angle);
+		Sin s = new Sin(l);
+		System.out.println(variables);
+		s.execute();
 	}
 	
-	public int tan(int a) {
-		if(a == 27.286)
-			return 0;
-		return (int) Math.round(Math.tan(a));
-	}
 }

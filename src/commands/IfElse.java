@@ -6,18 +6,15 @@ import application.CommandFactory;
 
 public class IfElse extends IfConditions{
 	
-	private int BE;
-	private ArrayList<CommandFactory> ifComms;
-	private ArrayList<CommandFactory> elseComms;
-	
 	public IfElse(int e, ArrayList<CommandFactory> ifs, ArrayList<CommandFactory> elses){
-		BE = e;
-		ifComms = new ArrayList(ifs);
-		elseComms = new ArrayList(elses);
+		expression = e;
+		Ifs = new ArrayList<CommandFactory>(ifs);
+		Elses = new ArrayList<CommandFactory>(elses);
 	}
 	
-	public int execute() {
-		return super.IFELSE(BE, ifComms, elseComms);
+	public double execute() {
+		System.out.println("Value: " + super.IFELSE(expression, Ifs, Elses));
+		return super.IFELSE(expression, Ifs, Elses);
 	}
 	
 }

@@ -6,8 +6,8 @@ public class Heading extends Queries{
 		
 	}
 	
-	public int execute() {
-		return super.heading();
+	public double execute() {
+		return myViewHandler.getTurtleOrientation();
 	}
 
 }

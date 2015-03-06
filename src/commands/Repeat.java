@@ -6,21 +6,14 @@ import application.CommandFactory;
 
 public class Repeat extends Loop{
 
-	private int numTimes;
-	private ArrayList<CommandFactory> comms;
-	
-	public Repeat(int b, ArrayList<CommandFactory> c) {
-		numTimes = b;
+	public Repeat(String v, int expr, ArrayList<CommandFactory> c) {
+		var = v;
+		end = expr;
 		comms = c;
 	}
 	
-	public void setParams(int b, ArrayList<CommandFactory> c) {
-		numTimes = b;
-		comms = c;
-	}
-	
-	public int execute(){
-		return super.loop(0, numTimes, 1, comms);
+	public double execute() {
+		return super.loop(var, 0, end, 1, comms);
 	}
 	
 }

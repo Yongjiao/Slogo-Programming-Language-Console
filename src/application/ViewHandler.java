@@ -1,11 +1,18 @@
 package application;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+// REFACTOR TODO
+/*
+ * TH moves turtle
+ * NONONO: Pen handler sets pen color / status / DRAWSLINES
+ * - separate pen handling
+ */
 
+
+import gui.BackgroundView;
+import gui.LineView;
+import gui.TurtleView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 /**
  * 
@@ -56,10 +63,13 @@ import javafx.scene.paint.Color;
  * @author anika
  *
  */
-public class TurtleHandler {
+public class ViewHandler {
 
-	private View myView;
+	private LineView myLineView;
+	private TurtleView myTurtleView;
+	private BackgroundView myBackgroundView;
 	private Turtle myTurtle;
+	private Pen myPen;
 	
 	/**
 	 * Constructor
@@ -67,9 +77,12 @@ public class TurtleHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public TurtleHandler(View view){
-		myView = view;
+	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk){
+		myLineView = lv;
+		myTurtleView = tv;
+		myBackgroundView = bk;
 		myTurtle = new Turtle();
+		myPen = new Pen(1);
 		this.initializeTurtle();
 	}
 	
@@ -80,9 +93,8 @@ public class TurtleHandler {
 	private void initializeTurtle()
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
-		this.myView.initializeTurtle(image);
+		this.myTurtleView.initializeTurtle(image);
 		setInfoParamsOfTurtle();
-				
 	}
 	
 	
@@ -136,7 +148,7 @@ public class TurtleHandler {
 	 */
 	private Point2D getViewTurtleLocation()
 	{
-		return myView.getNewPoint();
+		return myTurtleView.getNewPoint();
 	
 	}
 	
@@ -197,9 +209,9 @@ public class TurtleHandler {
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
 		this.updateTurtleOnView();
 		
-		if (myTurtle.getPenPos() == 1)
+		if (myPen.getStatus() == 1)
 		{
-			this.myView.drawLine(locOrig, locNew);
+			this.myLineView.drawLine(locOrig, locNew);
 			
 			// draw line design considerations / discussion - see analysis document
 		}
@@ -251,7 +263,7 @@ public class TurtleHandler {
 	 * If toShow == 0, visibility OFF
 	 * @param toShow
 	 */
-	public void showTurtle(int toShow) // WORKS
+	public void showTurtle(int toShow) 
 	{
 		myTurtle.setVisibility(toShow);
 		updateTurtleOnView();
@@ -272,17 +284,66 @@ public class TurtleHandler {
 	 * if status == 0, PENUP
 	 * @param status
 	 */
-	public void setPenStatus(int status)
+	
+	public int getPenStatus()
 	{
-		myTurtle.setPenPos(status);
+		return  myPen.getStatus();
+	}
+	
+	
+	public void setPenStatus(int statusNew)
+	{
+		myPen.setStatus(statusNew);
 	}
 	
 	/**
-	 * @return 1 if PENDOWN, 0 if PENUP
+	 * sets color of pen based on input parameter
+	 * @param newColor
 	 */
-	public int getPenStatus()
+	public void setPenColor(Color newColor)
 	{
-		return myTurtle.getPenPos();
+		myPen.setColor(newColor);
+	}
+	
+	public void setPenColor(int index)
+	{
+		Color newColor = myPen.getColorFromPalette(index);
+		this.setPenColor(newColor);
+	}
+	
+	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
+	{
+		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
+		myPen.addToPalette(paletteIndex, newColor);
+	}
+	
+		
+	/**
+	 * 
+	 * @return Color of pen
+	 */
+	public Color getPenColor()
+	{
+		return myPen.getColor();
+	}
+	
+	/**
+	 * called when PENCOLOR command is executed (Sprint 3)
+	 * @return
+	 */
+	public int getPenColorIndex()
+	{
+		return myPen.getCurrentColorIndexFromPalette();
+	}
+	
+	public void setPenWeight(double pixels)
+	{
+		myPen.setWeight(pixels);
+	}
+	
+	public double getPenWeight()
+	{
+		return myPen.getWeight();
 	}
 	
 	
@@ -292,7 +353,7 @@ public class TurtleHandler {
 	 */
 	public void clearScreen() // WORKS
 	{
-		this.myView.clearScreen();
+		this.myLineView.clearScreen();
 	}
 	
 	
@@ -308,20 +369,20 @@ public class TurtleHandler {
 		if (this.isVisible() == 1)
 		{
 			// make turtle visible, then update turtle movement
-			this.myView.showTurtle(true);
-			this.myView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
+			this.myTurtleView.showTurtle(true);
+			this.myTurtleView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
 		}
 		else
 		{
 			// tell view to make turtle invisible
-			this.myView.showTurtle(false);
+			this.myTurtleView.showTurtle(false);
 		}
 	}
 	
 	
-	public void setBackground(int index)
+	public void setBackground(double index)
 	{
-		//TODO change background view
+	//	this.myBackgroundView.setBackgroundColor(index);
 	}
 	 
 
@@ -338,9 +399,9 @@ public class TurtleHandler {
 	 */
 	public void setInfoParamsOfTurtle()
 	{
-		this.myView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
-				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
+				+ " \n" + "Pen Status: \t" + myPen.getStatus()
 				);
 	}	
 }

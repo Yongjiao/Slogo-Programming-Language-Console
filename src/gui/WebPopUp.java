@@ -1,4 +1,4 @@
-package application;
+package gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,11 +9,20 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class WebPopUp extends Application{
+	
+	private static final int PAGE_WIDTH = 800;
+	private static final int PAGE_HEIGHT = 600;
+	
+	private String myWebPage;
+		
+	public WebPopUp(String webpage){
+		myWebPage = webpage;
+	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-			Scene scene = new Scene(new Browser(), 800, 600, Color.web("#666970"));
+			Scene scene = new Scene(new Browser(), PAGE_WIDTH, PAGE_HEIGHT, Color.web("#666970"));
 			stage.setTitle("Help Page");
 			stage.setScene(scene);
 			stage.show();
@@ -27,7 +36,7 @@ public class WebPopUp extends Application{
 	    final WebEngine webEngine = browser.getEngine();
 	    public Browser() {
 	        getStyleClass().add("browser");
-	        webEngine.load("http://www.cs.duke.edu/courses/compsci308/spring15/assign/03_slogo/commands.php");
+	        webEngine.load(myWebPage);
 	        getChildren().add(browser);
 	 
 	    }

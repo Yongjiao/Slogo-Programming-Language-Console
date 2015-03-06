@@ -6,8 +6,10 @@ public class Showing extends Queries{
 		
 	}
 	
-	public int execute() {
-		return super.isShowing();
+	public double execute() {
+		if(myViewHandler.isVisible() == 1)
+			return 1;
+		return 0;
 	}
 
 }

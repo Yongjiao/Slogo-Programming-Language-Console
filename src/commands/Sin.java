@@ -1,19 +1,19 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class Sin extends Calculate{
-
-	private int angle;
 	
-	public Sin(int a) {
-		angle = a;
+	public Sin(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a) {
-		angle = a;
+	public double execute() {
+		System.out.println("In Sin class: " + super.getParams());
+		return 0;
+//		double angle = (Integer) params.get(params.size() - 1);
+//		return Math.sin(angle);
 	}
 	
-	public int execute() {
-		return super.sin(angle);
-	}
-
 }

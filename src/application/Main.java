@@ -1,5 +1,9 @@
 package application;
 
+import gui.GUI;
+import java.util.ArrayList;
+
+import commands.Backward;
 import configuration.Parser;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
@@ -15,12 +19,16 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			GUI myGUI = new GUI();
 			Scene scene = myGUI.initialize(stage);
-			TurtleHandler myHandler = new TurtleHandler(myGUI.getView());
-//<<<<<<< HEAD
+			ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
+
 			
-//=======
 			CommandFactory c = new CommandFactory();
-			c.setTurtleHandler(myHandler);
+			c.setViewHandler(myHandler);
+			
+			ArrayList<Object> l = new ArrayList<Object>();
+			l.add(50);
+			Backward f = new Backward(l);
+			f.execute();
 //>>>>>>> ea7e94554f12737d0fe270e580c7d9ddf8ad73ca
 			System.out.println("made new th");
 

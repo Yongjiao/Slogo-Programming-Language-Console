@@ -1,19 +1,17 @@
 package commands;
 
-public class Cos extends Calculate{
+import java.util.ArrayList;
 
-	private int angle;
+public class Cos extends Calculate{
 	
-	public Cos(int a) {
-		angle = a;
+	public Cos(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public void setParams(int a) {
-		angle = a;
-	}
-	
-	public int execute() {
-		return super.cos(angle);
+	public double execute() {
+		double angle = (Integer) params.get(params.size() - 1);
+		return Math.cos(angle);
 	}
 	
 }

@@ -1,17 +1,19 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class And extends Compare{
 	
-	private int test1;
-	private int test2;
-	
-	public And(int t1, int t2) {
-		test1 = t1; test2 = t2;
+	public And(ArrayList<Object> p) {
+		params = p;
 	}
 	
-	public int execute() {
-		int i = super.AND(test1, test2);
-		return i;
+	public double execute() {
+		double t1 = (Integer) params.get(params.size() - 2);
+		double t2 = (Integer) params.get(params.size() - 1);
+		if ((t1 != 0) && (t2 != 0))
+			return 1;
+		return 0;
 	}
 
 }
