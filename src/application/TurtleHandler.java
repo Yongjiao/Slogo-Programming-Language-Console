@@ -5,6 +5,7 @@ import gui.LineView;
 import gui.TurtleView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 /**
  * 
  * Feb 22, 2015
@@ -59,6 +60,7 @@ public class TurtleHandler {
 	private LineView myLineView;
 	private TurtleView myTurtleView;
 	private Turtle myTurtle;
+	private Pen myPen;
 	
 	/**
 	 * Constructor
@@ -70,6 +72,7 @@ public class TurtleHandler {
 		myLineView = lv;
 		myTurtleView = tv;
 		myTurtle = new Turtle();
+		myPen = new Pen(1);
 		this.initializeTurtle();
 	}
 	
@@ -196,7 +199,7 @@ public class TurtleHandler {
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
 		this.updateTurtleOnView();
 		
-		if (myTurtle.getPenPos() == 1)
+		if (myPen.getStatus() == 1)
 		{
 			this.myLineView.drawLine(locOrig, locNew);
 			
@@ -273,7 +276,7 @@ public class TurtleHandler {
 	 */
 	public void setPenStatus(int status)
 	{
-		myTurtle.setPenPos(status);
+		myPen.setStatus(status);
 	}
 	
 	/**
@@ -281,7 +284,38 @@ public class TurtleHandler {
 	 */
 	public int getPenStatus()
 	{
-		return myTurtle.getPenPos();
+		return  myPen.getStatus();
+	}
+	
+	/**
+	 * sets color of pen based on input parameter
+	 * @param newColor
+	 */
+	public void setPenColor(Color newColor)
+	{
+		myPen.setColor(newColor);
+	}
+	
+	
+	
+		
+	/**
+	 * 
+	 * @return Color of pen
+	 */
+	public Color getPenColor()
+	{
+		return myPen.getColor();
+	}
+	
+	public void setPenWeight(double pixels)
+	{
+		myPen.setWeight(pixels);
+	}
+	
+	public double getPenWeight()
+	{
+		return myPen.getWeight();
 	}
 	
 	
@@ -339,7 +373,7 @@ public class TurtleHandler {
 	{
 		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
-				+ " \n" + "Pen Status: \t" + this.myTurtle.getPenPosString()
+				+ " \n" + "Pen Status: \t" + myPen.getStatus()
 				);
 	}	
 }
