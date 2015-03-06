@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Divide extends Arithmetic{
 
 	public Divide(ArrayList<Object> p){
+		super.setParams(p);
 		params = p;
 	}
 	

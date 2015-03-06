@@ -3,15 +3,15 @@ package commands;
 import java.util.ArrayList;
 
 public class Minus extends Calculate{
-
-	private int num;
 	
-	public Minus(int a) {
-		ArrayList<Integer> l = super.getParams();
-		num = l.get(l.size() - 1);
+	public Minus(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
+		
 	}
 	
-	public int execute() {
+	public double execute() {
+		double num = (Integer) params.get(params.size() - 1);
 		return -num;
 	}
 

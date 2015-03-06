@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Remainder extends Arithmetic{
 
 	public Remainder(ArrayList<Object> p){
+		super.setParams(p);
 		params = p;
 	}
 	

@@ -5,20 +5,14 @@ import java.util.ArrayList;
 import application.CommandFactory;
 import application.TurtleHandler;
 
-
-public abstract class Rotate extends CommandFactory{
+public class Display extends CommandFactory{
 	
-	TurtleHandler myTurtleHandler;
+	protected TurtleHandler myTurtleHandler;
 	protected ArrayList<Object> params;
 	
-	public Rotate() {
+	public Display() {
 		myTurtleHandler = super.getTurtleHandler();
 		super.setParams(params);
 	}
-	
-	public double changeOrientation (double angle) {
-		myTurtleHandler.rotateTurtle(angle);
-		return angle;
-	}
-	
+
 }

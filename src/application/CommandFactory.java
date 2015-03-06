@@ -9,16 +9,11 @@ import commands.Executable;
 public class CommandFactory implements Executable{
 
 	protected static TurtleHandler myTurtleHandler;
-	private Map<String, Integer> variables = new HashMap<String, Integer>();
+	public static Map<String, Double> variables = new HashMap<String, Double>();
 	private ArrayList<Object> parameters = new ArrayList<Object>();
 	private ArrayList<Integer> VarLoc = new ArrayList<Integer>();
 	
 	public CommandFactory(){
-//		parameters.add(50);
-//		parameters.add(150);
-//		parameters.add(250);
-//		parameters.add(350);
-//		parameters.add(450);
 	}
 	
 	public void setTurtleHandler(TurtleHandler t){
@@ -43,18 +38,21 @@ public class CommandFactory implements Executable{
 	// that pass to IF / LOOP commands an arraylist of command objects
 	// @author anika
 	public double execute() {
-		return 0.0;
 		// TODO make sure each command has common method - used for loops
+		return 0;
 	}
 	
-	public void putInMap(String str, Integer i) {
+	public void putInMap(String str, double i) {
 		variables.put(str, i);
 	}
 	
-	public int checkIfInMap(String str) {
+	public Object checkIfInMap(String str) {
 		for(int i = 0; i < variables.size(); i++) {
-			if (variables.containsKey(str) == true)
-				return variables.get(str);
+			if (variables.containsKey(str) == true){
+				parameters.add(variables.get(str));
+				Object p = parameters.get(parameters.size() - 1);
+				return p;
+			}
 		}
 		return -1;
 	}
@@ -75,6 +73,10 @@ public class CommandFactory implements Executable{
 	
 	public ArrayList<Integer> getVarLoc() {
 		return VarLoc;
+	}
+	
+	public Map<String, Double> getVars() {
+		return variables;
 	}
 	
 }

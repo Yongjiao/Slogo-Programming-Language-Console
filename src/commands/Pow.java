@@ -3,18 +3,17 @@ package commands;
 import java.util.ArrayList;
 
 public class Pow extends Calculate{
-
-	private int base;
-	private int exponent;
 	
-	public Pow(int a, int b) {
-		ArrayList<Integer> l = super.getParams();
-		base = l.get(l.size() - 2);
-		exponent = l.get(l.size() - 1);
+	public Pow(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
+		
 	}
 	
-	public int execute() {
-		return (int) Math.pow(base, exponent);
+	public double execute() {
+		double base = (Integer) params.get(params.size() - 2);
+		double exponent = (Integer) params.get(params.size() - 1);
+		return Math.pow(base, exponent);
 	}
 	
 }

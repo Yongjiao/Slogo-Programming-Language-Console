@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Forward extends Move {
 
 	public Forward(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 

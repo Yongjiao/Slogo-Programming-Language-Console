@@ -17,7 +17,7 @@ import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -126,7 +126,7 @@ public class GUI {
 		}	
 		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> chooseTurtleImageMenu());
 		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
-		myButtons[INFO_BUTTON].setOnMouseClicked(e -> launchInfo());
+		//myButtons[INFO_BUTTON].setOnMouseClicked(e -> launchInfo());
 		
 		// Creates languages buttons
 		ComboBox<String> langBox = new ComboBox<String>();
@@ -160,14 +160,14 @@ public class GUI {
 	/**
 	 * @author Anika
 	 */
-	private void launchInfo()
-	{
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Turtle Info");
-		alert.setHeaderText("Current turtle info:");
-		alert.setContentText(this.myView.getTurtleInfo());
-		alert.showAndWait();
-	}
+//	private void launchInfo()
+//	{
+//		Alert alert = new Alert(AlertType.INFORMATION);
+//		alert.setTitle("Turtle Info");
+//		alert.setHeaderText("Current turtle info:");
+//		alert.setContentText(this.myView.getTurtleInfo());
+//		alert.showAndWait();
+//	}
 	
 	
 	private void setButtonProperties(Button but, int xLoc, int yLoc, Image actionImage)

@@ -10,8 +10,10 @@ public class Sin extends Calculate{
 	}
 	
 	public double execute() {
-		double angle = (Integer) params.get(params.size() - 1);
-		return Math.sin(angle);
+		System.out.println("In Sin class: " + super.getParams());
+		return 0;
+//		double angle = (Integer) params.get(params.size() - 1);
+//		return Math.sin(angle);
 	}
 	
 }

@@ -6,14 +6,13 @@ public class Random extends Calculate{
 
 	private int max;
 	
-	public Random(int a) {
-		ArrayList<Integer> l = super.getParams();
-		max = l.get(l.size() - 1);
+	public Random(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public int execute() {
-		double r = Math.random() * max;
-		return (int) Math.round(r);
+	public double execute() {
+		return Math.random() * max;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Subtract extends Arithmetic{
 
 	public Subtract(ArrayList<Object> p){
+		super.setParams(p);
 		params = p;
 	}
 	

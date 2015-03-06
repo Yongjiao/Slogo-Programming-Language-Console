@@ -6,8 +6,9 @@ public class HideTurtle extends TurtScreen{
 		
 	}
 	
-	public int execute() {
-		return super.hide();
+	public double execute() {
+		myTurtleHandler.showTurtle(0);
+		return myTurtleHandler.isVisible();
 	}
 
 }

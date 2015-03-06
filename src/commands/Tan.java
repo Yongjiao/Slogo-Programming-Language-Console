@@ -3,17 +3,14 @@ package commands;
 import java.util.ArrayList;
 
 public class Tan extends Calculate{
-
-	private int angle;
 	
-	public Tan(int a) {
-		ArrayList<Integer> l = super.getParams();
-		angle = l.get(l.size() - 1);
+	public Tan(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public int execute() {
-		if (angle == 27.286)
-			return 0;
-		return (int) Math.round(Math.tan(angle));
+	public double execute() {
+		double angle = (Integer) params.get(params.size() - 1);
+		return Math.tan(angle);
 	}
 }

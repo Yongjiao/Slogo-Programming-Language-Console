@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Equal extends Compare{
 
 	public Equal(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Not extends Compare{
 	
 	public Not(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 	

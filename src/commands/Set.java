@@ -1,18 +1,24 @@
 package commands;
 
+import java.util.ArrayList;
+
 import application.CommandFactory;
+import commands.UserMadeUtilities;
 
 public class Set extends CommandFactory{
 	
-	private String var;
-	private int val;
+	private String name;
+	private ArrayList<Object> params;
 
-	public Set(String s, int i) {
-		var = s; val = i;
+	public Set(String s, ArrayList<Object> p) {
+		name = s;
+		super.setParams(p);
 	}
 	
-	public int execute() {
-		putInMap(var, val);
+	public double execute() {
+		String var = name;
+		Double val = (Double) params.get(params.size() - 1);
+		UserMadeUtilities.putInVars(var, val);
 		return val;
 	}
 	

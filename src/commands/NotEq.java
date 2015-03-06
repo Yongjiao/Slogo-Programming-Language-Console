@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class NotEq extends Compare{
 
 	public NotEq(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 	

@@ -11,14 +11,4 @@ public class Pen extends CommandFactory{
 		myTurtleHandler = super.getTurtleHandler();
 	}
 	
-	public int penDown() {
-		myTurtleHandler.setPenStatus(1);
-		return 1;
-	}
-	
-	public int penUp() {
-		myTurtleHandler.setPenStatus(0);
-		return 0;
-	}
-
 }

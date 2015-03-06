@@ -1,19 +1,19 @@
 package commands;
 
+import java.util.ArrayList;
+
 public class SetHeading extends Rotate{
 	
-	private int angle;
-	
-	public SetHeading(int a){
-		angle = a;
+	public SetHeading(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
-	
-	public void setParams(int a) {
-		angle = a;
-	}
-	
-	public int execute() {
-		return super.setHeading(angle);
+
+	public double execute() {
+		double angle = (Integer) params.get(params.size() - 1);
+		double origOri = myTurtleHandler.getTurtleOrientation();
+		myTurtleHandler.setTurtleOrientation(angle);
+		return (angle - origOri);
 	}
 	
 }

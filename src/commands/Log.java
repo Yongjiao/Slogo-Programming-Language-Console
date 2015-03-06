@@ -3,16 +3,15 @@ package commands;
 import java.util.ArrayList;
 
 public class Log extends Calculate{
-
-	private int num;
 	
-	public Log(int a) {
-		ArrayList<Integer> l = super.getParams();
-		num = l.get(l.size() - 1);
+	public Log(ArrayList<Object> p) {
+		super.setParams(p);
+		params = p;
 	}
 	
-	public int execut() {
-		return (int) Math.round(Math.log(num));
+	public double execut() {
+		double num = (Integer) params.get(params.size() - 1);
+		return Math.log(num);
 	}
 
 }

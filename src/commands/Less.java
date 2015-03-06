@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Less extends Compare{
 
 	public Less(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 	

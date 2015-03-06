@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Or extends Compare{
 	
 	public Or(ArrayList<Object> p) {
+		super.setParams(p);
 		params = p;
 	}
 	
