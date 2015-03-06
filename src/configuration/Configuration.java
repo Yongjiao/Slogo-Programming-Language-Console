@@ -3,6 +3,8 @@ package configuration;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+
+import Tree.Node;
 /**
  * super class for input validation and parsing
  * @author Yongjiao Yu
@@ -86,5 +88,11 @@ public abstract class Configuration {
 	}
 	protected boolean isListEnd(String s){
 		return s.matches(listend);
+	}
+	protected double executeAll(ArrayList<Node> commands){
+		double result = -1;
+		for(int i =0; i < commands.size(); i++)
+			result = commands.get(i).getValue();
+		return result;
 	}
 }

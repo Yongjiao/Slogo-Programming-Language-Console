@@ -10,7 +10,7 @@ public class Cos extends Calculate{
 	}
 	
 	public double execute() {
-		double angle = (Integer) params.get(params.size() - 1);
+		double angle = (Double) params.get(params.size() - 1);
 		return Math.cos(angle);
 	}
 	

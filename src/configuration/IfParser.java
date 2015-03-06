@@ -12,7 +12,11 @@ import application.CommandFactory;
 import configuration.NestedParser.Match;
 import configuration.NestedParser.ParserError;
 import configuration.NestedParser.TreeParser;
-
+/**
+ * subclass for If command parsing
+ * @author Yongjiao Yu
+ *
+ */
 public class IfParser extends Configuration{
 	private final String comKey = "if";
 	private TreeParser tParser;
@@ -36,33 +40,37 @@ public class IfParser extends Configuration{
 	 * @throws ParserError
 	 */
 	private double parse(Queue<String> tokens) throws ParserError {
+		ArrayList<Node> ifstatements = new ArrayList<Node>();
 		double result = -1;
-		String token = tokens.peek();
-		if(!isboolean(token))	throw new ParserError("see " + token + "Expected boolean expression Here!");
+		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
 		double expr = tParser.parse(tokens).getValue();
-		if(expr == 0)	return -1;
-		System.out.println(expr);
-		if(!tokens.poll().matches(liststart))
-			throw new ParserError("Expected token [ here !");
-		while(!isEnd(tokens) && !tokens.peek().matches(listend)){
-			Node n = tParser.parse(tokens);
-			System.out.println("Tree parsed is " + n);
-			result = n.getValue();
-		}
-		if(isEnd(tokens) || !tokens.poll().matches(listend))
-			throw new ParserError("Expected ] here !");
+		ifstatements = parseCommands(tokens);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
-		return result;
+		if(expr == 0)	return -1;
+		return executeAll(ifstatements);
 	}
 
+	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
+		ArrayList<Node>	list = new ArrayList();
+		if(!qu.peek().matches(liststart))
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		while(!isEnd(qu) && !qu.peek().matches(listend)){
+			list.add(tParser.parse(qu));
+			System.out.println("Tree parsed is " + list.get(list.size() -1));
+		}
+		if(isEnd(qu) || !qu.poll().matches(listend))
+			throw new ParserError("Expected ] here !");
+		return list;
+	}
+	
 	private boolean isboolean(String s){	
 		String comKey = Match.findCommandKey(s, patterns);
 		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
 	}
 	
 	public static void main(String[] args) throws IOException, ParserError {
-		// TODO Auto-generated method stub
 		IfParser example = new IfParser();
 		String ifl = "if equal? 6 6 [ * 30 20 / 20 10 ]";
 		example.parse(ifl);
