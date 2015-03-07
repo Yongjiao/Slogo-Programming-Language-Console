@@ -66,7 +66,7 @@ public class DotimesParser extends Parser{
 		Tree node = buildTree(qu);
 		if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-		return result;
+		return (int) result;
 	}
 	/**
 	 * Parses for loop and handles local variable
