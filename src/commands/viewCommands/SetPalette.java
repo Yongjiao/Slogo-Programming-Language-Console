@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.paint.Color;
 
 public class SetPalette extends ViewCommands{
+	private int[] listOfIndices;
 	
 	public SetPalette(ArrayList<Object> p) {
 		super.setParams(p);
@@ -15,22 +16,22 @@ public class SetPalette extends ViewCommands{
 
 		ArrayList<Object> params = super.getParams();
 		double index = (Integer) params.get(params.size() - 4);
-		int redIndex = (Integer) params.get(params.size() - 3);
-		int greenIndex = (Integer) params.get(params.size() - 2);
-		int blueIndex = (Integer) params.get(params.size() - 1);
+		listOfIndices[0] = (Integer) params.get(params.size() - 3);
+		listOfIndices[1] = (Integer) params.get(params.size() - 2);
+		listOfIndices[2] = (Integer) params.get(params.size() - 1);
 		
 		//  color component values are nonnegative integers less than 256 
 		// specifying an amount of red, green, and blue
-		if (checkColorLimits(new int[]{redIndex, greenIndex, blueIndex}))
+		if (checkColorLimits())
 		{
-			super.getPen().setPaletteColor((int)index, redIndex, greenIndex, blueIndex);
+			super.getPen().setPaletteColor((int)index, listOfIndices[0], listOfIndices[1], listOfIndices[2]);
 		}
 		return index;
 	}
 	
-	private boolean checkColorLimits(int[] components)
+	private boolean checkColorLimits()
 	{
-		for (int component : components)
+		for (int component : listOfIndices)
 		{
 			return ((!(component < 0)) && (component < 256));
 		}
