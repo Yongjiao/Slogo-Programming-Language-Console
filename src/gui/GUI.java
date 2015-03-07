@@ -2,13 +2,18 @@ package gui;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
+
+import commands.UserMadeUtilities;
 import configuration.BasicParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -19,15 +24,16 @@ import javafx.stage.Stage;
 
 public class GUI {
 	
-	private static final int NUM_BUTTONS = 2;
+	private static final int NUM_BUTTONS = 3;
 	private static final int HELP_BUTTON = 0;
 	private static final int TURTLE_BUTTON = 1;
+	private static final int TURTLE_INFO_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
 //	private static final int STAGE_HEIGHT = 800;
 //	private static final int STAGE_WIDTH = 1200;
 	
-	private static final int VIEW_HEIGHT = 700;
+	private static final int VIEW_HEIGHT = 600;
 	private static final int VIEW_WIDTH = 900;
 	
 	private static final String HELP_PAGE = 
@@ -41,6 +47,7 @@ public class GUI {
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	
 	private ObservableList<String> myCommandsList = FXCollections.observableArrayList();
+
 	private BorderPane myBorders;
 	private LineView myLineView;
 	private TurtleView myTurtleView;
@@ -50,11 +57,12 @@ public class GUI {
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
 	private BasicParser myParser;
+	private UserMadeUtilities myUtils = new UserMadeUtilities();
 	
 	
 	public GUI() throws IOException{
 		myLabels = ResourceBundle.getBundle("buttons");		
-		myButtonNames = new String[] {"help", "turtleimage"};
+		myButtonNames = new String[] {"help", "turtleimage", "turtleinfo"};
 		myButtons = new Button[NUM_BUTTONS];
 		myBorders = new BorderPane();
 		myParser = new BasicParser();
@@ -127,6 +135,16 @@ public class GUI {
 		}	
 		myButtons[HELP_BUTTON].setOnMouseClicked(e -> launchHelpPage());
 		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> launchTurtleImageChooser());
+		myButtons[TURTLE_INFO_BUTTON].setOnMouseClicked(e -> launchTurtleInfo());
+	}
+
+	private void launchTurtleInfo() {
+		Stage s = new Stage();
+		VBox v = new VBox(20);
+		v.getChildren().add(new Text(myTurtleView.getTurtleInfo()));
+		Scene scene = new Scene(v, 200, 200);
+		s.setScene(scene);
+		s.show();
 	}
 
 	/**
@@ -164,16 +182,33 @@ public class GUI {
 	/**
 	 * Initializes commands history
 	 */
-	private void initializeCommandsHistory() {
-		myBorders.setRight(new CommandsHistory(myCommandsList));
+	private void initializeCommandsHistory() {		
+		VBox infoVBox = new VBox();
+		infoVBox.setSpacing(10);
+		infoVBox.getChildren().addAll(new InformationList(myCommandsList, "Commands History"),
+				new InformationList(myUtils.getAllVars(), "Currently Available Variables"),
+				new InformationList(myUtils.getUDCommands(), "Currently Defined Commands"));
+		myUtils.checkUDCommands();
+		myUtils.checkVars();
+		myBorders.setRight(infoVBox);
 	}
+
+
 
 	/**
 	 * Initializes text field for user to enter commands
 	 */
 	private void initializeTextField() {
-		myBorders.setBottom(new UserInputBox(myParser, myCommandsList));
+		VBox vbox = new VBox();
+		vbox.setSpacing(10);
+		TextField errors = new TextField();
+		errors.setEditable(false);
+		vbox.getChildren().addAll(errors, new UserInputBox(myParser, myCommandsList, myUtils, errors));
+		myBorders.setBottom(vbox);
 	}
+	
+	
+	
 	
 	public BackgroundView getBackgroundView(){
 		return myBackgroundView;
