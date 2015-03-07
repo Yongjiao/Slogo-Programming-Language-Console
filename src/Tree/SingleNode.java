@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import application.CommandFactory;
 import commands.CommandCenter;
-import configuration.Match;
+import configuration.Util;
 
 /**
  * Represents a single node with one child/commands with only one parameter 

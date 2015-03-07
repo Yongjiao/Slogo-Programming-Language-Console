@@ -22,7 +22,7 @@ public class DotimesParser extends Parser{
 	}	
 	@Override
 	public double parse(String s) throws ParserError{
-		Queue<String> tokens = toCommandQueue(s);
+		Queue<String> tokens = Util.toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
@@ -81,12 +81,12 @@ public class DotimesParser extends Parser{
 			while(!isEnd(temp) && !isListEnd(temp.peek())){
 				Node n = buildTree(temp, localVar, i); 
 				System.out.println("Tree parsed is " + n);
-				result = n.getValue();		//execute tree for # iterations	
+				result = n.getValue();	
 				System.out.println(result);
 				}
 			if(i < end)		temp = new LinkedList<>(qu);
 			}
-		while(qu != temp)	skip(qu); //update command qu
+		while(qu != temp)	skip(qu); 
 		localVar = "";
 		return result;
 	}		

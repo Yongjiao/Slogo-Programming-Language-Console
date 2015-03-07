@@ -21,7 +21,7 @@ public class IfParser extends Parser{
 		super();
 	}	
 	public double parse(String s) throws IOException, ParserError{
-		Queue<String> tokens = toCommandQueue(s);
+		Queue<String> tokens = Util.toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
@@ -38,7 +38,7 @@ public class IfParser extends Parser{
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		if(expr == 0)	return -1;
-		return executeAll(ifstatements);
+		return Util.executeAll(ifstatements);
 	}
 	/**
 	 * parses and evaluates the boolean expression
@@ -64,7 +64,7 @@ public class IfParser extends Parser{
 		return list;
 	}
 	private boolean isboolean(String s){	
-		String comKey = Match.findCommandKey(s, super.getPatterns());
+		String comKey = Util.findCommandKey(s, super.getPatterns());
 		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
 	}
 	public static void main(String[] args) throws IOException, ParserError {
