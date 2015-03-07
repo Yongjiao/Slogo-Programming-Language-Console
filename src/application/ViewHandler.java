@@ -87,7 +87,7 @@ public class ViewHandler {
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
 		this.myTurtleView.initializeTurtle(image);
-		setInfoParamsOfTurtle();
+		setInfoParamsOfTurtleAndLine();
 	}
 	
 	
@@ -290,7 +290,7 @@ public class ViewHandler {
 	public void updateTurtleOnView()
 	{
 		// update turtle info to View
-		setInfoParamsOfTurtle();
+		setInfoParamsOfTurtleAndLine();
 		
 		if (this.isVisible() == 1)
 		{
@@ -322,11 +322,13 @@ public class ViewHandler {
 	 * 
 	 * Used to display status of turtle to user from GUI
 	 */
-	public void setInfoParamsOfTurtle()
+	public void setInfoParamsOfTurtleAndLine()
 	{
 		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
 				+ " \n" + "Pen Status: \t" + myPenHandler.getPenStatus()
 				);
+		
+		this.myPenHandler.setThickness();
 	}	
 }
