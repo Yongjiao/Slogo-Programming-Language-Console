@@ -14,12 +14,12 @@ import commands.viewCommands.turtleCommands.*;
  */
 public class CommandFactory {
 	
-	private Pen myPen;
+	private PenHandler myPenHandler;
 	private ViewHandler myViewHandler;
 	
-	public CommandFactory(Pen newPen, ViewHandler newVH)
+	public CommandFactory(PenHandler newPenHandler, ViewHandler newVH)
 	{
-		myPen = newPen;
+		myPenHandler = newPenHandler;
 		myViewHandler = newVH;
 	}
 	
@@ -30,17 +30,17 @@ public class CommandFactory {
 	public CommandCenter makeNoParmsCommands(String com){
 			switch(com){
 				case "Home":		    	return new Home(myViewHandler);
-				case "PenDown":  			return new PenDown(myPen);
-				case "PenUp": 				return new PenUp(myPen);
+				case "PenDown":  			return new PenDown(myPenHandler);
+				case "PenUp": 				return new PenUp(myPenHandler);
 				case "ClearScreen":			return new ClearScreen(myViewHandler);
 				case "ShowTurtle":			return new ShowTurtle(myViewHandler);
 				case "HideTurtle":			return new HideTurtle(myViewHandler);
-				case "IsPenDown":			return new IsPD(myPen);
+				case "IsPenDown":			return new IsPD(myPenHandler);
 				case "IsShowing":			return new Showing(myViewHandler);
 				case "Heading":				return new Heading(myViewHandler);
 				case "XCoordinate":			return new XCor(myViewHandler);
 				case "YCoordinate":			return new YCor(myViewHandler);	
-				case "GetPenColor":			return new PenColor(myPen);		
+				case "GetPenColor":			return new PenColor(myPenHandler);		
 				
 			}
 			return null;
@@ -82,9 +82,9 @@ public class CommandFactory {
    				case "Power":			return new Pow(parList);
    				case "Random":			return new Random(parList);
    				case "SetBackground":	return new SetBackground(parList, myViewHandler);
-   				case "SetPenColor":		return new SetPenColor(parList, myPen);
-   				case "SetPenSize":		return new SetPenSize(parList, myPen);
-				case "SetPalette":		return new SetPalette(parList, myPen);
+   				case "SetPenColor":		return new SetPenColor(parList, myPenHandler);
+   				case "SetPenSize":		return new SetPenSize(parList, myPenHandler);
+				case "SetPalette":		return new SetPalette(parList, myPenHandler);
    				//case "#":
    				}
    				return null;	
