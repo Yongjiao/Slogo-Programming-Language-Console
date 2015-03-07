@@ -13,15 +13,10 @@ import Tree.*;
  *
  */
 public class BasicParser extends Parser{
-	private HashMap<String, Parser> myParsers;
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
+	private HashMap<String, Parser> myParsers;		
 	private HashSet<String> userdefined;
-	private HashSet<String> oneParComs;
-	private HashSet<String> twoParComs;
 	
 	public BasicParser() throws IOException{
-		initialize();
 		initializeParsers();
 	}	
 	/**
@@ -34,7 +29,7 @@ public class BasicParser extends Parser{
 		double result = -1;
 		Queue<String> tokens = toCommandQueue(s);
 		String command = tokens.peek();
-		comKey = Match.findCommandKey(tokens.peek(), patterns);
+		comKey = Match.findCommandKey(tokens.peek(), super.getPatterns());
 		CommandCenter com = CommandFactory.makeNoParmsCommands(comKey);
 		if(com != null)	return com.execute();
 		System.out.println(comKey);
@@ -76,11 +71,9 @@ public class BasicParser extends Parser{
 	}
 	@Override
 	protected void setLanguage(String path){
-        patterns.addAll(Match.makePatterns(path));
-        for(String key : myParsers.keySet()){
-        	myParsers.get(key).setLanguage(path);
-        }
+		super.setLanguage(path);
 	}	
+	
 	public static void main(String[] args) throws IOException, ParserError {
 		String s1 = "fd 1";
 		String s2= "sum 50 50";
@@ -110,7 +103,7 @@ public class BasicParser extends Parser{
 		String dotimes2 = "dotimes [ :name 200 ] [ sin 300 atan 100 ]";
 		String forl2 =  "for [ :v 0 10 1 ] [ / sum 3 5 10 ]";
 		BasicParser example = new BasicParser(); 
-		example.parse(home);
+		example.parse(basic);
 		
 	}
 

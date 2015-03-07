@@ -16,13 +16,9 @@ import Tree.Node;
  *
  */
 public class IfParser extends Parser{
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
-	private HashSet<String> oneParComs;
-	private HashSet<String> twoParComs;
 	
 	public IfParser() throws IOException{
-		initialize();
+		super();
 	}	
 	public double parse(String s) throws IOException, ParserError{
 		Queue<String> tokens = toCommandQueue(s);
@@ -48,20 +44,20 @@ public class IfParser extends Parser{
 
 	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
-		if(!qu.peek().matches(liststart))
+		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
-		while(!isEnd(qu) && !qu.peek().matches(listend)){
+		while(!isEnd(qu) && !isListEnd(qu.peek())){
 			list.add(buildTree(qu));
 			System.out.println("Tree parsed is " + list.get(list.size() -1));
 		}
-		if(isEnd(qu) || !qu.poll().matches(listend))
+		if(isEnd(qu) || !isListEnd(qu.poll()))
 			throw new ParserError("Expected ] here !");
 		return list;
 	}
 	
 	private boolean isboolean(String s){	
-		String comKey = Match.findCommandKey(s, patterns);
+		String comKey = Match.findCommandKey(s, super.getPatterns());
 		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
 	}
 	
