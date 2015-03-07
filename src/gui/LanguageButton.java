@@ -1,7 +1,7 @@
 package gui;
 
 import java.util.ResourceBundle;
-
+import configuration.Parser;
 import configuration.BasicParser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

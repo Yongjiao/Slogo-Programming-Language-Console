@@ -21,10 +21,7 @@ public class IfelseParser extends Parser{
 	private HashSet<String> twoParComs;
 	
 	public IfelseParser() throws IOException{
-		initializeSyntax();		
-		initializeSets();
-		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
+		initialize();
 	}
 	public double parse(String s) throws IOException, ParserError{
 		Queue<String> tokens = toCommandQueue(s);
@@ -35,7 +32,8 @@ public class IfelseParser extends Parser{
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1; 
 		ArrayList<Node> ifTree = null, elseTree = null;
-		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
+		if(!isboolean(tokens.peek()))	
+			throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
 		double expr = buildTree(tokens).getValue();
 		ifTree = parseCommands(tokens);
 		while(!isEnd(tokens) && tokens.peek().matches(listend)) //skip till the second command

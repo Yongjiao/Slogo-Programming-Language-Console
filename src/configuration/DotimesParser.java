@@ -23,27 +23,17 @@ public class DotimesParser extends Parser{
 	public DotimesParser() throws IOException{
 		initialize();
 	}
-	
+	@Override
 	public double parse(String s) throws ParserError{
 		Queue<String> tokens = toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
-	}
+	}	
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1;
-		int limit = 0;
-		if(!tokens.peek().matches(liststart))	
-			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
-		skip(tokens);
-		if(!tokens.peek().matches(variable))
-			throw new ParserError("see" + tokens.poll() + "expected variable here!" );
-		skip(tokens); //skip variable
-		limit = fetchConstant(tokens);
-		if(!tokens.peek().matches(listend))	
-			throw new ParserError("see" + tokens.poll() + "expected ] here!");
-		skip(tokens);
-		//
+		int limit = parseDotimesIterator(tokens);		
+		//parse [ command ]
 		if(!tokens.peek().matches(liststart))
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
@@ -58,17 +48,32 @@ public class DotimesParser extends Parser{
 		return result;		
 	}
 	
+	private int parseDotimesIterator(Queue<String> qu) throws ParserError{
+		int limit = 0;
+		if(!qu.peek().matches(liststart))	
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		if(!qu.peek().matches(variable))
+			throw new ParserError("see" + qu.poll() + "expected variable here!" );
+		skip(qu); //skip variable
+		limit = fetchConstant(qu);
+		if(!qu.peek().matches(listend))	
+			throw new ParserError("see" + qu.poll() + "expected ] here!");
+		skip(qu);
+		return limit;
+	}
+	
 	private int fetchConstant(Queue<String> qu) throws ParserError{
 		if(!qu.peek().matches(constant))
 			throw new ParserError("see" + qu.poll() + "expected number here!");
 		return Integer.parseInt(qu.poll());
 	}
-	
+	//different from other method of same name
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
 		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
-		for(int i = start; i < end; i++){
+		for(int i = start; i <= end; i++){
 			result = n.getValue();		//execute tree for # iterations	
 		}
 		return result;
