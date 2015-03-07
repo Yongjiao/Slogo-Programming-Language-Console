@@ -2,6 +2,11 @@ package gui;
 
 import javafx.scene.control.Button;
 
+/**
+ * Create a normal button
+ * @author Andrew
+ *
+ */
 public class NormalButton extends Button{
 
 	public NormalButton(String name, String buttonStyle){

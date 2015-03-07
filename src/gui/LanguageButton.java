@@ -1,7 +1,6 @@
 package gui;
 
-import java.util.ResourceBundle;
-import configuration.Parser;
+
 import configuration.BasicParser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,6 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
+/**
+ * Creates the button for the user to select the language
+ * @author Andrew
+ *
+ */
 public class LanguageButton extends ComboBox<String> {
 	
 	private static final ObservableList<String> lANGUAGE_NAMES = FXCollections.observableArrayList();

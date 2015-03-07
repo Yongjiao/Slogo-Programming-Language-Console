@@ -8,6 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 
+/**
+ * Creates the layer that displays the turtle
+ * @author Andrew
+ *
+ */
 public class TurtleView extends View{
 
 	private ImageView myTurtle;
@@ -52,10 +57,18 @@ public class TurtleView extends View{
     	turtleGC.restore();
 	}
 	
+	/**
+	 * Sets turtle visibility
+	 * @param b
+	 */
 	public void showTurtle(boolean b){
 		this.setVisible(b);
 	}
 	
+	/**
+	 * Updates the turtle image either by file or location
+	 * @param loc
+	 */
 	public void updateTurtleImage(File loc){
         Image image = new Image("file:///" + loc.getPath());
 		updateTurtleImage(image);
@@ -71,7 +84,12 @@ public class TurtleView extends View{
     	turtleGC.restore();
 	}
 	
-	
+	/**
+	 * Rotates the turtle
+	 * @param angle
+	 * @param x
+	 * @param y
+	 */
 	private void rotate(double angle, double x, double y) {
 		currentRotation = angle;
 		Rotate r = new Rotate(angle, x, y);
