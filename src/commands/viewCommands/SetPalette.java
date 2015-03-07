@@ -2,13 +2,14 @@ package commands.viewCommands;
 
 import java.util.ArrayList;
 
+import application.Pen;
 import javafx.scene.paint.Color;
 
 public class SetPalette extends ViewCommands{
 	private int[] listOfIndices;
 	
-	public SetPalette(ArrayList<Object> p) {
-		super.setParams(p);
+	public SetPalette(ArrayList<Object> p, Pen pen) {
+		super(p, pen);
 	}
 	
 	/**

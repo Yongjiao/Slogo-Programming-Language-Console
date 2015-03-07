@@ -7,10 +7,19 @@ import commands.CommandCenter;
 
 public class ViewCommands extends CommandCenter{
 	private static Pen myPen;
+	private ArrayList<Object> params;
 	
 	
-	public ViewCommands()
+	public ViewCommands(Pen p)
 	{
+		myPen = p;
+		super.setParams(new ArrayList<Object>());
+	}
+	
+	public ViewCommands(ArrayList<Object> l, Pen p)
+	{
+		params = l;
+		myPen = p;
 		super.setParams(new ArrayList<Object>());
 	}
 	

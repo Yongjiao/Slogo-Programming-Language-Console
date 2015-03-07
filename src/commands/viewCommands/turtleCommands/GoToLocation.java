@@ -2,11 +2,13 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
+import application.ViewHandler;
+
 
 public class GoToLocation extends Move {
 
-	public GoToLocation(ArrayList<Object> p) {
-		super.setParams(p);
+	public GoToLocation(ArrayList<Object> p, ViewHandler v) {
+		super(p, v);
 	}
 
 	public double execute() {

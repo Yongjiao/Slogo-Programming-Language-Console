@@ -84,14 +84,50 @@ public abstract class Parser {
 			return new ConstNode(val);
 		}
 		if(isVariable(token)){
-			double val = 0;
-			if(UserMadeUtilities.containsVars(token))
-				val = UserMadeUtilities.getFromVars(token);
+			if(!UserMadeUtilities.containsVars(token))
+				throw new ParserError("Undefined global variable" + token);
+			double val = UserMadeUtilities.getFromVars(token);
 			return new ConstNode(val);
 		}
 		else		 
 			throw new ParserError("unexpected Token: "+ token);
 	}
+	
+	protected Node buildTree(Queue<String> tokens, String localVar, int iterator) throws ParserError {
+		String token = tokens.poll();
+		System.out.println("TreeParsing the token: " + token);
+		if(isCommand(token)){
+			String comKey = Match.findCommandKey(token, patterns);	
+			System.out.println();
+			if(oneParComs.contains(comKey)){
+				Node child = buildTree(tokens, localVar, iterator);
+				return new SingleNode(comKey , child);
+			}			
+			if(twoParComs.contains(comKey)){
+				Node left = buildTree(tokens, localVar, iterator);
+				Node right = buildTree(tokens, localVar, iterator); 
+				return new BinNode(comKey, left, right);
+			}
+			else
+				throw new ParserError("Command Undefined: " + token);
+		}
+		if(isConstant(token)){
+			double val = Double.parseDouble(token);
+			return new ConstNode(val);
+		}
+		if(isVariable(token)){
+			System.out.println(token + "the local vairbale is " + localVar);
+			double val = 0;
+			if(token.equals(localVar))	return new ConstNode(iterator);
+			if(!UserMadeUtilities.containsVars(token))
+				throw new ParserError("Undefined global variable " + token);
+			val = UserMadeUtilities.getFromVars(token);
+			return new ConstNode(val);
+		}
+		else		 
+			throw new ParserError("unexpected Token: "+ token);
+	}
+	
 	protected Queue<String> toCommandQueue(String str) {
 		String[] s = str.split(" ");
 		Queue<String> qu = new LinkedList<String>();

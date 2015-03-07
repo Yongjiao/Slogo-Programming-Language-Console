@@ -2,10 +2,12 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
+import application.ViewHandler;
+
 public class Right extends Rotate{
 	
-	public Right(ArrayList<Object> p) {
-		super.setParams(p);
+	public Right(ArrayList<Object> p, ViewHandler v) {
+		super(p, v);
 	}
 
 	public double execute() {

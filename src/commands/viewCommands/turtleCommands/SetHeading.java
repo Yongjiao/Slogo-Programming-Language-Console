@@ -2,10 +2,12 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
+import application.ViewHandler;
+
 public class SetHeading extends Rotate{
 	
-	public SetHeading(ArrayList<Object> p) {
-		super.setParams(p);
+	public SetHeading(ArrayList<Object> p, ViewHandler v) {
+		super(p, v);
 	}
 
 	public double execute() {

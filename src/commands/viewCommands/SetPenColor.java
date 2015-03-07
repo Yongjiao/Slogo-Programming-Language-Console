@@ -2,14 +2,16 @@ package commands.viewCommands;
 
 import java.util.ArrayList;
 
+import application.Pen;
+import application.ViewHandler;
 import commands.viewCommands.turtleCommands.Display;
 
 public class SetPenColor extends ViewCommands{
 	
 	
 	
-	public SetPenColor(ArrayList<Object> p) {
-		super.setParams(p);
+	public SetPenColor(ArrayList<Object> p, Pen pen) {
+		super(p, pen);
 	}
 	
 	// Modified: Anika
