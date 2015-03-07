@@ -7,9 +7,9 @@ public class PenHandler {
 	private Pen myPen;
 	private LineView myLineView;
 	
-	public PenHandler(Pen pen, LineView view)
+	public PenHandler(LineView view)
 	{
-		myPen = pen;
+		myPen = new Pen();
 		myLineView = view;
 	}
 	
@@ -81,4 +81,8 @@ public class PenHandler {
 		return myPen.getWeight();
 	}
 
+	public void setInfoParamsOfPen()
+	{
+		this.myLineView.setParamsOfPen(getPenColor(), getPenWeight());
+	}	
 }
