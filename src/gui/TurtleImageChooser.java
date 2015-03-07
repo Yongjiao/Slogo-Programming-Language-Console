@@ -1,22 +1,20 @@
 package gui;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 /**
- * 
- * @author anika and andrew; modified by anika to remove magic numbers
- *
- */
+ * Allows user to choose a specific turtle image to use
+ * @author Andrew and Anika, modified by anika to remove magic numbers
+*/
 public class TurtleImageChooser extends Application {
 	
 	private static final int SCENE_WIDTH = 500;

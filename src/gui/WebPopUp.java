@@ -8,13 +8,18 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+/**
+ * Initializes a helper web page
+ * @author Andrew
+ *
+ */
 public class WebPopUp extends Application{
 	
 	private static final int PAGE_WIDTH = 800;
 	private static final int PAGE_HEIGHT = 600;
 	
 	private String myWebPage;
-		
+	
 	public WebPopUp(String webpage){
 		myWebPage = webpage;
 	}
