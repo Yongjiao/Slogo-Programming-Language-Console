@@ -19,7 +19,7 @@ public class LoopParser extends Parser{
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return result;
 	}
-	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
+	protected double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;
 		for(int i = start; i <= end; i++){
@@ -35,7 +35,15 @@ public class LoopParser extends Parser{
 		localVar = "";
 		return result;
 	}
-
 	
+	public String getLocalVar(){
+		return localVar;
+	}
+	public void setLocalVar(String s){
+		localVar = s;
+	}
+	public void clearLocalVar(){
+		localVar = "";
+	}
 	
 }

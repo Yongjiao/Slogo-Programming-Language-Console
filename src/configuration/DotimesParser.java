@@ -15,7 +15,7 @@ import Tree.Node;
  * @author Yongjiao Yu
  *
  */
-public class DotimesParser extends Parser{
+public class DotimesParser extends LoopParser{
 	private String localVar = "";
 	public DotimesParser() throws IOException {
 		super();
@@ -23,7 +23,6 @@ public class DotimesParser extends Parser{
 	@Override
 	public double parse(String s) throws ParserError{
 		Queue<String> tokens = Util.toCommandQueue(s);
-		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
 	}	
@@ -41,7 +40,6 @@ public class DotimesParser extends Parser{
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
 		result = parseFor(1, limit, 1, qu);
-		System.out.println(qu);
 		if(isEnd(qu) || !isListEnd(qu.poll()))
 			throw new ParserError("Expected ] here !");	
 		return result;
@@ -80,9 +78,7 @@ public class DotimesParser extends Parser{
 		for(int i = start; i <= end; i++){
 			while(!isEnd(temp) && !isListEnd(temp.peek())){
 				Node n = buildTree(temp, localVar, i); 
-				System.out.println("Tree parsed is " + n);
 				result = n.getValue();	
-				System.out.println(result);
 				}
 			if(i < end)		temp = new LinkedList<>(qu);
 			}
