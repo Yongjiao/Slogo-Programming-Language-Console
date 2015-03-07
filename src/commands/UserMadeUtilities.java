@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class UserMadeUtilities {
 	
-	protected static HashMap<String, Double> globalVars;
-	protected static HashMap<String, UserDefined> UDCommands;
+	private static HashMap<String, Double> globalVars;
+	private static HashMap<String, UserDefined> UDCommands;
 	
 	public UserMadeUtilities() {
-		
+		globalVars.put("PI", Math.PI); 
 	}
 	
 	public void emptyVars() {

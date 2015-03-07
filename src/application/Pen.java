@@ -1,5 +1,8 @@
 package application;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.scene.paint.Color;
 
 /**
@@ -9,10 +12,11 @@ import javafx.scene.paint.Color;
  */
 public class Pen {
 	//  Properties: up/down, thickness, solid, dashed, dotted, etc.
-	private int myStatus;
+	private int myStatus, myPaletteColorLocation;
 	private Color myColor;
-	private int myThickness;
+	private double myThickness;
 	private PENSTYLE myStyle;
+	private Map<Integer, Color> myPaletteOptions;
 	
 	private enum PENSTYLE {
 		SOLID, DASHED, DOTTED;
@@ -26,17 +30,21 @@ public class Pen {
 	 * - initializes line-drawing style to solid line
 	 * @param status
 	 */
-	public Pen(int status)
+	public Pen()
 	{
-		myStatus = status;
+		myStatus = 1;
 		myColor = Color.BLACK;
 		myThickness = 1;
 		myStyle = PENSTYLE.SOLID;
+		myPaletteOptions = new HashMap<Integer, Color>();
+		myPaletteColorLocation = 0;
 	}
 	
+
 	/**
-	 * Sets pen status to input status
-	 * Called when user declares penup or pendown
+	 * sets status of pen based on input parameter
+	 * if status == 1, PENDOWN
+	 * if status == 0, PENUP
 	 * @param newStatus of pen
 	 */
 	public void setStatus(int newStatus)
@@ -71,7 +79,14 @@ public class Pen {
 	public void setColor (Color newColor)
 	{
 		myColor = newColor;
+		
 	}
+	
+	public void setColor (int indexOfColor)
+	{
+		myColor = this.getColorFromPalette(indexOfColor);
+	}
+	
 	
 	/**
 	 * @return color of pen
@@ -86,7 +101,7 @@ public class Pen {
 	 * Higher values correspond to thicker lines
 	 * @param newWeight
 	 */
-	public void setWeight(int newWeight)
+	public void setWeight(double newWeight)
 	{
 		myThickness = newWeight;
 	}
@@ -94,7 +109,7 @@ public class Pen {
 	/**
 	 * @return thickness of pen
 	 */
-	public int getWeight()
+	public double getWeight()
 	{
 		return myThickness;
 	}
@@ -118,5 +133,40 @@ public class Pen {
 	public PENSTYLE getStyle()
 	{
 		return myStyle;
+	}
+	
+
+	/**
+	 * Creates new Color with given index from RGB input values
+	 * Adds color and index to Map
+	 * @param paletteIndex
+	 * @param redIndex
+	 * @param greenIndex
+	 * @param blueIndex
+	 */
+	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
+	{
+		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
+		this.myPaletteOptions.put(paletteIndex, newColor);
+	}
+	
+	
+	/**
+	 * @param index of desired color
+	 * @return Color from Palette Map
+	 */
+	public Color getColorFromPalette(int index)
+	{
+		myColor = this.myPaletteOptions.get(index);
+		this.myPaletteColorLocation = index;
+		return myColor;
+	}
+	/**
+	 * called when PENCOLOR command is executed (Sprint 3)
+	 * @return int index of current pen color
+	 */
+	public int getCurrentColorIndexFromPalette()
+	{
+		return this.myPaletteColorLocation;
 	}
 }

@@ -20,7 +20,7 @@ public class Turtle {
 	private int isVisible;
 	private Point2D myLoc;
 	ImageView myImage;
-	Pen myPen;
+	
 	
 	/**
 	 * constructor to initialize turtle
@@ -29,7 +29,7 @@ public class Turtle {
 		myLoc = new Point2D(0, 0); // set Turtle's initial location in the center of the screen
 		myOrientation = 0; //  set orientation to be straight up
 		isVisible = 1;
-		myPen = new Pen(1);
+		
 	}
 	
 	/**
@@ -110,27 +110,7 @@ public class Turtle {
 		this.myImage.setImage(newImage);
 	}
 	
-	/**
-	 * sets pen position based on input parameter
-	 * @param pos
-	 */
-	public void setPenPos(int pos)
-	{
-		this.myPen.setStatus(pos);
-	}
 	
-	/**
-	 * @return whether pen is UP or DOWN
-	 */
-	public int getPenPos()
-	{
-		return myPen.getStatus();
-	}
-	
-	public String getPenPosString()
-	{
-		return myPen.getStatusString();
-	}
 	
 	/**
 	 * @return turtle's visible image
@@ -152,4 +132,5 @@ public class Turtle {
 		this.myImage.setVisible((toShow == 1));
 	}
 	
+		
 }

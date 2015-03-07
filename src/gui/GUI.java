@@ -1,8 +1,8 @@
 package gui;
 
+import java.io.IOException;
 import java.util.ResourceBundle;
-
-import configuration.Parser;
+import configuration.BasicParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -49,15 +49,15 @@ public class GUI {
 	private String[] myButtonNames;
 	private ResourceBundle myLabels;
 	private HBox mainHBox;
-	private Parser myParser;
+	private BasicParser myParser;
 	
 	
-	public GUI(){
+	public GUI() throws IOException{
 		myLabels = ResourceBundle.getBundle("buttons");		
 		myButtonNames = new String[] {"help", "turtleimage"};
 		myButtons = new Button[NUM_BUTTONS];
 		myBorders = new BorderPane();
-		myParser = new Parser();
+		myParser = new BasicParser();
 	}
 	
 	/**
@@ -186,5 +186,4 @@ public class GUI {
 	public TurtleView getTurtleView(){
 		return myTurtleView;
 	}
-	
 }

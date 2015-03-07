@@ -3,12 +3,18 @@ package application;
 import gui.GUI;
 import gui.RotatedButton;
 
+
+
+
+
+
 import java.util.ArrayList;
 
-import commands.Backward;
-import configuration.Parser;
+import commands.CommandCenter;
+import commands.viewCommands.ViewCommands;
+import commands.viewCommands.turtleCommands.Backward;
+import commands.viewCommands.turtleCommands.TurtleCommands;
 import javafx.application.Application;
-import javafx.geometry.Point2D;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,11 +32,12 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) {
+		System.out.println("hello");
 		try {
 			//Parser myParser = new Parser();
-			
 			// BELOW COULD BE REFACTORED INTO NEW WORKSPACE CLASS??
 			TabPane myTabs = new TabPane();
+			Pen myPen = new Pen();
 			for (int i = 1; i <= NUM_WORKSPACES; i++){
 				Tab tab = new Tab();
 				tab.setText("Workspace " + i);
@@ -39,9 +46,11 @@ public class Main extends Application {
 				BorderPane myBorderPane = myGUI.initialize();
 				myGUIs.add(myGUI);
 				
-				TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
-				CommandFactory c = new CommandFactory();
-				c.setTurtleHandler(myHandler);
+				ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
+				ViewCommands viewCommands = new ViewCommands();
+				viewCommands.setPen(myPen);
+				TurtleCommands turtleCommands = new TurtleCommands();
+				turtleCommands.setViewHandler(myHandler);
 				
 				tab.setContent(myBorderPane);
 				myTabs.getTabs().add(tab);
@@ -80,16 +89,13 @@ public class Main extends Application {
 			
 			Scene scene = new Scene(myTabs, 1200, 800);
 
+		
 			
-
-			
-			ArrayList<Object> l = new ArrayList<Object>();
-			l.add(50);
-			Backward f = new Backward(l);
-			f.execute();
-//>>>>>>> ea7e94554f12737d0fe270e580c7d9ddf8ad73ca
-			System.out.println("made new th");
-
+//			ArrayList<Object> l = new ArrayList<Object>();
+//			l.add(50);
+//			Backward f = new Backward(l);
+//			f.execute();
+//			System.out.println("made new th");
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
