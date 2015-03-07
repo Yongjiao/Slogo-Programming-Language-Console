@@ -17,12 +17,12 @@ import Tree.SingleNode;
  *
  */
 public class SetParser extends Parser{
+	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
+	private List<Entry<String, Pattern>> patterns; 
+
 	
 	public SetParser() throws IOException{
-		initializeSyntax();		
-		initializeSets();
-		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
+		initialize();
 	}
 	/*@Override
 	CommandFactory parse(String in ){

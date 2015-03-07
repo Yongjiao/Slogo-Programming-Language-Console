@@ -4,26 +4,31 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+
 import commands.CommandCenter;
 import Tree.*;
 /**
- * Parses nested Command
+ * Parses Command of any kind
  * @author Yongjiao Yu
  *
  */
 public class BasicParser extends Parser{
-	private HashMap<String, Parser> myParsers;	
+	private HashMap<String, Parser> myParsers;
+	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
+	private List<Entry<String, Pattern>> patterns; 
+	private HashSet<String> userdefined;
+	private HashSet<String> oneParComs;
+	private HashSet<String> twoParComs;
 	
 	public BasicParser() throws IOException{
-		initializeSyntax();		
-		initializeSets();
+		initialize();
 		initializeParsers();
-	    //initialize userdefined Set
-		String elements[] = { "IfElse", "If", "DoTimes", "Repeat", "For","MakeVariable"};
-		userdefined = new HashSet(Arrays.asList(elements));
-		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
-	}
+	}	
+	/**
+	 * parses command according to command type
+	 * @param user input
+	 * @return return value of the last executed command
+	 */
 	public double parse(String s) throws ParserError, IOException{
 		String comKey;
 		double result = -1;
@@ -41,10 +46,8 @@ public class BasicParser extends Parser{
 		}
 		return result;			
 	}
-	
 	/**
-	 * parses basic nested or non-nested commands,
-	 * builds more than one tree for multiple nested or non-nested commands.
+	 * parses basic (nested) commands, allows only one full command/tree
 	 * @param  input command in string form
 	 * @return the result of the last executed commands (if nested)
 	 * @throws ParserError
@@ -63,13 +66,13 @@ public class BasicParser extends Parser{
 		return result;
 	}
 	private void initializeParsers() throws IOException{
+		String elements[] = { "MakeVariable", "IfElse", "If", "DoTimes", "Repeat", "For"};
+		Parser[] pars = {new SetParser(), new IfelseParser(), new IfParser(), new DotimesParser(), new RepeatParser(),new ForParser()};
 		myParsers = new HashMap<>();
-		myParsers.put("Makevariable", new SetParser());
-		myParsers.put("If", new IfParser());
-		myParsers.put("IfElse", new IfelseParser());
-		myParsers.put("Repeat", new RepeatParser());
-		myParsers.put("DoTimes", new DotimesParser());
-		myParsers.put("For", new ForParser());
+		userdefined = new HashSet(Arrays.asList(elements));
+		for(int i = 0; i < elements.length; i++){
+			myParsers.put(elements[i], pars[i]);
+		}
 	}
 	@Override
 	protected void setLanguage(String path){

@@ -3,9 +3,12 @@ package configuration;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+
 import Tree.Node;
 /**
  * subclass for If command parsing
@@ -13,6 +16,10 @@ import Tree.Node;
  *
  */
 public class IfParser extends Parser{
+	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
+	private List<Entry<String, Pattern>> patterns; 
+	private HashSet<String> oneParComs;
+	private HashSet<String> twoParComs;
 	
 	public IfParser() throws IOException{
 		initializeSyntax();		

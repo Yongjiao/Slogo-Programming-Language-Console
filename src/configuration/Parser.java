@@ -10,34 +10,30 @@ import Tree.ConstNode;
 import Tree.Node;
 import Tree.SingleNode;
 /**
- * super class for input parsing and validation
+ * super class for input parsing and validation using expression tree 
  * @author Yongjiao Yu
  *
  */
 public abstract class Parser {
-	protected String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	protected HashSet<String> userdefined;
-	protected List<Entry<String, Pattern>> patterns; 
-	protected HashSet<String> oneParComs;
-	protected HashSet<String> twoParComs;
+	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
+	private List<Entry<String, Pattern>> patterns; 
+	private HashSet<String> oneParComs;
+	private HashSet<String> twoParComs;
 	
+	/** parses user input to expression tree and execute 
+	 * @param user input
+	 * @return return value of last executed command
+	 */
 	abstract protected double parse(String s) throws ParserError, IOException;
-/*	
-	protected void initialize(){
-	    //initialize languageMap
-		ResourceBundle myBundle = ResourceBundle.getBundle("resources.languages.English");
-	    setLanguage(myBundle); //default English 	 
-	    //initialize userdefined Set
-		String elements[] = { "ifelse", "if", "dotimes", "repeat", "for","makevariable" };
-		userdefined = new HashSet(Arrays.asList(elements));
-	    //initialize syntaxMap
-		initializeSyntax();
+	protected void initialize() throws IOException{
+		initializeSyntax();		
+		initializeSets();
+		patterns = new ArrayList<Entry<String, Pattern>>();
+        patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}
-	*/
 	protected void setLanguage(String path){
         patterns.addAll(Match.makePatterns(path));
 	}
-	
 	protected void initializeSyntax(){
 		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 
 		comment = b.getString("Comment");
@@ -48,6 +44,10 @@ public abstract class Parser {
 		listend = b.getString("ListEnd");
 		groupstart = b.getString("GroupStart");
 		groupend = b.getString("GroupEnd");
+	}
+	protected void initializeSets() throws IOException{		
+		oneParComs = Match.makeSet("src/resources/languages/OneParCommands");
+		twoParComs = Match.makeSet("src/resources/languages/TwoParCommands");
 	}	
 	/**
 	 * parses commands till a full command is parsed or when a single tree is built.
@@ -85,12 +85,6 @@ public abstract class Parser {
 		else		 
 			throw new ParserError("unexpected Token: "+ token);
 	}
-	protected void initializeSets() throws IOException{		
-		oneParComs = Match.makeSet("src/resources/languages/OneParCommands");
-		twoParComs = Match.makeSet("src/resources/languages/TwoParCommands");
-	}
-	
-	
 	protected Queue<String> toCommandQueue(String str) {
 		String[] s = str.split(" ");
 		Queue<String> qu = new LinkedList<String>();
@@ -105,9 +99,10 @@ public abstract class Parser {
 	protected boolean isEnd(Queue<String> qu){
 		return qu.isEmpty();
 	}
-	protected boolean isListEnd(String s){
-		return s.matches(listend);
-	}
+	/**
+	 * @param execute all commands in the list of tree
+	 * @return return value of last executed command
+	 */
 	protected double executeAll(ArrayList<Node> commands){
 		double result = -1;
 		for(int i =0; i < commands.size(); i++)

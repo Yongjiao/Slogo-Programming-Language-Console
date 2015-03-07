@@ -2,6 +2,8 @@ package configuration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
@@ -13,12 +15,13 @@ import Tree.Node;
  *
  */
 public class DotimesParser extends Parser{
+	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
+	private List<Entry<String, Pattern>> patterns; 
+	private HashSet<String> oneParComs;
+	private HashSet<String> twoParComs;
 	
 	public DotimesParser() throws IOException{
-		initializeSyntax();		
-		initializeSets();
-		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
+		initialize();
 	}
 	
 	public double parse(String s) throws ParserError{
@@ -69,8 +72,7 @@ public class DotimesParser extends Parser{
 			result = n.getValue();		//execute tree for # iterations	
 		}
 		return result;
-	}
-	
+	}	
 	
 	public static void main(String[] args) throws IOException, ParserError {
 		DotimesParser example = new DotimesParser();
