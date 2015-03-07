@@ -32,23 +32,5 @@ public abstract class Loop extends TurtleCommands {
 		System.out.println("This is the last value: " + lastVal);
 		return lastVal;
 	}
-	
-	public static void main(String[] args) {
-		//for testing
-		
-		ArrayList<CommandCenter> comms = new ArrayList<CommandCenter>();
-		ArrayList<Object> a = new ArrayList<Object>();
-		a.add(0);
-		ArrayList<Object> b = new ArrayList<Object>();
-		b.add("s");
-		Sin f = new Sin(a);
-		Sin d = new Sin(b);
-		comms.add(f);
-		comms.add(d);
-		
-		For fr = new For("s", 0, 360, 60, comms);
-		fr.execute();
-		
-	}
 
 }

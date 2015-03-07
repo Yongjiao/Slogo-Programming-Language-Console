@@ -2,10 +2,12 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
+import application.ViewHandler;
+
 public class Forward extends Move {
 
-	public Forward(ArrayList<Object> p) {
-		super.setParams(p);
+	public Forward(ArrayList<Object> p, ViewHandler v) {
+		super(p, v);
 	}
 
 	public double execute() {

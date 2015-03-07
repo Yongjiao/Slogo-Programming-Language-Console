@@ -1,9 +1,11 @@
 package commands.viewCommands;
 
+import application.Pen;
+
 public class IsPD extends ViewCommands{
 	
-	public IsPD() {
-		
+	public IsPD(Pen p) {
+		super(p);
 	}
 	
 	public double execute() {

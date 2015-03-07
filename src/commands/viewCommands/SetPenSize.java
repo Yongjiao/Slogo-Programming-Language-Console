@@ -2,10 +2,12 @@ package commands.viewCommands;
 
 import java.util.ArrayList;
 
+import application.Pen;
+
 public class SetPenSize extends ViewCommands{
 	
-	public SetPenSize(ArrayList<Object> p) {
-		super.setParams(p);
+	public SetPenSize(ArrayList<Object> p, Pen pen) {
+		super(p, pen);
 	}
 	
 	// Fixed (Anika)
