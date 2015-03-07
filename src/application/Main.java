@@ -36,7 +36,6 @@ public class Main extends Application {
 			//Parser myParser = new Parser();
 			// BELOW COULD BE REFACTORED INTO NEW WORKSPACE CLASS??
 			TabPane myTabs = new TabPane();
-			Pen myPen = new Pen();
 			for (int i = 1; i <= NUM_WORKSPACES; i++){
 				Tab tab = new Tab();
 				tab.setText("Workspace " + i);
@@ -51,6 +50,7 @@ public class Main extends Application {
 				viewCommands.setPenHandler(myPenHandler);
 				TurtleCommands turtleCommands = new TurtleCommands();
 				turtleCommands.setViewHandler(myViewHandler);
+				CommandFactory myFactory = new CommandFactory(myPenHandler, myViewHandler);
 				
 				tab.setContent(myBorderPane);
 				myTabs.getTabs().add(tab);
