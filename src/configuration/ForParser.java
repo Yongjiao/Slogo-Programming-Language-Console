@@ -60,7 +60,7 @@ public class ForParser extends Parser{
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
 		double result = 0;
-		Tree node = buildTree(qu);
+		Node node = buildTree(qu);
 		if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return (int) result;

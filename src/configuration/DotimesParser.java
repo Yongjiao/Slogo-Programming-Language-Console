@@ -15,7 +15,7 @@ import Tree.Node;
  * @author Yongjiao Yu
  *
  */
-public class DotimesParser extends LoopParser{
+public class DotimesParser extends Parser{
 	private String localVar = "";
 	public DotimesParser() throws IOException {
 		super();
@@ -61,7 +61,7 @@ public class DotimesParser extends LoopParser{
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
 		double result = 0;
-		Tree node = buildTree(qu);
+		Node node = buildTree(qu);
 		if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return (int) result;
@@ -72,7 +72,7 @@ public class DotimesParser extends LoopParser{
 	 * @return
 	 * @throws ParserError
 	 */
-	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
+	protected double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;
 		for(int i = start; i <= end; i++){
