@@ -24,5 +24,11 @@ public abstract class CommandCenter implements Executable {
 		return parameters;
 	}
 	
+	public void restore(ArrayList<Integer> l, String s) {
+		for(int i : l) {
+			parameters.set(i, s);
+		}
+	}
+	
 	
 }
