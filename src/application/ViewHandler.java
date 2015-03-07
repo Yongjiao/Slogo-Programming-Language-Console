@@ -329,6 +329,6 @@ public class ViewHandler {
 				+ " \n" + "Pen Status: \t" + myPenHandler.getPenStatus()
 				);
 		
-		this.myPenHandler.setThickness();
+		this.myPenHandler.setThicknessParameter();
 	}	
 }

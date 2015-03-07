@@ -81,7 +81,7 @@ public class PenHandler {
 		return myPen.getWeight();
 	}
 
-	public void setThickness()
+	public void setThicknessParameter()
 	{
 		this.myLineView.setThickness(getPenWeight());
 	}	
