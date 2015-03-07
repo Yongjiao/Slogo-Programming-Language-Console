@@ -2,9 +2,8 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
+import commands.CommandCenter;
 import commands.arithmeticCommands.Sin;
-
-import application.CommandFactory;
 
 public abstract class Loop extends TurtleCommands {
 	
@@ -12,18 +11,18 @@ public abstract class Loop extends TurtleCommands {
 	protected int start;
 	protected int end;
 	protected int increment;
-	protected ArrayList<CommandFactory> comms;
+	protected ArrayList<CommandCenter> comms;
 
-	public double loop(String localVar, int a, int b, int c, ArrayList<CommandFactory> commands) {
+	public double loop(String localVar, int a, int b, int c, ArrayList<CommandCenter> commands) {
 		double lastVal = 0;
 		for (int i = a; i < b; i += c) {
-			for (CommandFactory comm : commands){
+			for (CommandCenter comm : commands){
 				ArrayList<Integer> which = new ArrayList<Integer>();
-				for(Object obj : comm.getParams()) {
+				for(Object obj : super.getParams()) {
 					if(obj.equals(localVar)) {
-						int index = comm.getParams().indexOf(obj);
+						int index = super.getParams().indexOf(obj);
 						which.add(index);
-						comm.getParams().set(index, i);
+						super.getParams().set(index, i);
 					}
 				}
 				lastVal = comm.execute();
@@ -37,7 +36,7 @@ public abstract class Loop extends TurtleCommands {
 	public static void main(String[] args) {
 		//for testing
 		
-		ArrayList<CommandFactory> comms = new ArrayList<CommandFactory>();
+		ArrayList<CommandCenter> comms = new ArrayList<CommandCenter>();
 		ArrayList<Object> a = new ArrayList<Object>();
 		a.add(0);
 		ArrayList<Object> b = new ArrayList<Object>();

@@ -3,13 +3,13 @@ package commands;
 import java.util.ArrayList;
 import application.ViewHandler;
 
-public class MultTurts{ //Superclass for multiple turtle themed commands
+public class MultTurts extends CommandCenter{ //Superclass for multiple turtle themed commands
 	
 	protected ViewHandler myTurtleHandler;
 	protected ArrayList<Object> turtles;
-	protected ArrayList<CommandFactory> commands;
+	protected ArrayList<CommandCenter> commands;
 	
-	public MultTurts() {
+	public MultTurts(){
 		
 	}
 

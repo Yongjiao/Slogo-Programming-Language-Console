@@ -2,16 +2,16 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
-import application.CommandFactory;
+import commands.CommandCenter;
 
 public class For extends Loop{
 
-	public For(String localVar, int a, int b, int i, ArrayList<CommandFactory> c) {
+	public For(String localVar, int a, int b, int i, ArrayList<CommandCenter> c) {
 		var = localVar;
 		start = a;
 		end = b;
 		increment = i;
-		comms = new ArrayList<CommandFactory>(c);
+		comms = new ArrayList<CommandCenter>(c);
 	}
 	
 	public double execute() {

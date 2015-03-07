@@ -3,7 +3,6 @@ package commands.viewCommands.turtleCommands;
 import java.util.ArrayList;
 
 import commands.CommandCenter;
-
 import application.ViewHandler;
 
 public abstract class TurtleCommands extends CommandCenter{
@@ -24,6 +23,16 @@ public abstract class TurtleCommands extends CommandCenter{
 	protected ViewHandler getHandler()
 	{
 		return myViewHandler;
+	}
+	
+	protected void setParams(ArrayList<Object> newParams)
+	{
+		super.setParams(newParams);
+	}
+	
+	protected ArrayList<Object> getParams()
+	{
+		return super.getParams();
 	}
 	
 }

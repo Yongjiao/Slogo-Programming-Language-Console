@@ -2,6 +2,8 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import commands.CommandCenter;
 import commands.UserDefined;
 import commands.UserMadeUtilities;
 
@@ -18,7 +20,7 @@ public class RunUD extends TurtleCommands {
 	public double execute() {
 		UserDefined thisOne = UserMadeUtilities.getFromCommands(name)
 				.makeInstanceOfSelf();
-		if (thisOne.getParams().size() != values.size()) {
+		if (thisOne.getParameters().size() != values.size()) {
 			return 0;
 		}
 
@@ -33,17 +35,17 @@ public class RunUD extends TurtleCommands {
 
 		HashMap<String, Object> myParamValMap = new HashMap<String, Object>();
 
-		for (int i = 0; i < thisOne.getParams().size(); i++) {
-			myParamValMap.put(thisOne.getParams().get(i), values.get(i));
+		for (int i = 0; i < thisOne.getParameters().size(); i++) {
+			myParamValMap.put(thisOne.getParameters().get(i), values.get(i));
 		}
 
 		int j = 0;
 
-		for (CommandFactory comm : thisOne.getCommands()) {
+		for (CommandCenter comm : thisOne.getCommands()) {
 			// comm.getParams().add(values.get(j));
 			// comm.execute();
 
-			ArrayList<Object> thisCommParams = comm.getParams();
+			ArrayList<Object> thisCommParams = super.getParams();
 
 			for (int m = 0; m < thisCommParams.size(); m++) {
 				Object thisParam = thisCommParams.get(m);
@@ -54,9 +56,9 @@ public class RunUD extends TurtleCommands {
 					// check if local var
 
 					if (myParamValMap.containsKey(thisParam)) {
-						ArrayList<Object> ps = comm.getParams();
+						ArrayList<Object> ps = super.getParams();
 						ps.set(m, myParamValMap.get(thisParam));
-						comm.setParams(ps);
+						super.setParams(ps);
 					}
 
 				}

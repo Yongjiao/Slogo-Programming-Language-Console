@@ -2,11 +2,11 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
-import application.CommandFactory;
+import commands.CommandCenter;
 
 public class DoTimes extends Loop{
 	
-	public DoTimes(String v, int e, ArrayList<CommandFactory> c) {
+	public DoTimes(String v, int e, ArrayList<CommandCenter> c) {
 		var = v;
 		end = e;
 		comms = c;
