@@ -89,7 +89,7 @@ public CommandCenter makeNoParmsCommands(String com){
    				return null;	
    	}
    	
- 	static public CommandCenter makeBasicCommands(String com, String s, ArrayList<Object> parList){ 
+ 	public CommandCenter makeBasicCommands(String com, String s, ArrayList<Object> parList){ 
  		return null;
  	}
    	
