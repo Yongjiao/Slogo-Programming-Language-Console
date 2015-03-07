@@ -11,7 +11,9 @@ public class SetPalette extends ViewCommands{
 		super.setParams(p);
 	}
 	
-	//Fixed: Anika
+	/**
+	 * @author Anika
+	 */
 	public double execute() {
 
 		ArrayList<Object> params = super.getParams();
