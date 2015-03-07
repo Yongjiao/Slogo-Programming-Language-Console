@@ -14,7 +14,7 @@ Date started: 02/13/15
 
 Date finished: 
 
-Hours worked: 45+
+Hours worked: 60+
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
