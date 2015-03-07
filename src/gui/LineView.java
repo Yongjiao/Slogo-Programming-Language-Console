@@ -4,6 +4,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Creates the line drawing layer
+ * @author Andrew
+ *
+ */
 public class LineView extends View {
 	
 	private GraphicsContext linesGC;
