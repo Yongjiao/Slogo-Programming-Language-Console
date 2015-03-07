@@ -7,8 +7,6 @@ import application.ViewHandler;
 import commands.viewCommands.turtleCommands.Executable;
 
 public abstract class CommandCenter implements Executable {
-	private Pen temporaryPen;
-	private ViewHandler temporaryViewHandler;
 	
 	private ArrayList<Object> parameters;
 	
@@ -26,14 +24,5 @@ public abstract class CommandCenter implements Executable {
 		return parameters;
 	}
 	
-	protected Pen getPen()
-	{
-		return temporaryPen;
-	}
-	
-	protected void setPen(Pen penToSet)
-	{
-		temporaryPen = penToSet;
-	}
 	
 }
