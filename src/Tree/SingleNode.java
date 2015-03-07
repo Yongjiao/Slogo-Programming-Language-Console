@@ -1,10 +1,9 @@
 package Tree;
 
 import java.util.ArrayList;
-
-import configuration.CommandMaker;
+import commands.CommandCenter;
+import configuration.CommandFactory;
 import configuration.Match;
-import application.CommandFactory;
 
 /**
  * Represents a single node with one child/commands with only one parameter 
@@ -26,7 +25,7 @@ public class SingleNode implements Node{
 		ArrayList<Object> parList = new ArrayList<Object>();
 		double chi = child.getValue();
 		parList.add(chi);
-		CommandFactory com =  CommandMaker.makeBasicCommands(command, parList);
+		CommandCenter com =  CommandFactory.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	

@@ -5,11 +5,11 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.*;
 
+import commands.CommandCenter;
 import commands.viewCommands.turtleCommands.Set;
 import Tree.BinNode;
 import Tree.ConstNode;
 import Tree.SingleNode;
-import application.CommandFactory;
 
 /**
  * A subclass dedicated only for set command parsing
@@ -32,11 +32,11 @@ public class SetParser extends Parser{
 	public double parse(String s) throws ParserError, IOException{
 		Queue<String> tokens = toCommandQueue(s);
 		skip(tokens);
-		CommandFactory com = parse(tokens);	
+		CommandCenter com = parse(tokens);	
 		return com.execute();	
 	}
 	//can just execute() and change to double but keep for ease of debugging
-	private CommandFactory parse(Queue<String> tokens) throws ParserError {
+	private CommandCenter parse(Queue<String> tokens) throws ParserError {
 		String token = tokens.poll();			
 		if(!token.matches(variable))
 			throw new ParserError("Expected Variable here!");		
