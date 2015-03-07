@@ -6,9 +6,9 @@ public class UserDefined extends CommandCenter{
 
 	private String myName;
 	protected ArrayList<String> params;
-	private ArrayList<CommandFactory> comms;
+	private ArrayList<CommandCenter> comms;
 	
-	public UserDefined(String name, ArrayList<String> p, ArrayList<CommandFactory> commands) {
+	public UserDefined(String name, ArrayList<String> p, ArrayList<CommandCenter> commands) {
 		myName = name;
 		params = p;
 		comms = commands;
@@ -27,19 +27,19 @@ public class UserDefined extends CommandCenter{
 		return myName;
 	}
 	
-	public void setParams(ArrayList<String> p) {
+	public void setParameters(ArrayList<String> p) {
 		params = p;
 	}
 	
-	public ArrayList<String> getParams() {
+	public ArrayList<String> getParameters() {
 		return params;
 	}
 	
-	public void setCommands(ArrayList<CommandFactory> c){
+	public void setCommands(ArrayList<CommandCenter> c){
 		comms = c;
 	}
 	
-	public ArrayList<CommandFactory> getCommands() {
+	public ArrayList<CommandCenter> getCommands() {
 		return comms;
 	}
 

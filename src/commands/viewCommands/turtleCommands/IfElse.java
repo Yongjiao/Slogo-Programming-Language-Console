@@ -2,14 +2,14 @@ package commands.viewCommands.turtleCommands;
 
 import java.util.ArrayList;
 
-import application.CommandFactory;
+import commands.CommandCenter;
 
 public class IfElse extends IfConditions{
 	
-	public IfElse(int e, ArrayList<CommandFactory> ifs, ArrayList<CommandFactory> elses){
+	public IfElse(int e, ArrayList<CommandCenter> ifs, ArrayList<CommandCenter> elses){
 		expression = e;
-		Ifs = new ArrayList<CommandFactory>(ifs);
-		Elses = new ArrayList<CommandFactory>(elses);
+		Ifs = new ArrayList<CommandCenter>(ifs);
+		Elses = new ArrayList<CommandCenter>(elses);
 	}
 	
 	public double execute() {

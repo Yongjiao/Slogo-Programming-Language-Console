@@ -3,7 +3,6 @@ package commands.viewCommands.turtleCommands;
 import java.util.ArrayList;
 
 import commands.CommandCenter;
-
 import application.ViewHandler;
 
 public class TurtleCommands extends CommandCenter{
@@ -30,6 +29,16 @@ public class TurtleCommands extends CommandCenter{
 	public double execute() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	protected void setParams(ArrayList<Object> newParams)
+	{
+		super.setParams(newParams);
+	}
+	
+	protected ArrayList<Object> getParams()
+	{
+		return super.getParams();
 	}
 	
 }

@@ -15,12 +15,9 @@ import Tree.Node;
  *
  */
 public class ForParser extends Parser{
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
 
-	
 	public ForParser() throws IOException{
-		initialize();
+		super();
 	}
 	@Override
 	public double parse(String s) throws ParserError{
@@ -33,26 +30,26 @@ public class ForParser extends Parser{
 	private double parse(Queue<String> tokens) throws ParserError {
 		int start, end, inc;
 		double result = -1;
-		if(!tokens.peek().matches(liststart))	
+		if(!isListStart(tokens.peek()))	
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
-		if(!tokens.peek().matches(variable))
+		if(!isVariable(tokens.peek()))
 			throw new ParserError("see" + tokens.poll() + "expected variable here!" );
 		skip(tokens); //skip variable
 		start = fetchConstant(tokens);
 		end  = fetchConstant(tokens);
 		inc = fetchConstant(tokens);
-		if(!tokens.peek().matches(listend))	
+		if(!isListEnd(tokens.peek()))	
 			throw new ParserError("see" + tokens.poll() + "expected ] here!");
 		skip(tokens);
 		//
-		if(!tokens.peek().matches(liststart))
+		if(!isListStart(tokens.peek()))
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
-		while(!isEnd(tokens) && !tokens.peek().matches(listend)){
+		while(!isEnd(tokens) && !isListEnd(tokens.peek())){
 			result = parseFor(start, end, inc, tokens);
 		}
-		if(isEnd(tokens) || !tokens.poll().matches(listend))
+		if(isEnd(tokens) || !isListEnd(tokens.poll()))
 			throw new ParserError("Expected ] here !");
 		//
 		if(!isEnd(tokens))
@@ -75,6 +72,13 @@ public class ForParser extends Parser{
 		return list;
 	}
 */	
+	
+	private int fetchConstant(Queue<String> qu) throws ParserError{
+		if(!isConstant(qu.peek()))
+			throw new ParserError("see" + qu.poll() + "expected number here!");
+		return Integer.parseInt(qu.poll());
+	}
+	
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
 		Node n = buildTree(qu);
@@ -83,11 +87,6 @@ public class ForParser extends Parser{
 			result = n.getValue();		//execute tree for # iterations	
 		}
 		return result;
-	}	
-	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!qu.peek().matches(constant))
-			throw new ParserError("see" + qu.poll() + "expected number here!");
-		return Integer.parseInt(qu.poll());
 	}
 	public static void main(String[] args) throws IOException, ParserError {
 		ForParser example = new ForParser();

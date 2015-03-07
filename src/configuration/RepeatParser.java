@@ -14,13 +14,9 @@ import Tree.Node;
  * @author Yongjiao Yu
  */
 public class RepeatParser extends Parser{
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
-	private HashSet<String> oneParComs;
-	private HashSet<String> twoParComs;
 	
 	public RepeatParser() throws IOException{
-		initialize();
+		super();
 	}
 	@Override
 	public double parse(String s) throws IOException, ParserError{
@@ -34,13 +30,13 @@ public class RepeatParser extends Parser{
 		Node expr = buildTree(tokens); //can be a numeric node
 		int iter = (int) expr.getValue();
 		//comment parse start from here
-		if(!tokens.peek().matches(liststart))
+		if(!isListStart(tokens.peek()))
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
-		while(!isEnd(tokens) && !tokens.peek().matches(listend)){
+		while(!isEnd(tokens) && !isListEnd(tokens.peek())){
 			result = parseFor(0, iter, 1, tokens);
 		}
-		if(isEnd(tokens) || !tokens.poll().matches(listend))
+		if(isEnd(tokens) || !isListEnd(tokens.poll()))
 			throw new ParserError("Expected ] here !");
 		//
 		if(!isEnd(tokens))

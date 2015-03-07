@@ -17,18 +17,11 @@ import Tree.SingleNode;
  *
  */
 public class SetParser extends Parser{
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
-
 	
 	public SetParser() throws IOException{
-		initialize();
+		super();
 	}
-	/*@Override
-	CommandFactory parse(String in ){
-		return parseInput(in);  //not sure if will call the correct one
-	}
-	*/
+
 	public double parse(String s) throws ParserError, IOException{
 		Queue<String> tokens = toCommandQueue(s);
 		skip(tokens);
@@ -36,9 +29,9 @@ public class SetParser extends Parser{
 		return com.execute();	
 	}
 	//can just execute() and change to double but keep for ease of debugging
-	private CommandCenter parse(Queue<String> tokens) throws ParserError {
-		String token = tokens.poll();			
-		if(!token.matches(variable))
+	private CommandCenter parse(Queue<String> tokens) throws ParserError {		
+		String token = tokens.poll();
+		if(!isVariable(tokens.poll()))
 			throw new ParserError("Expected Variable here!");		
 		double val = buildTree(tokens).getValue();
 		ArrayList<Object> par = new ArrayList<>();

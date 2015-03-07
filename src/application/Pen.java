@@ -24,7 +24,7 @@ public class Pen {
 	
 	/**
 	 * Constructor of pen class
-	 * - initializes status based on integer passed by user
+	 * - initializes status to 1
 	 * - initializes color to black
 	 * - initializes original thickness to 1
 	 * - initializes line-drawing style to solid line
