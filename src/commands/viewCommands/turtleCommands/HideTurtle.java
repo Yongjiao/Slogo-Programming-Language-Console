@@ -1,14 +1,14 @@
 package commands.viewCommands.turtleCommands;
 
-public class HideTurtle extends TurtScreen{
+public class HideTurtle extends TurtleCommands{
 	
 	public HideTurtle() {
 		
 	}
 	
 	public double execute() {
-		myViewHandler.showTurtle(0);
-		return myViewHandler.isVisible();
+		super.getHandler().showTurtle(0);
+		return super.getHandler().isVisible();
 	}
 
 }

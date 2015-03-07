@@ -1,14 +1,13 @@
 package commands.viewCommands.turtleCommands;
 
-import application.CommandFactory;
 import application.ViewHandler;
 
-public class TurtScreen extends CommandFactory{
+public abstract class TurtScreen extends TurtleCommands{
 	
 	ViewHandler myViewHandler;
 	
 	public TurtScreen() {
-		myViewHandler = super.getViewHandler();
+		myViewHandler = super.getHandler();
 	}
 
 }

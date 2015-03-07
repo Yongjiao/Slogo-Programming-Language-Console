@@ -1,12 +1,10 @@
 package configuration;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
-import application.CommandFactory;
+import commands.CommandCenter;
 import Tree.*;
 /**
  * Parses nested Command
@@ -32,7 +30,7 @@ public class BasicParser extends Parser{
 		Queue<String> tokens = toCommandQueue(s);
 		String command = tokens.peek();
 		comKey = Match.findCommandKey(tokens.peek(), patterns);
-		CommandFactory com = CommandMaker.makeNoParmsCommands(comKey);
+		CommandCenter com = CommandFactory.makeNoParmsCommands(comKey);
 		if(com != null)	return com.execute();
 		System.out.println(comKey);
 		if(userdefined.contains(comKey)){

@@ -1,7 +1,5 @@
 package Tree;
 
-import application.CommandFactory;
-
 /**
  * superclass of all Nodes Represents a node of any type in an expression tree.
  * @author Yongjiao Yu

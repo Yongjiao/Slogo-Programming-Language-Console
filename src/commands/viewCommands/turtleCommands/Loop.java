@@ -6,7 +6,7 @@ import commands.arithmeticCommands.Sin;
 
 import application.CommandFactory;
 
-public class Loop extends CommandFactory {
+public abstract class Loop extends TurtleCommands {
 	
 	protected String var;
 	protected int start;
