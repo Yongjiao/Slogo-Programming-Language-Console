@@ -13,9 +13,8 @@ import javafx.stage.Stage;
 
 /**
  * Allows user to choose a specific turtle image to use
- * @author Andrew and Anika
- *
- */
+ * @author Andrew and Anika, modified by anika to remove magic numbers
+*/
 public class TurtleImageChooser extends Application {
 	
 	private static final int SCENE_WIDTH = 500;
@@ -58,6 +57,12 @@ public class TurtleImageChooser extends Application {
 		
 	}
 	
+	/**
+	 * initializes button to choose file as well as buttons to choose images
+	 * Note: Attempts were made at separating resource location and names for 
+	 * neater code, but gave errors so we kept this version of code for now
+	 * @author anika
+	 */
 	private void initialize(){
 		Button btnFile = new Button("Choose from file");
 		btnFile.setLayoutX(BOTTOM_BUTTON_X);

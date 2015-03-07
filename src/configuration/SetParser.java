@@ -23,7 +23,7 @@ public class SetParser extends Parser{
 	}
 
 	public double parse(String s) throws ParserError, IOException{
-		Queue<String> tokens = toCommandQueue(s);
+		Queue<String> tokens = Util.toCommandQueue(s);
 		skip(tokens);
 		CommandCenter com = parse(tokens);	
 		return com.execute();	

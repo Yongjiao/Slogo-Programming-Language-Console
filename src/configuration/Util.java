@@ -8,17 +8,21 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Enumeration;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+
+import Tree.Node;
 
 /**
  * A utility class for convenience of Parsing
  * @author Yongjiao Yu, Professor Robert Duvell
  *
  */
-public class Match {
+public class Util {
     private static boolean match (String input, Pattern regex) {
         return regex.matcher(input).matches();
     }
@@ -53,5 +57,23 @@ public class Match {
    		br.close();
    		return set;
    	}
-
+	public static Queue<String> toCommandQueue(String str) {
+		String[] s = str.split(" ");
+		Queue<String> qu = new LinkedList<String>();
+		for(int i =0; i < s.length; i++){
+			qu.add(s[i]);
+		}
+		return qu;
+	}	
+	/**
+	 * @param execute all commands in the list of tree
+	 * @return return value of last executed command
+	 */
+	public static double executeAll(ArrayList<Node> commands){
+		double result = -1;
+		for(int i =0; i < commands.size(); i++)
+			result = commands.get(i).getValue();
+		return result;
+	}
+   		
 }

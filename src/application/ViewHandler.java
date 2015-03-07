@@ -87,7 +87,7 @@ public class ViewHandler {
 	{
 		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
 		this.myTurtleView.initializeTurtle(image);
-		setInfoParamsOfTurtle();
+		setInfoParamsOfTurtleAndLine();
 	}
 	
 	
@@ -189,13 +189,13 @@ public class ViewHandler {
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 		setTurtleLocToViewTurtleLoc();
-		/*		double ang = Math.toDegrees(Math.atan2((locNew.getY()-locOrig.getY()), (locNew.getX()-locOrig.getX())));
-		this.myTurtle.setOrientation(ang);*/
 		this.updateTurtleOnView();
 	}
 	
 	/**
 	 * Updates turtle image on View canvas; draws line if pen is down
+	 * Note: This feature is the primary reason that ViewHandler needs
+	 * access to current Pen info
 	 * @param locOrig
 	 * @param locNew
 	 */
@@ -290,7 +290,7 @@ public class ViewHandler {
 	public void updateTurtleOnView()
 	{
 		// update turtle info to View
-		setInfoParamsOfTurtle();
+		setInfoParamsOfTurtleAndLine();
 		
 		if (this.isVisible() == 1)
 		{
@@ -319,14 +319,17 @@ public class ViewHandler {
 	 * - y location
 	 * - orientation
 	 * - pen status
-	 * 
+	 * Contains information for Pen for line drawing of thickness
+	 * of stroke/line
 	 * Used to display status of turtle to user from GUI
 	 */
-	public void setInfoParamsOfTurtle()
+	public void setInfoParamsOfTurtleAndLine()
 	{
 		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
 				+ " \n" + "Pen Status: \t" + myPenHandler.getPenStatus()
 				);
+		
+		this.myPenHandler.setThicknessParameter();
 	}	
 }

@@ -7,7 +7,7 @@ import java.util.Queue;
 import Tree.Node;
 
 public class LoopParser extends Parser{
-	
+	private String localVar;
 	@Override
 	protected double parse(String s) throws ParserError, IOException {
 		return 0;
@@ -19,13 +19,6 @@ public class LoopParser extends Parser{
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return result;
 	}
-	/*
-	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!isConstant(qu.peek()))
-			throw new ParserError("see" + qu.poll() + "expected number here!");
-		return Integer.parseInt(qu.poll());
-	}
-	*/
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;

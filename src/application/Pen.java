@@ -82,6 +82,10 @@ public class Pen {
 		
 	}
 	
+	/**
+	 * sets color of pen to returned color from index key of Palette map
+	 * @param indexOfColor
+	 */
 	public void setColor (int indexOfColor)
 	{
 		myColor = this.getColorFromPalette(indexOfColor);
