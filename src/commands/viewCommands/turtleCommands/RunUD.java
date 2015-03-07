@@ -69,5 +69,11 @@ public class RunUD extends TurtleCommands {
 		}
 		return 1;
 	}
+	
+	public static void main (String[] arg) {
+		String n = "circle";
+		ArrayList<Object> vals = new ArrayList<Object>();
+		RunUD runUD = new RunUD(n, vals);
+	}
 
 }

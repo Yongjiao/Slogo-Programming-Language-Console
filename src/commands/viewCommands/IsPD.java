@@ -1,15 +1,16 @@
 package commands.viewCommands;
 
 import application.Pen;
+import application.PenHandler;
 
 public class IsPD extends ViewCommands{
 	
-	public IsPD(Pen p) {
+	public IsPD(PenHandler p) {
 		super(p);
 	}
 	
 	public double execute() {
-		if(super.getPen().getStatus() == 1)
+		if(super.getPenHandler().getPenStatus() == 1)
 			return 1;
 		return 0;
 	}
