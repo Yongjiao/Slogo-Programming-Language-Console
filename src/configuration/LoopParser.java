@@ -7,7 +7,7 @@ import java.util.Queue;
 import Tree.Node;
 
 public class LoopParser extends Parser{
-	
+	private String localVar;
 	@Override
 	protected double parse(String s) throws ParserError, IOException {
 		return 0;

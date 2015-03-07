@@ -43,16 +43,20 @@ public class ForParser extends Parser{
 		if(!isListEnd(tokens.peek()))	
 			throw new ParserError("see" + tokens.poll() + "expected ] here!");
 		skip(tokens);
-		//
-		if(!isListStart(tokens.peek()))
-			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
-		skip(tokens);
-		result = parseFor(start, end, inc, tokens);
-		if(isEnd(tokens) || !isListEnd(tokens.poll()))
-			throw new ParserError("Expected ] here !");
+
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;		
+	}
+	private double parseCommands(Queue<String> qu, int start, int end, int inc) throws ParserError{
+		double result = -1;
+		if(!isListStart(qu.peek()))
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		result = parseFor(start, end, inc, qu);
+		if(isEnd(qu) || !isListEnd(qu.poll()))
+			throw new ParserError("Expected ] here !");
+		return result;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
 		double result = 0;
@@ -61,13 +65,6 @@ public class ForParser extends Parser{
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return result;
 	}
-	/*
-	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!isConstant(qu.peek()))
-			throw new ParserError("see" + qu.poll() + "expected number here!");
-		return Integer.parseInt(qu.poll());
-	}
-		*/
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;

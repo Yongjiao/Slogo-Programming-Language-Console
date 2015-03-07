@@ -27,29 +27,37 @@ public class RepeatParser extends Parser{
 	}	
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1;
-		Node expr = buildTree(tokens); //can be a numeric node
-		int iter = (int) expr.getValue();
-		//comment parse start from here
-		if(!isListStart(tokens.peek()))
-			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
-		skip(tokens);
-		while(!isEnd(tokens) && !isListEnd(tokens.peek())){
-			result = parseFor(0, iter, 1, tokens);
-		}
-		if(isEnd(tokens) || !isListEnd(tokens.poll()))
-			throw new ParserError("Expected ] here !");
-		//
+		int iter = fetchNumericExpr(tokens);
+		parseCommands(tokens, iter);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;
 	}
-	
+	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
+		double result = 0;
+		Tree node = buildTree(qu);
+		if(node.hasChild() != 0)
+			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
+		return result;
+	}
+	private double parseCommands(Queue<String> qu, int iter) throws ParserError{
+		double result = -1;
+		if(!isListStart(qu.peek()))
+			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
+		skip(qu);
+		while(!isEnd(qu) && !isListEnd(qu.peek())){
+			result = parseFor(0, iter, 1, qu);
+		}
+		if(isEnd(qu) || !isListEnd(qu.poll()))
+			throw new ParserError("Expected ] here !");
+		return result;
+	}
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
-		double result = -1; //make more Treeparser.parse(Queue, String, int i);
+		double result = -1; 
 		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
 		for(int i = start; i < end; i++){
-			result = n.getValue();		//execute tree for # iterations	
+			result = n.getValue();		
 		}
 		return result;
 	}	

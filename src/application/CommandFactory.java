@@ -27,7 +27,7 @@ public class CommandFactory {
  * Make commands where no paramters are required
  * @return the desired command object
  */
-	public CommandCenter makeNoParmsCommands(String com){
+public CommandCenter makeNoParmsCommands(String com){
 			switch(com){
 				case "Home":		    	return new Home(myViewHandler);
 				case "PenDown":  			return new PenDown(myPen);
