@@ -20,8 +20,8 @@ public class Main extends Application {
 			Scene scene = myGUI.initialize(stage);
 			ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
 
-			CommandFactory c = new CommandFactory();
-			c.setViewHandler(myHandler);
+	//		CommandFactory c = new CommandFactory();
+	//		c.setViewHandler(myHandler);
 			
 			ArrayList<Object> l = new ArrayList<Object>();
 			l.add(50);
