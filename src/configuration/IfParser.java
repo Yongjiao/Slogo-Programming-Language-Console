@@ -22,12 +22,8 @@ public class IfParser extends Parser{
 	private HashSet<String> twoParComs;
 	
 	public IfParser() throws IOException{
-		initializeSyntax();		
-		initializeSets();
-		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
+		initialize();
 	}	
-
 	public double parse(String s) throws IOException, ParserError{
 		Queue<String> tokens = toCommandQueue(s);
 		System.out.println(tokens);

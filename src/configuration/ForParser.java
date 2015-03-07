@@ -14,7 +14,6 @@ import Tree.Node;
  * @author Yongjiao Yu
  *
  */
-
 public class ForParser extends Parser{
 	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
 	private List<Entry<String, Pattern>> patterns; 
@@ -23,7 +22,7 @@ public class ForParser extends Parser{
 	public ForParser() throws IOException{
 		initialize();
 	}
-	
+	@Override
 	public double parse(String s) throws ParserError{
 		Queue<String> tokens = toCommandQueue(s);
 		System.out.println(tokens);
@@ -68,7 +67,7 @@ public class ForParser extends Parser{
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
 		while(!isEnd(qu) && !qu.peek().matches(listend)){
-			list.add(tParser.parse(qu));
+			list.add(buildTree(qu));
 			System.out.println("Tree parsed is " + list.get(list.size() -1));
 		}
 		if(isEnd(qu) || !qu.poll().matches(listend))
@@ -76,13 +75,6 @@ public class ForParser extends Parser{
 		return list;
 	}
 */	
-	
-	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!qu.peek().matches(constant))
-			throw new ParserError("see" + qu.poll() + "expected number here!");
-		return Integer.parseInt(qu.poll());
-	}
-	
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; //make more Treeparser.parse(Queue, String, int i);
 		Node n = buildTree(qu);
@@ -91,8 +83,12 @@ public class ForParser extends Parser{
 			result = n.getValue();		//execute tree for # iterations	
 		}
 		return result;
+	}	
+	private int fetchConstant(Queue<String> qu) throws ParserError{
+		if(!qu.peek().matches(constant))
+			throw new ParserError("see" + qu.poll() + "expected number here!");
+		return Integer.parseInt(qu.poll());
 	}
-	
 	public static void main(String[] args) throws IOException, ParserError {
 		ForParser example = new ForParser();
 		String forl =  "for [ :v 0 10 1 ] [ / sum 3 5 10 ]";
