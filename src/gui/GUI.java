@@ -6,7 +6,6 @@ import configuration.BasicParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -25,8 +24,8 @@ public class GUI {
 	private static final int TURTLE_BUTTON = 1;
 	
 	private static final int HBOX_SPACING = 20;
-	private static final int STAGE_HEIGHT = 800;
-	private static final int STAGE_WIDTH = 1200;
+//	private static final int STAGE_HEIGHT = 800;
+//	private static final int STAGE_WIDTH = 1200;
 	
 	private static final int VIEW_HEIGHT = 700;
 	private static final int VIEW_WIDTH = 900;
@@ -41,7 +40,7 @@ public class GUI {
 	private static final Color DEFAULT_PEN_COLOR = Color.BLACK;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	
-	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
+	private ObservableList<String> myCommandsList = FXCollections.observableArrayList();
 	private BorderPane myBorders;
 	private LineView myLineView;
 	private TurtleView myTurtleView;
@@ -64,15 +63,15 @@ public class GUI {
 	/**
 	 * Initializes the GUI and returns a scene to the Main method.
 	 * @param s
-	 * @return Scene
+	 * @return myBorders
 	 */
-	public Scene initialize(Stage s){
+	public BorderPane initialize(){
 		initializeView();
 		initializeTextField();
 		initializeCommandsHistory();
 		initializeButtons();
-		Scene myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
-		return myScene;
+		//Scene myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
+		return myBorders;
 	}
 	
 	/**
@@ -90,6 +89,10 @@ public class GUI {
 		myBorders.setTop(mainHBox);
 	}
 
+	/**
+	 * Launches turtle image chooser
+	 * @author Andrew and Anika
+	 */
 	private void launchTurtleImageChooser() {
 		TurtleImageChooser turtleButton = new TurtleImageChooser(myTurtleView);
 		try {
@@ -99,6 +102,9 @@ public class GUI {
 		}
 	}
 
+	/**
+	 * Initializes color picker buttons
+	 */
 	private void createColorPickerButtons() {
 		// Creates ColorPicker buttons; could not put setOnAction within class because Java requires the 
 		// class to be instantiated before allowing creation of setOnAction method.
@@ -109,6 +115,9 @@ public class GUI {
 		mainHBox.getChildren().addAll(penColorPicker, backgroundColorPicker);
 	}
 
+	/**
+	 * Creates normal "on click buttons" that are passed events for what they need to do when clicked
+	 */
 	private void createNormalButtons() {
 		// Creates normal buttons
 		for (int i = 0; i < NUM_BUTTONS; i++){
@@ -120,6 +129,9 @@ public class GUI {
 		myButtons[TURTLE_BUTTON].setOnMouseClicked(e -> launchTurtleImageChooser());
 	}
 
+	/**
+	 * Creates the language buttons
+	 */
 	private void createLanguageButtons() {
 		mainHBox.getChildren().add(new LanguageButton(myParser, BUTTON_STYLE));
 	}

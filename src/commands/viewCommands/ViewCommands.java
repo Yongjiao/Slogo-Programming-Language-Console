@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import application.Pen;
 import commands.CommandCenter;
 
-public abstract class ViewCommands extends CommandCenter{
+public class ViewCommands extends CommandCenter{
 	private static Pen myPen;
 	
 	
@@ -23,6 +23,12 @@ public abstract class ViewCommands extends CommandCenter{
 	protected Pen getPen()
 	{
 		return myPen;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

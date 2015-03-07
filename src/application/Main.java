@@ -1,33 +1,101 @@
 package application;
 
 import gui.GUI;
+import gui.RotatedButton;
+
+
+
+
+
 
 import java.util.ArrayList;
 
+import commands.CommandCenter;
+import commands.viewCommands.ViewCommands;
 import commands.viewCommands.turtleCommands.Backward;
+import commands.viewCommands.turtleCommands.TurtleCommands;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 	
+	private static final int NUM_WORKSPACES = 3;
+
+	private ArrayList<GUI> myGUIs = new ArrayList<>();
 	
 	@Override
 	public void start(Stage stage) {
+		System.out.println("hello");
 		try {
 			//Parser myParser = new Parser();
-			GUI myGUI = new GUI();
-			Scene scene = myGUI.initialize(stage);
-			ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
-
-	//		CommandFactory c = new CommandFactory();
-	//		c.setViewHandler(myHandler);
+			// BELOW COULD BE REFACTORED INTO NEW WORKSPACE CLASS??
+			TabPane myTabs = new TabPane();
+			Pen myPen = new Pen();
+			for (int i = 1; i <= NUM_WORKSPACES; i++){
+				Tab tab = new Tab();
+				tab.setText("Workspace " + i);
+				
+				GUI myGUI = new GUI();
+				BorderPane myBorderPane = myGUI.initialize();
+				myGUIs.add(myGUI);
+				
+				ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
+				ViewCommands viewCommands = new ViewCommands();
+				viewCommands.setPen(myPen);
+				TurtleCommands turtleCommands = new TurtleCommands();
+				turtleCommands.setViewHandler(myHandler);
+				
+				tab.setContent(myBorderPane);
+				myTabs.getTabs().add(tab);
+				
+			}
 			
-			ArrayList<Object> l = new ArrayList<Object>();
-			l.add(50);
-			Backward f = new Backward(l);
-			f.execute();
-			System.out.println("made new th");
+			
+			
+			
+			
+			
+//			myHBox = new HBox();
+//			VBox myVBox = new VBox();
+//			myVBox.setSpacing(200);
+//			
+//			for (int i = 0; i < NUM_WORKSPACES; i++){
+//				GUI myGUI = new GUI();
+//				BorderPane myBorderPane = myGUI.initialize();
+//				RotatedButton b = new RotatedButton("Workspace " + i, BUTTON_STYLE, -90);
+//				myCurrentWorkspace = i;
+//				
+//				b.setOnMouseClicked(e -> workspaceClicked(myBorderPane, myCurrentWorkspace));
+//				myVBox.getChildren().add(b);
+//				
+//				TurtleHandler myHandler = new TurtleHandler(myGUI.getLineView(), myGUI.getTurtleView());
+//				CommandFactory c = new CommandFactory();
+//				c.setTurtleHandler(myHandler);
+//				myGUIs.add(myBorderPane);
+//			}
+//			
+////			myCurrentWorkspace = 0;
+//			myHBox.getChildren().addAll(myVBox, myGUIs.get(0));
+////			for (int i = NUM_WORKSPACES-1; i >=0; i--){
+////				myHBox.getChildren().add(myGUIs.get(i));
+////			}
+			
+			Scene scene = new Scene(myTabs, 1200, 800);
+
+		
+			
+//			ArrayList<Object> l = new ArrayList<Object>();
+//			l.add(50);
+//			Backward f = new Backward(l);
+//			f.execute();
+//			System.out.println("made new th");
 			stage.setTitle("SLogo");
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
@@ -60,6 +128,17 @@ public class Main extends Application {
 		}
 	}
 	
+//	private void workspaceClicked(BorderPane bp, int i) {
+//		myGUIs.get(myCurrentWorkspace).setVisible(false);
+//		myHBox.getChildren().remove(myGUIs.get(myCurrentWorkspace));
+//		if (!myHBox.getChildren().contains(myGUIs.get(i))){
+//			myHBox.getChildren().add(myGUIs.get(i));
+//		}
+//		myGUIs.get(i).setVisible(true);
+//		myCurrentWorkspace = i;
+//		System.out.println("Currently in workspace " + i);
+//	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}

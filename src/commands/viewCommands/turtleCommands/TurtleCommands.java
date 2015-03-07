@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import commands.CommandCenter;
 import application.ViewHandler;
 
-public abstract class TurtleCommands extends CommandCenter{
+public class TurtleCommands extends CommandCenter{
 	private static ViewHandler myViewHandler;
 	
 	public TurtleCommands()
@@ -23,6 +23,12 @@ public abstract class TurtleCommands extends CommandCenter{
 	protected ViewHandler getHandler()
 	{
 		return myViewHandler;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	protected void setParams(ArrayList<Object> newParams)

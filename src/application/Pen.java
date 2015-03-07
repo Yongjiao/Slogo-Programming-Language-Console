@@ -30,9 +30,9 @@ public class Pen {
 	 * - initializes line-drawing style to solid line
 	 * @param status
 	 */
-	public Pen(int status)
+	public Pen()
 	{
-		myStatus = status;
+		myStatus = 1;
 		myColor = Color.BLACK;
 		myThickness = 1;
 		myStyle = PENSTYLE.SOLID;

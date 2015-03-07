@@ -70,7 +70,7 @@ public class BasicParser extends Parser{
 		}
 	}
 	@Override
-	protected void setLanguage(String path){
+	public void setLanguage(String path){
 		super.setLanguage(path);
 	}	
 	

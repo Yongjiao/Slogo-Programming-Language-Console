@@ -27,8 +27,7 @@ public class LanguageButton extends ComboBox<String> {
 		this.valueProperty().addListener(new ChangeListener<String>() {
             @Override 
             public void changed(ObservableValue<? extends String> ov, String t, String t1) { 
-            	ResourceBundle myCurrentBundle = ResourceBundle.getBundle("resources.languages." + t1);
-            	p.changeLanguage(myCurrentBundle);
+            	p.setLanguage("resources.languages." + t1);
             }    
         });
 	}
