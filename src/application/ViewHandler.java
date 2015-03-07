@@ -189,13 +189,13 @@ public class ViewHandler {
 		Point2D locNew = myTurtle.getLoc();
 		this.moveTurtleImageAndDraw(locOrig, locNew);
 		setTurtleLocToViewTurtleLoc();
-		/*		double ang = Math.toDegrees(Math.atan2((locNew.getY()-locOrig.getY()), (locNew.getX()-locOrig.getX())));
-		this.myTurtle.setOrientation(ang);*/
 		this.updateTurtleOnView();
 	}
 	
 	/**
 	 * Updates turtle image on View canvas; draws line if pen is down
+	 * Note: This feature is the primary reason that ViewHandler needs
+	 * access to current Pen info
 	 * @param locOrig
 	 * @param locNew
 	 */
@@ -319,7 +319,8 @@ public class ViewHandler {
 	 * - y location
 	 * - orientation
 	 * - pen status
-	 * 
+	 * Contains information for Pen for line drawing of thickness
+	 * of stroke/line
 	 * Used to display status of turtle to user from GUI
 	 */
 	public void setInfoParamsOfTurtleAndLine()
