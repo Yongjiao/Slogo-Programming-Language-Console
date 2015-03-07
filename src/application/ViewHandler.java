@@ -1,12 +1,5 @@
 package application;
 
-// REFACTOR TODO
-/*
- * TH moves turtle
- * NONONO: Pen handler sets pen color / status / DRAWSLINES
- * - separate pen handling
- */
-
 
 import gui.BackgroundView;
 import gui.LineView;
@@ -284,7 +277,7 @@ public class ViewHandler {
 	 * clears screen
 	 * called if user enters command CLEARSCREEN
 	 */
-	public void clearScreen() // WORKS
+	public void clearScreen() 
 	{
 		this.myLineView.clearScreen();
 	}
