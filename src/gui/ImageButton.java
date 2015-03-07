@@ -7,6 +7,11 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Creates a button with an image as its graphic
+ * @author Andrew
+ *
+ */
 public class ImageButton extends Button{
 	
 

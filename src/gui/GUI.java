@@ -30,9 +30,7 @@ public class GUI {
 	private static final int TURTLE_INFO_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
-//	private static final int STAGE_HEIGHT = 800;
-//	private static final int STAGE_WIDTH = 1200;
-	
+
 	private static final int VIEW_HEIGHT = 600;
 	private static final int VIEW_WIDTH = 900;
 	
@@ -138,6 +136,9 @@ public class GUI {
 		myButtons[TURTLE_INFO_BUTTON].setOnMouseClicked(e -> launchTurtleInfo());
 	}
 
+	/**
+	 * Displays turtle information
+	 */
 	private void launchTurtleInfo() {
 		Stage s = new Stage();
 		VBox v = new VBox(20);
@@ -208,8 +209,9 @@ public class GUI {
 	}
 	
 	
-	
-	
+	/*
+	 * Grabs all the views
+	 */
 	public BackgroundView getBackgroundView(){
 		return myBackgroundView;
 	}

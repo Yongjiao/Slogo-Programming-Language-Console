@@ -25,7 +25,7 @@ public abstract class View extends Canvas {
 	}
 	
 	/**
-	 * 
+	 * Returns new point that of the turtle location
 	 * @return
 	 */
 	public Point2D getNewPoint(){

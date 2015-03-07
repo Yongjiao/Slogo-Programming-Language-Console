@@ -3,6 +3,11 @@ package gui;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Creates the background of the View.
+ * @author Andrew
+ *
+ */
 public class BackgroundView extends View {
 
 	private static final Color DEFAULT_COLOR = Color.WHITE;
