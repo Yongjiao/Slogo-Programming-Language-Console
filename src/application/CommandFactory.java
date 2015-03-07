@@ -17,10 +17,20 @@ public class CommandFactory {
 	private PenHandler myPenHandler;
 	private ViewHandler myViewHandler;
 	
-	public CommandFactory(PenHandler newPenHandler, ViewHandler newVH)
+	public CommandFactory()
 	{
-		myPenHandler = newPenHandler;
-		myViewHandler = newVH;
+	}
+	
+	// fixed by anika to allow for single declaration of CF without
+	// reinitializing Pen / View handler
+	public void setPenHandler(PenHandler newHandler)
+	{
+		myPenHandler = newHandler;
+	}
+	
+	public void setViewHandler(ViewHandler newViewHandler)
+	{
+		myViewHandler = newViewHandler;
 	}
 	
 /**
