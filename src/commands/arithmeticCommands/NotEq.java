@@ -10,8 +10,8 @@ public class NotEq extends Compare{
 	}
 	
 	public double execute() {
-		double a = (Integer) params.get(params.size() - 2);
-		double b = (Integer) params.get(params.size() - 1);
+		double a = (Double) params.get(params.size() - 2);
+		double b = (Double) params.get(params.size() - 1);
 		if(a != b)
 			return 1;
 		return 0;

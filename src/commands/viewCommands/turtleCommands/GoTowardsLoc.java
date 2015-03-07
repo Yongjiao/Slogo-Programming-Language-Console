@@ -9,8 +9,8 @@ public class GoTowardsLoc extends Rotate{
 	}
 
 	public double execute() {
-		double x = (Integer) super.getParams().get(super.getParams().size() - 2);
-		double y = (Integer) super.getParams().get(super.getParams().size() - 1);
+		double x = (Double) super.getParams().get(super.getParams().size() - 2);
+		double y = (Double) super.getParams().get(super.getParams().size() - 1);
 		double distX = x - myViewHandler.getTurtleLocation().getX();
 		double distY = y - myViewHandler.getTurtleLocation().getY();
 		double angle = Math.toDegrees(Math.atan2(distY, distX));
