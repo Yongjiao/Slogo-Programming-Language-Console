@@ -9,4 +9,10 @@ public class To extends CommandCenter{
 		UserMadeUtilities.putInCommands(name, newClass);
 	}
 
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

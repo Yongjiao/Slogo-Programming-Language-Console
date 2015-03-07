@@ -2,7 +2,7 @@ package commands;
 
 import java.util.ArrayList;
 
-public class UserDefined{
+public class UserDefined extends CommandCenter{
 
 	private String myName;
 	protected ArrayList<String> params;
@@ -41,6 +41,12 @@ public class UserDefined{
 	
 	public ArrayList<CommandFactory> getCommands() {
 		return comms;
+	}
+
+	@Override
+	public double execute() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
