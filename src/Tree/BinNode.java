@@ -1,8 +1,9 @@
 package Tree;
 
 import java.util.*;
+
+import application.CommandFactory;
 import commands.CommandCenter;
-import configuration.CommandFactory;
 
 /**
  * Represents a binary node with two children/operator with two parameters node

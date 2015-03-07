@@ -1,9 +1,7 @@
-package configuration;
+package application;
 
 import java.util.ArrayList;
 
-import application.Pen;
-import application.ViewHandler;
 import commands.*;
 import commands.arithmeticCommands.*;
 import commands.viewCommands.*;
@@ -86,8 +84,7 @@ public class CommandFactory {
    				case "SetBackground":	return new SetBackground(parList, myViewHandler);
    				case "SetPenColor":		return new SetPenColor(parList, myPen);
    				case "SetPenSize":		return new SetPenSize(parList, myPen);
-				case "SetPalette":			return new SetPalette(parList, myPen);
-   				//case "To":				return new To();
+				case "SetPalette":		return new SetPalette(parList, myPen);
    				//case "#":
    				}
    				return null;	
