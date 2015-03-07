@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
 import Tree.Node;
-import application.CommandFactory;
 /**
  * subclass for If command parsing
  * @author Yongjiao Yu

@@ -1,9 +1,8 @@
 package Tree;
 
 import java.util.*;
-
-import application.CommandFactory;
-import configuration.CommandMaker;
+import commands.CommandCenter;
+import configuration.CommandFactory;
 
 /**
  * Represents a binary node with two children/operator with two parameters node
@@ -29,7 +28,7 @@ public class BinNode implements Node{
 		parList.add(left.getValue());
 		parList.add(right.getValue());
 		System.out.println("Binary node get evaluated is " + command + ""+ parList);
-		CommandFactory com = CommandMaker.makeBasicCommands(command, parList);
+		CommandCenter com = CommandFactory.makeBasicCommands(command, parList);
 		//System.out.println(com);
 		return com.execute();
 	}

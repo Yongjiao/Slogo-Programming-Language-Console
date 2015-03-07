@@ -1,52 +1,22 @@
 package configuration;
 
 import java.util.ArrayList;
-
-import application.CommandFactory;
 import commands.*;
-import commands.arithmeticCommands.ATan;
-import commands.arithmeticCommands.Add;
-import commands.arithmeticCommands.Cos;
-import commands.arithmeticCommands.Divide;
-import commands.arithmeticCommands.Equal;
-import commands.arithmeticCommands.Greater;
-import commands.arithmeticCommands.Less;
-import commands.arithmeticCommands.Log;
-import commands.arithmeticCommands.Multiply;
-import commands.arithmeticCommands.NotEq;
-import commands.arithmeticCommands.Remainder;
-import commands.arithmeticCommands.Sin;
-import commands.arithmeticCommands.Subtract;
-import commands.arithmeticCommands.Tan;
-import commands.viewCommands.PenDown;
-import commands.viewCommands.PenUp;
-import commands.viewCommands.turtleCommands.Backward;
-import commands.viewCommands.turtleCommands.ClearScreen;
-import commands.viewCommands.turtleCommands.Forward;
-import commands.viewCommands.turtleCommands.GoToLocation;
-import commands.viewCommands.turtleCommands.GoTowardsLoc;
-import commands.viewCommands.turtleCommands.Heading;
-import commands.viewCommands.turtleCommands.HideTurtle;
-import commands.viewCommands.turtleCommands.Home;
-import commands.viewCommands.turtleCommands.Left;
-import commands.viewCommands.turtleCommands.Right;
-import commands.viewCommands.turtleCommands.SetHeading;
-import commands.viewCommands.turtleCommands.ShowTurtle;
-import commands.viewCommands.turtleCommands.Showing;
-import commands.viewCommands.turtleCommands.XCor;
-import commands.viewCommands.turtleCommands.YCor;
+import commands.arithmeticCommands.*;
+import commands.viewCommands.*;
+import commands.viewCommands.turtleCommands.*;
 
 /**
  * a Command factory that makes commands.
  * @author Yongjiao Yu
  *
  */
-public class CommandMaker {
+public class CommandFactory {
 /**
  * Make commands where no paramters are required
  * @return the desired command object
  */
-	static public CommandFactory makeNoParmsCommands(String com){
+	static public CommandCenter makeNoParmsCommands(String com){
 			switch(com){
 				case "Home":		    	return new Home();
 				case "PenDown":  			return new PenDown();
@@ -71,7 +41,7 @@ public class CommandMaker {
  * @param parList
  * @return
  */
-   	static public CommandFactory makeBasicCommands(String com, ArrayList<Object> parList){
+   	static public CommandCenter makeBasicCommands(String com, ArrayList<Object> parList){
    		switch(com){
    				case "Forward": 		return new Forward(parList);
    				case "Backward":		return new Backward(parList);
@@ -108,9 +78,10 @@ public class CommandMaker {
    				//case "#":
    				}
    				return null;	
-   	}   	
- 	static public CommandFactory makeBasicCommands(String com, String s, ArrayList<Object> parList){ 
+   	}
+   	
+ 	static public CommandCenter makeBasicCommands(String com, String s, ArrayList<Object> parList){ 
  		return null;
- 		}
+ 	}
    	
 }
