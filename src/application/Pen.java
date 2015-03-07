@@ -136,19 +136,25 @@ public class Pen {
 	}
 	
 
-	
+	/**
+	 * Creates new Color with given index from RGB input values
+	 * Adds color and index to Map
+	 * @param paletteIndex
+	 * @param redIndex
+	 * @param greenIndex
+	 * @param blueIndex
+	 */
 	public void setPaletteColor(int paletteIndex, int redIndex, int greenIndex, int blueIndex)
 	{
 		Color newColor = new Color(redIndex, greenIndex, blueIndex, 0);
-		this.addToPalette(paletteIndex, newColor);
-	}
-	
-	public void addToPalette(int index, Color colorToAdd)
-	{
-		this.myPaletteOptions.put(index, colorToAdd);
+		this.myPaletteOptions.put(paletteIndex, newColor);
 	}
 	
 	
+	/**
+	 * @param index of desired color
+	 * @return Color from Palette Map
+	 */
 	public Color getColorFromPalette(int index)
 	{
 		myColor = this.myPaletteOptions.get(index);
@@ -157,7 +163,7 @@ public class Pen {
 	}
 	/**
 	 * called when PENCOLOR command is executed (Sprint 3)
-	 * @return int
+	 * @return int index of current pen color
 	 */
 	public int getCurrentColorIndexFromPalette()
 	{
