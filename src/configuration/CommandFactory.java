@@ -1,6 +1,9 @@
 package configuration;
 
 import java.util.ArrayList;
+
+import application.Pen;
+import application.ViewHandler;
 import commands.*;
 import commands.arithmeticCommands.*;
 import commands.viewCommands.*;
@@ -8,28 +11,38 @@ import commands.viewCommands.turtleCommands.*;
 
 /**
  * a Command factory that makes commands.
- * @author Yongjiao Yu
+ * @author Yongjiao Yu, modified by Anika
  *
  */
 public class CommandFactory {
+	
+	private Pen myPen;
+	private ViewHandler myViewHandler;
+	
+	public CommandFactory(Pen newPen, ViewHandler newVH)
+	{
+		myPen = newPen;
+		myViewHandler = newVH;
+	}
+	
 /**
  * Make commands where no paramters are required
  * @return the desired command object
  */
-	static public CommandCenter makeNoParmsCommands(String com){
+	public CommandCenter makeNoParmsCommands(String com){
 			switch(com){
-				case "Home":		    	return new Home();
-				case "PenDown":  			return new PenDown();
-				case "PenUp": 				return new PenUp();
-				case "ClearScreen":			return new ClearScreen();
-				case "ShowTurtle":			return new ShowTurtle();
-				case "HideTurtle":			return new HideTurtle();
-				case "IsPenDown":			return new IsPD();
-				case "IsShowing":			return new Showing();
-				case "Heading":				return new Heading();
-				case "XCoordinate":			return new XCor();
-				case "YCoordinate":			return new YCor();	
-				case "GetPenColor":			return new PenColor();		
+				case "Home":		    	return new Home(myViewHandler);
+				case "PenDown":  			return new PenDown(myPen);
+				case "PenUp": 				return new PenUp(myPen);
+				case "ClearScreen":			return new ClearScreen(myViewHandler);
+				case "ShowTurtle":			return new ShowTurtle(myViewHandler);
+				case "HideTurtle":			return new HideTurtle(myViewHandler);
+				case "IsPenDown":			return new IsPD(myPen);
+				case "IsShowing":			return new Showing(myViewHandler);
+				case "Heading":				return new Heading(myViewHandler);
+				case "XCoordinate":			return new XCor(myViewHandler);
+				case "YCoordinate":			return new YCor(myViewHandler);	
+				case "GetPenColor":			return new PenColor(myPen);		
 				
 			}
 			return null;
@@ -41,20 +54,20 @@ public class CommandFactory {
  * @param parList
  * @return
  */
-   	static public CommandCenter makeBasicCommands(String com, ArrayList<Object> parList){
+   	public CommandCenter makeBasicCommands(String com, ArrayList<Object> parList){
    		switch(com){
-   				case "Forward": 		return new Forward(parList);
-   				case "Backward":		return new Backward(parList);
-   				case "SetTowards":		return new GoTowardsLoc(parList);
-   				case "SetPosition":		return new GoToLocation(parList);
+   				case "Forward": 		return new Forward(parList, myViewHandler);
+   				case "Backward":		return new Backward(parList, myViewHandler);
+   				case "SetTowards":		return new GoTowardsLoc(parList, myViewHandler);
+   				case "SetPosition":		return new GoToLocation(parList, myViewHandler);
    				case "Sum":				return new Add(parList);
    				case "Difference":		return new Subtract(parList);
    				case "Product":			return new Multiply(parList);
    				case "Quotient":		return new Divide(parList);
    				case "Remainder":		return new Remainder(parList);
-   				case "Left":			return new Left(parList);
-   				case "Right":			return new Right(parList);
-   				case "SetHeading":		return new SetHeading(parList);
+   				case "Left":			return new Left(parList, myViewHandler);
+   				case "Right":			return new Right(parList, myViewHandler);
+   				case "SetHeading":		return new SetHeading(parList, myViewHandler);
    				case "Sine":			return new Sin(parList);
    				case "Cosine":			return new Cos(parList);
    				case "Tangent":			return new Tan(parList);
@@ -70,10 +83,10 @@ public class CommandFactory {
    				case "Or":				return new Or(parList);
    				case "Power":			return new Pow(parList);
    				case "Random":			return new Random(parList);
-   				case "SetBackground":	return new SetBackground(parList);
-   				case "SetPenColor":		return new SetPenColor(parList);
-   				case "SetPenSize":		return new SetPenSize(parList);
-				case "SetPalette":			return new SetPalette(parList);
+   				case "SetBackground":	return new SetBackground(parList, myViewHandler);
+   				case "SetPenColor":		return new SetPenColor(parList, myPen);
+   				case "SetPenSize":		return new SetPenSize(parList, myPen);
+				case "SetPalette":			return new SetPalette(parList, myPen);
    				//case "To":				return new To();
    				//case "#":
    				}
