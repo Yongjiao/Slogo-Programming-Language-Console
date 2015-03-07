@@ -25,20 +25,10 @@ public class TurtleImageChooser extends Application {
 	
 	private Group myGroup;
 	private TurtleView myTurtleView;
-	private ArrayList<String> imagesList;
-	private String locationOfImages;
+
 	
 	public TurtleImageChooser(TurtleView turtleview){
 		myTurtleView = turtleview;
-		intitializeImagesList();
-		locationOfImages = "/resources/";
-	}
-
-	private void intitializeImagesList() {
-		imagesList = new ArrayList<String>();
-		imagesList.add(locationOfImages + "rsz_turtle.png");
-		imagesList.add(locationOfImages + "anotherTurtle.png");
-		imagesList.add(locationOfImages + "tribalTurtle.png");
 	}
 
 	/**
@@ -70,16 +60,16 @@ public class TurtleImageChooser extends Application {
 		btnFile.setLayoutX(BOTTOM_BUTTON_X);
 		btnFile.setLayoutY(BOTTOM_BUTTON_Y);
 		
-		Image image1 = new Image(getClass().getResourceAsStream(locationOfImages + imagesList.get(0)));
-		Image image2 = new Image(getClass().getResourceAsStream(locationOfImages + imagesList.get(1)), BUTTON_IMAGE_WIDTH, BUTTON_IMAGE_HEIGHT, false, false);
-		Image image3 = new Image(getClass().getResourceAsStream(locationOfImages + imagesList.get(2)), BUTTON_IMAGE_WIDTH, BUTTON_IMAGE_HEIGHT, false, false);
+		Image image1 = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
+		Image image2 = new Image(getClass().getResourceAsStream("/resources/anotherTurtle.png"), BUTTON_IMAGE_WIDTH, BUTTON_IMAGE_HEIGHT, false, false);
+		Image image3 = new Image(getClass().getResourceAsStream("/resources/tribalTurtle.png"), BUTTON_IMAGE_WIDTH, BUTTON_IMAGE_HEIGHT, false, false);
 		
 		ImageButton buttonChoice1 = new ImageButton("The Hawaiian", 40, 40, image1, e -> myTurtleView.updateTurtleImage(image1));
-		ImageButton buttonChoice2 = new ImageButton("The Undivided", 190, 40, image2,  e -> myTurtleView.updateTurtleImage(image2));
-		ImageButton buttonChoice3 = new ImageButton("The Tattooed", 335, 40, image3,  e -> myTurtleView.updateTurtleImage(image3));
+		ImageButton buttonChoice2 = new ImageButton("The Undivided", 140, 40, image2,  e -> myTurtleView.updateTurtleImage(image2));
+		ImageButton buttonChoice3 = new ImageButton("The Tattooed", 300, 40, image3,  e -> myTurtleView.updateTurtleImage(image3));
 		
 		btnFile.setOnAction(e -> this.chooseTurtleImage());
 
-		myGroup.getChildren().addAll(new Text("Choose turtle image:\n"), btnFile, buttonChoice1, buttonChoice2, buttonChoice3);
+		myGroup.getChildren().addAll(btnFile, buttonChoice1, buttonChoice2, buttonChoice3);
 	}
 }

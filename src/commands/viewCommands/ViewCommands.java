@@ -7,7 +7,7 @@ import application.PenHandler;
 import commands.CommandCenter;
 
 public class ViewCommands extends CommandCenter{
-	private static PenHandler myPH;
+	private PenHandler myPH;
 	private ArrayList<Object> params;
 	
 	public ViewCommands() {
