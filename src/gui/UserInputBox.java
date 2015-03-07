@@ -1,6 +1,11 @@
 package gui;
 
-import configuration.Parser;
+import java.awt.event.KeyEvent;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+
 
 
 public class UserInputBox extends TextField {
