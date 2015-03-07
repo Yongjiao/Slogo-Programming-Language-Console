@@ -28,18 +28,21 @@ public class IfelseParser extends Parser{
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1; 
 		ArrayList<Node> ifTree = null, elseTree = null;
-		if(!isboolean(tokens.peek()))	
-			throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
-		double expr = buildTree(tokens).getValue();
-		ifTree = parseCommands(tokens);
+		double expr = evaluateBoolExpr(tokens);
+		ifTree = parseListCommands(tokens);
 		while(!isEnd(tokens) && isListEnd(tokens.peek())) //skip till the second command
 			skip(tokens);
-		elseTree = parseCommands(tokens);
+		elseTree = parseListCommands(tokens);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		if(expr == 1)	return executeAll(ifTree);
 		System.out.println("Else statement gets executed");
 		return executeAll(elseTree);	
+	}
+	private double evaluateBoolExpr(Queue<String> qu) throws ParserError{
+		if(!isboolean(qu.peek()))	
+			throw new ParserError("see " + qu.poll() + "Expected boolean expression Here!");
+		return buildTree(qu).getValue();
 	}
 	/**
 	 * parses list of nested commands in bracket. [ command1 command2 command3 ]
@@ -47,7 +50,7 @@ public class IfelseParser extends Parser{
 	 * @return list of tree node representing each command
 	 * @throws ParserError
 	 */
-	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
+	private ArrayList<Node> parseListCommands(Queue<String> qu) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
 		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
@@ -70,6 +73,5 @@ public class IfelseParser extends Parser{
 		String ifelse = "ifelse equal? 2 6 [ sin 50 ] [ cos 50 tan 100 ]";
 		example.parse(ifelse);
 	}
-	
-	
+
 }

@@ -1,8 +1,9 @@
 package Tree;
 
 import java.util.ArrayList;
+
+import application.CommandFactory;
 import commands.CommandCenter;
-import configuration.CommandFactory;
 import configuration.Match;
 
 /**

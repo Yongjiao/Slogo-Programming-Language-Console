@@ -55,17 +55,18 @@ public class DotimesParser extends Parser{
 		if(!isVariable(qu.peek()))
 			throw new ParserError("see" + qu.poll() + "expected variable here!" );
 		localVar = qu.poll();
-		limit = fetchConstant(qu);
+		limit = fetchNumericExpr(qu);
 		if(!isListEnd(qu.peek()))	
 			throw new ParserError("see" + qu.poll() + "expected ] here!");
 		skip(qu);
 		return limit;
 	}
-	
-	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!isConstant(qu.peek()))
-			throw new ParserError("see" + qu.poll() + "expected number here!");
-		return Integer.parseInt(qu.poll());
+	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
+		double result = 0;
+		Tree node = buildTree(qu);
+		if(node.hasChild() != 0)
+			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
+		return result;
 	}
 	/**
 	 * Parses for loop and handles local variable

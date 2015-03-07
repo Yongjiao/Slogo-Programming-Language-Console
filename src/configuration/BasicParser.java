@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+
+import application.CommandFactory;
 import commands.CommandCenter;
 import Tree.*;
 
