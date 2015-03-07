@@ -75,7 +75,7 @@ public class ViewHandler {
 		myTurtleView = tv;
 		myBackgroundView = bk;
 		myTurtle = new Turtle();
-		myPen = new Pen(1);
+		myPen = new Pen();
 		this.initializeTurtle();
 	}
 	

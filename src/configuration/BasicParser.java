@@ -75,7 +75,7 @@ public class BasicParser extends Parser{
 		}
 	}
 	@Override
-	protected void setLanguage(String path){
+	public void setLanguage(String path){
         patterns.addAll(Match.makePatterns(path));
         for(String key : myParsers.keySet()){
         	myParsers.get(key).setLanguage(path);
