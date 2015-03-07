@@ -25,7 +25,7 @@ public class LoopParser extends Parser{
 			throw new ParserError("see" + qu.poll() + "expected number here!");
 		return Integer.parseInt(qu.poll());
 	}
-		*/
+	*/
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;

@@ -84,7 +84,6 @@ public class ForParser extends Parser{
 		localVar = "";
 		return result;
 	}
-	
 	public static void main(String[] args) throws IOException, ParserError {
 		ForParser example = new ForParser();
 		String forl =  "for [ :v 0 10 1 ] [ / sum :v 5 10 ]";

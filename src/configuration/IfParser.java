@@ -33,16 +33,24 @@ public class IfParser extends Parser{
 	 */
 	private double parse(Queue<String> tokens) throws ParserError {
 		ArrayList<Node> ifstatements = new ArrayList<Node>();
-		if(!isboolean(tokens.peek()))	throw new ParserError("see " + tokens.poll() + "Expected boolean expression Here!");
-		double expr = buildTree(tokens).getValue();
-		ifstatements = parseCommands(tokens);
+		int expr = (int) evaluateBoolExpr(tokens);
+		ifstatements = parseListCommands(tokens);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		if(expr == 0)	return -1;
 		return executeAll(ifstatements);
 	}
-
-	private ArrayList<Node> parseCommands(Queue<String> qu) throws ParserError{
+	/**
+	 * parses and evaluates the boolean expression
+	 * @param command queue
+	 * @return evaluation result
+	 */
+	private double evaluateBoolExpr(Queue<String> qu) throws ParserError{
+		if(!isboolean(qu.peek()))	
+			throw new ParserError("see " + qu.poll() + "Expected boolean expression Here!");
+		return buildTree(qu).getValue();
+	}
+	private ArrayList<Node> parseListCommands(Queue<String> qu) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
 		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
@@ -55,12 +63,10 @@ public class IfParser extends Parser{
 			throw new ParserError("Expected ] here !");
 		return list;
 	}
-	
 	private boolean isboolean(String s){	
 		String comKey = Match.findCommandKey(s, super.getPatterns());
 		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
 	}
-	
 	public static void main(String[] args) throws IOException, ParserError {
 		IfParser example = new IfParser();
 		String ifl = "if equal? 2 6 [ * 30 20 / 20 10 ]";
