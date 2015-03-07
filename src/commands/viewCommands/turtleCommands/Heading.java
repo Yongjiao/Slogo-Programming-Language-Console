@@ -1,13 +1,13 @@
 package commands.viewCommands.turtleCommands;
 
-public class Heading extends Queries{
+public class Heading extends TurtleCommands{
 	
 	public Heading() {
 		
 	}
 	
 	public double execute() {
-		return myViewHandler.getTurtleOrientation();
+		return super.getHandler().getTurtleOrientation();
 	}
 
 }

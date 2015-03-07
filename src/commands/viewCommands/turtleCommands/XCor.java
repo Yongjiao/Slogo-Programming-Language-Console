@@ -1,13 +1,13 @@
 package commands.viewCommands.turtleCommands;
 
-public class XCor extends Queries{
+public class XCor extends TurtleCommands{
 	
 	public XCor() {
 		
 	}
 	
 	public double execute() {
-		return myViewHandler.getTurtleLocation().getX();
+		return super.getHandler().getTurtleLocation().getX();
 	}
 
 }

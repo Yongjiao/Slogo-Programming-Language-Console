@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import application.CommandFactory;
 
-public class IfConditions extends CommandFactory{
+public abstract class IfConditions extends TurtleCommands{
 	
 	protected int expression;
 	protected ArrayList<CommandFactory> Ifs;

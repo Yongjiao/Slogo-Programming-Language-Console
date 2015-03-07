@@ -6,11 +6,10 @@ public class SetHeading extends Rotate{
 	
 	public SetHeading(ArrayList<Object> p) {
 		super.setParams(p);
-		params = p;
 	}
 
 	public double execute() {
-		double angle = (Integer) params.get(params.size() - 1);
+		double angle = (Integer) super.getParams().get(super.getParams().size() - 1);
 		double origOri = myViewHandler.getTurtleOrientation();
 		myViewHandler.setTurtleOrientation(angle);
 		return (angle - origOri);

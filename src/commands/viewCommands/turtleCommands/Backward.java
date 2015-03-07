@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Backward extends Move{
 	
 	public Backward(ArrayList<Object> p) {
-		params = p;
+		super.setParams(p);
 	}
 
 	public double execute() {
-		double steps = (Integer) params.get(params.size() - 1);
+		double steps = (Integer) super.getParams().get(super.getParams().size() - 1);
 		return super.changeLocation(-steps);
 	}
 	

@@ -1,18 +1,14 @@
 package commands.viewCommands.turtleCommands;
 
-import java.util.ArrayList;
-
 import javafx.geometry.Point2D;
-import application.CommandFactory;
 import application.ViewHandler;
 
-public abstract class Move extends CommandFactory {
+public abstract class Move extends TurtleCommands{
 	protected ViewHandler myViewHandler;
-	protected ArrayList<Object> params;
 
 	public Move() {
 		System.out.println("   in move class - getting super handler");
-		myViewHandler = super.getViewHandler();
+		myViewHandler = super.getHandler();
 		System.out.println("   in move class -  handler = " + myViewHandler.toString());
 
 	}

@@ -1,13 +1,13 @@
 package commands.viewCommands.turtleCommands;
 
-public class YCor extends Queries{
+public class YCor extends TurtleCommands{
 	
 	public YCor() {
 		
 	}
 	
 	public double execute() {
-		return myViewHandler.getTurtleLocation().getY();
+		return super.getHandler().getTurtleLocation().getY();
 	}
 
 }

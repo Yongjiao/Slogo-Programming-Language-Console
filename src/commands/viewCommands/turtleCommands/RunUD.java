@@ -8,7 +8,7 @@ import commands.UserMadeUtilities;
 
 import application.CommandFactory;
 
-public class RunUD extends CommandFactory {
+public class RunUD extends TurtleCommands {
 
 	private String name;
 	private ArrayList<Object> values;
