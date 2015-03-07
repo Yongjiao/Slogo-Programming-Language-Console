@@ -10,7 +10,7 @@ public class Not extends Compare{
 	}
 	
 	public double execute() {
-		double t = (Integer) params.get(params.size() - 1);
+		double t = (Double) params.get(params.size() - 1);
 		if(t == 0)
 			return 1;
 		return 0;

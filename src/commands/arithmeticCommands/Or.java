@@ -10,8 +10,8 @@ public class Or extends Compare{
 	}
 	
 	public double execute() {
-		double t1 = (Integer) params.get(params.size() - 2);
-		double t2 = (Integer) params.get(params.size() - 1);
+		double t1 = (Double) params.get(params.size() - 2);
+		double t2 = (Double) params.get(params.size() - 1);
 		if((t1 != 0) || (t2 != 0))
 			return 1;
 		return 0;

@@ -10,8 +10,8 @@ public class GoToLocation extends Move {
 	}
 
 	public double execute() {
-		double x = (Integer) super.getParams().get(super.getParams().size() - 2);
-		double y = (Integer) super.getParams().get(super.getParams().size() - 1);
+		double x = (Double) super.getParams().get(super.getParams().size() - 2);
+		double y = (Double) super.getParams().get(super.getParams().size() - 1);
 		return super.goToLocation(x, y);
 	}
 
