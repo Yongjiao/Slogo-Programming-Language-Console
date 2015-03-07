@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class UserMadeUtilities {
 	
-	private static HashMap<String, Double> globalVars;
-	private static HashMap<String, UserDefined> UDCommands;
+	private static HashMap<String, Double> globalVars = new HashMap<>(); ;
+	private static HashMap<String, UserDefined> UDCommands = new HashMap<>();;
 	
 	public UserMadeUtilities() {
 		globalVars.put("PI", Math.PI); 

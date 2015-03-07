@@ -11,6 +11,7 @@ public class Set extends TurtleCommands {
 
 	public Set(String s, ArrayList<Object> p) {
 		name = s;
+		params = p;
 		super.setParams(p);
 	}
 

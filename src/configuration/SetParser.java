@@ -31,7 +31,7 @@ public class SetParser extends Parser{
 	//can just execute() and change to double but keep for ease of debugging
 	private CommandCenter parse(Queue<String> tokens) throws ParserError {		
 		String token = tokens.poll();
-		if(!isVariable(tokens.poll()))
+		if(!isVariable(token))
 			throw new ParserError("Expected Variable here!");		
 		double val = buildTree(tokens).getValue();
 		ArrayList<Object> par = new ArrayList<>();
@@ -39,12 +39,14 @@ public class SetParser extends Parser{
 		System.out.println("set parameter is " + par);
 		if(!isEnd(tokens))	
 			throw new ParserError("Too many commands for Set command!");
+		System.out.println(par);
 		return new Set(token, par);
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws IOException, ParserError {
+		String sett = "set :v sum 50 100";
+		SetParser example = new SetParser();
+		example.parse(sett);
 	}
-
+	
 }

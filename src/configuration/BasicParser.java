@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
 import commands.CommandCenter;
 import Tree.*;
+
 /**
  * Parses Command of any kind
  * @author Yongjiao Yu
