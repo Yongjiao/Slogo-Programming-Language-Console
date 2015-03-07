@@ -85,7 +85,6 @@ public CommandCenter makeNoParmsCommands(String com){
    				case "SetPenColor":		return new SetPenColor(parList, myPenHandler);
    				case "SetPenSize":		return new SetPenSize(parList, myPenHandler);
 				case "SetPalette":		return new SetPalette(parList, myPenHandler);
-   				//case "#":
    				}
    				return null;	
    	}
