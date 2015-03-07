@@ -5,6 +5,8 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import commands.UserMadeUtilities;
+
 import Tree.BinNode;
 import Tree.ConstNode;
 import Tree.Node;
@@ -20,7 +22,10 @@ public abstract class Parser {
 	private HashSet<String> oneParComs;
 	private HashSet<String> twoParComs;
 	
-	/** parses user input to expression tree and execute 
+	protected Parser() throws IOException{
+		initialize();
+	}
+	/**abstract function, parses user input to expression tree and execute 
 	 * @param user input
 	 * @return return value of last executed command
 	 */
@@ -32,10 +37,11 @@ public abstract class Parser {
         patterns.addAll(Match.makePatterns("resources/languages/English"));
 	}
 	protected void setLanguage(String path){
+		patterns.clear();
         patterns.addAll(Match.makePatterns(path));
 	}
 	protected void initializeSyntax(){
-		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 
+		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 		
 		comment = b.getString("Comment");
 		constant = b.getString("Constant");
 		variable = b.getString("Variable");
@@ -58,7 +64,7 @@ public abstract class Parser {
 	protected Node buildTree(Queue<String> tokens) throws ParserError {
 		String token = tokens.poll();
 		System.out.println("TreeParsing the token: " + token);
-		if(token.matches(command)){
+		if(isCommand(token)){
 			String comKey = Match.findCommandKey(token, patterns);	
 			System.out.println();
 			if(oneParComs.contains(comKey)){
@@ -73,13 +79,14 @@ public abstract class Parser {
 			else
 				throw new ParserError("Command Undefined: " + token);
 		}
-		if(token.matches(constant)){
+		if(isConstant(token)){
 			double val = Double.parseDouble(token);
 			return new ConstNode(val);
 		}
-		if(token.matches(variable)){
-			//get value from Map
-			double val = Double.parseDouble(token);
+		if(isVariable(token)){
+			double val = 0;
+			if(UserMadeUtilities.containsVars(token))
+				val = UserMadeUtilities.getFromVars(token);
 			return new ConstNode(val);
 		}
 		else		 
@@ -98,6 +105,24 @@ public abstract class Parser {
 	}
 	protected boolean isEnd(Queue<String> qu){
 		return qu.isEmpty();
+	}
+	protected boolean isListEnd(String s){
+		return s.matches(listend);
+	}
+	protected boolean isListStart(String s){
+		return s.matches(liststart);
+	}
+	protected boolean isVariable(String s){
+		return s.matches(variable);	
+	}
+	protected boolean isConstant(String s){
+		return s.matches(constant);
+	}
+	protected boolean isCommand(String s){
+		return s.matches(command);
+	}
+	protected List<Entry<String, Pattern>> getPatterns(){
+		return patterns;
 	}
 	/**
 	 * @param execute all commands in the list of tree

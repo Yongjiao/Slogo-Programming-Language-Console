@@ -15,14 +15,10 @@ import Tree.Node;
  *
  */
 public class DotimesParser extends Parser{
-	private String comment, constant, variable, command, liststart, listend, groupstart,groupend;		
-	private List<Entry<String, Pattern>> patterns; 
-	private HashSet<String> oneParComs;
-	private HashSet<String> twoParComs;
 	
-	public DotimesParser() throws IOException{
-		initialize();
-	}
+	public DotimesParser() throws IOException {
+		super();
+	}	
 	@Override
 	public double parse(String s) throws ParserError{
 		Queue<String> tokens = toCommandQueue(s);
@@ -34,13 +30,13 @@ public class DotimesParser extends Parser{
 		double result = -1;
 		int limit = parseDotimesIterator(tokens);		
 		//parse [ command ]
-		if(!tokens.peek().matches(liststart))
+		if(!isListStart(tokens.peek()))
 			throw new ParserError("see " + tokens.poll() + ", expected [ here!" );
 		skip(tokens);
-		while(!isEnd(tokens) && !tokens.peek().matches(listend)){
+		while(!isEnd(tokens) && !isListEnd(tokens.peek())){
 			result = parseFor(1, limit, 1, tokens);
 		}
-		if(isEnd(tokens) || !tokens.poll().matches(listend))
+		if(isEnd(tokens) || !isListEnd(tokens.poll()))
 			throw new ParserError("Expected ] here !");
 		//
 		if(!isEnd(tokens))
@@ -50,21 +46,21 @@ public class DotimesParser extends Parser{
 	
 	private int parseDotimesIterator(Queue<String> qu) throws ParserError{
 		int limit = 0;
-		if(!qu.peek().matches(liststart))	
+		if(!isListStart(qu.peek()))	
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
-		if(!qu.peek().matches(variable))
+		if(!isVariable(qu.peek()))
 			throw new ParserError("see" + qu.poll() + "expected variable here!" );
 		skip(qu); //skip variable
 		limit = fetchConstant(qu);
-		if(!qu.peek().matches(listend))	
+		if(!isListEnd(qu.peek()))	
 			throw new ParserError("see" + qu.poll() + "expected ] here!");
 		skip(qu);
 		return limit;
 	}
 	
 	private int fetchConstant(Queue<String> qu) throws ParserError{
-		if(!qu.peek().matches(constant))
+		if(!isConstant(qu.peek()))
 			throw new ParserError("see" + qu.poll() + "expected number here!");
 		return Integer.parseInt(qu.poll());
 	}

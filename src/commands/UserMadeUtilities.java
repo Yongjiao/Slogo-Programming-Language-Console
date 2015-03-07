@@ -22,6 +22,9 @@ public class UserMadeUtilities {
 	public static Double getFromVars(String str) {
 		return globalVars.get(str);
 	}
+	public static boolean containsVars(String str){
+		return globalVars.containsKey(str);
+	}
 	
 	public void emptyCommands() {
 		UDCommands.clear();
