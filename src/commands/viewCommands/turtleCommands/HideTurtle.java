@@ -1,9 +1,11 @@
 package commands.viewCommands.turtleCommands;
 
-public class HideTurtle extends TurtleCommands{
+import application.ViewHandler;
+
+public class HideTurtle extends TurtScreen{
 	
-	public HideTurtle() {
-		
+	public HideTurtle(ViewHandler v) {
+		super(v);
 	}
 	
 	public double execute() {

@@ -1,14 +1,16 @@
 package commands.viewCommands.turtleCommands;
 
+import application.ViewHandler;
+
 public class ShowTurtle extends TurtScreen{
 	
-	public ShowTurtle() {
-		
+	public ShowTurtle(ViewHandler v) {
+		super(v);
 	}
 	
 	public double execute() {
-		myViewHandler.showTurtle(1);
-		return myViewHandler.isVisible();
+		super.getHandler().showTurtle(1);
+		return super.getHandler().isVisible();
 	}
 
 }

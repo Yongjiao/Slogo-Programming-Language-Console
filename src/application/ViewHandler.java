@@ -62,7 +62,7 @@ public class ViewHandler {
 	private TurtleView myTurtleView;
 	private BackgroundView myBackgroundView;
 	private Turtle myTurtle;
-	private Pen myPen;
+	private PenHandler myPenHandler;
 	
 	/**
 	 * Constructor
@@ -70,12 +70,12 @@ public class ViewHandler {
 	 * @param view
 	 * @param turtle
 	 */
-	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk){
+	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk, PenHandler penHandler){
 		myLineView = lv;
 		myTurtleView = tv;
+		myPenHandler = penHandler;
 		myBackgroundView = bk;
 		myTurtle = new Turtle();
-		myPen = new Pen();
 		this.initializeTurtle();
 	}
 	
@@ -202,7 +202,7 @@ public class ViewHandler {
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
 		this.updateTurtleOnView();
 		
-		if (myPen.getStatus() == 1)
+		if (this.myPenHandler.getPenStatus() == 1)
 		{
 			this.myLineView.drawLine(locOrig, locNew);
 			
@@ -326,7 +326,7 @@ public class ViewHandler {
 	{
 		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
 				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
-				+ " \n" + "Pen Status: \t" + myPen.getStatus()
+				+ " \n" + "Pen Status: \t" + myPenHandler.getPenStatus()
 				);
 	}	
 }

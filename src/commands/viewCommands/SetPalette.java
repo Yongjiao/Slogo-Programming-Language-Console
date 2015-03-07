@@ -2,16 +2,20 @@ package commands.viewCommands;
 
 import java.util.ArrayList;
 
+import application.Pen;
+import application.PenHandler;
 import javafx.scene.paint.Color;
 
 public class SetPalette extends ViewCommands{
 	private int[] listOfIndices;
 	
-	public SetPalette(ArrayList<Object> p) {
-		super.setParams(p);
+	public SetPalette(ArrayList<Object> p, PenHandler pen) {
+		super(p, pen);
 	}
 	
-	//Fixed: Anika
+	/**
+	 * @author Anika
+	 */
 	public double execute() {
 
 		ArrayList<Object> params = super.getParams();
@@ -24,7 +28,7 @@ public class SetPalette extends ViewCommands{
 		// specifying an amount of red, green, and blue
 		if (checkColorLimits())
 		{
-			super.getPen().setPaletteColor((int)index, listOfIndices[0], listOfIndices[1], listOfIndices[2]);
+			super.getPenHandler().setPaletteColor((int)index, listOfIndices[0], listOfIndices[1], listOfIndices[2]);
 		}
 		return index;
 	}

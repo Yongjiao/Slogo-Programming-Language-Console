@@ -1,13 +1,16 @@
 package commands.viewCommands;
 
+import application.Pen;
+import application.PenHandler;
+
 public class PenUp extends ViewCommands{
 	
-	public PenUp() {
-		
+	public PenUp(PenHandler p) {
+		super(p);
 	}
 	
 	public double execute() {
-		super.getPen().setStatus(0);
+		super.getPenHandler().setPenStatus(1);
 		return 0;
 	}
 	

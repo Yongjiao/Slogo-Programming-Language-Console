@@ -7,11 +7,13 @@ import javafx.collections.ObservableList;
 
 public class UserMadeUtilities {
 	
+
 	private static HashMap<String, Double> globalVars = new HashMap<>();
 	private static HashMap<String, UserDefined> UDCommands = new HashMap<>();
 	
 	private ObservableList<String> myVarsList = FXCollections.observableArrayList();
 	private ObservableList<String> myUserDefinedCommandsList = FXCollections.observableArrayList();
+
 	
 	public UserMadeUtilities() {
 		globalVars.put("PI", Math.PI); 
@@ -28,6 +30,7 @@ public class UserMadeUtilities {
 	public static Double getFromVars(String str) {
 		return globalVars.get(str);
 	}
+	
 	public static boolean containsVars(String str){
 		return globalVars.containsKey(str);
 	}

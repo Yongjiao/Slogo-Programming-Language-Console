@@ -150,9 +150,15 @@ public class LineView extends View {
 		linesGC.setStroke(c);
 	}
 	
+
 	public void setThickness(double lw){
 		linesGC.setLineWidth(lw);
 	}
 	
+	public void setParamsOfPen(Color color, double thickness)
+	{
+		linesGC.setStroke(color);
+		linesGC.setLineWidth(thickness);
+	}
 	
 }

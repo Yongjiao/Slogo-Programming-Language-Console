@@ -1,7 +1,6 @@
 package application;
 
 import gui.GUI;
-import gui.RotatedButton;
 
 
 
@@ -46,11 +45,12 @@ public class Main extends Application {
 				BorderPane myBorderPane = myGUI.initialize();
 				myGUIs.add(myGUI);
 				
-				ViewHandler myHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView());
-				ViewCommands viewCommands = new ViewCommands();
-				viewCommands.setPen(myPen);
+				PenHandler myPenHandler = new PenHandler(myGUI.getLineView());
+				ViewHandler myViewHandler = new ViewHandler(myGUI.getLineView(), myGUI.getTurtleView(), myGUI.getBackgroundView(), myPenHandler);
+				ViewCommands viewCommands = new ViewCommands(myPenHandler);
+				viewCommands.setPenHandler(myPenHandler);
 				TurtleCommands turtleCommands = new TurtleCommands();
-				turtleCommands.setViewHandler(myHandler);
+				turtleCommands.setViewHandler(myViewHandler);
 				
 				tab.setContent(myBorderPane);
 				myTabs.getTabs().add(tab);

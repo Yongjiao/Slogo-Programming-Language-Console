@@ -1,16 +1,20 @@
 package commands.viewCommands.turtleCommands;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Point2D;
 import application.ViewHandler;
 
 public abstract class Move extends TurtleCommands{
 	protected ViewHandler myViewHandler;
+	protected ArrayList<Object> params;
 
-	public Move() {
-		System.out.println("   in move class - getting super handler");
-		myViewHandler = super.getHandler();
-		System.out.println("   in move class -  handler = " + myViewHandler.toString());
-
+	public Move(ViewHandler vh) {
+		super(vh);
+	}
+	
+	public Move(ArrayList<Object> p, ViewHandler vh) {
+		super(p, vh);
 	}
 
 	public double changeLocation(double steps) {

@@ -3,26 +3,39 @@ package commands.viewCommands;
 import java.util.ArrayList;
 
 import application.Pen;
+import application.PenHandler;
 import commands.CommandCenter;
 
 public class ViewCommands extends CommandCenter{
-	private static Pen myPen;
+	private PenHandler myPH;
+	private ArrayList<Object> params;
 	
+	public ViewCommands() {
+		
+	}
 	
-	public ViewCommands()
+	public ViewCommands(PenHandler p)
 	{
+		myPH = p;
+		super.setParams(new ArrayList<Object>());
+	}
+	
+	public ViewCommands(ArrayList<Object> l, PenHandler p)
+	{
+		params = l;
+		myPH = p;
 		super.setParams(new ArrayList<Object>());
 	}
 	
 	// initialized by Main
-	public void setPen(Pen newPen)
+	public void setPenHandler(PenHandler newPen)
 	{
-		myPen = newPen;
+		myPH = newPen;
 	}
 	
-	protected Pen getPen()
+	protected PenHandler getPenHandler()
 	{
-		return myPen;
+		return myPH;
 	}
 
 	@Override

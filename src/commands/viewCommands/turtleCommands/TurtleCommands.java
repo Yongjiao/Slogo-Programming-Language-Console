@@ -6,10 +6,24 @@ import commands.CommandCenter;
 import application.ViewHandler;
 
 public class TurtleCommands extends CommandCenter{
-	private static ViewHandler myViewHandler;
+	private ViewHandler myViewHandler;
+	private ArrayList<Object> params;
 	
-	public TurtleCommands()
+	public TurtleCommands() {
+		
+	}
+	
+	public TurtleCommands(ViewHandler v)
 	{
+		myViewHandler = v;
+		super.setParams(new ArrayList<Object>());
+		
+	}
+	
+	public TurtleCommands(ArrayList<Object> p, ViewHandler v)
+	{
+		params = p;
+		myViewHandler = v;
 		super.setParams(new ArrayList<Object>());
 		
 	}

@@ -2,10 +2,12 @@ package commands;
 
 import java.util.ArrayList;
 
+import application.Pen;
+import application.ViewHandler;
 import commands.viewCommands.turtleCommands.Executable;
 
 public abstract class CommandCenter implements Executable {
-
+	
 	private ArrayList<Object> parameters;
 	
 	public CommandCenter(){
@@ -21,7 +23,6 @@ public abstract class CommandCenter implements Executable {
 	{
 		return parameters;
 	}
-	
 	
 	
 }
