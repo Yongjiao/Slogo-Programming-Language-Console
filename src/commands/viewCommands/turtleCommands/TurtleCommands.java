@@ -6,7 +6,7 @@ import commands.CommandCenter;
 import application.ViewHandler;
 
 public class TurtleCommands extends CommandCenter{
-	private static ViewHandler myViewHandler;
+	private ViewHandler myViewHandler;
 	private ArrayList<Object> params;
 	
 	public TurtleCommands() {
