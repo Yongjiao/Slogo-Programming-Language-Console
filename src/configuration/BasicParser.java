@@ -29,9 +29,9 @@ public class BasicParser extends Parser{
 	public double parse(String s) throws ParserError, IOException{
 		String comKey;
 		double result = -1;
-		Queue<String> tokens = toCommandQueue(s);
+		Queue<String> tokens = Util.toCommandQueue(s);
 		String command = tokens.peek();
-		comKey = Match.findCommandKey(tokens.peek(), super.getPatterns());
+		comKey = Util.findCommandKey(tokens.peek(), super.getPatterns());
 		CommandCenter com = CommandFactory.makeNoParmsCommands(comKey);
 		if(com != null)	return com.execute();
 		System.out.println(comKey);

@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import commands.UserMadeUtilities;
-
 import Tree.BinNode;
 import Tree.ConstNode;
 import Tree.Node;
@@ -34,11 +33,11 @@ public abstract class Parser {
 		initializeSyntax();		
 		initializeSets();
 		patterns = new ArrayList<Entry<String, Pattern>>();
-        patterns.addAll(Match.makePatterns("resources/languages/English"));
+        patterns.addAll(Util.makePatterns("resources/languages/English"));
 	}
 	protected void setLanguage(String path){
 		patterns.clear();
-        patterns.addAll(Match.makePatterns(path));
+        patterns.addAll(Util.makePatterns(path));
 	}
 	protected void initializeSyntax(){
 		ResourceBundle b = ResourceBundle.getBundle("resources.languages.Syntax"); 		
@@ -52,8 +51,8 @@ public abstract class Parser {
 		groupend = b.getString("GroupEnd");
 	}
 	protected void initializeSets() throws IOException{		
-		oneParComs = Match.makeSet("src/resources/languages/OneParCommands");
-		twoParComs = Match.makeSet("src/resources/languages/TwoParCommands");
+		oneParComs = Util.makeSet("src/resources/languages/OneParCommands");
+		twoParComs = Util.makeSet("src/resources/languages/TwoParCommands");
 	}	
 	/**
 	 * parses commands till a full command is parsed or when a single tree is built.
@@ -65,7 +64,7 @@ public abstract class Parser {
 		String token = tokens.poll();
 		System.out.println("TreeParsing the token: " + token);
 		if(isCommand(token)){
-			String comKey = Match.findCommandKey(token, patterns);	
+			String comKey = Util.findCommandKey(token, patterns);	
 			System.out.println();
 			if(oneParComs.contains(comKey)){
 				Node child = buildTree(tokens);
@@ -97,7 +96,7 @@ public abstract class Parser {
 		String token = tokens.poll();
 		System.out.println("TreeParsing the token: " + token);
 		if(isCommand(token)){
-			String comKey = Match.findCommandKey(token, patterns);	
+			String comKey = Util.findCommandKey(token, patterns);	
 			System.out.println();
 			if(oneParComs.contains(comKey)){
 				Node child = buildTree(tokens, localVar, iterator);
@@ -127,21 +126,6 @@ public abstract class Parser {
 		else		 
 			throw new ParserError("unexpected Token: "+ token);
 	}
-	
-	protected Queue<String> toCommandQueue(String str) {
-		String[] s = str.split(" ");
-		Queue<String> qu = new LinkedList<String>();
-		for(int i =0; i < s.length; i++){
-			qu.add(s[i]);
-		}
-		return qu;
-	}	
-	protected void skip(Queue<String> qu){
-		qu.poll();
-	}
-	protected boolean isEnd(Queue<String> qu){
-		return qu.isEmpty();
-	}
 	protected boolean isListEnd(String s){
 		return s.matches(listend);
 	}
@@ -157,17 +141,13 @@ public abstract class Parser {
 	protected boolean isCommand(String s){
 		return s.matches(command);
 	}
+	protected void skip(Queue<String> qu){
+		qu.poll();
+	}
+	protected static boolean isEnd(Queue<String> qu){
+		return qu.isEmpty();
+	}
 	protected List<Entry<String, Pattern>> getPatterns(){
 		return patterns;
-	}
-	/**
-	 * @param execute all commands in the list of tree
-	 * @return return value of last executed command
-	 */
-	protected double executeAll(ArrayList<Node> commands){
-		double result = -1;
-		for(int i =0; i < commands.size(); i++)
-			result = commands.get(i).getValue();
-		return result;
 	}
 }

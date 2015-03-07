@@ -20,7 +20,7 @@ public class RepeatParser extends Parser{
 	}
 	@Override
 	public double parse(String s) throws IOException, ParserError{
-		Queue<String> tokens = toCommandQueue(s);
+		Queue<String> tokens = Util.toCommandQueue(s);
 		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
