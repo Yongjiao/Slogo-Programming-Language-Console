@@ -11,8 +11,8 @@ public class Pow extends Calculate{
 	}
 	
 	public double execute() {
-		double base = (Integer) params.get(params.size() - 2);
-		double exponent = (Integer) params.get(params.size() - 1);
+		double base = (Double) params.get(params.size() - 2);
+		double exponent = (Double) params.get(params.size() - 1);
 		return Math.pow(base, exponent);
 	}
 	

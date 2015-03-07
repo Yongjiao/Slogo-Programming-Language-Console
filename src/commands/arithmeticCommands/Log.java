@@ -9,8 +9,8 @@ public class Log extends Calculate{
 		params = p;
 	}
 	
-	public double execut() {
-		double num = (Integer) params.get(params.size() - 1);
+	public double execute() {
+		double num = (Double) params.get(params.size() - 1);
 		return Math.log(num);
 	}
 

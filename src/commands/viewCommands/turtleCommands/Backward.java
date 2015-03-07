@@ -9,7 +9,7 @@ public class Backward extends Move{
 	}
 
 	public double execute() {
-		double steps = (Integer) super.getParams().get(super.getParams().size() - 1);
+		double steps = (Double) super.getParams().get(super.getParams().size() - 1);
 		return super.changeLocation(-steps);
 	}
 	

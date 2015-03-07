@@ -3,7 +3,6 @@ package commands.arithmeticCommands;
 import java.util.ArrayList;
 
 import commands.CommandCenter;
-import application.CommandFactory;
 
 /**
  * Superclass for basic arithmetic subclasses to extend.

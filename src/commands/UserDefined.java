@@ -2,8 +2,6 @@ package commands;
 
 import java.util.ArrayList;
 
-import application.CommandFactory;
-
 public class UserDefined{
 
 	private String myName;

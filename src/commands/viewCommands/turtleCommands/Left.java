@@ -9,7 +9,7 @@ public class Left extends Rotate{
 	}
 
 	public double execute() {
-		double angle = (Integer) super.getParams().get(super.getParams().size() - 1);
+		double angle = (Double) super.getParams().get(super.getParams().size() - 1);
 		return super.changeOrientation(-angle);
 	}
 	
