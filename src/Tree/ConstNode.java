@@ -27,7 +27,6 @@ public class ConstNode implements Node{
 
 	@Override
 	public int hasChild() {
-		// TODO Auto-generated method stub
 		return numChild;
 	}
 	
