@@ -6,8 +6,8 @@ public abstract class TurtScreen extends TurtleCommands{
 	
 	ViewHandler myViewHandler;
 	
-	public TurtScreen() {
-		myViewHandler = super.getHandler();
+	public TurtScreen(ViewHandler v) {
+		super(v);
 	}
 
 }

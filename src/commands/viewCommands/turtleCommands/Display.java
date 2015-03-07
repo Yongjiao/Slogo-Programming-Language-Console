@@ -6,8 +6,8 @@ public abstract class Display extends TurtleCommands{
 	
 	protected ViewHandler myTurtleHandler;
 	
-	public Display() {
-		myTurtleHandler = super.getHandler();
+	public Display(ViewHandler vh) {
+		super(vh);
 		super.setParams(super.getParams());
 	}
 

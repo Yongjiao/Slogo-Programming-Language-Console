@@ -1,10 +1,12 @@
 package commands.viewCommands;
 
+import application.Pen;
+
 
 public class PenColor extends ViewCommands{
 	
-	public PenColor() {
-		
+	public PenColor(Pen p) {
+		super(p);
 	}
 	//Anika
 	public double execute() {

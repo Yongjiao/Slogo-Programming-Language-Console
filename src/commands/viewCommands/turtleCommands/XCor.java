@@ -1,9 +1,11 @@
 package commands.viewCommands.turtleCommands;
 
+import application.ViewHandler;
+
 public class XCor extends TurtleCommands{
 	
-	public XCor() {
-		
+	public XCor(ViewHandler v) {
+		super(v);
 	}
 	
 	public double execute() {

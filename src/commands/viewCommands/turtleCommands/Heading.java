@@ -1,9 +1,11 @@
 package commands.viewCommands.turtleCommands;
 
+import application.ViewHandler;
+
 public class Heading extends TurtleCommands{
 	
-	public Heading() {
-		
+	public Heading(ViewHandler v) {
+		super(v);
 	}
 	
 	public double execute() {
