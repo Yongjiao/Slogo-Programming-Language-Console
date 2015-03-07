@@ -41,7 +41,7 @@ public class GUI {
 	private static final Color DEFAULT_PEN_COLOR = Color.BLACK;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	
-	private static final ObservableList<String> myCommandsList = FXCollections.observableArrayList();
+	private ObservableList<String> myCommandsList = FXCollections.observableArrayList();
 	private BorderPane myBorders;
 	private LineView myLineView;
 	private TurtleView myTurtleView;
@@ -66,13 +66,13 @@ public class GUI {
 	 * @param s
 	 * @return Scene
 	 */
-	public Scene initialize(Stage s){
+	public BorderPane initialize(){
 		initializeView();
 		initializeTextField();
 		initializeCommandsHistory();
 		initializeButtons();
-		Scene myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
-		return myScene;
+		//Scene myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
+		return myBorders;
 	}
 	
 	/**
