@@ -1,0 +1,19 @@
+<map id="gui.LineView.setThickness" name="gui.LineView.setThickness">
+<area shape="rect" id="node2" href="$df/dcb/classapplication_1_1_pen_handler.html#a518bb3076e4d9d105870b0778341a8c0" title="application.PenHandler.set\lThicknessParameter" alt="" coords="240,121,432,162"/>
+<area shape="rect" id="node3" href="$d8/d65/classapplication_1_1_view_handler.html#a308dcaf9847965fa4a3d261347845f56" title="application.ViewHandler.set\lInfoParamsOfTurtleAndLine" alt="" coords="480,121,677,162"/>
+<area shape="rect" id="node4" href="$d8/d65/classapplication_1_1_view_handler.html#ac37927f63d43d93f1b1e0f5a3b59cf26" title="application.ViewHandler.initialize\lTurtle" alt="" coords="726,61,954,102"/>
+<area shape="rect" id="node6" href="$d8/d65/classapplication_1_1_view_handler.html#ae489ceaa9b5ec67faf3ba22a11cec085" title="application.ViewHandler.update\lTurtleOnView" alt="" coords="729,181,951,222"/>
+<area shape="rect" id="node5" href="$d8/d65/classapplication_1_1_view_handler.html#aede07ea15df8a762813028bb80403e6b" title="application.ViewHandler.\lViewHandler" alt="" coords="1022,5,1199,46"/>
+<area shape="rect" id="node7" href="$d8/d65/classapplication_1_1_view_handler.html#a1aff135a076a9717102bb59ea613131c" title="application.ViewHandler.change\lLocationOfTurtle" alt="" coords="1287,70,1511,111"/>
+<area shape="rect" id="node10" href="$d8/d65/classapplication_1_1_view_handler.html#a1a94c855ceb0e8ffb1f72f138addb75b" title="application.ViewHandler.move\lTurtle" alt="" coords="1292,151,1505,193"/>
+<area shape="rect" id="node12" href="$d8/d65/classapplication_1_1_view_handler.html#a98b4ba09b3f3e8b1a7667db5598dbfb0" title="application.ViewHandler.move\lTurtleImageAndDraw" alt="" coords="1004,122,1217,163"/>
+<area shape="rect" id="node13" href="$d8/d65/classapplication_1_1_view_handler.html#abe68f02cdf0227b13568e1aaabf57e5c" title="application.ViewHandler.rotate\lTurtle" alt="" coords="1003,239,1219,281"/>
+<area shape="rect" id="node15" href="$d8/d65/classapplication_1_1_view_handler.html#af07eafb381b0ea9a1ce68f6ffe8a7428" title="application.ViewHandler.set\lTurtleOrientation" alt="" coords="1012,305,1209,346"/>
+<area shape="rect" id="node18" href="$d8/d65/classapplication_1_1_view_handler.html#a55d042c40e05453e3f5f6bc6c1c6e060" title="application.ViewHandler.show\lTurtle" alt="" coords="1006,370,1215,411"/>
+<area shape="rect" id="node8" href="$d5/de0/classcommands_1_1view_commands_1_1turtle_commands_1_1_clear_screen.html#ae547e4c170a1b6d41cdfc6c8bfe5e972" title="commands.viewCommands.turtle\lCommands.ClearScreen.execute" alt="" coords="1580,15,1817,57"/>
+<area shape="rect" id="node9" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af4d9a4d9ade56b5e3a1e582bd891b7b5" title="commands.viewCommands.turtle\lCommands.Move.goToLocation" alt="" coords="1580,81,1817,122"/>
+<area shape="rect" id="node11" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af95e8ccf5c290a4d06f79caf2deed407" title="commands.viewCommands.turtle\lCommands.Move.changeLocation" alt="" coords="1579,151,1818,193"/>
+<area shape="rect" id="node14" href="$d3/dba/classcommands_1_1view_commands_1_1turtle_commands_1_1_rotate.html#a8ee301e936ff8d884357dccac52c2bfb" title="commands.viewCommands.turtle\lCommands.Rotate.changeOrientation" alt="" coords="1267,239,1530,281"/>
+<area shape="rect" id="node16" href="$df/d03/classcommands_1_1view_commands_1_1turtle_commands_1_1_go_towards_loc.html#a67f5f04ce72d0cd234d1e0a11e6d7c83" title="commands.viewCommands.turtle\lCommands.GoTowardsLoc.execute" alt="" coords="1276,305,1521,346"/>
+<area shape="rect" id="node17" href="$df/ded/classcommands_1_1view_commands_1_1turtle_commands_1_1_set_heading.html#a3efffc1774ad2f0b23742a20789f0ee8" title="commands.viewCommands.turtle\lCommands.SetHeading.execute" alt="" coords="1280,370,1517,411"/>
+</map>

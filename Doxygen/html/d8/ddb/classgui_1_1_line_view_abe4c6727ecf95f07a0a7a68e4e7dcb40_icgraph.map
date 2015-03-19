@@ -1,0 +1,8 @@
+<map id="gui.LineView.drawLine" name="gui.LineView.drawLine">
+<area shape="rect" id="node2" href="$d8/d65/classapplication_1_1_view_handler.html#a98b4ba09b3f3e8b1a7667db5598dbfb0" title="application.ViewHandler.move\lTurtleImageAndDraw" alt="" coords="213,103,427,145"/>
+<area shape="rect" id="node3" href="$d8/d65/classapplication_1_1_view_handler.html#a1aff135a076a9717102bb59ea613131c" title="application.ViewHandler.change\lLocationOfTurtle" alt="" coords="475,70,699,111"/>
+<area shape="rect" id="node6" href="$d8/d65/classapplication_1_1_view_handler.html#a1a94c855ceb0e8ffb1f72f138addb75b" title="application.ViewHandler.move\lTurtle" alt="" coords="480,135,693,177"/>
+<area shape="rect" id="node4" href="$d5/de0/classcommands_1_1view_commands_1_1turtle_commands_1_1_clear_screen.html#ae547e4c170a1b6d41cdfc6c8bfe5e972" title="commands.viewCommands.turtle\lCommands.ClearScreen.execute" alt="" coords="748,5,985,46"/>
+<area shape="rect" id="node5" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af4d9a4d9ade56b5e3a1e582bd891b7b5" title="commands.viewCommands.turtle\lCommands.Move.goToLocation" alt="" coords="748,70,985,111"/>
+<area shape="rect" id="node7" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af95e8ccf5c290a4d06f79caf2deed407" title="commands.viewCommands.turtle\lCommands.Move.changeLocation" alt="" coords="747,135,986,177"/>
+</map>

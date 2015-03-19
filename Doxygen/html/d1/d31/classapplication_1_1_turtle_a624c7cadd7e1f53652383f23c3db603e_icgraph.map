@@ -1,0 +1,5 @@
+<map id="application.Turtle.setOrientation" name="application.Turtle.setOrientation">
+<area shape="rect" id="node2" href="$d8/d65/classapplication_1_1_view_handler.html#af07eafb381b0ea9a1ce68f6ffe8a7428" title="application.ViewHandler.set\lTurtleOrientation" alt="" coords="277,38,475,79"/>
+<area shape="rect" id="node3" href="$df/d03/classcommands_1_1view_commands_1_1turtle_commands_1_1_go_towards_loc.html#a67f5f04ce72d0cd234d1e0a11e6d7c83" title="commands.viewCommands.turtle\lCommands.GoTowardsLoc.execute" alt="" coords="523,5,768,46"/>
+<area shape="rect" id="node4" href="$df/ded/classcommands_1_1view_commands_1_1turtle_commands_1_1_set_heading.html#a3efffc1774ad2f0b23742a20789f0ee8" title="commands.viewCommands.turtle\lCommands.SetHeading.execute" alt="" coords="527,70,764,111"/>
+</map>

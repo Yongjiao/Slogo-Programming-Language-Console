@@ -1,0 +1,4 @@
+<map id="gui.LineView.clearScreen" name="gui.LineView.clearScreen">
+<area shape="rect" id="node2" href="$d8/d65/classapplication_1_1_view_handler.html#a53f77a87b6e532c698ba6ddddde5d43b" title="application.ViewHandler.clear\lScreen" alt="" coords="232,5,440,46"/>
+<area shape="rect" id="node3" href="$d5/de0/classcommands_1_1view_commands_1_1turtle_commands_1_1_clear_screen.html#ae547e4c170a1b6d41cdfc6c8bfe5e972" title="commands.viewCommands.turtle\lCommands.ClearScreen.execute" alt="" coords="488,5,725,46"/>
+</map>
