@@ -60,11 +60,12 @@ public class DotimesParser extends Parser{
 		return limit;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		double result = 0;
+		//double result = 0; to be refactored here
 		Node node = buildTree(qu);
-		if(node.hasChild() != 0)
+		/*if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-		return (int) result;
+			*/
+		return (int) node.getValue();
 	}
 	/**
 	 * Parses for loop and handles local variable
