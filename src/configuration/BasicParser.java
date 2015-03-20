@@ -17,8 +17,10 @@ import Tree.*;
 public class BasicParser extends Parser{
 	private HashMap<String, Parser> myParsers;		
 	private HashSet<String> userdefined;
+	private CommandFactory myFactory;
 	
 	public BasicParser() throws IOException{
+		myFactory = new CommandFactory();
 		initializeParsers();
 	}	
 	/**
@@ -27,13 +29,12 @@ public class BasicParser extends Parser{
 	 * @return return value of the last executed command
 	 */
 	public double parse(String s) throws ParserError, IOException{
-		CommandFactory cf = new CommandFactory();
 		String comKey;
 		double result = -1;
 		Queue<String> tokens = Util.toCommandQueue(s);
 		String command = tokens.peek();
 		comKey = Util.findCommandKey(tokens.peek(), super.getPatterns());
-		CommandCenter com = cf.makeNoParmsCommands(comKey);
+		CommandCenter com = myFactory.makeNoParmsCommands(comKey);
 		if(com != null)	return com.execute();
 		System.out.println(comKey);
 		if(userdefined.contains(comKey)){
