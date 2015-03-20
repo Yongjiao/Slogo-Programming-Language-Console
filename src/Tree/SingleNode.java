@@ -16,17 +16,19 @@ public class SingleNode implements Node{
 	private String command;
 	private Node child;
 	
+	
 	public SingleNode(String s, Node c){
 		command = s;
 		child = c;
 	}
 
-	@Override //return commandFactory or double?
+	@Override 
 	public double getValue() {
+		CommandFactory cf = new CommandFactory();
 		ArrayList<Object> parList = new ArrayList<Object>();
 		double chi = child.getValue();
 		parList.add(chi);
-		CommandCenter com =  CommandFactory.makeBasicCommands(command, parList);
+		CommandCenter com =  cf.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	

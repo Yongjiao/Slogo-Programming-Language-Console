@@ -23,7 +23,6 @@ public class DotimesParser extends Parser{
 	@Override
 	public double parse(String s) throws ParserError{
 		Queue<String> tokens = Util.toCommandQueue(s);
-		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
 	}	
@@ -41,7 +40,6 @@ public class DotimesParser extends Parser{
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
 		result = parseFor(1, limit, 1, qu);
-		System.out.println(qu);
 		if(isEnd(qu) || !isListEnd(qu.poll()))
 			throw new ParserError("Expected ] here !");	
 		return result;
@@ -62,11 +60,12 @@ public class DotimesParser extends Parser{
 		return limit;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		double result = 0;
-		Tree node = buildTree(qu);
-		if(node.hasChild() != 0)
+		//double result = 0; to be refactored here
+		Node node = buildTree(qu);
+		/*if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-		return result;
+			*/
+		return (int) node.getValue();
 	}
 	/**
 	 * Parses for loop and handles local variable
@@ -74,15 +73,13 @@ public class DotimesParser extends Parser{
 	 * @return
 	 * @throws ParserError
 	 */
-	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
+	protected double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;
 		for(int i = start; i <= end; i++){
 			while(!isEnd(temp) && !isListEnd(temp.peek())){
 				Node n = buildTree(temp, localVar, i); 
-				System.out.println("Tree parsed is " + n);
 				result = n.getValue();	
-				System.out.println(result);
 				}
 			if(i < end)		temp = new LinkedList<>(qu);
 			}

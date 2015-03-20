@@ -144,7 +144,7 @@ public abstract class Parser {
 	protected void skip(Queue<String> qu){
 		qu.poll();
 	}
-	protected static boolean isEnd(Queue<String> qu){
+	protected boolean isEnd(Queue<String> qu){
 		return qu.isEmpty();
 	}
 	protected List<Entry<String, Pattern>> getPatterns(){

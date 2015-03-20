@@ -28,17 +28,19 @@ public class RepeatParser extends Parser{
 	private double parse(Queue<String> tokens) throws ParserError {
 		double result = -1;
 		int iter = fetchNumericExpr(tokens);
+		System.out.println("why are oyu zero " + iter);
 		parseCommands(tokens, iter);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		double result = 0;
-		Tree node = buildTree(qu);
-		if(node.hasChild() != 0)
+		//double result = 0; to be refactored here
+		Node node = buildTree(qu);
+		/*if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-		return result;
+			*/
+		return (int) node.getValue();
 	}
 	private double parseCommands(Queue<String> qu, int iter) throws ParserError{
 		double result = -1;
@@ -56,8 +58,10 @@ public class RepeatParser extends Parser{
 		double result = -1; 
 		Node n = buildTree(qu);
 		System.out.println("Tree parsed is " + n);
+		System.out.println("start is " + start + " end is " + end + " inc is " + inc );
 		for(int i = start; i < end; i++){
 			result = n.getValue();		
+			System.out.println(result);
 		}
 		return result;
 	}	

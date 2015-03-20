@@ -17,10 +17,20 @@ public class CommandFactory {
 	private PenHandler myPenHandler;
 	private ViewHandler myViewHandler;
 	
-	public CommandFactory(PenHandler newPenHandler, ViewHandler newVH)
+	public CommandFactory()
 	{
-		myPenHandler = newPenHandler;
-		myViewHandler = newVH;
+	}
+	
+	// fixed by anika to allow for single declaration of CF without
+	// reinitializing Pen / View handler
+	public void setPenHandler(PenHandler newHandler)
+	{
+		myPenHandler = newHandler;
+	}
+	
+	public void setViewHandler(ViewHandler newViewHandler)
+	{
+		myViewHandler = newViewHandler;
 	}
 	
 /**
@@ -85,7 +95,6 @@ public CommandCenter makeNoParmsCommands(String com){
    				case "SetPenColor":		return new SetPenColor(parList, myPenHandler);
    				case "SetPenSize":		return new SetPenSize(parList, myPenHandler);
 				case "SetPalette":		return new SetPalette(parList, myPenHandler);
-   				//case "#":
    				}
    				return null;	
    	}

@@ -59,11 +59,12 @@ public class ForParser extends Parser{
 		return result;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		double result = 0;
-		Tree node = buildTree(qu);
-		if(node.hasChild() != 0)
+		//double result = 0; to be refactored here
+		Node node = buildTree(qu);
+		/*if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-		return result;
+			*/
+		return (int) node.getValue();
 	}
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);

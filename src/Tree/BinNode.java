@@ -25,12 +25,12 @@ public class BinNode implements Node{
 	//needs execution which involves construct commandObject
 	@Override 
 	public double getValue() {
+		CommandFactory cf = new CommandFactory();
 		ArrayList<Object> parList = new ArrayList<Object>();
 		parList.add(left.getValue());
 		parList.add(right.getValue());
 		System.out.println("Binary node get evaluated is " + command + ""+ parList);
-		CommandCenter com = CommandFactory.makeBasicCommands(command, parList);
-		//System.out.println(com);
+		CommandCenter com = cf.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	@Override

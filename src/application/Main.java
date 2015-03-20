@@ -50,7 +50,9 @@ public class Main extends Application {
 				viewCommands.setPenHandler(myPenHandler);
 				TurtleCommands turtleCommands = new TurtleCommands();
 				turtleCommands.setViewHandler(myViewHandler);
-				CommandFactory myFactory = new CommandFactory(myPenHandler, myViewHandler);
+				CommandFactory myFactory = new CommandFactory();
+				myFactory.setPenHandler(myPenHandler);
+				myFactory.setViewHandler(myViewHandler);
 				
 				tab.setContent(myBorderPane);
 				myTabs.getTabs().add(tab);
