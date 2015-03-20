@@ -92,16 +92,6 @@ public class Turtle {
 	}
 	
 	/**
-	 * updates the turtle's location by calculating horizontal and vertical
-	 * components of distance based on turtle's orientation
-	 * @param distance
-	 */
-	public void move(double distance)
-	{
-		myLoc = myLoc.add(distance*Math.sin(Math.toRadians(myOrientation)), distance*Math.cos(Math.toRadians(myOrientation)));
-	}
-	
-	/**
 	 * sets turtle image to input file
 	 * @param newImage
 	 */
