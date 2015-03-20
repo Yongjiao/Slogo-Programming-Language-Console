@@ -15,8 +15,8 @@ import Tree.Node;
  *
  */
 public class IfelseParser extends Parser{		
-	
-	public IfelseParser() throws IOException{
+
+	protected IfelseParser() throws IOException {
 		super();
 	}
 	public double parse(String s) throws IOException, ParserError{
@@ -39,7 +39,12 @@ public class IfelseParser extends Parser{
 		System.out.println("Else statement gets executed");
 		return Util.executeAll(elseTree);	
 	}
-	private double evaluateBoolExpr(Queue<String> qu) throws ParserError{
+	/**
+	 * parses and evaluates the boolean expression
+	 * @param command queue
+	 * @return evaluation result
+	 */
+	protected double evaluateBoolExpr(Queue<String> qu) throws ParserError{
 		if(!isboolean(qu.peek()))	
 			throw new ParserError("see " + qu.poll() + "Expected boolean expression Here!");
 		return buildTree(qu).getValue();
@@ -50,7 +55,7 @@ public class IfelseParser extends Parser{
 	 * @return list of tree node representing each command
 	 * @throws ParserError
 	 */
-	private ArrayList<Node> parseListCommands(Queue<String> qu) throws ParserError{
+	protected ArrayList<Node> parseListCommands(Queue<String> qu) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
 		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
@@ -64,14 +69,9 @@ public class IfelseParser extends Parser{
 		return list;
 	}
 	
-	private boolean isboolean(String s){	
+	protected boolean isboolean(String s){	
 		String comKey = Util.findCommandKey(s, super.getPatterns());
 		return comKey.matches("(LessThan|GreaterThan|Equal|NotEqual|And|Or|Not)");
-	}
-	public static void main(String[] args) throws IOException, ParserError {
-		IfelseParser example = new IfelseParser();
-		String ifelse = "ifelse equal? 2 6 [ sin 50 ] [ cos 50 tan 100 ]";
-		example.parse(ifelse);
 	}
 
 }
