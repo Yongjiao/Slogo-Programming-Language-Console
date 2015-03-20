@@ -91,7 +91,14 @@ public abstract class Parser {
 		else		 
 			throw new ParserError("unexpected Token: "+ token);
 	}
-	
+	/**
+	 * parses commands for each loop iteration with the loop iterator/local variables 
+	 * @param command string
+	 * @param localVar
+	 * @param value of iterator
+	 * @return the constructed tree for one iteration
+	 * @throws ParserError
+	 */
 	protected Node buildTree(Queue<String> tokens, String localVar, int iterator) throws ParserError {
 		String token = tokens.poll();
 		System.out.println("TreeParsing the token: " + token);
