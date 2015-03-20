@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Andrew Sun
+
 package gui;
 
 import java.io.IOException;
@@ -30,7 +33,7 @@ public class GUI {
 	private static final int TURTLE_INFO_BUTTON = 2;
 	
 	private static final int HBOX_SPACING = 20;
-
+	private static final int VBOX_SPACING = 10;
 	private static final int VIEW_HEIGHT = 600;
 	private static final int VIEW_WIDTH = 900;
 	
@@ -185,7 +188,7 @@ public class GUI {
 	 */
 	private void initializeCommandsHistory() {		
 		VBox infoVBox = new VBox();
-		infoVBox.setSpacing(10);
+		infoVBox.setSpacing(VBOX_SPACING);
 		infoVBox.getChildren().addAll(new InformationList(myCommandsList, "Commands History"),
 				new InformationList(myUtils.getAllVars(), "Currently Available Variables"),
 				new InformationList(myUtils.getUDCommands(), "Currently Defined Commands"));
@@ -201,7 +204,7 @@ public class GUI {
 	 */
 	private void initializeTextField() {
 		VBox vbox = new VBox();
-		vbox.setSpacing(10);
+		vbox.setSpacing(VBOX_SPACING);
 		TextField errors = new TextField();
 		errors.setEditable(false);
 		vbox.getChildren().addAll(errors, new UserInputBox(myParser, myCommandsList, myUtils, errors));

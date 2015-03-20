@@ -20,6 +20,14 @@ public class ImageButton extends Button{
 		this.setButtonProperties(this, locX, locY, i, event);
 	}
 	
+	/**
+	 * Sets the properties of the button
+	 * @param but
+	 * @param xLoc
+	 * @param yLoc
+	 * @param actionImage
+	 * @param event
+	 */
 	private void setButtonProperties(Button but, int xLoc, int yLoc, Image actionImage, EventHandler<ActionEvent> event)
 	{
 		but.setLayoutX(xLoc);
