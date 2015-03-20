@@ -1,235 +1,157 @@
 package application;
 
+// This entire file is part of my masterpiece.
+// ANIKA RADIYA-DIXIT
 
 import gui.BackgroundView;
 import gui.LineView;
 import gui.TurtleView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+
 /**
+ * This class contains methods and parameters to update the LineView, TurtleView,
+ * or BackgroundView.
+ * <p> If a command is called to move or rotate the turtle, this class
+ * updates the location / orientation of the Turtle. If the Turtle set to 
+ * IS_TURTLE_VISIBLE, this class calls the appropriate method of TurtleView to 
+ * update the location of the turtle's image on the screen.
+ * <p> If the pen's status is set to PEN_DOWN, this class calls the line 
+ * drawing method in LineView.
+ * <p>
+ * <p> If a command is called to change the background color, this class calls
+ * the color changing method in BackgroundView.
  * 
- * Feb 22, 2015
- * NOTE: Turtle Coordinate system
- * 			
- * 			^ +y
- * 			|
- * 			|
- * 			|
- * ------------------> +x
- * 			|
- * 			|
- * 			|
- * 			|
- * 
- * Canvas / View coordinate system
- * 
- * ------------------> +x
- * |
- * |
- * |
- * |
- * |
- * |
- * |
- * v +y
- * 
- * 
- * Therefore, to center the turtle based on the middle of the canvas,
- * put turtle at [(turtleCoordX + X_CENTER), (turtleCoordY - Y_CENTER)]
- * 
- * As a result, movement methods are formatted as follows:
- * 
- * public void moveTurtle(int dist)
- * {
- * 		myTurtle.setLocation(getViewTurtleLocation());		// set View's turtle location to turtle loc
- * 		Point2D origLoc = myTurtle.getLoc();				// get turtle location
- * 		myTurtle.move(dist);								// move
- * 		Point2D newLoc = myTurtle.getLoc();					// get new turtle location
- * 		this.moveTurtleImageAndDraw(origLoc, newLoc); 		// pass View new location
- * 		// view calculates new loc. in terms of turtle coordinates
- * 		myTurtle.setLocation(getViewTurtleLocation());		// set View's updated turtle location to turtle loc
- * 
- * }
- * 
- * 
- * @author anika
- *
+ * @author Anika
+ * @version analysis refactoring
  */
 public class ViewHandler {
 
-	private LineView myLineView;
-	private TurtleView myTurtleView;
-	private BackgroundView myBackgroundView;
+	private LineView myLineView; // Canvas used for drawing lines
+	private TurtleView myTurtleView; // Canvas used for placing turtle image
+	private BackgroundView myBackgroundView; // Canvas used for background color
 	private Turtle myTurtle;
 	private PenHandler myPenHandler;
+	private static String DEFAULT_TURLTLE_IMAGE = "/resources/rsz_turtle.png";
+	private static int PEN_DOWN = 1; // constant to signify pen status as down
+	private static int VISIBLE = 1; // constant to compare visible status to integer
+	private boolean IS_TURTLE_VISIBLE = true; // boolean to indicate visibility of turtle image
 	
 	/**
 	 * Constructor
-	 * sets fields of View and Turtle based on parameters
-	 * @param view
-	 * @param turtle
+	 * sets fields of each View and Turtle based on parameters
+	 * @param lineView
+	 * @param turtleView
+	 * @param backgroundView
+	 * @param penHandler
 	 */
-	public ViewHandler(LineView lv, TurtleView tv, BackgroundView bk, PenHandler penHandler){
-		myLineView = lv;
-		myTurtleView = tv;
+	public ViewHandler(LineView lineView, TurtleView turtView, BackgroundView bkView, PenHandler penHandler) {
+		myLineView = lineView;
+		myTurtleView = turtView;
 		myPenHandler = penHandler;
-		myBackgroundView = bk;
-		myTurtle = new Turtle();
-		this.initializeTurtle();
+		myBackgroundView = bkView;
+		initializeTurtle();
 	}
 	
 	/**
 	 * initializes turtle with image
-	 * calls setInfoParamsOfTurtle() to set initial info 
+	 * <p> calls setInfoParamsOfTurtle() to set initial info 
 	 */
-	private void initializeTurtle()
-	{
-		Image image = new Image(getClass().getResourceAsStream("/resources/rsz_turtle.png"));
-		this.myTurtleView.initializeTurtle(image);
-		setInfoParamsOfTurtleAndLine();
+	private void initializeTurtle() {
+		myTurtle = new Turtle();
+		Image image = new Image(getClass().getResourceAsStream(DEFAULT_TURLTLE_IMAGE));
+		myTurtleView.initializeTurtle(image); // tells View to initialize turtle image
+		setInfoParamsOfTurtleAndLine(); // initializes information to be displayed
+			// from [ Turtle Info ] button on GUI
 	}
 	
-	
-	/**
-	 * * NOTE: Turtle Coordinate system
-	 * 			
-	 * 			^ +y
-	 * 			|
-	 * 			|
-	 * 			|
-	 * ------------------> +x
-	 * 			|
-	 * 			|
-	 * 			|
-	 * 			|
-	 * 
-	 * Canvas / View coordinate system
-	 * 
-	 * ------------------> +x
-	 * |
-	 * |
-	 * |
-	 * |
-	 * |
-	 * |
-	 * |
-	 * v +y
-	 * 
-	 * 
-	 * therefore, for the Canvas below:
-	 * 
-	 * 				|--a--|
-	 * ===========================
-	 * ||		    |			||
-	 * ||		    |			|| _._
-	 * ||		    |	 Q		||  |
-	 * ||		    |			||  b
-	 * ||___________|___________|| _|_
-	 * ||		    |			||
-	 * ||		    |			||
-	 * ||		    |			||
-	 * ||		    |			||
-	 * ===========================
-	 * 
-	 * Point Q in turtle coordinates 	= [(XCENTER + a), (YCENTER + b)]
-	 * while,
-	 * Point Q in view coordinates 		= [(Width/2 + a), -(Height/2 - b)]
-	 * 
-	 * 
-	 * @return location of turtle on view in turtle coordinates
-	 */
-	private Point2D getViewTurtleLocation()
-	{
-		return myTurtleView.getNewPoint();
-	
-	}
 	
 	/**
 	 * sets the turtle's location to View's turtle location
+	 * due to differences in coordinate systems
+	 * <p> View coordinate system origin at top left of Canvas
+	 * <p> Turtle coordinate system origin at [Width/2, Height/2]
 	 */
-	private void setTurtleLocToViewTurtleLoc()
-	{
-		System.out.println("   in  setTurtleLocToViewTurtleLoc  " + this.myTurtle.getLoc().getX() + "  " +this.myTurtle.getLoc().getX());
-		myTurtle.setLocation(getViewTurtleLocation());
+	private void setTurtleLocToViewTurtleLoc() {
+		myTurtle.setLocation(myTurtleView.getNewPoint());
 	}
 	
 	/**
+	 * helper method for moveTurtle and changeLocationOfTurtle
+	 * @return Turtle's current location in View coordinates
+	 */
+	private Point2D calculateOriginalLocation() {
+		setTurtleLocToViewTurtleLoc();
+		return myTurtle.getLoc();
+	}
+	
+	/**
+	 * helper method to call View's update methods to move turtle image
+	 * @param originalLocation
+	 * @param newLocation
+	 */
+	private void setTurtleLocAndMove(Point2D originalLocation, Point2D newLocation) {
+		myTurtle.setLocation(newLocation);
+		moveTurtleImageAndDraw(originalLocation, newLocation);
+		setTurtleLocToViewTurtleLoc();
+		updateTurtleOnView();
+	}
+	
+	/**
+	 * @called by movement commands
 	 * Moves the turtle from current location by the additional distance
-	 * Updates fields in Turtle accordingly
+	 * <p> Updates fields in Turtle accordingly
 	 * @param distance
 	 */
-	public void moveTurtle(double distance){ // WORKS
-		System.out.println("in move");
-
-		setTurtleLocToViewTurtleLoc();
-		Point2D locOrig = myTurtle.getLoc();
-		System.out.println("  in move - setTurtleLocToViewTurtleLoc 1");
-		setTurtleLocToViewTurtleLoc();
-		myTurtle.move(distance);
-		Point2D locNew = myTurtle.getLoc();
-		this.moveTurtleImageAndDraw(locOrig, locNew);
-		//System.out.println("  in move - setTurtleLocToViewTurtleLoc 2");
-		setTurtleLocToViewTurtleLoc();
-
-		this.updateTurtleOnView();
+	public void moveTurtle(double distance) { 
+		Point2D locOrig = calculateOriginalLocation();
+		Point2D locNew = locOrig.add(distance*Math.sin(Math.toRadians(getTurtleOrientation())), distance*Math.cos(Math.toRadians(getTurtleOrientation())));
+		setTurtleLocAndMove(locOrig, locNew);
 	}
 	
 	/**
-	 * 
+	 * @called by movement command
 	 * Moves the turtle from current location to the new location
-	 * Updates fields in Turtle accordingly
-	 *
+	 * <p> Updates fields in Turtle accordingly
 	 * @param newLoc
 	 */
-	public void changeLocationOfTurtle(Point2D newLoc){ //WORKS
-		setTurtleLocToViewTurtleLoc();
-		Point2D locOrig = myTurtle.getLoc();
-		myTurtle.setLocation(newLoc);
-		Point2D locNew = myTurtle.getLoc();
-		this.moveTurtleImageAndDraw(locOrig, locNew);
-		setTurtleLocToViewTurtleLoc();
-		this.updateTurtleOnView();
+	public void changeLocationOfTurtle(Point2D newLoc) {
+		Point2D locOrig = calculateOriginalLocation();
+		setTurtleLocAndMove(locOrig, newLoc);
 	}
 	
 	/**
 	 * Updates turtle image on View canvas; draws line if pen is down
-	 * Note: This feature is the primary reason that ViewHandler needs
+	 * <p> Note: This feature is the primary reason that ViewHandler needs
 	 * access to current Pen info
 	 * @param locOrig
 	 * @param locNew
 	 */
 	private void moveTurtleImageAndDraw(Point2D locOrig, Point2D locNew) {
-		this.updateTurtleOnView();
-		
-		if (this.myPenHandler.getPenStatus() == 1)
-		{
-			this.myLineView.drawLine(locOrig, locNew);
-			
-			// draw line design considerations / discussion - see analysis document
+		updateTurtleOnView();	
+		if (myPenHandler.getPenStatus() == PEN_DOWN) {
+			myLineView.drawLine(locOrig, locNew);			
 		}
-
 	}
 
 	/**
+	 * @called by rotation command
 	 * sets turtle orientation to current orientation + angle turned
-	 * Calls method to update view's turtle image
+	 * <p> Calls method to update view's turtle image
 	 * @param deg
 	 */
-	public void rotateTurtle(double deg){
-		System.out.println("in rotate");
-
+	public void rotateTurtle(double deg) {
 		myTurtle.turn(deg);
-		this.updateTurtleOnView();
+		updateTurtleOnView();
 	}
 	
 	/**
+	 * @called by rotation command
 	 * sets turtle orientation to new orientation
-	 * Calls method to update view's turtle image
+	 * <p> Calls method to update view's turtle image
 	 * @param newAngle
 	 */
-	public void setTurtleOrientation(double newAngle){
-		System.out.println("in set turtle orientation");
+	public void setTurtleOrientation(double newAngle) {
 		myTurtle.setOrientation(newAngle);
 		updateTurtleOnView();
 	}
@@ -237,49 +159,36 @@ public class ViewHandler {
 	/**
 	 * @return current orientation of turtle
 	 */
-	public double getTurtleOrientation()
-	{
+	private double getTurtleOrientation() {
 		return myTurtle.getOrientation();
 	}
 	
 	/**
 	 * @return current location of turtle
 	 */
-	public Point2D getTurtleLocation()
-	{
+	private Point2D getTurtleLocation() {
 		return myTurtle.getLoc();
 	}
 	
 	/**
+	 * @called by showTurtle command
 	 * sets visibility of turtle based on input parameter
-	 * If toShow == 1, visibility ON
-	 * If toShow == 0, visibility OFF
+	 * <p> If toShow == 1, visibility ON
+	 * <p> If toShow == 0, visibility OFF
 	 * @param toShow
 	 */
-	public void showTurtle(int toShow) 
-	{
+	public void showTurtle(int toShow) {
 		myTurtle.setVisibility(toShow);
 		updateTurtleOnView();
 	}
-	
-	/**
-	 * @return whether or not the turtle is visible
-	 * returns 1 if visible, returns 0 if hidden
-	 */
-	public int isVisible()
-	{
-		return myTurtle.getVisibility();
-	}
 
 	
-	
 	/**
-	 * clears screen
-	 * called if user enters command CLEARSCREEN
+	 * @called by CLEARSCREEN command
+	 * clears all lines on the LineView
 	 */
-	public void clearScreen() 
-	{
-		this.myLineView.clearScreen();
+	public void clearScreen() {
+		myLineView.clearScreen();
 	}
 	
 	
@@ -287,49 +196,33 @@ public class ViewHandler {
 	 * called whenever turtle's image, location, or orientation is changed in 
 	 * order to update the appropriate fields in View
 	 */
-	public void updateTurtleOnView()
-	{
+	private void updateTurtleOnView() {
 		// update turtle info to View
 		setInfoParamsOfTurtleAndLine();
-		
-		if (this.isVisible() == 1)
-		{
-			// make turtle visible, then update turtle movement
-			this.myTurtleView.showTurtle(true);
-			this.myTurtleView.rotateAndMoveTurtle(this.getTurtleLocation(), this.getTurtleOrientation());
+		IS_TURTLE_VISIBLE = (myTurtle.getVisibility() == VISIBLE);
+		if (IS_TURTLE_VISIBLE) {
+			// update turtle movement if turtle is visible 
+			// else don't do the calculations
+			myTurtleView.rotateAndMoveTurtle(getTurtleLocation(), getTurtleOrientation());
 		}
-		else
-		{
-			// tell view to make turtle invisible
-			this.myTurtleView.showTurtle(false);
-		}
+		myTurtleView.showTurtle(IS_TURTLE_VISIBLE);
 	}
-	
-	
-	public void setBackground(double index)
-	{
-	//	this.myBackgroundView.setBackgroundColor(index);
-	}
-	 
-
 	
 	/**
 	 * Contains information of turtle regarding
-	 * - x location
-	 * - y location
-	 * - orientation
-	 * - pen status
-	 * Contains information for Pen for line drawing of thickness
+	 * <p> - x location
+	 * <p> - y location
+	 * <p> - orientation
+	 * <p> - pen status
+	 * <p> Contains information for Pen for line drawing of thickness
 	 * of stroke/line
-	 * Used to display status of turtle to user from GUI
+	 * <p> Used to display status of turtle to user from GUI
 	 */
-	public void setInfoParamsOfTurtleAndLine()
-	{
-		this.myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
-				+ " \n" + "Heading: \t\t" + this.getTurtleOrientation()
+	private void setInfoParamsOfTurtleAndLine() {
+		myTurtleView.setTurtleInfo("Position: \t\t[" + Math.floor(getTurtleLocation().getX()) + ", " + Math.floor(getTurtleLocation().getY()) + "]"
+				+ " \n" + "Heading: \t\t" + getTurtleOrientation()
 				+ " \n" + "Pen Status: \t" + myPenHandler.getPenStatus()
-				);
-		
-		this.myPenHandler.setThicknessParameter();
+				);	
+		myPenHandler.setThicknessParameter();
 	}	
 }
