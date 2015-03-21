@@ -75,6 +75,7 @@ public CommandCenter makeNoParmsCommands(String com){
    				case "Remainder":		return new Remainder(parList);
    				case "Left":			return new Left(parList, myViewHandler);
    				case "Right":			return new Right(parList, myViewHandler);
+   				case "Towards":			return new Towards(parList, myViewHandler);
    				case "SetHeading":		return new SetHeading(parList, myViewHandler);
    				case "Sine":			return new Sin(parList);
    				case "Cosine":			return new Cos(parList);

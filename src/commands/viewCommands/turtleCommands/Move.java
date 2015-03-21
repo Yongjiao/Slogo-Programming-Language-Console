@@ -11,6 +11,7 @@ public abstract class Move extends TurtleCommands{
 
 	public Move(ViewHandler vh) {
 		super(vh);
+		myViewHandler = vh;
 	}
 	
 	public Move(ArrayList<Object> p, ViewHandler vh) {
