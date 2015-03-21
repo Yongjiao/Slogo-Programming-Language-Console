@@ -1,0 +1,22 @@
+<map id="application.ViewHandler.rotateTurtle" name="application.ViewHandler.rotateTurtle">
+<area shape="rect" id="node2" href="$d1/d31/classapplication_1_1_turtle.html#aabf8b8b340c39bc528a7ba7d8461cf1a" title="application.Turtle.turn" alt="" coords="302,212,461,239"/>
+<area shape="rect" id="node3" href="$d8/d65/classapplication_1_1_view_handler.html#ae489ceaa9b5ec67faf3ba22a11cec085" title="application.ViewHandler.update\lTurtleOnView" alt="" coords="270,263,493,305"/>
+<area shape="rect" id="node4" href="$d8/d65/classapplication_1_1_view_handler.html#a308dcaf9847965fa4a3d261347845f56" title="application.ViewHandler.set\lInfoParamsOfTurtleAndLine" alt="" coords="541,165,739,206"/>
+<area shape="rect" id="node6" href="$d8/d65/classapplication_1_1_view_handler.html#a8a3722771a70075225d9c37dc1ff5e8d" title="application.ViewHandler.get\lTurtleLocation" alt="" coords="790,5,989,46"/>
+<area shape="rect" id="node8" href="$d8/d65/classapplication_1_1_view_handler.html#a8a00eb25a7f1d5e3ccc3059e8b717819" title="application.ViewHandler.get\lTurtleOrientation" alt="" coords="790,253,989,294"/>
+<area shape="rect" id="node16" href="$d8/d65/classapplication_1_1_view_handler.html#a6f94dbee91670d4c9ae7164f61b8cd03" title="application.ViewHandler.is\lVisible" alt="" coords="547,293,733,334"/>
+<area shape="rect" id="node18" href="$df/dcc/classgui_1_1_turtle_view.html#afa73e516fcab92ab1c3a6941b6131cb5" title="gui.TurtleView.showTurtle" alt="" coords="551,359,729,385"/>
+<area shape="rect" id="node19" href="$df/dcc/classgui_1_1_turtle_view.html#adcff447c1d488ddfd13d151067e6db7a" title="gui.TurtleView.rotateAnd\lMoveTurtle" alt="" coords="553,410,727,451"/>
+<area shape="rect" id="node5" href="$df/dcc/classgui_1_1_turtle_view.html#a978020a0f6ccbc4714b77c71435b0799" title="gui.TurtleView.setTurtleInfo" alt="" coords="795,201,983,228"/>
+<area shape="rect" id="node10" href="$df/dcb/classapplication_1_1_pen_handler.html#a8477a9a258753bb5538ad83a015fb731" title="application.PenHandler.get\lPenStatus" alt="" coords="793,70,986,111"/>
+<area shape="rect" id="node12" href="$df/dcb/classapplication_1_1_pen_handler.html#a518bb3076e4d9d105870b0778341a8c0" title="application.PenHandler.set\lThicknessParameter" alt="" coords="793,135,985,177"/>
+<area shape="rect" id="node7" href="$d1/d31/classapplication_1_1_turtle.html#a802873f2487ab3b6832050e1bef998a5" title="application.Turtle.getLoc" alt="" coords="1065,12,1241,39"/>
+<area shape="rect" id="node9" href="$d1/d31/classapplication_1_1_turtle.html#af22147e198fac9068726b95eea235739" title="application.Turtle.getOrientation" alt="" coords="1041,260,1266,287"/>
+<area shape="rect" id="node11" href="$de/d5a/classapplication_1_1_pen.html#ab21d78789fb66a90181393d7cc42796c" title="application.Pen.getStatus" alt="" coords="1060,77,1247,104"/>
+<area shape="rect" id="node13" href="$df/dcb/classapplication_1_1_pen_handler.html#a307ff6736f97a1aa1706da924d7e642b" title="application.PenHandler.get\lPenWeight" alt="" coords="1057,187,1250,229"/>
+<area shape="rect" id="node15" href="$d8/ddb/classgui_1_1_line_view.html#ab32d4cf33024aea52dcb5d1092003d85" title="gui.LineView.setThickness" alt="" coords="1061,136,1246,163"/>
+<area shape="rect" id="node14" href="$de/d5a/classapplication_1_1_pen.html#aaaae5f55fadb97afef2ae286a6119a58" title="application.Pen.getWeight" alt="" coords="1315,195,1501,221"/>
+<area shape="rect" id="node17" href="$d1/d31/classapplication_1_1_turtle.html#a75e592fccb8420e254ba668429797898" title="application.Turtle.getVisibility" alt="" coords="787,319,992,345"/>
+<area shape="rect" id="node20" href="$df/dcc/classgui_1_1_turtle_view.html#ab9b87d12b06bce95f2b32ee05a89e7d6" title="gui.TurtleView.rotate" alt="" coords="814,388,965,415"/>
+<area shape="rect" id="node21" href="$d8/d8b/classgui_1_1_view.html#a9df94efe60af56c89531c45f0f3f9624" title="gui.View.setNewPoint" alt="" coords="811,439,967,465"/>
+</map>

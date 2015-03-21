@@ -1,0 +1,4 @@
+<map id="gui.TurtleImageChooser.initialize" name="gui.TurtleImageChooser.initialize">
+<area shape="rect" id="node2" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#a832fda79e80b22c6d9602340d8516739" title="gui.TurtleImageChooser.choose\lTurtleImage" alt="" coords="280,5,501,46"/>
+<area shape="rect" id="node3" href="$df/dcc/classgui_1_1_turtle_view.html#a24ab0ecbaccb90ec6cd935f4b608e3ee" title="gui.TurtleView.updateTurtle\lImage" alt="" coords="550,34,741,75"/>
+</map>
