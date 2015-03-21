@@ -1,9 +1,0 @@
-<map id="gui.GUI" name="gui.GUI">
-<area shape="rect" id="node2" href="$df/dcc/classgui_1_1_turtle_view.html" title="gui.TurtleView" alt="" coords="841,91,949,117"/>
-<area shape="rect" id="node3" href="$d8/d8b/classgui_1_1_view.html" title="gui.View" alt="" coords="388,121,463,148"/>
-<area shape="rect" id="node15" href="$d8/ddb/classgui_1_1_line_view.html" title="gui.LineView" alt="" coords="845,369,945,396"/>
-<area shape="rect" id="node17" href="$d7/d9b/classgui_1_1_background_view.html" title="gui.BackgroundView" alt="" coords="819,260,970,287"/>
-<area shape="rect" id="node10" href="$d0/da7/classconfiguration_1_1_basic_parser.html" title="configuration.BasicParser" alt="" coords="803,613,986,640"/>
-<area shape="rect" id="node11" href="$d9/d11/classconfiguration_1_1_parser.html" title="configuration.Parser" alt="" coords="351,580,500,607"/>
-<area shape="rect" id="node19" href="$d0/d3b/classcommands_1_1_user_made_utilities.html" title="commands.UserMadeUtilities" alt="" coords="789,727,1000,753"/>
-</map>
