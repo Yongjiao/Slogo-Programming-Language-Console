@@ -1,9 +1,0 @@
-<map id="application.ViewHandler2.updateTurtleOnView" name="application.ViewHandler2.updateTurtleOnView">
-<area shape="rect" id="node2" href="$d3/de0/classapplication_1_1_view_handler2.html#ab87b30f73cb5e726f4fcc6b6f60f8007" title="application.ViewHandler2.move\lTurtleImageAndDraw" alt="" coords="287,9,510,50"/>
-<area shape="rect" id="node3" href="$d3/de0/classapplication_1_1_view_handler2.html#abaa9dc9add64d8386b9f7fc37152d620" title="application.ViewHandler2.set\lTurtleLocAndMove" alt="" coords="561,38,767,79"/>
-<area shape="rect" id="node6" href="$d3/de0/classapplication_1_1_view_handler2.html#a4dfbbb48e3c3c7bc5db71a2a308a1b7c" title="application.ViewHandler2.rotate\lTurtle" alt="" coords="286,126,511,167"/>
-<area shape="rect" id="node7" href="$d3/de0/classapplication_1_1_view_handler2.html#a0e3021726260bc0112ea6b6deef82aaa" title="application.ViewHandler2.set\lTurtleOrientation" alt="" coords="295,191,502,233"/>
-<area shape="rect" id="node8" href="$d3/de0/classapplication_1_1_view_handler2.html#a204e29a9937f99e85d42c948f58012c1" title="application.ViewHandler2.show\lTurtle" alt="" coords="289,257,508,298"/>
-<area shape="rect" id="node4" href="$d3/de0/classapplication_1_1_view_handler2.html#acd04df701dbbc0a759c79058966f8264" title="application.ViewHandler2.change\lLocationOfTurtle" alt="" coords="817,5,1050,46"/>
-<area shape="rect" id="node5" href="$d3/de0/classapplication_1_1_view_handler2.html#ac682f2c1ca441598b6d29fe899e7f468" title="application.ViewHandler2.move\lTurtle" alt="" coords="822,70,1045,111"/>
-</map>
