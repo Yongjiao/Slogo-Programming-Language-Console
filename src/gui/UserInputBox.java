@@ -21,10 +21,12 @@ import javafx.scene.input.KeyEvent;
  */
 public class UserInputBox extends TextField {
 	
+	private BasicParser myParser;
 	
 	public UserInputBox(BasicParser p, ObservableList<String> list, UserMadeUtilities myUtils, TextField errorBox){
+		myParser = p;
 		this.setPromptText("Enter commands here");
-		this.setOnKeyPressed(e -> doInput(e, p, list, myUtils, errorBox));
+		this.setOnKeyPressed(e -> doInput(e, list, myUtils, errorBox));
 	}
 
 	/**
@@ -35,10 +37,10 @@ public class UserInputBox extends TextField {
 	 * @param myUtils
 	 * @param errorBox
 	 */
-	private void doInput(KeyEvent e, BasicParser p, ObservableList<String> list, UserMadeUtilities myUtils, TextField errorBox) {
+	private void doInput(KeyEvent e, ObservableList<String> list, UserMadeUtilities myUtils, TextField errorBox) {
 		if (e.getCode() == KeyCode.ENTER) {
 			try {
-				p.parse(this.getText());
+				myParser.parse(this.getText());
 			} catch (ParserError e1) {
 				errorBox.setText(e1.getMessage()); // error message?
 			} catch (IOException e1) {
@@ -51,6 +53,9 @@ public class UserInputBox extends TextField {
 		}
 	}
 	
+	public void setParser(BasicParser p){
+		myParser = p;
+	}
 	
 }
 	
