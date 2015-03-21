@@ -1,0 +1,11 @@
+<map id="gui.GUI.createNormalButtons" name="gui.GUI.createNormalButtons">
+<area shape="rect" id="node2" href="$d6/d2f/classgui_1_1_g_u_i.html#a01ea8b1de58d2eaf0a3008af1970cafd" title="gui.GUI.launchHelpPage" alt="" coords="271,5,446,32"/>
+<area shape="rect" id="node4" href="$d6/d2f/classgui_1_1_g_u_i.html#acc6890f8e44269e697b72ff64580fb98" title="gui.GUI.launchTurtleImage\lChooser" alt="" coords="265,57,453,98"/>
+<area shape="rect" id="node9" href="$d6/d2f/classgui_1_1_g_u_i.html#addad84768cec770c2d321a6abd4088f5" title="gui.GUI.launchTurtleInfo" alt="" coords="273,123,444,149"/>
+<area shape="rect" id="node3" href="$dd/d85/classgui_1_1_web_pop_up.html#a53d5e94a83616b341356728a4281f8cd" title="gui.WebPopUp.start" alt="" coords="531,5,677,32"/>
+<area shape="rect" id="node5" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#ade890409215dd5d1706b4feec691438f" title="gui.TurtleImageChooser.start" alt="" coords="501,64,707,91"/>
+<area shape="rect" id="node6" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#a3b2d5af9d7bda41da0bce5a4350fc391" title="gui.TurtleImageChooser.initialize" alt="" coords="755,64,981,91"/>
+<area shape="rect" id="node7" href="$df/dcc/classgui_1_1_turtle_view.html#a24ab0ecbaccb90ec6cd935f4b608e3ee" title="gui.TurtleView.updateTurtle\lImage" alt="" coords="1299,57,1490,98"/>
+<area shape="rect" id="node8" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#a832fda79e80b22c6d9602340d8516739" title="gui.TurtleImageChooser.choose\lTurtleImage" alt="" coords="1029,86,1251,127"/>
+<area shape="rect" id="node10" href="$df/dcc/classgui_1_1_turtle_view.html#a5a23d75671d39510283b6e38cbde3384" title="gui.TurtleView.getTurtleInfo" alt="" coords="509,123,699,149"/>
+</map>

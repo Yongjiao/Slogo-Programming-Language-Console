@@ -1,0 +1,31 @@
+<map id="application.Pen.getWeight" name="application.Pen.getWeight">
+<area shape="rect" id="node2" href="$df/dcb/classapplication_1_1_pen_handler.html#a307ff6736f97a1aa1706da924d7e642b" title="application.PenHandler.get\lPenWeight" alt="" coords="241,323,434,365"/>
+<area shape="rect" id="node3" href="$df/dcb/classapplication_1_1_pen_handler.html#a518bb3076e4d9d105870b0778341a8c0" title="application.PenHandler.set\lThicknessParameter" alt="" coords="483,323,675,365"/>
+<area shape="rect" id="node4" href="$d8/d65/classapplication_1_1_view_handler.html#a308dcaf9847965fa4a3d261347845f56" title="application.ViewHandler.set\lInfoParamsOfTurtleAndLine" alt="" coords="728,210,925,251"/>
+<area shape="rect" id="node20" href="$d3/de0/classapplication_1_1_view_handler2.html#a86919837e2dcf639d2f537d41eb5bd1a" title="application.ViewHandler2.set\lInfoParamsOfTurtleAndLine" alt="" coords="723,435,930,477"/>
+<area shape="rect" id="node5" href="$d8/d65/classapplication_1_1_view_handler.html#ac37927f63d43d93f1b1e0f5a3b59cf26" title="application.ViewHandler.initialize\lTurtle" alt="" coords="983,61,1211,102"/>
+<area shape="rect" id="node7" href="$d8/d65/classapplication_1_1_view_handler.html#ae489ceaa9b5ec67faf3ba22a11cec085" title="application.ViewHandler.update\lTurtleOnView" alt="" coords="986,210,1209,251"/>
+<area shape="rect" id="node6" href="$d8/d65/classapplication_1_1_view_handler.html#aede07ea15df8a762813028bb80403e6b" title="application.ViewHandler.\lViewHandler" alt="" coords="1289,5,1466,46"/>
+<area shape="rect" id="node8" href="$d8/d65/classapplication_1_1_view_handler.html#a1a94c855ceb0e8ffb1f72f138addb75b" title="application.ViewHandler.move\lTurtle" alt="" coords="1564,70,1777,111"/>
+<area shape="rect" id="node10" href="$d8/d65/classapplication_1_1_view_handler.html#a1aff135a076a9717102bb59ea613131c" title="application.ViewHandler.change\lLocationOfTurtle" alt="" coords="1559,151,1783,193"/>
+<area shape="rect" id="node13" href="$d8/d65/classapplication_1_1_view_handler.html#a98b4ba09b3f3e8b1a7667db5598dbfb0" title="application.ViewHandler.move\lTurtleImageAndDraw" alt="" coords="1271,122,1484,163"/>
+<area shape="rect" id="node14" href="$d8/d65/classapplication_1_1_view_handler.html#abe68f02cdf0227b13568e1aaabf57e5c" title="application.ViewHandler.rotate\lTurtle" alt="" coords="1269,239,1485,281"/>
+<area shape="rect" id="node16" href="$d8/d65/classapplication_1_1_view_handler.html#af07eafb381b0ea9a1ce68f6ffe8a7428" title="application.ViewHandler.set\lTurtleOrientation" alt="" coords="1279,305,1476,346"/>
+<area shape="rect" id="node19" href="$d8/d65/classapplication_1_1_view_handler.html#a55d042c40e05453e3f5f6bc6c1c6e060" title="application.ViewHandler.show\lTurtle" alt="" coords="1273,370,1482,411"/>
+<area shape="rect" id="node9" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af95e8ccf5c290a4d06f79caf2deed407" title="commands.viewCommands.turtle\lCommands.Move.changeLocation" alt="" coords="1851,70,2090,111"/>
+<area shape="rect" id="node11" href="$d5/de0/classcommands_1_1view_commands_1_1turtle_commands_1_1_clear_screen.html#ae547e4c170a1b6d41cdfc6c8bfe5e972" title="commands.viewCommands.turtle\lCommands.ClearScreen.execute" alt="" coords="1852,146,2089,187"/>
+<area shape="rect" id="node12" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af4d9a4d9ade56b5e3a1e582bd891b7b5" title="commands.viewCommands.turtle\lCommands.Move.goToLocation" alt="" coords="1852,211,2089,253"/>
+<area shape="rect" id="node15" href="$d3/dba/classcommands_1_1view_commands_1_1turtle_commands_1_1_rotate.html#a8ee301e936ff8d884357dccac52c2bfb" title="commands.viewCommands.turtle\lCommands.Rotate.changeOrientation" alt="" coords="1539,239,1802,281"/>
+<area shape="rect" id="node17" href="$df/d03/classcommands_1_1view_commands_1_1turtle_commands_1_1_go_towards_loc.html#a67f5f04ce72d0cd234d1e0a11e6d7c83" title="commands.viewCommands.turtle\lCommands.GoTowardsLoc.execute" alt="" coords="1548,305,1793,346"/>
+<area shape="rect" id="node18" href="$df/ded/classcommands_1_1view_commands_1_1turtle_commands_1_1_set_heading.html#a3efffc1774ad2f0b23742a20789f0ee8" title="commands.viewCommands.turtle\lCommands.SetHeading.execute" alt="" coords="1552,370,1789,411"/>
+<area shape="rect" id="node21" href="$d3/de0/classapplication_1_1_view_handler2.html#a3544f8be953d5b1e93f29786bc91e6c9" title="application.ViewHandler2.initialize\lTurtle" alt="" coords="979,435,1216,477"/>
+<area shape="rect" id="node23" href="$d3/de0/classapplication_1_1_view_handler2.html#adef8a4ac6b5b11687e8ecb1c05253287" title="application.ViewHandler2.update\lTurtleOnView" alt="" coords="982,585,1213,626"/>
+<area shape="rect" id="node22" href="$d3/de0/classapplication_1_1_view_handler2.html#ab9f42981fade26d0f6d67bd9dec9181f" title="application.ViewHandler2.\lViewHandler2" alt="" coords="1284,435,1471,477"/>
+<area shape="rect" id="node24" href="$d3/de0/classapplication_1_1_view_handler2.html#abaa9dc9add64d8386b9f7fc37152d620" title="application.ViewHandler2.set\lTurtleLocAndMove" alt="" coords="1567,523,1774,565"/>
+<area shape="rect" id="node27" href="$d3/de0/classapplication_1_1_view_handler2.html#ab87b30f73cb5e726f4fcc6b6f60f8007" title="application.ViewHandler2.move\lTurtleImageAndDraw" alt="" coords="1266,553,1489,594"/>
+<area shape="rect" id="node28" href="$d3/de0/classapplication_1_1_view_handler2.html#a4dfbbb48e3c3c7bc5db71a2a308a1b7c" title="application.ViewHandler2.rotate\lTurtle" alt="" coords="1265,618,1490,659"/>
+<area shape="rect" id="node29" href="$d3/de0/classapplication_1_1_view_handler2.html#a0e3021726260bc0112ea6b6deef82aaa" title="application.ViewHandler2.set\lTurtleOrientation" alt="" coords="1274,683,1481,725"/>
+<area shape="rect" id="node30" href="$d3/de0/classapplication_1_1_view_handler2.html#a204e29a9937f99e85d42c948f58012c1" title="application.ViewHandler2.show\lTurtle" alt="" coords="1268,749,1487,790"/>
+<area shape="rect" id="node25" href="$d3/de0/classapplication_1_1_view_handler2.html#ac682f2c1ca441598b6d29fe899e7f468" title="application.ViewHandler2.move\lTurtle" alt="" coords="1859,490,2082,531"/>
+<area shape="rect" id="node26" href="$d3/de0/classapplication_1_1_view_handler2.html#acd04df701dbbc0a759c79058966f8264" title="application.ViewHandler2.change\lLocationOfTurtle" alt="" coords="1854,555,2087,597"/>
+</map>
