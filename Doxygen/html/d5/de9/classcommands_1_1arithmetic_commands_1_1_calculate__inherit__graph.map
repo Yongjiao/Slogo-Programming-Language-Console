@@ -1,0 +1,13 @@
+<map id="commands.arithmeticCommands.Calculate" name="commands.arithmeticCommands.Calculate">
+<area shape="rect" id="node4" href="$d8/d56/classcommands_1_1arithmetic_commands_1_1_a_tan.html" title="commands.arithmeticCommands.ATan" alt="" coords="838,5,1109,32"/>
+<area shape="rect" id="node5" href="$d4/db2/classcommands_1_1arithmetic_commands_1_1_cos.html" title="commands.arithmeticCommands.Cos" alt="" coords="841,56,1106,83"/>
+<area shape="rect" id="node6" href="$d1/d2d/classcommands_1_1arithmetic_commands_1_1_log.html" title="commands.arithmeticCommands.Log" alt="" coords="841,107,1105,133"/>
+<area shape="rect" id="node7" href="$d9/d79/classcommands_1_1arithmetic_commands_1_1_minus.html" title="commands.arithmeticCommands.\lMinus" alt="" coords="853,158,1094,199"/>
+<area shape="rect" id="node8" href="$d3/dc4/classcommands_1_1arithmetic_commands_1_1_p_i.html" title="commands.arithmeticCommands.PI" alt="" coords="847,224,1099,251"/>
+<area shape="rect" id="node9" href="$d7/d19/classcommands_1_1arithmetic_commands_1_1_pow.html" title="commands.arithmeticCommands.Pow" alt="" coords="840,275,1107,301"/>
+<area shape="rect" id="node10" href="$d8/dfc/classcommands_1_1arithmetic_commands_1_1_random.html" title="commands.arithmeticCommands.\lRandom" alt="" coords="853,326,1094,367"/>
+<area shape="rect" id="node11" href="$df/d37/classcommands_1_1arithmetic_commands_1_1_sin.html" title="commands.arithmeticCommands.Sin" alt="" coords="843,392,1104,419"/>
+<area shape="rect" id="node12" href="$dc/d53/classcommands_1_1arithmetic_commands_1_1_tan.html" title="commands.arithmeticCommands.Tan" alt="" coords="842,443,1105,469"/>
+<area shape="rect" id="node2" href="$dc/d3e/classcommands_1_1_command_center.html" title="commands.CommandCenter" alt="" coords="291,224,499,251"/>
+<area shape="rect" id="node3" href="$d1/d4d/interfacecommands_1_1view_commands_1_1turtle_commands_1_1_executable.html" title="commands.viewCommands.turtle\lCommands.Executable" alt="" coords="5,217,243,258"/>
+</map>

@@ -1,0 +1,24 @@
+<map id="gui.GUI.initialize" name="gui.GUI.initialize">
+<area shape="rect" id="node2" href="$d6/d2f/classgui_1_1_g_u_i.html#a8946451ec351fce99254ed5efd88b33d" title="gui.GUI.initializeButtons" alt="" coords="188,180,361,207"/>
+<area shape="rect" id="node17" href="$d6/d2f/classgui_1_1_g_u_i.html#a969657070e7503ad76669ed3ef5001ed" title="gui.GUI.initializeCommands\lHistory" alt="" coords="176,322,373,363"/>
+<area shape="rect" id="node22" href="$d6/d2f/classgui_1_1_g_u_i.html#aa7c8117389f5932512d005ca752d0b6d" title="gui.GUI.initializeTextField" alt="" coords="187,388,363,415"/>
+<area shape="rect" id="node23" href="$d6/d2f/classgui_1_1_g_u_i.html#a784ba3db8493af6be1fb200653774010" title="gui.GUI.initializeView" alt="" coords="199,439,351,465"/>
+<area shape="rect" id="node3" href="$d6/d2f/classgui_1_1_g_u_i.html#abaeb42ce4c957a819bbb3d8adea84496" title="gui.GUI.createColorPicker\lButtons" alt="" coords="469,63,653,105"/>
+<area shape="rect" id="node6" href="$d6/d2f/classgui_1_1_g_u_i.html#a93dd1959425cd3009366bcc585373af4" title="gui.GUI.createNormalButtons" alt="" coords="456,155,667,181"/>
+<area shape="rect" id="node16" href="$d6/d2f/classgui_1_1_g_u_i.html#a031ed3459bcf6b4869840427a4f8ba9f" title="gui.GUI.createLanguageButtons" alt="" coords="448,205,675,232"/>
+<area shape="rect" id="node4" href="$d7/d9b/classgui_1_1_background_view.html#a603dfa5d6d9d8e7d7fa00b9e4798f00b" title="gui.BackgroundView.setBackground\lColor" alt="" coords="750,5,999,46"/>
+<area shape="rect" id="node5" href="$d8/ddb/classgui_1_1_line_view.html#ab2461bce69ebcb3d6bc9889a2ffd4e3c" title="gui.LineView.setColor" alt="" coords="797,71,953,97"/>
+<area shape="rect" id="node7" href="$d6/d2f/classgui_1_1_g_u_i.html#a01ea8b1de58d2eaf0a3008af1970cafd" title="gui.GUI.launchHelpPage" alt="" coords="787,121,962,148"/>
+<area shape="rect" id="node9" href="$d6/d2f/classgui_1_1_g_u_i.html#acc6890f8e44269e697b72ff64580fb98" title="gui.GUI.launchTurtleImage\lChooser" alt="" coords="781,173,969,214"/>
+<area shape="rect" id="node14" href="$d6/d2f/classgui_1_1_g_u_i.html#addad84768cec770c2d321a6abd4088f5" title="gui.GUI.launchTurtleInfo" alt="" coords="789,239,960,265"/>
+<area shape="rect" id="node8" href="$dd/d85/classgui_1_1_web_pop_up.html#a53d5e94a83616b341356728a4281f8cd" title="gui.WebPopUp.start" alt="" coords="1077,121,1224,148"/>
+<area shape="rect" id="node10" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#ade890409215dd5d1706b4feec691438f" title="gui.TurtleImageChooser.start" alt="" coords="1048,180,1253,207"/>
+<area shape="rect" id="node11" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#a3b2d5af9d7bda41da0bce5a4350fc391" title="gui.TurtleImageChooser.initialize" alt="" coords="1301,180,1528,207"/>
+<area shape="rect" id="node12" href="$df/dcc/classgui_1_1_turtle_view.html#a24ab0ecbaccb90ec6cd935f4b608e3ee" title="gui.TurtleView.updateTurtle\lImage" alt="" coords="1846,173,2037,214"/>
+<area shape="rect" id="node13" href="$d9/dc5/classgui_1_1_turtle_image_chooser.html#a832fda79e80b22c6d9602340d8516739" title="gui.TurtleImageChooser.choose\lTurtleImage" alt="" coords="1576,202,1797,243"/>
+<area shape="rect" id="node15" href="$df/dcc/classgui_1_1_turtle_view.html#a5a23d75671d39510283b6e38cbde3384" title="gui.TurtleView.getTurtleInfo" alt="" coords="1056,239,1245,265"/>
+<area shape="rect" id="node18" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a66be7c8192627c2ddfa68bd16c16e5ce" title="commands.UserMadeUtilities.get\lAllVars" alt="" coords="444,257,679,298"/>
+<area shape="rect" id="node19" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a0b6d189f8f0fe1685ea48c9ac55357f0" title="commands.UserMadeUtilities.get\lUDCommands" alt="" coords="444,322,679,363"/>
+<area shape="rect" id="node20" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a1f6e3a69c0981590f6e1e2c5d240b12d" title="commands.UserMadeUtilities.check\lUDCommands" alt="" coords="436,387,687,429"/>
+<area shape="rect" id="node21" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#ab404a41aca56228775075422606fabb2" title="commands.UserMadeUtilities.checkVars" alt="" coords="422,453,701,480"/>
+</map>
