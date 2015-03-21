@@ -1,0 +1,15 @@
+<map id="gui.GUI" name="gui.GUI">
+<area shape="rect" id="node2" href="$df/dcc/classgui_1_1_turtle_view.html" title="gui.TurtleView" alt="" coords="633,636,741,663"/>
+<area shape="rect" id="node19" href="$d8/d65/classapplication_1_1_view_handler.html" title="application.ViewHandler" alt="" coords="1209,427,1383,453"/>
+<area shape="rect" id="node3" href="$d8/d8b/classgui_1_1_view.html" title="gui.View" alt="" coords="288,589,363,616"/>
+<area shape="rect" id="node18" href="$d8/ddb/classgui_1_1_line_view.html" title="gui.LineView" alt="" coords="637,421,737,448"/>
+<area shape="rect" id="node21" href="$d7/d9b/classgui_1_1_background_view.html" title="gui.BackgroundView" alt="" coords="611,483,762,509"/>
+<area shape="rect" id="node20" href="$d1/d31/classapplication_1_1_turtle.html" title="application.Turtle" alt="" coords="622,796,751,823"/>
+<area shape="rect" id="node10" href="$d0/da7/classconfiguration_1_1_basic_parser.html" title="configuration.BasicParser" alt="" coords="2425,185,2607,212"/>
+<area shape="rect" id="node11" href="$d9/d11/classconfiguration_1_1_parser.html" title="configuration.Parser" alt="" coords="1972,64,2121,91"/>
+<area shape="rect" id="node12" href="$dc/d20/classapplication_1_1_command_factory.html" title="application.CommandFactory" alt="" coords="1589,199,1797,225"/>
+<area shape="rect" id="node13" href="$df/dcb/classapplication_1_1_pen_handler.html" title="application.PenHandler" alt="" coords="891,247,1061,273"/>
+<area shape="rect" id="node14" href="$de/d5a/classapplication_1_1_pen.html" title="application.Pen" alt="" coords="627,227,746,253"/>
+<area shape="rect" id="node16" href="$d0/d9b/enumapplication_1_1_pen_1_1_p_e_n_s_t_y_l_e.html" title="application.Pen.PENSTYLE" alt="" coords="232,207,419,233"/>
+<area shape="rect" id="node26" href="$d0/d3b/classcommands_1_1_user_made_utilities.html" title="commands.UserMadeUtilities" alt="" coords="2411,753,2621,780"/>
+</map>
