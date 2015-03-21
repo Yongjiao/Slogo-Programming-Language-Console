@@ -1,9 +1,0 @@
-<map id="configuration.Parser.buildTree" name="configuration.Parser.buildTree">
-<area shape="rect" id="node2" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#ad6e90d3cccee9da7cf3df2c13fc70381" title="commands.UserMadeUtilities.containsVars" alt="" coords="261,5,557,32"/>
-<area shape="rect" id="node3" href="$da/dde/classconfiguration_1_1_util.html#a55c271426926996186d1cde227ae7e23" title="configuration.Util.findCommandKey" alt="" coords="286,56,533,83"/>
-<area shape="rect" id="node5" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#afc570f31a89922ff7a42f13839888c8f" title="commands.UserMadeUtilities.get\lFromVars" alt="" coords="292,107,527,149"/>
-<area shape="rect" id="node6" href="$d9/d11/classconfiguration_1_1_parser.html#a6a8ca49b46db578a3d9e84b0c4ce2f75" title="configuration.Parser.isCommand" alt="" coords="295,173,524,200"/>
-<area shape="rect" id="node7" href="$d9/d11/classconfiguration_1_1_parser.html#af0032734232f2e6043d7c8c94d86dd1f" title="configuration.Parser.isConstant" alt="" coords="299,224,519,251"/>
-<area shape="rect" id="node8" href="$d9/d11/classconfiguration_1_1_parser.html#a061c6e2e973a9e7f531931f61f45448b" title="configuration.Parser.isVariable" alt="" coords="303,275,516,301"/>
-<area shape="rect" id="node4" href="$da/dde/classconfiguration_1_1_util.html#a163b0098613bf2f7becf27b131af3934" title="configuration.Util.match" alt="" coords="606,56,781,83"/>
-</map>
