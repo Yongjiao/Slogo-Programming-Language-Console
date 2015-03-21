@@ -63,7 +63,6 @@ public class GUI {
 		myButtonNames = new String[] {"help", "turtleimage", "turtleinfo"};
 		myButtons = new Button[NUM_BUTTONS];
 		myBorders = new BorderPane();
-		myParser = new BasicParser();
 	}
 	
 	/**
@@ -73,7 +72,7 @@ public class GUI {
 	 */
 	public BorderPane initialize(){
 		initializeView();
-		initializeTextField();
+		//initializeTextField();
 		initializeCommandsHistory();
 		initializeButtons();
 		//Scene myScene = new Scene(myBorders, STAGE_WIDTH, STAGE_HEIGHT);
@@ -210,6 +209,7 @@ public class GUI {
 	
 	public void setParser(BasicParser p){
 		myParser = p;
+		initializeTextField();
 	}
 	
 	/*
