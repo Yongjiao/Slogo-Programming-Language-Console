@@ -1,0 +1,11 @@
+<map id="gui.UserInputBox.UserInputBox" name="gui.UserInputBox.UserInputBox">
+<area shape="rect" id="node2" href="$d3/d71/classgui_1_1_user_input_box.html#a97af345e01f003fb2eab983e845422f2" title="gui.UserInputBox.doInput" alt="" coords="275,159,458,185"/>
+<area shape="rect" id="node3" href="$d0/da7/classconfiguration_1_1_basic_parser.html#ab316d3a3f9ec49ba6922087948e76901" title="configuration.BasicParser.parse" alt="" coords="535,100,758,127"/>
+<area shape="rect" id="node9" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a1f6e3a69c0981590f6e1e2c5d240b12d" title="commands.UserMadeUtilities.check\lUDCommands" alt="" coords="521,151,772,193"/>
+<area shape="rect" id="node10" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#ab404a41aca56228775075422606fabb2" title="commands.UserMadeUtilities.checkVars" alt="" coords="507,217,786,244"/>
+<area shape="rect" id="node4" href="$d1/d4d/interfacecommands_1_1view_commands_1_1turtle_commands_1_1_executable.html#a8e431a20f44eb26b441038ba913a2ce4" title="commands.viewCommands.turtle\lCommands.Executable.execute" alt="" coords="840,5,1077,46"/>
+<area shape="rect" id="node5" href="$da/dde/classconfiguration_1_1_util.html#a55c271426926996186d1cde227ae7e23" title="configuration.Util.findCommandKey" alt="" coords="835,71,1082,97"/>
+<area shape="rect" id="node7" href="$dc/d20/classapplication_1_1_command_factory.html#a42b3fb802e5122a2ace019bd081bd945" title="application.CommandFactory.make\lNoParmsCommands" alt="" coords="835,122,1082,163"/>
+<area shape="rect" id="node8" href="$da/dde/classconfiguration_1_1_util.html#a535858cb955beeaeaa5e7eccfb71d4c1" title="configuration.Util.toCommand\lQueue" alt="" coords="851,187,1066,229"/>
+<area shape="rect" id="node6" href="$da/dde/classconfiguration_1_1_util.html#a163b0098613bf2f7becf27b131af3934" title="configuration.Util.match" alt="" coords="1131,71,1306,97"/>
+</map>
