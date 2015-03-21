@@ -8,6 +8,7 @@ public abstract class TurtScreen extends TurtleCommands{
 	
 	public TurtScreen(ViewHandler v) {
 		super(v);
+		myViewHandler = v;
 	}
 
 }

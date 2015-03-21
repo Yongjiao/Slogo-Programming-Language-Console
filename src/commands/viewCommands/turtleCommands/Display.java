@@ -4,11 +4,12 @@ import application.ViewHandler;
 
 public abstract class Display extends TurtleCommands{
 	
-	protected ViewHandler myTurtleHandler;
+	protected ViewHandler myViewHandler;
 	
 	public Display(ViewHandler vh) {
 		super(vh);
 		super.setParams(super.getParams());
+		myViewHandler = vh;
 	}
 
 }
