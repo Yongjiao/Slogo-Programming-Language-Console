@@ -1,7 +1,0 @@
-<map id="commands.UserMadeUtilities.checkVars" name="commands.UserMadeUtilities.checkVars">
-<area shape="rect" id="node2" href="$d3/d71/classgui_1_1_user_input_box.html#a25ddaeacb322372cf5f5648cbf46eff2" title="gui.UserInputBox.doInput" alt="" coords="341,5,523,32"/>
-<area shape="rect" id="node4" href="$d6/d2f/classgui_1_1_g_u_i.html#a969657070e7503ad76669ed3ef5001ed" title="gui.GUI.initializeCommands\lHistory" alt="" coords="333,57,531,98"/>
-<area shape="rect" id="node3" href="$d3/d71/classgui_1_1_user_input_box.html#a2fc8903ae3868c350deb7b6caef9527d" title="gui.UserInputBox.UserInputBox" alt="" coords="579,5,800,32"/>
-<area shape="rect" id="node5" href="$d6/d2f/classgui_1_1_g_u_i.html#a8b2bdbd34755b5a59657b9ad391d2b22" title="gui.GUI.initialize" alt="" coords="628,64,751,91"/>
-<area shape="rect" id="node6" href="$d9/d96/classapplication_1_1_main.html#a998d14807e266e3f3b9e85468fc1ea98" title="application.Main.start" alt="" coords="849,64,1007,91"/>
-</map>

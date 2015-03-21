@@ -1,5 +1,0 @@
-<map id="gui.LineView.findCorner" name="gui.LineView.findCorner">
-<area shape="rect" id="node2" href="$d8/ddb/classgui_1_1_line_view.html#a4a4d4a5dc42ec1fc8896b453703b6991" title="gui.LineView.findXEdge" alt="" coords="225,5,391,32"/>
-<area shape="rect" id="node4" href="$d8/ddb/classgui_1_1_line_view.html#a6cc826f05b0ac955fab89afbfca7c1a8" title="gui.LineView.findYEdge" alt="" coords="225,56,391,83"/>
-<area shape="rect" id="node3" href="$d8/d8b/classgui_1_1_view.html#a9df94efe60af56c89531c45f0f3f9624" title="gui.View.setNewPoint" alt="" coords="441,31,597,57"/>
-</map>
