@@ -11,7 +11,7 @@ public class Forward extends Move {
 	}
 
 	public double execute() {
-		double steps = (Double) super.getParams().get(super.getParams().size() - 1);
+		double steps = (Double) this.getParams().get(this.getParams().size() - 1);
 		return super.changeLocation(steps);
 	}
 }

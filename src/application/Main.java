@@ -7,12 +7,14 @@ import gui.GUI;
 
 
 
+
 import java.util.ArrayList;
 
 import commands.CommandCenter;
 import commands.viewCommands.ViewCommands;
 import commands.viewCommands.turtleCommands.Backward;
 import commands.viewCommands.turtleCommands.TurtleCommands;
+import configuration.BasicParser;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -53,6 +55,10 @@ public class Main extends Application {
 				CommandFactory myFactory = new CommandFactory();
 				myFactory.setPenHandler(myPenHandler);
 				myFactory.setViewHandler(myViewHandler);
+				
+				BasicParser myParser = new BasicParser(myFactory);
+				
+				myGUI.setParser(myParser);
 				
 				tab.setContent(myBorderPane);
 				myTabs.getTabs().add(tab);

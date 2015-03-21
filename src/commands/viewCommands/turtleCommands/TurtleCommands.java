@@ -24,7 +24,7 @@ public class TurtleCommands extends CommandCenter{
 	{
 		params = p;
 		myViewHandler = v;
-		super.setParams(new ArrayList<Object>());
+		super.setParams(p);
 		
 	}
 	
