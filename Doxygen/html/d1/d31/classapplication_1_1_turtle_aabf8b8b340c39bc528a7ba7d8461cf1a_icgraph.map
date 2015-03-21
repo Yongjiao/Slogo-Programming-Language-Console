@@ -1,0 +1,5 @@
+<map id="application.Turtle.turn" name="application.Turtle.turn">
+<area shape="rect" id="node2" href="$d3/de0/classapplication_1_1_view_handler2.html#a4dfbbb48e3c3c7bc5db71a2a308a1b7c" title="application.ViewHandler2.rotate\lTurtle" alt="" coords="214,5,439,46"/>
+<area shape="rect" id="node3" href="$d8/d65/classapplication_1_1_view_handler.html#abe68f02cdf0227b13568e1aaabf57e5c" title="application.ViewHandler.rotate\lTurtle" alt="" coords="219,70,435,111"/>
+<area shape="rect" id="node4" href="$d3/dba/classcommands_1_1view_commands_1_1turtle_commands_1_1_rotate.html#a8ee301e936ff8d884357dccac52c2bfb" title="commands.viewCommands.turtle\lCommands.Rotate.changeOrientation" alt="" coords="489,70,751,111"/>
+</map>
