@@ -18,6 +18,7 @@ import Tree.Node;
 public class IfelseParser extends Parser{		
 	private CommandFactory myFactory;
 	protected IfelseParser(CommandFactory cf) throws IOException {
+		System.out.println("Creating ifelse parser");
 		myFactory = cf;
 		super.setCommandFactory(cf);
 	}

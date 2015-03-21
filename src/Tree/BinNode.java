@@ -21,7 +21,7 @@ public class BinNode implements Node{
 		command = new String(s);
 		left = l; //will this cause problem?
 		right = r;
-		cf = myFactory;
+		myFactory = cf;
 	}
 
 	//needs execution which involves construct commandObject

@@ -22,6 +22,12 @@ public class IfParser extends IfelseParser{
 		super(cf);
 		myFactory = cf;
 	}	
+	public double parse(String s) throws IOException, ParserError{
+		Queue<String> tokens = Util.toCommandQueue(s);
+		System.out.println(tokens);
+		skip(tokens);
+		return parse(tokens);
+	}
 	/**
 	 * @param command queue
 	 * @return last executed command return value if boolean is evaluated to 0 
