@@ -16,7 +16,7 @@ public class Set extends TurtleCommands {
 	}
 
 	public double execute() {
-		String var = name.substring(1);
+		String var = name;
 		Double val = (Double) params.get(params.size() - 1);
 		UserMadeUtilities.putInVars(var, val);
 		return val;
