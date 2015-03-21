@@ -19,8 +19,9 @@ public class BasicParser extends Parser{
 	private HashSet<String> userdefined;
 	private CommandFactory myFactory;
 	
-	public BasicParser() throws IOException{
-		myFactory = new CommandFactory();
+	public BasicParser(CommandFactory cf) throws IOException{
+		myFactory = cf;
+		//setCommandFactory(cf);
 		initializeParsers();
 	}	
 	/**
