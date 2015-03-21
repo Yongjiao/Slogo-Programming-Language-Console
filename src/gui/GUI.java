@@ -208,6 +208,9 @@ public class GUI {
 		myBorders.setBottom(vbox);
 	}
 	
+	public void setParser(BasicParser p){
+		myParser = p;
+	}
 	
 	/*
 	 * Grabs all the views
