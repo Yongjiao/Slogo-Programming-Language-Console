@@ -15,20 +15,20 @@ public class SingleNode implements Node{
 	private final int numChild = 1;
 	private String command;
 	private Node child;
+	private CommandFactory myFactory;
 	
-	
-	public SingleNode(String s, Node c){
+	public SingleNode(String s, Node c, CommandFactory cf){
 		command = s;
 		child = c;
+		myFactory = cf;
 	}
 
 	@Override 
 	public double getValue() {
-		CommandFactory cf = new CommandFactory();
 		ArrayList<Object> parList = new ArrayList<Object>();
 		double chi = child.getValue();
 		parList.add(chi);
-		CommandCenter com =  cf.makeBasicCommands(command, parList);
+		CommandCenter com =  myFactory.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	

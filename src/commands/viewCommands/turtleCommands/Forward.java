@@ -11,6 +11,8 @@ public class Forward extends Move {
 	}
 
 	public double execute() {
+		System.out.println("Parameters size is " + super.getParams().size());
+		System.out.println("the Parameters are " + super.getParams() );
 		double steps = (Double) super.getParams().get(super.getParams().size() - 1);
 		return super.changeLocation(steps);
 	}
