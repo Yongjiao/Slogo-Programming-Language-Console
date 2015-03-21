@@ -10,7 +10,7 @@ public class PenUp extends ViewCommands{
 	}
 	
 	public double execute() {
-		super.getPenHandler().setPenStatus(1);
+		super.getPenHandler().setPenStatus(0);
 		return 0;
 	}
 	
