@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
+import application.CommandFactory;
 import commands.UserMadeUtilities;
 import Tree.BinNode;
 import Tree.ConstNode;
@@ -20,9 +20,13 @@ public abstract class Parser {
 	private List<Entry<String, Pattern>> patterns; 
 	private HashSet<String> oneParComs;
 	private HashSet<String> twoParComs;
+	private CommandFactory myFactory;
 	
 	protected Parser() throws IOException{
 		initialize();
+	}	
+	protected void setCommandFactory(CommandFactory cf){
+		myFactory = cf;
 	}
 	/**abstract function, parses user input to expression tree and execute 
 	 * @param user input
@@ -68,12 +72,12 @@ public abstract class Parser {
 			System.out.println();
 			if(oneParComs.contains(comKey)){
 				Node child = buildTree(tokens);
-				return new SingleNode(comKey , child);
+				return new SingleNode(comKey , child, myFactory);
 			}			
 			if(twoParComs.contains(comKey)){
 				Node left = buildTree(tokens);
 				Node right = buildTree(tokens); 
-				return new BinNode(comKey, left, right);
+				return new BinNode(comKey, left, right, myFactory);
 			}
 			else
 				throw new ParserError("Command Undefined: " + token);
@@ -91,7 +95,14 @@ public abstract class Parser {
 		else		 
 			throw new ParserError("unexpected Token: "+ token);
 	}
-	
+	/**
+	 * parses commands for each loop iteration with the loop iterator/local variables 
+	 * @param command string
+	 * @param localVar
+	 * @param value of iterator
+	 * @return the constructed tree for one iteration
+	 * @throws ParserError
+	 */
 	protected Node buildTree(Queue<String> tokens, String localVar, int iterator) throws ParserError {
 		String token = tokens.poll();
 		System.out.println("TreeParsing the token: " + token);
@@ -100,12 +111,12 @@ public abstract class Parser {
 			System.out.println();
 			if(oneParComs.contains(comKey)){
 				Node child = buildTree(tokens, localVar, iterator);
-				return new SingleNode(comKey , child);
+				return new SingleNode(comKey , child, myFactory);
 			}			
 			if(twoParComs.contains(comKey)){
 				Node left = buildTree(tokens, localVar, iterator);
 				Node right = buildTree(tokens, localVar, iterator); 
-				return new BinNode(comKey, left, right);
+				return new BinNode(comKey, left, right, myFactory);
 			}
 			else
 				throw new ParserError("Command Undefined: " + token);

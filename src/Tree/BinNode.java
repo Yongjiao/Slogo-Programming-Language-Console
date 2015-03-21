@@ -15,22 +15,23 @@ public class BinNode implements Node{
 	private String command;
 	private Node left;
 	private Node right;
+	private CommandFactory myFactory;
 	
-	public BinNode(String s, Node l, Node r){
+	public BinNode(String s, Node l, Node r, CommandFactory cf){
 		command = new String(s);
 		left = l; //will this cause problem?
 		right = r;
+		cf = myFactory;
 	}
 
 	//needs execution which involves construct commandObject
 	@Override 
 	public double getValue() {
-		CommandFactory cf = new CommandFactory();
 		ArrayList<Object> parList = new ArrayList<Object>();
 		parList.add(left.getValue());
 		parList.add(right.getValue());
 		System.out.println("Binary node get evaluated is " + command + ""+ parList);
-		CommandCenter com = cf.makeBasicCommands(command, parList);
+		CommandCenter com = myFactory.makeBasicCommands(command, parList);
 		return com.execute();
 	}
 	@Override
