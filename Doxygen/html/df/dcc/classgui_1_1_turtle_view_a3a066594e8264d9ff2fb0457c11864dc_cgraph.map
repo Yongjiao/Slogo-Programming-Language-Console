@@ -1,5 +1,0 @@
-<map id="gui.TurtleView.TurtleView" name="gui.TurtleView.TurtleView">
-<area shape="rect" id="node2" href="$d8/d8b/classgui_1_1_view.html#a805679dcb8753b21508755667f09fac9" title="gui.View.getNewPoint" alt="" coords="229,5,387,32"/>
-<area shape="rect" id="node3" href="$d8/d8b/classgui_1_1_view.html#a2afd8ec8646a5060ea972b5b4839e2a7" title="gui.View.getXOffset" alt="" coords="237,56,379,83"/>
-<area shape="rect" id="node4" href="$d8/d8b/classgui_1_1_view.html#af40e5061e35eec000ddb061ff998b4c2" title="gui.View.getYOffset" alt="" coords="237,107,379,133"/>
-</map>

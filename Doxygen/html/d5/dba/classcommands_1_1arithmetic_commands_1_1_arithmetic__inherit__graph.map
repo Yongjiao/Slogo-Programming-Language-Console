@@ -1,9 +1,0 @@
-<map id="commands.arithmeticCommands.Arithmetic" name="commands.arithmeticCommands.Arithmetic">
-<area shape="rect" id="node4" href="$d4/da1/classcommands_1_1arithmetic_commands_1_1_add.html" title="commands.arithmeticCommands.Add" alt="" coords="837,5,1104,32"/>
-<area shape="rect" id="node5" href="$d6/d83/classcommands_1_1arithmetic_commands_1_1_divide.html" title="commands.arithmeticCommands.\lDivide" alt="" coords="850,57,1091,98"/>
-<area shape="rect" id="node6" href="$dd/d58/classcommands_1_1arithmetic_commands_1_1_multiply.html" title="commands.arithmeticCommands.\lMultiply" alt="" coords="850,122,1091,163"/>
-<area shape="rect" id="node7" href="$dc/d90/classcommands_1_1arithmetic_commands_1_1_remainder.html" title="commands.arithmeticCommands.\lRemainder" alt="" coords="850,187,1091,229"/>
-<area shape="rect" id="node8" href="$dc/db7/classcommands_1_1arithmetic_commands_1_1_subtract.html" title="commands.arithmeticCommands.\lSubtract" alt="" coords="850,253,1091,294"/>
-<area shape="rect" id="node2" href="$dc/d3e/classcommands_1_1_command_center.html" title="commands.CommandCenter" alt="" coords="291,129,499,156"/>
-<area shape="rect" id="node3" href="$d1/d4d/interfacecommands_1_1view_commands_1_1turtle_commands_1_1_executable.html" title="commands.viewCommands.turtle\lCommands.Executable" alt="" coords="5,122,243,163"/>
-</map>

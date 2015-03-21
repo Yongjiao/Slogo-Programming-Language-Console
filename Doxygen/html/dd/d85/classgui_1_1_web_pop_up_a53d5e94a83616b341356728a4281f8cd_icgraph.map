@@ -1,7 +1,0 @@
-<map id="gui.WebPopUp.start" name="gui.WebPopUp.start">
-<area shape="rect" id="node2" href="$d6/d2f/classgui_1_1_g_u_i.html#a01ea8b1de58d2eaf0a3008af1970cafd" title="gui.GUI.launchHelpPage" alt="" coords="201,5,375,32"/>
-<area shape="rect" id="node3" href="$d6/d2f/classgui_1_1_g_u_i.html#a93dd1959425cd3009366bcc585373af4" title="gui.GUI.createNormalButtons" alt="" coords="424,5,635,32"/>
-<area shape="rect" id="node4" href="$d6/d2f/classgui_1_1_g_u_i.html#a8946451ec351fce99254ed5efd88b33d" title="gui.GUI.initializeButtons" alt="" coords="683,5,856,32"/>
-<area shape="rect" id="node5" href="$d6/d2f/classgui_1_1_g_u_i.html#a8b2bdbd34755b5a59657b9ad391d2b22" title="gui.GUI.initialize" alt="" coords="904,5,1027,32"/>
-<area shape="rect" id="node6" href="$d9/d96/classapplication_1_1_main.html#a998d14807e266e3f3b9e85468fc1ea98" title="application.Main.start" alt="" coords="1075,5,1234,32"/>
-</map>
