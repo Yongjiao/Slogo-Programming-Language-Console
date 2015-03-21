@@ -18,7 +18,6 @@ import Tree.Node;
 public class IfelseParser extends Parser{		
 	private CommandFactory myFactory;
 	protected IfelseParser(CommandFactory cf) throws IOException {
-		System.out.println("Creating ifelse parser");
 		myFactory = cf;
 		super.setCommandFactory(cf);
 	}
@@ -60,6 +59,7 @@ public class IfelseParser extends Parser{
 	 */
 	protected ArrayList<Node> parseListCommands(Queue<String> qu) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
+		System.out.println(qu);
 		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);

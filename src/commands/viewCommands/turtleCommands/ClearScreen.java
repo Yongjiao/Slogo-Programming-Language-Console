@@ -9,6 +9,7 @@ public class ClearScreen extends TurtScreen{
 	
 	public ClearScreen(ViewHandler vh) {
 		super(vh);
+		myVH = vh;
 	}
 	
 	public double execute() {

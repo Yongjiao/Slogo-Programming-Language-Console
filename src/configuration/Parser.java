@@ -141,6 +141,8 @@ public abstract class Parser {
 		return s.matches(listend);
 	}
 	protected boolean isListStart(String s){
+		System.out.println(s);
+		System.out.println(liststart);
 		return s.matches(liststart);
 	}
 	protected boolean isVariable(String s){
