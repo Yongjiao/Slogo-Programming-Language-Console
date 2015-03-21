@@ -21,7 +21,7 @@ public class BasicParser extends Parser{
 	
 	public BasicParser(CommandFactory cf) throws IOException{
 		myFactory = cf;
-		//setCommandFactory(cf);
+		setCommandFactory(cf);
 		initializeParsers();
 	}	
 	/**

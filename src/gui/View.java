@@ -14,7 +14,7 @@ public abstract class View extends Canvas {
 	
 	private static double XOFFSET, YOFFSET;
 	private static final Point2D DEFAULT_POINT = new Point2D(0,0);
-	private static Point2D newDest;
+	private Point2D newDest;
 	
 	public View(int x, int y){
 		this.setWidth(x);
