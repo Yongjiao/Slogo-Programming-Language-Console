@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import application.CommandFactory;
 import Tree.Node;
 /**
  * subclass for For command parsing
@@ -17,8 +18,11 @@ import Tree.Node;
  */
 public class ForParser extends Parser{
 	private String localVar;
-	public ForParser() throws IOException{
-		super();
+	private CommandFactory myFactory;
+	
+	public ForParser(CommandFactory cf) throws IOException{
+		myFactory = cf;
+		super.setCommandFactory(cf);
 	}
 	@Override
 	public double parse(String s) throws ParserError{
@@ -83,8 +87,8 @@ public class ForParser extends Parser{
 		return result;
 	}
 	public static void main(String[] args) throws IOException, ParserError {
-		ForParser example = new ForParser();
+//		ForParser example = new ForParser();
 		String forl =  "for [ :v 0 10 1 ] [ / sum :v 5 10 ]";
-		example.parse(forl);
+//		example.parse(forl);
 	}
 }

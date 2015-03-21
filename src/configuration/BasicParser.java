@@ -21,7 +21,7 @@ public class BasicParser extends Parser{
 	
 	public BasicParser(CommandFactory cf) throws IOException{
 		myFactory = cf;
-		setCommandFactory(cf);
+		super.setCommandFactory(cf);
 		initializeParsers();
 	}	
 	/**
@@ -67,7 +67,7 @@ public class BasicParser extends Parser{
 	}
 	private void initializeParsers() throws IOException{
 		String elements[] = { "MakeVariable", "IfElse", "If", "DoTimes", "Repeat", "For"};
-		Parser[] pars = {new SetParser(), new IfelseParser(), new IfParser(), new DotimesParser(), new RepeatParser(),new ForParser()};
+		Parser[] pars = {new SetParser(myFactory), new IfelseParser(myFactory), new IfParser(myFactory), new DotimesParser(myFactory), new RepeatParser(myFactory),new ForParser(myFactory)};
 		myParsers = new HashMap<>();
 		userdefined = new HashSet(Arrays.asList(elements));
 		for(int i = 0; i < elements.length; i++){

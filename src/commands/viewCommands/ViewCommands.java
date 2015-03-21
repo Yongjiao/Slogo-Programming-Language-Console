@@ -17,14 +17,13 @@ public class ViewCommands extends CommandCenter{
 	public ViewCommands(PenHandler p)
 	{
 		myPH = p;
-		super.setParams(new ArrayList<Object>());
 	}
 	
 	public ViewCommands(ArrayList<Object> l, PenHandler p)
 	{
 		params = l;
 		myPH = p;
-		super.setParams(new ArrayList<Object>());
+		super.setParams(l);
 	}
 	
 	// initialized by Main

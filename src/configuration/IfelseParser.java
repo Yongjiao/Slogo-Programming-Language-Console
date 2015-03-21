@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import application.CommandFactory;
 import Tree.Node;
 /**
  * subclass for Ifelse command parsing
@@ -15,9 +16,10 @@ import Tree.Node;
  *
  */
 public class IfelseParser extends Parser{		
-
-	protected IfelseParser() throws IOException {
-		super();
+	private CommandFactory myFactory;
+	protected IfelseParser(CommandFactory cf) throws IOException {
+		myFactory = cf;
+		super.setCommandFactory(cf);
 	}
 	public double parse(String s) throws IOException, ParserError{
 		Queue<String> tokens = Util.toCommandQueue(s);

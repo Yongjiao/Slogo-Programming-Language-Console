@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import application.CommandFactory;
 import Tree.Node;
 /**
  * subclass for If command parsing
@@ -16,9 +17,10 @@ import Tree.Node;
  *
  */
 public class IfParser extends IfelseParser{
-	
-	public IfParser() throws IOException{
-		super();
+	private CommandFactory myFactory;	
+	public IfParser(CommandFactory cf) throws IOException{
+		super(cf);
+		myFactory = cf;
 	}	
 	/**
 	 * @param command queue
@@ -36,8 +38,8 @@ public class IfParser extends IfelseParser{
 	}
 
 	public static void main(String[] args) throws IOException, ParserError {
-		IfParser example = new IfParser();
+		//IfParser example = new IfParser();
 		String ifl = "if equal? 2 6 [ * 30 20 / 20 10 ]";
-		example.parse(ifl);
+		//example.parse(ifl);
 	}
 }

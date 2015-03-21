@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.*;
 
+import application.CommandFactory;
 import commands.CommandCenter;
 import commands.viewCommands.turtleCommands.Set;
 import Tree.BinNode;
@@ -17,9 +18,11 @@ import Tree.SingleNode;
  *
  */
 public class SetParser extends Parser{
+	private CommandFactory myFactory;
 	
-	public SetParser() throws IOException{
-		super();
+	public SetParser(CommandFactory cf) throws IOException{
+		myFactory = cf;
+		super.setCommandFactory(cf);
 	}
 
 	public double parse(String s) throws ParserError, IOException{
@@ -44,9 +47,9 @@ public class SetParser extends Parser{
 	}
 	
 	public static void main(String[] args) throws IOException, ParserError {
-		String sett = "set :v sum 50 100";
-		SetParser example = new SetParser();
-		example.parse(sett);
+	//	String sett = "set :v sum 50 100";
+	//	SetParser example = new SetParser();
+	//	example.parse(sett);
 	}
 	
 }
