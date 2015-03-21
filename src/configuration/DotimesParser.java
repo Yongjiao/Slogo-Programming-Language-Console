@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import application.CommandFactory;
 import Tree.Node;
 /**
  * subclass for Dotimes command parsing
@@ -17,8 +18,11 @@ import Tree.Node;
  */
 public class DotimesParser extends Parser{
 	private String localVar = "";
-	public DotimesParser() throws IOException {
-		super();
+	private CommandFactory myFactory;
+	
+	public DotimesParser(CommandFactory cf) throws IOException {
+		myFactory = cf;
+		super.setCommandFactory(cf);
 	}	
 	@Override
 	public double parse(String s) throws ParserError{
@@ -89,9 +93,9 @@ public class DotimesParser extends Parser{
 	}		
 	
 	public static void main(String[] args) throws IOException, ParserError {
-		DotimesParser example = new DotimesParser();
+//		DotimesParser example = new DotimesParser();
 		String dotimes = "dotimes [ :name 10 ] [ sum :name 2 atan 100 ]";
-		example.parse(dotimes);
+//		example.parse(dotimes);
 	}
 
 }

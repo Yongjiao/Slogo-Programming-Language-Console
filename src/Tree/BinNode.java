@@ -31,6 +31,7 @@ public class BinNode implements Node{
 		parList.add(left.getValue());
 		parList.add(right.getValue());
 		System.out.println("Binary node get evaluated is " + command + ""+ parList);
+		System.out.println(myFactory);
 		CommandCenter com = myFactory.makeBasicCommands(command, parList);
 		return com.execute();
 	}

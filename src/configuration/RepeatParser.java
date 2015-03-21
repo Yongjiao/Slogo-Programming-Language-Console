@@ -8,15 +8,18 @@ import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import application.CommandFactory;
 import Tree.Node;
 /**
  * subclass for Repeat command parsing
  * @author Yongjiao Yu
  */
 public class RepeatParser extends Parser{
+	private CommandFactory myFactory;
 	
-	public RepeatParser() throws IOException{
-		super();
+	public RepeatParser(CommandFactory cf) throws IOException{
+		myFactory = cf;
+		super.setCommandFactory(cf);
 	}
 	@Override
 	public double parse(String s) throws IOException, ParserError{
@@ -67,9 +70,9 @@ public class RepeatParser extends Parser{
 	}	
 	
 	public static void main(String[] args) throws IOException, ParserError {
-		RepeatParser example = new RepeatParser();	
+		//RepeatParser example = new RepeatParser();	
 		String repeat = "repeat 10 [ sum tan 50 10 ]";
-		example.parse(repeat);
+		//example.parse(repeat);
 	}
 
 }
