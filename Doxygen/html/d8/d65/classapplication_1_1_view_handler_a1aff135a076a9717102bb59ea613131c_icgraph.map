@@ -1,0 +1,4 @@
+<map id="application.ViewHandler.changeLocationOfTurtle" name="application.ViewHandler.changeLocationOfTurtle">
+<area shape="rect" id="node2" href="$d5/de0/classcommands_1_1view_commands_1_1turtle_commands_1_1_clear_screen.html#ae547e4c170a1b6d41cdfc6c8bfe5e972" title="commands.viewCommands.turtle\lCommands.ClearScreen.execute" alt="" coords="277,5,515,46"/>
+<area shape="rect" id="node3" href="$dd/da6/classcommands_1_1view_commands_1_1turtle_commands_1_1_move.html#af4d9a4d9ade56b5e3a1e582bd891b7b5" title="commands.viewCommands.turtle\lCommands.Move.goToLocation" alt="" coords="277,70,515,111"/>
+</map>
