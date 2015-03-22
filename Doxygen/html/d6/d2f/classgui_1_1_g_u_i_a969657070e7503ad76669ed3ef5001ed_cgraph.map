@@ -1,6 +1,0 @@
-<map id="gui.GUI.initializeCommandsHistory" name="gui.GUI.initializeCommandsHistory">
-<area shape="rect" id="node2" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a1f6e3a69c0981590f6e1e2c5d240b12d" title="commands.UserMadeUtilities.check\lUDCommands" alt="" coords="265,5,516,46"/>
-<area shape="rect" id="node3" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#ab404a41aca56228775075422606fabb2" title="commands.UserMadeUtilities.checkVars" alt="" coords="251,71,530,97"/>
-<area shape="rect" id="node4" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a66be7c8192627c2ddfa68bd16c16e5ce" title="commands.UserMadeUtilities.get\lAllVars" alt="" coords="273,122,508,163"/>
-<area shape="rect" id="node5" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a0b6d189f8f0fe1685ea48c9ac55357f0" title="commands.UserMadeUtilities.get\lUDCommands" alt="" coords="273,187,508,229"/>
-</map>
