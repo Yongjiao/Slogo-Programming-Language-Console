@@ -40,7 +40,7 @@ public class UserInputBox extends TextField {
 	private void doInput(KeyEvent e, ObservableList<String> list, UserMadeUtilities myUtils, TextField errorBox) {
 		if (e.getCode() == KeyCode.ENTER) {
 			try {
-				myParser.parse(this.getText());
+				errorBox.setText(Double.toString(myParser.parse(this.getText())));
 			} catch (ParserError e1) {
 				errorBox.setText(e1.getMessage()); // error message?
 			} catch (IOException e1) {
