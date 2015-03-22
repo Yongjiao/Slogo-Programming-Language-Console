@@ -1,6 +1,0 @@
-<map id="commands.viewCommands.turtleCommands.ShowTurtle" name="commands.viewCommands.turtleCommands.ShowTurtle">
-<area shape="rect" id="node2" href="$df/d7a/classcommands_1_1view_commands_1_1turtle_commands_1_1_turt_screen.html" title="commands.viewCommands.turtle\lCommands.TurtScreen" alt="" coords="4,262,240,303"/>
-<area shape="rect" id="node3" href="$d8/def/classcommands_1_1view_commands_1_1turtle_commands_1_1_turtle_commands.html" title="commands.viewCommands.turtle\lCommands.TurtleCommands" alt="" coords="4,171,240,213"/>
-<area shape="rect" id="node4" href="$dc/d3e/classcommands_1_1_command_center.html" title="commands.CommandCenter" alt="" coords="19,96,227,123"/>
-<area shape="rect" id="node5" href="$d1/d4d/interfacecommands_1_1view_commands_1_1turtle_commands_1_1_executable.html" title="commands.viewCommands.turtle\lCommands.Executable" alt="" coords="4,6,240,47"/>
-</map>
