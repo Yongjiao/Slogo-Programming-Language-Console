@@ -18,10 +18,8 @@ import Tree.Node;
  */
 public class DotimesParser extends Parser{
 	private String localVar = "";
-	private CommandFactory myFactory;
 	
 	public DotimesParser(CommandFactory cf) throws IOException {
-		myFactory = cf;
 		super.setCommandFactory(cf);
 	}	
 	@Override
@@ -64,11 +62,7 @@ public class DotimesParser extends Parser{
 		return limit;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		//double result = 0; to be refactored here
 		Node node = buildTree(qu);
-		/*if(node.hasChild() != 0)
-			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
-			*/
 		return (int) node.getValue();
 	}
 	/**
@@ -80,21 +74,25 @@ public class DotimesParser extends Parser{
 	protected double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		Queue<String> temp = new LinkedList<>(qu);
 		double result = -1;
-		for(int i = start; i <= end; i++){
+		for(int i = start; i <= end; i = i+inc){
 			while(!isEnd(temp) && !isListEnd(temp.peek())){
-				Node n = buildTree(temp, localVar, i); 
+				System.out.println("It is definitely here!");
+				Node n = buildTree(temp, localVar, i);
+				System.out.println(n);
 				result = n.getValue();	
-				}
-			if(i < end)		temp = new LinkedList<>(qu);
+				System.out.println("The result of the command is " + result);
 			}
+			if(i < end)		temp = new LinkedList<>(qu);
+		}
 		while(qu != temp)	skip(qu); 
 		localVar = "";
 		return result;
 	}			
 	public static void main(String[] args) throws IOException, ParserError {
-//		DotimesParser example = new DotimesParser();
-		String dotimes = "dotimes [ :name 10 ] [ sum :name 2 atan 100 ]";
-//		example.parse(dotimes);
+		CommandFactory cf = new CommandFactory();
+		DotimesParser example = new DotimesParser(cf);
+		//String dotimes = "dotimes [ :name 10 ] [ sum :name 2 atan 100 ]";
+		String dotimes = "dotimes [ :v 3 ] [ sum 20 :v ]";
+		example.parse(dotimes);
 	}
-
 }
