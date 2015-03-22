@@ -17,8 +17,8 @@ public class SetPenColor extends ViewCommands{
 	
 	// Modified: Anika
 	public double execute() {
-		int index = (Integer) super.getParams().get(super.getParams().size() - 1);
-		super.getPenHandler().setPenColor(index);
+		double index = (double) super.getParams().get(super.getParams().size() - 1);
+		super.getPenHandler().setPenColor((int) index);
 		return index;
 	}
 

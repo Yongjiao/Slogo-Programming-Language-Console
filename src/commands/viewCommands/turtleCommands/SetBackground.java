@@ -11,7 +11,7 @@ public class SetBackground extends TurtleCommands{
 	}
 	
 	public double execute() {
-		double index = (Integer) super.getParams().get(super.getParams().size() - 1);
+		Double index = (double) super.getParams().get(super.getParams().size() - 1);
 		super.getHandler().setBackground(index);
 		return index;
 	}
