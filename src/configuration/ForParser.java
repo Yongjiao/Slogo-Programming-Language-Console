@@ -43,6 +43,10 @@ public class ForParser extends Parser{
 		start = fetchNumericExpr(tokens);
 		end  = fetchNumericExpr(tokens);
 		inc = fetchNumericExpr(tokens);
+		if(!isListEnd(tokens.peek()))
+			throw new ParserError("see" + tokens.poll() + "expected ] here!" );
+		skip(tokens);
+		parseCommands(tokens, start, end, inc);
 		if(!isListEnd(tokens.peek()))	
 			throw new ParserError("see" + tokens.poll() + "expected ] here!");
 		skip(tokens);
@@ -61,9 +65,7 @@ public class ForParser extends Parser{
 		return result;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		Node node = buildTree(qu);
-		if(node.hasChild() != 0)
-			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");		
+		Node node = buildTree(qu);		
 		return (int) node.getValue();
 	}
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
@@ -78,13 +80,8 @@ public class ForParser extends Parser{
 				}
 			if(i < end)		temp = new LinkedList<>(qu);
 			}
-		while(qu != temp)	skip(qu); 
+		while(!qu.equals(temp))		skip(qu); 
 		localVar = "";
 		return result;
-	}
-	public static void main(String[] args) throws IOException, ParserError {
-//		ForParser example = new ForParser();
-		String forl =  "for [ :v 0 10 1 ] [ / sum :v 5 10 ]";
-//		example.parse(forl);
 	}
 }

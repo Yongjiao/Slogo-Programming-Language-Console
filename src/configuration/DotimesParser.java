@@ -84,7 +84,8 @@ public class DotimesParser extends Parser{
 			}
 			if(i < end)		temp = new LinkedList<>(qu);
 		}
-		while(qu != temp)	skip(qu); 
+		System.out.println("After done with loop, temp is " + temp);
+		while(!qu.equals(temp))	skip(qu); 
 		localVar = "";
 		return result;
 	}			
