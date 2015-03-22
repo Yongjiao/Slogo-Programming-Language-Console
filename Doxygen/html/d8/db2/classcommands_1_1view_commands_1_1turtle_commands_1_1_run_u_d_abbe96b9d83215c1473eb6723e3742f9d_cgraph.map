@@ -1,8 +1,0 @@
-<map id="commands.viewCommands.turtleCommands.RunUD.execute" name="commands.viewCommands.turtleCommands.RunUD.execute">
-<area shape="rect" id="node2" href="$d7/d68/classcommands_1_1_user_defined.html#a7822849290ebb5a4b49b6cd555a94561" title="commands.UserDefined.get\lCommands" alt="" coords="307,5,509,46"/>
-<area shape="rect" id="node3" href="$d0/d3b/classcommands_1_1_user_made_utilities.html#a2abab29c77c92522be27514609b39d6c" title="commands.UserMadeUtilities.get\lFromCommands" alt="" coords="291,70,525,111"/>
-<area shape="rect" id="node4" href="$d7/d68/classcommands_1_1_user_defined.html#a31cb54a62a773cb3d67e171fc040c557" title="commands.UserDefined.get\lParameters" alt="" coords="307,135,509,177"/>
-<area shape="rect" id="node5" href="$dc/d3e/classcommands_1_1_command_center.html#afcfe895222ba4a12a15138f1a78727a2" title="commands.CommandCenter.get\lParams" alt="" coords="292,201,524,242"/>
-<area shape="rect" id="node6" href="$d7/d68/classcommands_1_1_user_defined.html#a43fb6c415c587f19c9bb32ed38005227" title="commands.UserDefined.make\lInstanceOfSelf" alt="" coords="299,266,517,307"/>
-<area shape="rect" id="node7" href="$d7/d68/classcommands_1_1_user_defined.html#ab96d345e9579b5a015e78a40b4419d0b" title="commands.UserDefined.User\lDefined" alt="" coords="573,266,784,307"/>
-</map>

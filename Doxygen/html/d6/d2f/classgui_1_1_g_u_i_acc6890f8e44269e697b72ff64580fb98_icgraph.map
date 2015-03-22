@@ -1,6 +1,0 @@
-<map id="gui.GUI.launchTurtleImageChooser" name="gui.GUI.launchTurtleImageChooser">
-<area shape="rect" id="node2" href="$d6/d2f/classgui_1_1_g_u_i.html#a93dd1959425cd3009366bcc585373af4" title="gui.GUI.createNormalButtons" alt="" coords="243,12,453,39"/>
-<area shape="rect" id="node3" href="$d6/d2f/classgui_1_1_g_u_i.html#a8946451ec351fce99254ed5efd88b33d" title="gui.GUI.initializeButtons" alt="" coords="501,12,675,39"/>
-<area shape="rect" id="node4" href="$d6/d2f/classgui_1_1_g_u_i.html#a8b2bdbd34755b5a59657b9ad391d2b22" title="gui.GUI.initialize" alt="" coords="723,12,845,39"/>
-<area shape="rect" id="node5" href="$d9/d96/classapplication_1_1_main.html#a998d14807e266e3f3b9e85468fc1ea98" title="application.Main.start" alt="" coords="894,12,1053,39"/>
-</map>
