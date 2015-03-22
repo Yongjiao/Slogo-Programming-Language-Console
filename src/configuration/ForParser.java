@@ -47,9 +47,6 @@ public class ForParser extends Parser{
 			throw new ParserError("see" + tokens.poll() + "expected ] here!" );
 		skip(tokens);
 		parseCommands(tokens, start, end, inc);
-		if(!isListEnd(tokens.peek()))	
-			throw new ParserError("see" + tokens.poll() + "expected ] here!");
-		skip(tokens);
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;		
