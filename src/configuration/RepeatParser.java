@@ -39,26 +39,7 @@ public class RepeatParser extends Parser{
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
 		//double result = 0; to be refactored here
 		Node node = buildTree(qu);
-		if(node.hasChild() != 0)
-			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");
 		return (int) node.getValue();
-	}
-	
-	protected ArrayList<Node> parseListCommands(Queue<String> qu, int iter) throws ParserError{
-		ArrayList<Node>	list = new ArrayList();
-		System.out.println(qu);
-		if(!isListStart(qu.peek()))
-			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
-		skip(qu);
-		while(!isEnd(qu) && !isListEnd(qu.peek())){
-			
-			list.add(buildTree(qu));
-			parseFor(0, iter, 1, qu);
-			System.out.println("Tree parsed is " + list.get(list.size() -1));
-		}
-		if(isEnd(qu) || !isListEnd(qu.poll()))
-			throw new ParserError("Expected ] here !");
-		return list;
 	}	
 	private double parseCommands(Queue<String> qu, int iter) throws ParserError{
 		ArrayList<Node>	list = new ArrayList();
@@ -66,10 +47,7 @@ public class RepeatParser extends Parser{
 		if(!isListStart(qu.peek()))
 			throw new ParserError("see " + qu.poll() + ", expected [ here!" );
 		skip(qu);
-		while(!isEnd(qu) && !isListEnd(qu.peek())){
-			//list.add(buildTree(qu));
-			result = parseFor(0, iter, 1, qu);
-		}
+		result = parseFor(0, iter, 1, qu);
 		if(isEnd(qu) || !isListEnd(qu.poll()))
 			throw new ParserError("Expected ] here !");
 		return result;
@@ -77,12 +55,14 @@ public class RepeatParser extends Parser{
 	private double parseFor(int start, int end, int inc, Queue<String> qu) throws ParserError{
 		double result = -1; 
 		ArrayList<Node> nodes= new ArrayList<Node>();
-		Node n = buildTree(qu);
-		nodes.add(buildTree(qu));	
-		System.out.println("Tree parsed is " + n);
-		System.out.println("start is " + start + " end is " + end + " inc is " + inc );
+		while(!isEnd(qu) && !isListEnd(qu.peek())){
+			Node n = buildTree(qu);
+			nodes.add(n);	
+			System.out.println("Tree parsed is " + n);
+			System.out.println("start is " + start + " end is " + end + " inc is " + inc );
+		}
 		for(int i = start; i < end; i++){
-			result = n.getValue();		
+			result = Util.executeAll(nodes);		
 			System.out.println(result);
 		}
 		return result;

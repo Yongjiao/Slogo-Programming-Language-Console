@@ -16,11 +16,7 @@ public class CommandFactory {
 	
 	private PenHandler myPenHandler;
 	private ViewHandler myViewHandler;
-	
-	public CommandFactory()
-	{
-	}
-	
+
 	// fixed by anika to allow for single declaration of CF without
 	// reinitializing Pen / View handler
 	public void setPenHandler(PenHandler newHandler)
@@ -75,7 +71,7 @@ public CommandCenter makeNoParmsCommands(String com){
    				case "Remainder":		return new Remainder(parList);
    				case "Left":			return new Left(parList, myViewHandler);
    				case "Right":			return new Right(parList, myViewHandler);
-   				case "Towards":			return new Towards(parList, myViewHandler);
+   				//case "SetTowards":		return new Towards(parList, myViewHandler);
    				case "SetHeading":		return new SetHeading(parList, myViewHandler);
    				case "Sine":			return new Sin(parList);
    				case "Cosine":			return new Cos(parList);

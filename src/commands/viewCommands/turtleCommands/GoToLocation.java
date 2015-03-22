@@ -16,5 +16,4 @@ public class GoToLocation extends Move {
 		double y = (Double) super.getParams().get(super.getParams().size() - 1);
 		return super.goToLocation(x, y);
 	}
-
 }

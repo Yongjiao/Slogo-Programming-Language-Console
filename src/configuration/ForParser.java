@@ -30,8 +30,7 @@ public class ForParser extends Parser{
 		System.out.println(tokens);
 		skip(tokens);
 		return parse(tokens);
-	}
-	
+	}	
 	private double parse(Queue<String> tokens) throws ParserError {
 		int start, end, inc;
 		double result = -1;
@@ -47,7 +46,6 @@ public class ForParser extends Parser{
 		if(!isListEnd(tokens.peek()))	
 			throw new ParserError("see" + tokens.poll() + "expected ] here!");
 		skip(tokens);
-
 		if(!isEnd(tokens))
 			throw new ParserError("Unnecessary long command input!");
 		return result;		
@@ -63,7 +61,6 @@ public class ForParser extends Parser{
 		return result;
 	}
 	private int fetchNumericExpr(Queue<String> qu) throws ParserError{
-		//double result = 0; to be refactored here
 		Node node = buildTree(qu);
 		/*if(node.hasChild() != 0)
 			throw new ParserError("see" + qu.poll() + "expected a numeric expression here!");

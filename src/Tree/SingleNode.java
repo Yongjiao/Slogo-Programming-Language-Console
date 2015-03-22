@@ -9,7 +9,6 @@ import configuration.Util;
 /**
  * Represents a single node with one child/commands with only one parameter 
  * @author Yongjiao Yu
- *
  */
 public class SingleNode implements Node{
 	private final int numChild = 1;

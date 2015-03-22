@@ -90,8 +90,7 @@ public class DotimesParser extends Parser{
 		while(qu != temp)	skip(qu); 
 		localVar = "";
 		return result;
-	}		
-	
+	}			
 	public static void main(String[] args) throws IOException, ParserError {
 //		DotimesParser example = new DotimesParser();
 		String dotimes = "dotimes [ :name 10 ] [ sum :name 2 atan 100 ]";
