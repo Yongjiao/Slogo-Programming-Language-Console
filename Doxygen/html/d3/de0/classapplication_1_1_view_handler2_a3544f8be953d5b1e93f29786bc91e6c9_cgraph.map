@@ -1,0 +1,15 @@
+<map id="application.ViewHandler2.initializeTurtle" name="application.ViewHandler2.initializeTurtle">
+<area shape="rect" id="node2" href="$df/dcc/classgui_1_1_turtle_view.html#a70aa01c57164ada0cc895e7b6772501b" title="gui.TurtleView.initialize\lTurtle" alt="" coords="313,57,476,98"/>
+<area shape="rect" id="node3" href="$d3/de0/classapplication_1_1_view_handler2.html#a86919837e2dcf639d2f537d41eb5bd1a" title="application.ViewHandler2.set\lInfoParamsOfTurtleAndLine" alt="" coords="291,122,498,163"/>
+<area shape="rect" id="node4" href="$df/dcc/classgui_1_1_turtle_view.html#a978020a0f6ccbc4714b77c71435b0799" title="gui.TurtleView.setTurtleInfo" alt="" coords="557,5,745,32"/>
+<area shape="rect" id="node5" href="$d3/de0/classapplication_1_1_view_handler2.html#a64f43a60dc4ed9c575e910ffb9b2872d" title="application.ViewHandler2.get\lTurtleLocation" alt="" coords="547,57,754,98"/>
+<area shape="rect" id="node7" href="$d3/de0/classapplication_1_1_view_handler2.html#af6fa367df07b3cb1bdceb909e8b3ef21" title="application.ViewHandler2.get\lTurtleOrientation" alt="" coords="547,122,754,163"/>
+<area shape="rect" id="node9" href="$df/dcb/classapplication_1_1_pen_handler.html#a8477a9a258753bb5538ad83a015fb731" title="application.PenHandler.get\lPenStatus" alt="" coords="554,187,747,229"/>
+<area shape="rect" id="node11" href="$df/dcb/classapplication_1_1_pen_handler.html#a518bb3076e4d9d105870b0778341a8c0" title="application.PenHandler.set\lThicknessParameter" alt="" coords="555,253,747,294"/>
+<area shape="rect" id="node6" href="$d1/d31/classapplication_1_1_turtle.html#a802873f2487ab3b6832050e1bef998a5" title="application.Turtle.getLoc" alt="" coords="828,64,1004,91"/>
+<area shape="rect" id="node8" href="$d1/d31/classapplication_1_1_turtle.html#af22147e198fac9068726b95eea235739" title="application.Turtle.getOrientation" alt="" coords="803,129,1029,156"/>
+<area shape="rect" id="node10" href="$de/d5a/classapplication_1_1_pen.html#ab21d78789fb66a90181393d7cc42796c" title="application.Pen.getStatus" alt="" coords="823,195,1009,221"/>
+<area shape="rect" id="node12" href="$df/dcb/classapplication_1_1_pen_handler.html#a307ff6736f97a1aa1706da924d7e642b" title="application.PenHandler.get\lPenWeight" alt="" coords="819,249,1013,290"/>
+<area shape="rect" id="node14" href="$d8/ddb/classgui_1_1_line_view.html#ab32d4cf33024aea52dcb5d1092003d85" title="gui.LineView.setThickness" alt="" coords="823,315,1009,341"/>
+<area shape="rect" id="node13" href="$de/d5a/classapplication_1_1_pen.html#aaaae5f55fadb97afef2ae286a6119a58" title="application.Pen.getWeight" alt="" coords="1077,256,1264,283"/>
+</map>
