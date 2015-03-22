@@ -76,7 +76,6 @@ public class DotimesParser extends Parser{
 		double result = -1;
 		for(int i = start; i <= end; i = i+inc){
 			while(!isEnd(temp) && !isListEnd(temp.peek())){
-				System.out.println("It is definitely here!");
 				Node n = buildTree(temp, localVar, i);
 				System.out.println(n);
 				result = n.getValue();	
@@ -84,16 +83,8 @@ public class DotimesParser extends Parser{
 			}
 			if(i < end)		temp = new LinkedList<>(qu);
 		}
-		System.out.println("After done with loop, temp is " + temp);
 		while(!qu.equals(temp))	skip(qu); 
 		localVar = "";
 		return result;
 	}			
-	public static void main(String[] args) throws IOException, ParserError {
-		CommandFactory cf = new CommandFactory();
-		DotimesParser example = new DotimesParser(cf);
-		//String dotimes = "dotimes [ :name 10 ] [ sum :name 2 atan 100 ]";
-		String dotimes = "dotimes [ :v 3 ] [ sum 20 :v ]";
-		example.parse(dotimes);
-	}
 }

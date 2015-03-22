@@ -56,10 +56,13 @@ public class BasicParser extends Parser{
 	public double parse(Queue<String> qu) throws ParserError{
 		ArrayList<Node> roots = new ArrayList<Node>(); //dont really need the arrayList of node
 		double result = -1;
-		Node expRoot = buildTree(qu);			
-		System.out.println("The full comamnd parsed is " + expRoot);
-		if(expRoot.hasChild() == 0) 		
-			throw new ParserError("Additional numeric tokens: " + expRoot.getValue());
+		Node expRoot = null;
+		while(!isEnd(qu)){
+			expRoot = buildTree(qu);	
+			System.out.println("The full comamnd parsed is " + expRoot);
+			if(expRoot.hasChild() == 0) 		
+				throw new ParserError("Additional numeric tokens: " + expRoot.getValue());
+		}
 		result = expRoot.getValue();
 		System.out.println("a tree parsed is evaluated to " + result);
 		roots.add(expRoot);
