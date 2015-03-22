@@ -1,6 +1,0 @@
-<map id="application.ViewHandler.setTurtleLocToViewTurtleLoc" name="application.ViewHandler.setTurtleLocToViewTurtleLoc">
-<area shape="rect" id="node2" href="$d1/d31/classapplication_1_1_turtle.html#a802873f2487ab3b6832050e1bef998a5" title="application.Turtle.getLoc" alt="" coords="267,5,443,32"/>
-<area shape="rect" id="node3" href="$d8/d65/classapplication_1_1_view_handler.html#aba2ed11a44abfaf2d5684ab5a7bbb33f" title="application.ViewHandler.get\lViewTurtleLocation" alt="" coords="255,57,454,98"/>
-<area shape="rect" id="node5" href="$d1/d31/classapplication_1_1_turtle.html#a1055014d20f219b829679d8d4f3e0d97" title="application.Turtle.setLocation" alt="" coords="251,123,458,149"/>
-<area shape="rect" id="node4" href="$d8/d8b/classgui_1_1_view.html#a805679dcb8753b21508755667f09fac9" title="gui.View.getNewPoint" alt="" coords="507,64,664,91"/>
-</map>
