@@ -35,7 +35,8 @@ public class BasicParser extends Parser{
 		Queue<String> tokens = Util.toCommandQueue(s);
 		String command = tokens.peek();
 		comKey = Util.findCommandKey(tokens.peek(), super.getPatterns());
-		if(comKey == null)	throw new ParserError("Command Undefined!");
+		if(comKey == null)	throw new ParserError("Command Undefined: "+ command);
+		System.out.println("WHAT");
 		CommandCenter com = myFactory.makeNoParmsCommands(comKey);
 		if(com != null)	return com.execute();
 		System.out.println(comKey);
