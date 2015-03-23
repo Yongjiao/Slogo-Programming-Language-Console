@@ -1,20 +1,11 @@
-# SLOGO
+# COMPSCI 308 Software Design and Implementation : SLOGO  
+Course Project for team of four to develop a children learning programming program: Slogo 
+
 A development environment that helps users write SLogo programs.
 
-  Note on 02/25
+Date started: 02/15/15
 
-  - when parsing If and Ifelse, only constructing IfCond class. 
-  - Tobeadded: mutiple commands in command list[ ];
-
-CompSci 308 Spring 2015
-
-Team: Anika Radiya-Dixit, Andrew Sun, Yongjiao Yu, Richard Wang
-
-Date started: 02/13/15
-
-Date finished: 
-
-Hours worked: 60+
+Date finished:03/05/2015
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
@@ -28,47 +19,12 @@ Resources used:
 * http://docs.oracle.com/javase/7/docs/api/java/awt/Color.html#Color(int,%20int,%20int)
 * http://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
 
-Main class file: Main.java
 
-
-
-NOTE: error checking
-
-```java
-
-ERROR CHECKING CLASS
-- allows leading and trailling spaces for a line of command
-- alows exactly only one space within a command: ___fw_50___
-
-private Map<String command, String regix> collectionOfCommands...
-
-
-public boolean validateInput(String input)
-{
-  AL input2 = input.split(" ");
-  if (input2 of size 2)
-  {
-    return checkSingleCommand(input2);
-  }
-  if (input2 starts with loop/doTimes/repeat)
-  {
-   // call another method
-  }
-  ...
-  
-}
-
-public boolean checkSingleCommand(AL input)
-{
- // make sure first element is a valid command
- // make sure remaining  elements are integers satisfying required number according to hashmap
-}
-
-...
-
-```
-
-
+Team memebers:
+Yongjiao Yu
+Andrew Sun
+Anika Radiya-Dixit
+Richard Wang
 
 
 
