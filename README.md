@@ -10,8 +10,11 @@ Date finished:03/06/2015
 
 Team memebers:
 Yongjiao Yu
+
 Andrew Sun
+
 Anika Radiya-Dixit
+
 Richard Wang
 
 Resources used:
