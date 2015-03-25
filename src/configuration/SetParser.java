@@ -31,7 +31,7 @@ public class SetParser extends Parser{
 		CommandCenter com = parse(tokens);	
 		return com.execute();	
 	}
-	//can just execute() and change to double but keep for ease of debugging
+
 	private CommandCenter parse(Queue<String> tokens) throws ParserError {		
 		String token = tokens.poll();
 		if(!isVariable(token))
