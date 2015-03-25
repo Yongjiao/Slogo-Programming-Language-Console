@@ -9,7 +9,7 @@ Date finished:03/06/2015
 
 
 Team memebers:
-Andrew Sun, Yongjiao Yu, Anika Radiya-Dixit, Richard Wang
+Yongjiao Yu, Andrew Sun, Anika Radiya-Dixit, Richard Wang
 
 Resources used:
 * http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
