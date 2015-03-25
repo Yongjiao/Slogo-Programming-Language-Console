@@ -3,9 +3,9 @@ Course Project for team of four to develop a children learning programming progr
 
 A development environment that helps users write SLogo programs.
 
-Date started: 02/15/15
+Date started: 02/21/15
 
-Date finished:03/05/2015
+Date finished:03/06/2015
 
 
 Team memebers:
